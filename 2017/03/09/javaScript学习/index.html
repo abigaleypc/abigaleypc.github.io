@@ -1,0 +1,672 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/dear.jpeg?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="判断json对象是否含有特定属性 in 运算符   可看到无论是name，还是原形链上的toString，都能检测到返回true。  123var obj = &amp;#123;name:&apos;jack&apos;&amp;#125;;alert(&apos;name&apos; in obj); // --&amp;gt; truealert(&apos;toString&apos; in obj); // --&amp;gt; true  hasOwnProperty 方法">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaScript学习">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/03/09/javaScript学习/index.html">
+<meta property="og:site_name" content="Abigale's Blog">
+<meta property="og:description" content="判断json对象是否含有特定属性 in 运算符   可看到无论是name，还是原形链上的toString，都能检测到返回true。  123var obj = &amp;#123;name:&apos;jack&apos;&amp;#125;;alert(&apos;name&apos; in obj); // --&amp;gt; truealert(&apos;toString&apos; in obj); // --&amp;gt; true  hasOwnProperty 方法">
+<meta property="og:updated_time" content="2017-04-06T03:35:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javaScript学习">
+<meta name="twitter:description" content="判断json对象是否含有特定属性 in 运算符   可看到无论是name，还是原形链上的toString，都能检测到返回true。  123var obj = &amp;#123;name:&apos;jack&apos;&amp;#125;;alert(&apos;name&apos; in obj); // --&amp;gt; truealert(&apos;toString&apos; in obj); // --&amp;gt; true  hasOwnProperty 方法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/03/09/javaScript学习/"/>
+
+
+
+
+
+  <title> javaScript学习 | Abigale's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Abigale's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/Categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/Tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/03/09/javaScript学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javaScript学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T15:55:38+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="判断json对象是否含有特定属性"><a href="#判断json对象是否含有特定属性" class="headerlink" title="判断json对象是否含有特定属性"></a>判断json对象是否含有特定属性</h3><ul>
+<li>in 运算符</li>
+</ul>
+<blockquote>
+<p>可看到无论是name，还是原形链上的toString，都能检测到返回true。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'jack'</span>&#125;;</div><div class="line">alert(<span class="string">'name'</span> <span class="keyword">in</span> obj); <span class="comment">// --&gt; true</span></div><div class="line">alert(<span class="string">'toString'</span> <span class="keyword">in</span> obj); <span class="comment">// --&gt; true</span></div></pre></td></tr></table></figure>
+<ul>
+<li>hasOwnProperty 方法</li>
+</ul>
+<blockquote>
+<p>原型链上继承过来的属性无法通过hasOwnProperty检测到，返回false。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'jack'</span>&#125;;</div><div class="line">obj.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">// --&gt; true</span></div><div class="line">obj.hasOwnProperty(<span class="string">'toString'</span>); <span class="comment">// --&gt; false</span></div></pre></td></tr></table></figure>
+<h3 id="try-catch-throw"><a href="#try-catch-throw" class="headerlink" title="try catch throw"></a>try catch throw</h3><ul>
+<li>try 语句允许我们定义在执行时进行错误测试的代码块</li>
+<li>catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。</li>
+<li>throw 创建自定义错误</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">message</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		noFun(<span class="string">"123"</span>);  <span class="comment">//这是一个不存在的函数</span></div><div class="line">	&#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">		alert(<span class="string">'本页面有有个错误：'</span> + err.message); </div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>自定义错误抛出例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">message</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> y = <span class="built_in">document</span>.getElementById(<span class="string">'in'</span>).value;</div><div class="line">   <span class="keyword">try</span> &#123;</div><div class="line">   	<span class="keyword">if</span> (y == <span class="number">3</span>) <span class="keyword">throw</span> <span class="string">'值不能等于3'</span>;</div><div class="line">   	<span class="keyword">if</span> (<span class="built_in">isNaN</span>(y)) <span class="keyword">throw</span> <span class="string">'应为数字'</span>;</div><div class="line">   	<span class="keyword">if</span> (y &gt; <span class="number">10</span>) <span class="keyword">throw</span> <span class="string">'值不能大于10'</span>;</div><div class="line">   &#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">   	alert(err); <span class="comment">//与上面例子不一样，这里不需要加message</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="js验证"><a href="#js验证" class="headerlink" title="js验证"></a>js验证</h3><blockquote>
+<p>以下是表单验证例子，将验证内容包含在标签form里面。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">validate_email</span>(<span class="params">field, alerttxt</span>) </span>&#123;</div><div class="line">            <span class="keyword">with</span>(field) &#123;</div><div class="line">                apos = value.indexOf(<span class="string">'@'</span>);</div><div class="line">                dotpos = value.lastIndexOf(<span class="string">'.'</span>)</div><div class="line">                <span class="keyword">if</span> (apos &lt; <span class="number">1</span> || dotpos - apos &lt; <span class="number">2</span>) &#123;</div><div class="line">                    alerr(alerttxt);</div><div class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">validate_form</span>(<span class="params">thisform</span>) </span>&#123;</div><div class="line">            <span class="keyword">with</span>(thisform) &#123;</div><div class="line">                <span class="keyword">if</span> (thisform) &#123;</div><div class="line">                    <span class="keyword">if</span> (validate_email(email, <span class="string">"Not a valid e-mail address!"</span>) == <span class="literal">false</span>) &#123;</div><div class="line">                        email.focus();</div><div class="line">                        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">from</span> <span class="attr">action</span>=<span class="string">"submitpage.html"</span> <span class="attr">onsubmit</span>=<span class="string">"return validate_form(this);"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">        Email:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">size</span>=<span class="string">"30"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">from</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>with 语句用于设置代码在特定对象中的作用域。<a href="http://www.w3school.com.cn/js/pro_js_statements_with.asp" target="_blank" rel="external">可参考</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/09/css-学习/" rel="next" title="css 学习">
+                <i class="fa fa-chevron-left"></i> css 学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/09/JS的组成：ECMAScript、BOM和DOM/" rel="prev" title="JS的组成：ECMAScript、BOM和DOM">
+                JS的组成：ECMAScript、BOM和DOM <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dear.jpeg"
+               alt="Abigale" />
+          <p class="site-author-name" itemprop="name">Abigale</p>
+          <p class="site-description motion-element" itemprop="description">回忆里的拇指姑娘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/Categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/Tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断json对象是否含有特定属性"><span class="nav-number">1.</span> <span class="nav-text">判断json对象是否含有特定属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch-throw"><span class="nav-number">2.</span> <span class="nav-text">try catch throw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js验证"><span class="nav-number">3.</span> <span class="nav-text">js验证</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Abigale</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
