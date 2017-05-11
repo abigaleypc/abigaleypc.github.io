@@ -91,7 +91,7 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/05/11/构建Node应用，演示反射型XSS攻击/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="步骤：  新建一个文件夹XSS 命令 express -e ./ 初始化一个express项目 npm i下载需要的库 启动服务： 进入XSS，执行命令npm start 原理：  在 index.js 文件中加上 xss字段 123456router.get(&apos;/&apos;, function(req, res, next) &amp;#123;  res.render(&apos;index&apos;, &amp;#123;">
-<meta property="og:updated_time" content="2017-05-11T10:01:35.000Z">
+<meta property="og:updated_time" content="2017-05-11T10:20:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建Node应用，演示反射型XSS攻击">
 <meta name="twitter:description" content="步骤：  新建一个文件夹XSS 命令 express -e ./ 初始化一个express项目 npm i下载需要的库 启动服务： 进入XSS，执行命令npm start 原理：  在 index.js 文件中加上 xss字段 123456router.get(&apos;/&apos;, function(req, res, next) &amp;#123;  res.render(&apos;index&apos;, &amp;#123;">
@@ -346,7 +346,7 @@
 </ul>
 </li>
 </ul>
-<pre><code>* 在 `index.ejs`加上如下代码
+<pre><code>* 在 `index.ejs` 加上如下代码
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%- xss %&gt;</div></pre></td></tr></table></figure>
 
