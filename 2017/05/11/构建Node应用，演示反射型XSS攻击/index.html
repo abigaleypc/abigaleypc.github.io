@@ -91,7 +91,7 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/05/11/构建Node应用，演示反射型XSS攻击/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="步骤：  新建一个文件夹XSS 命令 express -e ./ 初始化一个express项目 npm i下载需要的库 启动服务： 进入XSS，执行命令npm start 原理：  在 index.js 文件中加上 xss字段 123456router.get(&apos;/&apos;, function(req, res, next) &amp;#123;  res.render(&apos;index&apos;, &amp;#123;">
-<meta property="og:updated_time" content="2017-05-11T10:20:45.000Z">
+<meta property="og:updated_time" content="2017-05-11T10:21:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建Node应用，演示反射型XSS攻击">
 <meta name="twitter:description" content="步骤：  新建一个文件夹XSS 命令 express -e ./ 初始化一个express项目 npm i下载需要的库 启动服务： 进入XSS，执行命令npm start 原理：  在 index.js 文件中加上 xss字段 123456router.get(&apos;/&apos;, function(req, res, next) &amp;#123;  res.render(&apos;index&apos;, &amp;#123;">
@@ -343,15 +343,13 @@
 <li><p>在 <code>index.js</code> 文件中加上 xss字段</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; </div><div class="line">    <span class="attr">title</span>: <span class="string">'Express'</span> ,</div><div class="line">    <span class="attr">xss</span>: req.query.xss</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
+<li><p>在 <code>index.ejs</code> 加上如下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%- xss %&gt;</div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ul>
-<pre><code>* 在 `index.ejs` 加上如下代码
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%- xss %&gt;</div></pre></td></tr></table></figure>
-
-
-* 打开链接 `http://localhost:3000/?xss=1` 就可以看到传入的xss被显示在页面
+<pre><code>* 打开链接 `http://localhost:3000/?xss=1` 就可以看到传入的xss被显示在页面
 </code></pre><ul>
 <li><p>攻击方式：</p>
 <ul>
