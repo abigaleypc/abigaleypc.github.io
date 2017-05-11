@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,18 +84,19 @@
 
 
 
-<meta name="description" content="字体不换行，超出加省略号123white-space: nowrap; //	文本不会换行，文本会在在同一行上继续，直到遇到 &amp;lt;br&amp;gt; 标签为止overflow: hidden;text-overflow: ellipsis;">
-<meta name="keywords" content="javascript">
+<meta name="description" content="如图是事件流的经过， 事件捕获 事件捕获是从外层元素到目标元素的过程，事件冒泡是从目标元素到外层元素的过程  123&amp;lt;div id=&quot;wrapper&quot;&amp;gt;    &amp;lt;button id=&quot;event&quot;&amp;gt;事件处理程序&amp;lt;/button&amp;gt;&amp;lt;/div&amp;gt;">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 事件冒泡、事件捕获和事件委托">
-<meta property="og:url" content="https://abigaleypc.github.io/2017/05/08/JavaScript-事件冒泡、事件捕获和事件委托/index.html">
+<meta property="og:title" content="事件冒泡、事件捕捉和事件委托">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/05/11/事件冒泡、事件捕捉和事件委托/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="字体不换行，超出加省略号123white-space: nowrap; //	文本不会换行，文本会在在同一行上继续，直到遇到 &amp;lt;br&amp;gt; 标签为止overflow: hidden;text-overflow: ellipsis;">
+<meta property="og:description" content="如图是事件流的经过， 事件捕获 事件捕获是从外层元素到目标元素的过程，事件冒泡是从目标元素到外层元素的过程  123&amp;lt;div id=&quot;wrapper&quot;&amp;gt;    &amp;lt;button id=&quot;event&quot;&amp;gt;事件处理程序&amp;lt;/button&amp;gt;&amp;lt;/div&amp;gt;">
 <meta property="og:image" content="https://abigaleypc.github.io/images/事件流.png">
-<meta property="og:updated_time" content="2017-05-11T10:09:08.000Z">
+<meta property="og:image" content="https://abigaleypc.github.io/images/事件流.png">
+<meta property="og:updated_time" content="2017-05-11T10:11:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript 事件冒泡、事件捕获和事件委托">
-<meta name="twitter:description" content="字体不换行，超出加省略号123white-space: nowrap; //	文本不会换行，文本会在在同一行上继续，直到遇到 &amp;lt;br&amp;gt; 标签为止overflow: hidden;text-overflow: ellipsis;">
+<meta name="twitter:title" content="事件冒泡、事件捕捉和事件委托">
+<meta name="twitter:description" content="如图是事件流的经过， 事件捕获 事件捕获是从外层元素到目标元素的过程，事件冒泡是从目标元素到外层元素的过程  123&amp;lt;div id=&quot;wrapper&quot;&amp;gt;    &amp;lt;button id=&quot;event&quot;&amp;gt;事件处理程序&amp;lt;/button&amp;gt;&amp;lt;/div&amp;gt;">
 <meta name="twitter:image" content="https://abigaleypc.github.io/images/事件流.png">
 
 
@@ -124,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://abigaleypc.github.io/2017/05/08/JavaScript-事件冒泡、事件捕获和事件委托/"/>
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/05/11/事件冒泡、事件捕捉和事件委托/"/>
 
 
 
 
 
-  <title> JavaScript 事件冒泡、事件捕获和事件委托 | Abigale's Blog </title>
+  <title> 事件冒泡、事件捕捉和事件委托 | Abigale's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -261,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/08/JavaScript-事件冒泡、事件捕获和事件委托/">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/11/事件冒泡、事件捕捉和事件委托/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Abigale">
@@ -285,7 +286,7 @@
             
             
               
-                JavaScript 事件冒泡、事件捕获和事件委托
+                事件冒泡、事件捕捉和事件委托
               
             
           </h1>
@@ -298,8 +299,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-08T11:54:00+08:00">
-                2017-05-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T18:10:39+08:00">
+                2017-05-11
               </time>
             
 
@@ -334,10 +335,14 @@
       
 
       
-        <h3 id="字体不换行，超出加省略号"><a href="#字体不换行，超出加省略号" class="headerlink" title="字体不换行，超出加省略号"></a>字体不换行，超出加省略号</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">white-space: nowrap; //	文本不会换行，文本会在在同一行上继续，直到遇到 &lt;br&gt; 标签为止</div><div class="line">overflow: hidden;</div><div class="line">text-overflow: ellipsis;</div></pre></td></tr></table></figure>
+        <p>如图是事件流的经过，<br><img src="/images/事件流.png" alt="事件流"></p>
+<h3 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h3><blockquote>
+<p>事件捕获是从外层元素到目标元素的过程，事件冒泡是从目标元素到外层元素的过程</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrapper"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"event"</span>&gt;</span>事件处理程序<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>如图是事件流的经过，<br><img src="/images/事件流.png" alt="事件流"></p>
-<h3 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h3><blockquote>
+<h3 id="事件捕获-1"><a href="#事件捕获-1" class="headerlink" title="事件捕获"></a>事件捕获</h3><blockquote>
 <p>事件捕获是从外层元素到目标元素的过程，事件冒泡是从目标元素到外层元素的过程</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrapper"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"event"</span>&gt;</span>事件处理程序<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -370,20 +375,10 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/05/08/正则表达式题目/" rel="next" title="正则表达式题目">
-                <i class="fa fa-chevron-left"></i> 正则表达式题目
-              </a>
             
           </div>
 
@@ -391,8 +386,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/06/MEAN-js-使用手册/" rel="prev" title="MEAN.js 使用手册">
-                MEAN.js 使用手册 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/11/构建Node应用，演示反射型XSS攻击/" rel="prev" title="构建Node应用，演示反射型XSS攻击">
+                构建Node应用，演示反射型XSS攻击 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,7 +508,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#字体不换行，超出加省略号"><span class="nav-number">1.</span> <span class="nav-text">字体不换行，超出加省略号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件捕获"><span class="nav-number">2.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止冒泡"><span class="nav-number">3.</span> <span class="nav-text">阻止冒泡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件委托"><span class="nav-number">4.</span> <span class="nav-text">事件委托</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件捕获"><span class="nav-number">1.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件捕获-1"><span class="nav-number">2.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止冒泡"><span class="nav-number">3.</span> <span class="nav-text">阻止冒泡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件委托"><span class="nav-number">4.</span> <span class="nav-text">事件委托</span></a></li></ol></div>
             
 
           </div>
