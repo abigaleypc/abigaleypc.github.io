@@ -259,7 +259,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/09/JavaScript-事件冒泡、事件捕获和事件委托/">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/11/构建Node应用，演示反射型XSS攻击/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Abigale">
@@ -284,8 +284,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/09/JavaScript-事件冒泡、事件捕获和事件委托/" itemprop="url">
-                  JavaScript 事件冒泡、事件捕获和事件委托
+                <a class="post-title-link" href="/2017/05/11/构建Node应用，演示反射型XSS攻击/" itemprop="url">
+                  构建Node应用，演示反射型XSS攻击
                 </a>
               
             
@@ -299,8 +299,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-09T11:54:00+08:00">
-                2017-05-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T18:00:48+08:00">
+                2017-05-11
               </time>
             
 
@@ -336,18 +336,40 @@
 
       
         
-          <p>如图是事件流的经过，<br><img src="/images/事件流.png" alt="事件流"></p>
-<h3 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h3><blockquote>
-<p>事件捕获是从外层元素到目标元素的过程，事件冒泡是从目标元素到外层元素的过程</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrapper"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"event"</span>&gt;</span>事件处理程序<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/05/09/JavaScript-事件冒泡、事件捕获和事件委托/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <p>步骤：</p>
+<ul>
+<li>新建一个文件夹<code>XSS</code></li>
+<li>命令 <code>express -e ./</code> 初始化一个express项目</li>
+<li><code>npm i</code>下载需要的库</li>
+<li>启动服务： 进入<code>XSS</code>，执行命令<code>npm start</code></li>
+<li><p>原理：</p>
+<ul>
+<li><p>在 <code>index.js</code> 文件中加上 xss字段</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; </div><div class="line">    <span class="attr">title</span>: <span class="string">'Express'</span> ,</div><div class="line">    <span class="attr">xss</span>: req.query.xss</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* 在 `index.ejs`加上如下代码
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%- xss %&gt;</div></pre></td></tr></table></figure>
+
+
+* 打开链接 `http://localhost:3000/?xss=1` 就可以看到传入的xss被显示在页面
+</code></pre><ul>
+<li><p>攻击方式：</p>
+<ul>
+<li>将以上链接改为 <code>http://localhost:3000/?xss=&lt;img src=&quot;null&quot; onerror=&quot;alert(0)&quot;/&gt;</code>  但打开页面的时候发现并没有插入的代码并没有被执行，这是因为浏览器自动做了拦截</li>
+<li><p>取消拦截：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.set(<span class="string">'X-XSS-Protection'</span>,<span class="number">0</span>);</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; </div><div class="line">    <span class="attr">title</span>: <span class="string">'Express'</span> ,</div><div class="line">    <span class="attr">xss</span>: req.query.xss</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>再打开链接时，上述插入的代码也就被执行了。我们可以在xss=图片 页面 等等 </p>
+</li>
+</ul>
+</li>
+</ul>
+
+          
         
       
     </div>
@@ -462,10 +484,10 @@
       
         
           <ul>
-<li>null是关键字；undefined是Global对象的一个属性 </li>
+<li>null是关键字；undefined是Global对象的一个属性</li>
 <li>null是对象(空对象, 没有任何属性和方法)；undefined是undefined类型的值。</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.writeln(<span class="keyword">typeof</span> <span class="literal">null</span>); <span class="comment">//return object </span></div><div class="line"><span class="built_in">document</span>.writeln(<span class="keyword">typeof</span> <span class="literal">undefined</span>); <span class="comment">//return undefined</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.writeln(<span class="keyword">typeof</span> <span class="literal">null</span>); <span class="comment">//return object</span></div><div class="line"><span class="built_in">document</span>.writeln(<span class="keyword">typeof</span> <span class="literal">undefined</span>); <span class="comment">//return undefined</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/05/08/null-和-undefined-的区别/#more" rel="contents">
@@ -586,12 +608,149 @@
 
       
         
-          
-            <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><ul>
-<li>如何获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]</li>
+          <blockquote>
+<p>使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子</p>
+</blockquote>
+<h3 id="例子一：-将http下的jpg地址找出来-并去掉http"><a href="#例子一：-将http下的jpg地址找出来-并去掉http" class="headerlink" title="例子一： 将http下的jpg地址找出来 并去掉http"></a>例子一： 将http下的jpg地址找出来 并去掉http</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div></pre></td></tr></table></figure>
+<ul>
+<li><p>答案</p>
+<ul>
+<li>http:(.+.jpg) 替换为 $1</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'dgfhfgh254bhku289fgdhdy675gfh'</span>;</div><div class="line"><span class="keyword">var</span> re = \/b\;</div><div class="line">str.match(re);  <span class="comment">// ["2", index: 7, input: "dgfhfgh254bhku289fgdhdy675"]</span></div><div class="line"></div><div class="line">再继续解决以上问题：全局遍历</div><div class="line">re = \/b\g;</div><div class="line">str.match(re); <span class="comment">//  (9) ["2", "5", "4", "2", "8", "9", "6", "7", "5"]</span></div><div class="line"></div><div class="line">再继续解决以上问题吧：连续出现至少一次以上</div><div class="line">re = \/b+\g;</div><div class="line">str.match(re); <span class="comment">// (3) ["254", "289", "675"]</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/05/08/正则表达式题目/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/08/JavaScript-事件冒泡、事件捕获和事件委托/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/08/JavaScript-事件冒泡、事件捕获和事件委托/" itemprop="url">
+                  JavaScript 事件冒泡、事件捕获和事件委托
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-08T11:54:00+08:00">
+                2017-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>如图是事件流的经过，<br><img src="/images/事件流.png" alt="事件流"></p>
+<h3 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h3><blockquote>
+<p>事件捕获是从外层元素到目标元素的过程，事件冒泡是从目标元素到外层元素的过程</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrapper"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"event"</span>&gt;</span>事件处理程序<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/05/08/JavaScript-事件冒泡、事件捕获和事件委托/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1371,127 +1530,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/03/09/css-学习/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Abigale">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/dear.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abigale's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/09/css-学习/" itemprop="url">
-                  css 学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-09T16:23:00+08:00">
-                2017-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="字体不换行，超出加省略号"><a href="#字体不换行，超出加省略号" class="headerlink" title="字体不换行，超出加省略号"></a>字体不换行，超出加省略号</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">white-space: nowrap; //	文本不会换行，文本会在在同一行上继续，直到遇到 &lt;br&gt; 标签为止</div><div class="line">overflow: hidden;</div><div class="line">text-overflow: ellipsis;</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/09/css-学习/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1537,7 +1575,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

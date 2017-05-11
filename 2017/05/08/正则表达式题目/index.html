@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="正则表达式 如何获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]  1234567891011var str = &apos;dgfhfgh254bhku289fgdhdy675gfh&apos;;var re = \/b\;str.match(re);  // [&quot;2&quot;, index: 7, input: &quot;dgfhfgh2">
+<meta name="description" content="使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子  例子一： 将http下的jpg地址找出来 并去掉http 123456789http:fdsfds/fdsf.jpghttps:fdsfds/fdsf.jpghttp:fdsfds/fdsf.pnghttp:fdsfds/fdsf.pnghttps:fdsfds/fdsf.jpghttp:fdsfd">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式题目">
 <meta property="og:url" content="https://abigaleypc.github.io/2017/05/08/正则表达式题目/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="正则表达式 如何获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]  1234567891011var str = &apos;dgfhfgh254bhku289fgdhdy675gfh&apos;;var re = \/b\;str.match(re);  // [&quot;2&quot;, index: 7, input: &quot;dgfhfgh2">
-<meta property="og:updated_time" content="2017-05-08T08:41:15.000Z">
+<meta property="og:description" content="使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子  例子一： 将http下的jpg地址找出来 并去掉http 123456789http:fdsfds/fdsf.jpghttps:fdsfds/fdsf.jpghttp:fdsfds/fdsf.pnghttp:fdsfds/fdsf.pnghttps:fdsfds/fdsf.jpghttp:fdsfd">
+<meta property="og:updated_time" content="2017-05-11T06:03:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式题目">
-<meta name="twitter:description" content="正则表达式 如何获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]  1234567891011var str = &apos;dgfhfgh254bhku289fgdhdy675gfh&apos;;var re = \/b\;str.match(re);  // [&quot;2&quot;, index: 7, input: &quot;dgfhfgh2">
+<meta name="twitter:description" content="使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子  例子一： 将http下的jpg地址找出来 并去掉http 123456789http:fdsfds/fdsf.jpghttps:fdsfds/fdsf.jpghttp:fdsfds/fdsf.pnghttp:fdsfds/fdsf.pnghttps:fdsfds/fdsf.jpghttp:fdsfd">
 
 
 
@@ -332,10 +332,138 @@
       
 
       
-        <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><ul>
-<li>如何获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]</li>
+        <blockquote>
+<p>使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子</p>
+</blockquote>
+<h3 id="例子一：-将http下的jpg地址找出来-并去掉http"><a href="#例子一：-将http下的jpg地址找出来-并去掉http" class="headerlink" title="例子一： 将http下的jpg地址找出来 并去掉http"></a>例子一： 将http下的jpg地址找出来 并去掉http</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div></pre></td></tr></table></figure>
+<ul>
+<li><p>答案</p>
+<ul>
+<li>http:(.+.jpg) 替换为 $1</li>
 </ul>
+</li>
+</ul>
+<a id="more"></a>
+<blockquote>
+<p>使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子</p>
+</blockquote>
+<h3 id="例子一：-将http下的jpg地址找出来-并去掉http-1"><a href="#例子一：-将http下的jpg地址找出来-并去掉http-1" class="headerlink" title="例子一： 将http下的jpg地址找出来 并去掉http"></a>例子一： 将http下的jpg地址找出来 并去掉http</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div></pre></td></tr></table></figure>
+<ul>
+<li><p>答案</p>
+<ul>
+<li>http:(.+.jpg) 替换为 $1</li>
+</ul>
+</li>
+<li><p>解释</p>
+<ul>
+<li>()      标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。</li>
+<li>.    匹配除换行符 \n 之外的任何单字符</li>
+<li><ul>
+<li>匹配前面的子表达式一次或多次</li>
+</ul>
+</li>
+<li>\    将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。</li>
+<li>$1   匹配第一个子表达式</li>
+</ul>
+</li>
+</ul>
+<h3 id="例子二-将时间改为-“XXXX年XX月XX日”"><a href="#例子二-将时间改为-“XXXX年XX月XX日”" class="headerlink" title="例子二:将时间改为 “XXXX年XX月XX日”"></a>例子二:将时间改为 “XXXX年XX月XX日”</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">2017/02/05</div><div class="line">25435/04322/05325</div><div class="line">2017-02-23</div><div class="line">fds/dsa/05</div><div class="line">12/02/05</div><div class="line">2017-04-05</div></pre></td></tr></table></figure>
+<ul>
+<li><p>答案</p>
+<ul>
+<li>^(\d{4})<a href="\d{2}">/-</a><a href="\d{2}">/-</a>$ 替换为 $1年$2月$3日</li>
+</ul>
+</li>
+<li><p>解释</p>
+<ul>
+<li>\d   表示数字</li>
+<li>{}   标记限定符表达式的开始结束</li>
+<li>[]   标记一个中括号表达式的开始</li>
+<li>^    表示匹配开始的位置</li>
+<li>$    表示匹配结束的位置</li>
+</ul>
+</li>
+</ul>
+<h3 id="例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出-254-289-675"><a href="#例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出-254-289-675" class="headerlink" title="例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]"></a>例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]</h3><ul>
+<li><p>答案</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'dgfhfgh254bhku289fgdhdy675gfh'</span>;</div><div class="line">re = \/b+\g;</div><div class="line">str.match(re); <span class="comment">// (3) ["254", "289", "675"]</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>解释</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'dgfhfgh254bhku289fgdhdy675gfh'</span>;</div><div class="line"><span class="keyword">var</span> re = \/b\;</div><div class="line">str.match(re);  <span class="comment">// ["2", index: 7, input: "dgfhfgh254bhku289fgdhdy675"]</span></div><div class="line"></div><div class="line">再继续解决以上问题：全局遍历</div><div class="line">re = \/b\g;</div><div class="line">str.match(re); <span class="comment">//  (9) ["2", "5", "4", "2", "8", "9", "6", "7", "5"]</span></div><div class="line"></div><div class="line">再继续解决以上问题吧：连续出现至少一次以上</div><div class="line">re = \/b+\g;</div><div class="line">str.match(re); <span class="comment">// (3) ["254", "289", "675"]</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="例子四：采用replace方法匹配"><a href="#例子四：采用replace方法匹配" class="headerlink" title="例子四：采用replace方法匹配"></a>例子四：采用replace方法匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> req = <span class="keyword">new</span> ReqExp(<span class="string">'\\bis\\b'</span>,<span class="string">'g'</span>)</div><div class="line"><span class="string">"She is a girl."</span>.replace(req,<span class="string">'IS'</span>) <span class="comment">// She IS a girl.</span></div></pre></td></tr></table></figure>
+<ul>
+<li>解释<ul>
+<li>g  是全局搜索</li>
+<li>i  忽略大小写，默认不忽略大小写。以上例子没体现</li>
+<li>字符中之所以用两个反斜杠是为了保留之后的斜杠</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'a1b2c3'</span>.replace(<span class="regexp">/[abc]/g</span>,<span class="string">'X'</span>); <span class="comment">// 'X1X2X3' 将 a 或 b 或 c 替换成X</span></div></pre></td></tr></table></figure>
+<ul>
+<li>知识点 ：在括号里 ^ 表示反字符串</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'a1b2c3'</span>.replace(<span class="regexp">/[^abc]/g</span>,<span class="string">'X'</span>); <span class="comment">// 'aXbXcX' 将不是 a 或 b 或 c 替换成X</span></div></pre></td></tr></table></figure>
+<ul>
+<li>知识点 ：范围类，比如[0-9] [a-z]</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'a1b2c3'</span>.replace(<span class="regexp">/[a-z]/g</span>,<span class="string">'X'</span>); <span class="comment">// 'X1X2X3' 将 a 或 b 或 c 替换成X</span></div></pre></td></tr></table></figure>
+<p>注：如果想要在[]里面匹配 - ，可以[0-9-]</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'2007-01-02'</span>.replace(<span class="regexp">/[0-9-]/g</span>,<span class="string">'X'</span>); <span class="comment">// 'AAAAAAAAAA'</span></div></pre></td></tr></table></figure>
+<h3 id="例子五：预定义类"><a href="#例子五：预定义类" class="headerlink" title="例子五：预定义类"></a>例子五：预定义类</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">'@123@abc@'</span>.replace(<span class="regexp">/@./g</span>,<span class="string">'Q'</span>);  <span class="comment">// 'Q23Qbc@'</span></div><div class="line"><span class="string">'@123@abc@'</span>.replace(<span class="regexp">/^@./g</span>,<span class="string">'Q'</span>); <span class="comment">// 'Q23@abc@'</span></div><div class="line"><span class="string">'@123@abc@'</span>.replace(<span class="regexp">/.@/g</span>,<span class="string">'Q'</span>);  <span class="comment">// '@12QabQ'</span></div><div class="line"><span class="string">'@123@abc@'</span>.replace(<span class="regexp">/.@$/g</span>,<span class="string">'Q'</span>);  <span class="comment">// '@123@abQ'</span></div></pre></td></tr></table></figure>
+<ul>
+<li>知识点 ：m 表示匹配换行符</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var mulStr = "</div><div class="line">@123</div><div class="line">@456</div><div class="line">@789</div><div class="line">"</div><div class="line">mulStr.replace(/@./gm,'Q')</div><div class="line">//Q23</div><div class="line">//Q56</div><div class="line">//Q89</div></pre></td></tr></table></figure>
+<h3 id="例子六：匹配范围尽可能多的匹配"><a href="#例子六：匹配范围尽可能多的匹配" class="headerlink" title="例子六：匹配范围尽可能多的匹配"></a>例子六：匹配范围尽可能多的匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'12345678'</span>.replace(<span class="regexp">/\d&#123;3,6&#125;/</span>,<span class="string">'X'</span>); <span class="comment">// 'X78'</span></div></pre></td></tr></table></figure>
+<h3 id="例子七：匹配范围尽可能少的匹配"><a href="#例子七：匹配范围尽可能少的匹配" class="headerlink" title="例子七：匹配范围尽可能少的匹配"></a>例子七：匹配范围尽可能少的匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'12345678'</span>.replace(<span class="regexp">/\d&#123;3,6&#125;?/</span>,<span class="string">'X'</span>); <span class="comment">// 'X45678'</span></div></pre></td></tr></table></figure>
+<h3 id="例子八：分组匹配"><a href="#例子八：分组匹配" class="headerlink" title="例子八：分组匹配"></a>例子八：分组匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'Abi123Abi4567Abi8'</span>.replace(<span class="regexp">/Abi&#123;3&#125;/</span>,<span class="string">'X'</span>); <span class="comment">// 匹配n连续出现3次</span></div><div class="line"><span class="string">'Abi123Abi4567Abi8'</span>.replace(<span class="regexp">/(Abi)&#123;3&#125;/</span>,<span class="string">'X'</span>); <span class="comment">// 用小括号将它分组</span></div></pre></td></tr></table></figure>
+<h3 id="例子九：反向引用，采用-符号"><a href="#例子九：反向引用，采用-符号" class="headerlink" title="例子九：反向引用，采用 $ 符号"></a>例子九：反向引用，采用 $ 符号</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'2015-02-01'</span>.replace(<span class="regexp">/(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/g</span>,<span class="string">'$2-$3-$1'</span>) <span class="comment">// '02-01-2015'</span></div></pre></td></tr></table></figure>
+<h3 id="例子十：前瞻，断言"><a href="#例子十：前瞻，断言" class="headerlink" title="例子十：前瞻，断言"></a>例子十：前瞻，断言</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'a2*3'</span>.replace(<span class="regexp">/\w(?=\d)/g</span>,<span class="string">'X'</span>); \\ <span class="string">'X2*3'</span></div></pre></td></tr></table></figure>
+<p>解释：(?=\d)这是断言部分，参与匹配，但不替换</p>
+<h3 id="例子十一：RegExp-prototype-test-str"><a href="#例子十一：RegExp-prototype-test-str" class="headerlink" title="例子十一：RegExp.prototype.test(str)"></a>例子十一：RegExp.prototype.test(str)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/\w/</span>;</div><div class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/\w/g</span>;</div><div class="line"></div><div class="line">reg2.test(<span class="string">'ab'</span>); <span class="comment">// true</span></div><div class="line">reg2.test(<span class="string">'ab'</span>); <span class="comment">// true</span></div><div class="line">reg2.test(<span class="string">'ab'</span>); <span class="comment">// false</span></div><div class="line">reg2.test(<span class="string">'ab'</span>); <span class="comment">// true</span></div><div class="line">reg2.test(<span class="string">'ab'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>解释：出现以上结果不一致的原因是因为匹配后再执行一次，会从上一次执行的下一个位置开始。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reg1 = <span class="regexp">/\w/</span>;</div><div class="line"><span class="keyword">var</span> reg2 = <span class="regexp">/\w/g</span>;</div><div class="line"></div><div class="line"><span class="keyword">while</span>(reg2.test(<span class="string">'ab'</span>)) &#123;</div><div class="line">    <span class="built_in">console</span>.log(reg2.lastIndex) <span class="comment">// 1  2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>知识点</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exec</td>
+<td>一个在字符串中执行查找匹配的RegExp方法，它返回一个数组（未匹配到则返回null）。</td>
+</tr>
+<tr>
+<td>test</td>
+<td>一个在字符串中测试是否匹配的RegExp方法，它返回true或false。</td>
+</tr>
+<tr>
+<td>match</td>
+<td>一个在字符串中执行查找匹配的String方法，它返回一个数组或者在未匹配到时返回null。</td>
+</tr>
+<tr>
+<td>search</td>
+<td>一个在字符串中测试匹配的String方法，它返回匹配到的位置索引，或者在失败时返回-1。</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>一个在字符串中执行查找匹配的String方法，并且使用替换字符串替换掉匹配到的子字符串。</td>
+</tr>
+<tr>
+<td>split</td>
+<td>一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的String方法。</td>
+</tr>
+</tbody>
+</table>
+
       
     </div>
 
@@ -371,8 +499,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/06/MEAN-js-使用手册/" rel="prev" title="MEAN.js 使用手册">
-                MEAN.js 使用手册 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/08/JavaScript-事件冒泡、事件捕获和事件委托/" rel="prev" title="JavaScript 事件冒泡、事件捕获和事件委托">
+                JavaScript 事件冒泡、事件捕获和事件委托 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -441,7 +569,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -493,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子一：-将http下的jpg地址找出来-并去掉http"><span class="nav-number">1.</span> <span class="nav-text">例子一： 将http下的jpg地址找出来 并去掉http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子一：-将http下的jpg地址找出来-并去掉http-1"><span class="nav-number">2.</span> <span class="nav-text">例子一： 将http下的jpg地址找出来 并去掉http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子二-将时间改为-“XXXX年XX月XX日”"><span class="nav-number">3.</span> <span class="nav-text">例子二:将时间改为 “XXXX年XX月XX日”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出-254-289-675"><span class="nav-number">4.</span> <span class="nav-text">例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子四：采用replace方法匹配"><span class="nav-number">5.</span> <span class="nav-text">例子四：采用replace方法匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子五：预定义类"><span class="nav-number">6.</span> <span class="nav-text">例子五：预定义类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子六：匹配范围尽可能多的匹配"><span class="nav-number">7.</span> <span class="nav-text">例子六：匹配范围尽可能多的匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子七：匹配范围尽可能少的匹配"><span class="nav-number">8.</span> <span class="nav-text">例子七：匹配范围尽可能少的匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子八：分组匹配"><span class="nav-number">9.</span> <span class="nav-text">例子八：分组匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子九：反向引用，采用-符号"><span class="nav-number">10.</span> <span class="nav-text">例子九：反向引用，采用 $ 符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子十：前瞻，断言"><span class="nav-number">11.</span> <span class="nav-text">例子十：前瞻，断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子十一：RegExp-prototype-test-str"><span class="nav-number">12.</span> <span class="nav-text">例子十一：RegExp.prototype.test(str)</span></a></li></ol></div>
             
 
           </div>
