@@ -299,7 +299,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T18:00:48+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T18:00:00+08:00">
                 2017-05-11
               </time>
             
@@ -744,6 +744,7 @@
 <p>事件捕获是从外层元素到目标元素的过程，事件冒泡是从目标元素到外层元素的过程</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrapper"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"event"</span>&gt;</span>事件处理程序<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> wrapper = <span class="built_in">document</span>.getElementById(<span class="string">'wrapper'</span>);</div><div class="line"><span class="keyword">var</span> event = <span class="built_in">document</span>.getElementById(<span class="string">'event'</span>);</div><div class="line"><span class="comment">// 理解事件流</span></div><div class="line">wrapper.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'捕获阶段执行父元素wrapper的事件处理程序'</span>);</div><div class="line">&#125;, <span class="literal">true</span>); <span class="comment">// true - 事件句柄在捕获阶段执行</span></div><div class="line"></div><div class="line">wrapper.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'冒泡阶段执行父元素wrapper的事件处理程序'</span>);</div><div class="line">&#125;, <span class="literal">false</span>); <span class="comment">// false- false- 默认。事件句柄在冒泡阶段执行</span></div><div class="line"></div><div class="line">event.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'捕获阶段执行子元素event的事件处理程序'</span>);</div><div class="line">&#125;, <span class="literal">true</span>);</div><div class="line"></div><div class="line">event.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'冒泡阶段执行子元素event的事件处理程序'</span>);</div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/05/08/JavaScript-事件冒泡、事件捕获和事件委托/#more" rel="contents">
@@ -1592,7 +1593,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/Tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
