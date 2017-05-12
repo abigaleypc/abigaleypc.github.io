@@ -640,6 +640,9 @@
 <li><p>取消拦截：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.set(<span class="string">'X-XSS-Protection'</span>,<span class="number">0</span>);</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; </div><div class="line">    <span class="attr">title</span>: <span class="string">'Express'</span> ,</div><div class="line">    <span class="attr">xss</span>: req.query.xss</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>再打开链接时，上述插入的代码也就被执行了。我们可以在xss=图片 页面 等等 </p>
+<p>参考文档</p>
+</li>
+<li><p><a href="http://www.cnblogs.com/TankXiao/archive/2012/03/21/2337194.html" target="_blank" rel="external">Web安全测试之XSS</a></p>
 </li>
 </ul>
 </li>
