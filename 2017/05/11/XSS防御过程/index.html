@@ -91,7 +91,7 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/05/11/XSS防御过程/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="XSS防御过程需要执行以下几步：  编码：通过编码解码保护代码 过滤：过滤会破坏我们功能的内容，比如过滤掉用户输入的点击事件，或者iframe(嵌入广告页面) style（可能被用到!important） stript 等节点 校正：被破坏，但没有功能影响 只是DOM错乱之类;  通过构建Node服务和建立一个评论功能，实现XSS的攻击和预防，因为通过评论功能是极其容易被攻击，步骤如下  构造接口">
-<meta property="og:updated_time" content="2017-05-11T11:48:55.000Z">
+<meta property="og:updated_time" content="2017-05-12T02:13:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS防御过程">
 <meta name="twitter:description" content="XSS防御过程需要执行以下几步：  编码：通过编码解码保护代码 过滤：过滤会破坏我们功能的内容，比如过滤掉用户输入的点击事件，或者iframe(嵌入广告页面) style（可能被用到!important） stript 等节点 校正：被破坏，但没有功能影响 只是DOM错乱之类;  通过构建Node服务和建立一个评论功能，实现XSS的攻击和预防，因为通过评论功能是极其容易被攻击，步骤如下  构造接口">
@@ -360,7 +360,8 @@
 <li>通过获取页面元素，并对他们添加监听事件</li>
 <li>定义一个XMLHttpRequest对象进行前后端数据传输</li>
 <li>open函数参数需要请求方法，请求URL</li>
-<li><p>最后发送请求使用send方法</p>
+<li>最后发送请求使用send方法</li>
+<li><p>关于编码与解码，我们可以利用第三方库，这部分编码较为复杂</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取元素</span></div><div class="line">      <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line">      <span class="keyword">var</span> get = <span class="built_in">document</span>.getElementById(<span class="string">'get'</span>);</div><div class="line">      <span class="keyword">var</span> txt = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);</div><div class="line">      <span class="comment">//监听评论按钮事件</span></div><div class="line">      btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">          <span class="keyword">var</span> url = <span class="string">'/comment?comment='</span> + txt.value;</div><div class="line">          xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</div><div class="line">          xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</div><div class="line">                  <span class="keyword">if</span> (xhr.status == <span class="number">200</span>) &#123;</div><div class="line">                      <span class="built_in">console</span>.log(xhr);</div><div class="line">                  &#125; <span class="keyword">else</span> &#123;</div><div class="line">                      <span class="built_in">console</span>.log(<span class="string">'error'</span>);</div><div class="line">                  &#125;</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          xhr.send();</div><div class="line">      &#125;);</div><div class="line">      <span class="comment">//监听获取评论按钮事件</span></div><div class="line">      get.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">          <span class="keyword">var</span> url = <span class="string">'/getComment'</span>;</div><div class="line">          xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</div><div class="line">          xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</div><div class="line">                  <span class="keyword">if</span> (xhr.status == <span class="number">200</span>) &#123;</div><div class="line">                      <span class="keyword">var</span> com = parse(<span class="built_in">JSON</span>.parse(xhr.response).comment);</div><div class="line">                      <span class="keyword">var</span> txt = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</div><div class="line">                      txt.innerHTML = com;</div><div class="line">                      <span class="built_in">document</span>.body.appendChild(txt);</div><div class="line">                  &#125; <span class="keyword">else</span> &#123;</div><div class="line">                      <span class="built_in">console</span>.log(<span class="string">'error'</span>);</div><div class="line">                  &#125;</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          xhr.send();</div><div class="line">      &#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -399,6 +400,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/13/理解闭包/" rel="next" title="理解闭包">
+                <i class="fa fa-chevron-left"></i> 理解闭包
+              </a>
             
           </div>
 
@@ -476,7 +481,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -493,7 +498,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/Tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

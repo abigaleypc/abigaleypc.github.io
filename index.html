@@ -259,6 +259,145 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/13/理解闭包/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/13/理解闭包/" itemprop="url">
+                  理解闭包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-13T16:09:00+08:00">
+                2017-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h3><p>函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内。</p>
+<h3 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">　<span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　<span class="keyword">var</span> n=<span class="number">999</span>;</div><div class="line">　　　　nAdd=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;n+=<span class="number">1</span>&#125;</div><div class="line">　　　　<span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　alert(n);</div><div class="line">　　　　&#125;</div><div class="line">　　　　<span class="keyword">return</span> f2;</div><div class="line">　　&#125;</div><div class="line">　　<span class="keyword">var</span> result=f1();</div><div class="line">　　result(); <span class="comment">// 999</span></div><div class="line">　　nAdd();</div><div class="line">　　result(); <span class="comment">// 1000</span></div></pre></td></tr></table></figure>
+<p>在这段代码中，result实际上就是闭包f2函数。它一共运行了两次，第一次的值是999，第二次的值是1000。这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。</p>
+<p>为什么会这样呢？原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。</p>
+<p>类比：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> object = &#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">	<span class="attr">b</span>:<span class="number">2</span>,</div><div class="line">	<span class="attr">c</span>:<span class="number">3</span>,</div><div class="line">	<span class="attr">D</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">this</span>.c = <span class="number">4</span>&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> newObject = object; <span class="comment">// 这时newObject有了一个作用域，内容和object一样，但指向不一样。</span></div><div class="line">newObject.D() <span class="comment">// 此时使用一个函数去改变newObject的值，再将newObject打印出来，里面的值已经是改变之后的</span></div></pre></td></tr></table></figure>
+<p>以上object好比第一个例子中的f1，当赋值给result的时候，已经有了一个新的作用域，因为result是全局变量，因此不会执行函数之后就被销毁。</p>
+<h3 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h3><p>利用闭包实现的私有属性存取器方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addPrivateProperty</span>(<span class="params">o,name,predicate</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> value ;</div><div class="line">    o[<span class="string">'get'</span>+name]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">    o[<span class="string">'set'</span>+name]=<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(predicate &amp;&amp; !predicate(v))&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'这是一个错误值'</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> value = v;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">predicate</span> (<span class="params">v</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span>(v) === <span class="string">'string'</span>;</div><div class="line">&#125;</div><div class="line">addPrivateProperty(o,<span class="string">'Name'</span>,predicate);</div><div class="line">o.setName(<span class="string">"ABIGALE"</span>);</div><div class="line"><span class="built_in">console</span>.log(o.getName());</div></pre></td></tr></table></figure>
+<h3 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h3><p>关联到闭包的作用域链都是”活动的”,嵌套的函数不会将作用域内的私有成员复制一份，也不会对所绑定的变量生成静态快照。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">constfuncs</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> funcs = [];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">		funcs[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> i; &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> funcs;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> funcs = constfuncs();</div><div class="line">funcs[<span class="number">5</span>](); <span class="comment">// 10</span></div></pre></td></tr></table></figure>
+<h3 id="实例四"><a href="#实例四" class="headerlink" title="实例四"></a>实例四</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeAdder</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x + y;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> add5 = makeAdder(<span class="number">5</span>);</div><div class="line"><span class="keyword">var</span> add10 = makeAdder(<span class="number">10</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(add5(<span class="number">2</span>));  <span class="comment">// 7</span></div><div class="line"><span class="built_in">console</span>.log(add10(<span class="number">2</span>)); <span class="comment">// 12</span></div></pre></td></tr></table></figure>
+<h3 id="实例五"><a href="#实例五" class="headerlink" title="实例五"></a>实例五</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAlice</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> sayAlert = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(alice);</div><div class="line">   &#125;</div><div class="line">   alice = <span class="string">'Hello Alice'</span>;</div><div class="line">   <span class="keyword">return</span> sayAlert;</div><div class="line">&#125;</div><div class="line">sayAlice()(); <span class="comment">// Hello Alice</span></div></pre></td></tr></table></figure>
+<p>如果一个变量没有声明，那它就为全局变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> alice = <span class="string">'Hi Alice'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAlice</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> sayAlert = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(alice);</div><div class="line">   &#125;</div><div class="line">   alice = <span class="string">'Hello Alice'</span>;</div><div class="line">   <span class="keyword">return</span> sayAlert;</div><div class="line">&#125;</div><div class="line">sayAlice()(); <span class="comment">// Hello Alice</span></div></pre></td></tr></table></figure>
+<p>即使在最外层定义了 <code>alice</code> ,但函数内又给它赋值了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var alice = 'Hi Alice';</div><div class="line">function sayAlice() &#123;</div><div class="line">   var sayAlert = function() &#123;</div><div class="line">       console.log(alice);</div><div class="line">   &#125;</div><div class="line">   alice = 'Hello Alice';</div><div class="line">   return sayAlert;</div><div class="line">&#125;</div><div class="line">alice = 'Good Moroning</div><div class="line">sayAlice()(); // Hello Alice</div></pre></td></tr></table></figure>
+<p>虽然最后又给 <code>alice</code> 赋值了，但它的执行是在函数 <code>sayAlice</code> 之前，所以我们这里看到它的输出仍然为 <code>Hello Alice</code>。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://developer.mozilla.org/cn/docs/Web/JavaScript/Closures" target="_blank" rel="external">MDN闭包</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="external">学习JavaScript闭包–阮一峰</a></li>
+<li><a href="https://segmentfault.com/a/1190000000652891" target="_blank" rel="external">详解js闭包</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/11/XSS防御过程/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -365,7 +504,8 @@
 <li>通过获取页面元素，并对他们添加监听事件</li>
 <li>定义一个XMLHttpRequest对象进行前后端数据传输</li>
 <li>open函数参数需要请求方法，请求URL</li>
-<li><p>最后发送请求使用send方法</p>
+<li>最后发送请求使用send方法</li>
+<li><p>关于编码与解码，我们可以利用第三方库，这部分编码较为复杂</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取元素</span></div><div class="line">      <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line">      <span class="keyword">var</span> get = <span class="built_in">document</span>.getElementById(<span class="string">'get'</span>);</div><div class="line">      <span class="keyword">var</span> txt = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);</div><div class="line">      <span class="comment">//监听评论按钮事件</span></div><div class="line">      btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">          <span class="keyword">var</span> url = <span class="string">'/comment?comment='</span> + txt.value;</div><div class="line">          xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</div><div class="line">          xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</div><div class="line">                  <span class="keyword">if</span> (xhr.status == <span class="number">200</span>) &#123;</div><div class="line">                      <span class="built_in">console</span>.log(xhr);</div><div class="line">                  &#125; <span class="keyword">else</span> &#123;</div><div class="line">                      <span class="built_in">console</span>.log(<span class="string">'error'</span>);</div><div class="line">                  &#125;</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          xhr.send();</div><div class="line">      &#125;);</div><div class="line">      <span class="comment">//监听获取评论按钮事件</span></div><div class="line">      get.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">          <span class="keyword">var</span> url = <span class="string">'/getComment'</span>;</div><div class="line">          xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</div><div class="line">          xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</div><div class="line">                  <span class="keyword">if</span> (xhr.status == <span class="number">200</span>) &#123;</div><div class="line">                      <span class="keyword">var</span> com = parse(<span class="built_in">JSON</span>.parse(xhr.response).comment);</div><div class="line">                      <span class="keyword">var</span> txt = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</div><div class="line">                      txt.innerHTML = com;</div><div class="line">                      <span class="built_in">document</span>.body.appendChild(txt);</div><div class="line">                  &#125; <span class="keyword">else</span> &#123;</div><div class="line">                      <span class="built_in">console</span>.log(<span class="string">'error'</span>);</div><div class="line">                  &#125;</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          xhr.send();</div><div class="line">      &#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -1438,131 +1578,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/03/28/搭建Angular-Gulp项目/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Abigale">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/dear.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abigale's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/28/搭建Angular-Gulp项目/" itemprop="url">
-                  搭建Angular-Gulp项目
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-28T14:15:00+08:00">
-                2017-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h3><ul>
-<li>该项目是一个 angular + gulp 搭建起来的简易框架。</li>
-<li><a href="https://angular.cn/">Angular</a> 是一组用来开发 Web 页面的框架、模板以及数据绑定和丰富 UI 组件。它支持整个开发进程，提供 Web 应用的架构，无需进行手工 DOM 操作。 AngularJS 很小，只有 60K，兼容主流浏览器。</li>
-<li><a href="http://www.gulpjs.com.cn/">Gulp</a> 是一个自动化构建工具，通过代码优于配置的策略，它可以让简单的任务简单，复杂的任务更可管理；通过流式操作，减少频繁的 IO 操作，更快地构建项目。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/03/28/搭建Angular-Gulp项目/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1608,7 +1623,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1625,7 +1640,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/Tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
