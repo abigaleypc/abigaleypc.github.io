@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -84,15 +84,17 @@
 
 
 
-<meta name="description" content="回忆里的拇指姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Abigale's Blog">
-<meta property="og:url" content="https://abigaleypc.github.io/archives/2014/01/index.html">
+<meta name="description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中Object.toString和Object.toLocaleString的区别">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/05/22/js中Object-toString和Object-toLocaleString的区别/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="回忆里的拇指姑娘">
+<meta property="og:description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
+<meta property="og:updated_time" content="2017-05-22T06:25:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Abigale's Blog">
-<meta name="twitter:description" content="回忆里的拇指姑娘">
+<meta name="twitter:title" content="js中Object.toString和Object.toLocaleString的区别">
+<meta name="twitter:description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://abigaleypc.github.io/archives/2014/01/"/>
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/05/22/js中Object-toString和Object-toLocaleString的区别/"/>
 
 
 
 
 
-  <title> Archive | Abigale's Blog </title>
+  <title> js中Object.toString和Object.toLocaleString的区别 | Abigale's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -147,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,65 +249,155 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 40 posts in total. Keep on posting.
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/22/js中Object-toString和Object-toLocaleString的区别/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                js中Object.toString和Object.toLocaleString的区别
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-22T14:11:00+08:00">
+                2017-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>字符串返回结果相同</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> str = <span class="number">123</span>;</div><div class="line">str.toString(); <span class="comment">// "123"</span></div><div class="line">str.toLocaleString(); <span class="comment">//"123"</span></div></pre></td></tr></table></figure>
+<p>数组返回结果相同</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">arr.toLocaleString(); <span class="comment">// "1,2,3"</span></div><div class="line">arr.toString(); <span class="comment">// "1,2,3"</span></div></pre></td></tr></table></figure>
+<p>如果是toString()，会直接返回标准的格式；<br>如果是toLocaleString()，先判断是否指定语言环境（locale），指定的话则返回当前语言环境下的格式设置（options）的格式化字符串；没有指定语言环境（locale），则返回一个使用默认语言环境和格式设置（options）的格式化字符串。</p>
+<blockquote>
+<p>根据MDN - toLocaleString， 内置对象override了toLocaleString的只有Array，Number和Date。所以，对于这三种对象，toLocaleString 的结果也 可能 会不同。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">date.toLocateString(); <span class="comment">// "2017-5-22 14:13:39"</span></div><div class="line">date.toString(); <span class="comment">// "Mon May 22 2017 14:13:39 GMT+0800 (CST)"</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> num = <span class="number">1234567890123</span>;</div><div class="line">num.toLocaleString(); <span class="comment">// "1,234,567,890,123"</span></div><div class="line">num.toString(); <span class="comment">// "1234567890123"</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2014">2014</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/19/Vue-toast3-插件开发详解/" rel="prev" title="Vue-toast3 插件开发详解">
+                Vue-toast3 插件开发详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2014/01/18/丹儿榕儿/" itemprop="url">
-              
-                <span itemprop="name">丹儿榕儿</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2014-01-18T23:03:00+08:00"
-              content="2014-01-18" >
-          01-18
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -313,6 +405,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -491,11 +587,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
