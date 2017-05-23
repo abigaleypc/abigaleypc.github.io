@@ -343,6 +343,14 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [,,];</div><div class="line"><span class="built_in">console</span>.log(arr.length); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
 <p>数组是对象的特殊形式:以下例子索引变成对象属性</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">o = &#123;&#125;;</div><div class="line">o[<span class="number">0</span>] = <span class="string">"one"</span>;</div><div class="line"><span class="built_in">console</span>.log(o); <span class="comment">// &#123; '0': 'one' &#125;</span></div></pre></td></tr></table></figure>
+<p>当给数组设置长度值时，在长度值范围内的值将被删除</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">12</span>,<span class="number">23</span>,<span class="number">34</span>,<span class="number">45</span>];</div><div class="line">a.length = <span class="number">2</span>;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// [12,23]</span></div></pre></td></tr></table></figure>
+<p>将数组设为只读</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="built_in">Object</span>.defindProperty(a,<span class="string">"lengrh"</span>,&#123;<span class="attr">writable</span>:<span class="literal">false</span>&#125;);</div><div class="line">a.length = <span class="number">0</span>;  <span class="comment">// a长度不会被改变</span></div></pre></td></tr></table></figure>
+<p>冻结数组对象：使数组对象不可删除或修改它的属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line"><span class="built_in">Object</span>.freeze(a);</div><div class="line">a.length = <span class="number">0</span>;  <span class="comment">// a长度不会被改变</span></div></pre></td></tr></table></figure>
+<p>Array各类方法</p>
+<h3 id="Array-from-方法从一个类似数组或可迭代的对象中创建一个新的数组实例。"><a href="#Array-from-方法从一个类似数组或可迭代的对象中创建一个新的数组实例。" class="headerlink" title="Array.from()  方法从一个类似数组或可迭代的对象中创建一个新的数组实例。"></a>Array.from()  方法从一个类似数组或可迭代的对象中创建一个新的数组实例。</h3>
           
         
       
@@ -1634,7 +1642,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
