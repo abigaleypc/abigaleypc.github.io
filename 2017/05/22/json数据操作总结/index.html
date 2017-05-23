@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -84,15 +84,17 @@
 
 
 
-<meta name="description" content="回忆里的拇指姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Abigale's Blog">
-<meta property="og:url" content="https://abigaleypc.github.io/tags/diary/page/2/index.html">
+<meta name="description" content="JSON.stringify() 将JSON格式转为string格式  12let jsonObj = &amp;#123;a:1,b:2&amp;#125;;JSON.stringify(jsonObj); // &apos;&amp;#123;a:1,b:2&amp;#125;&apos; JSON.parse() 将string格式转为JSON格式。注意：字符串中key一定要用上双引号，如下面示例中的 &amp;quot;a&amp;quot;  12let">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="json数据操作总结">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/05/22/json数据操作总结/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="回忆里的拇指姑娘">
+<meta property="og:description" content="JSON.stringify() 将JSON格式转为string格式  12let jsonObj = &amp;#123;a:1,b:2&amp;#125;;JSON.stringify(jsonObj); // &apos;&amp;#123;a:1,b:2&amp;#125;&apos; JSON.parse() 将string格式转为JSON格式。注意：字符串中key一定要用上双引号，如下面示例中的 &amp;quot;a&amp;quot;  12let">
+<meta property="og:updated_time" content="2017-05-22T07:41:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Abigale's Blog">
-<meta name="twitter:description" content="回忆里的拇指姑娘">
+<meta name="twitter:title" content="json数据操作总结">
+<meta name="twitter:description" content="JSON.stringify() 将JSON格式转为string格式  12let jsonObj = &amp;#123;a:1,b:2&amp;#125;;JSON.stringify(jsonObj); // &apos;&amp;#123;a:1,b:2&amp;#125;&apos; JSON.parse() 将string格式转为JSON格式。注意：字符串中key一定要用上双引号，如下面示例中的 &amp;quot;a&amp;quot;  12let">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://abigaleypc.github.io/tags/diary/page/2/"/>
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/05/22/json数据操作总结/"/>
 
 
 
 
 
-  <title> Tag: diary | Abigale's Blog </title>
+  <title> json数据操作总结 | Abigale's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -147,7 +149,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,190 +249,162 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        diary
-        <small>Tag</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2013/04/04/清明/" itemprop="url">
-              
-                <span itemprop="name">清明</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2013-04-04T14:03:34+08:00"
-              content="2013-04-04" >
-          04-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2013/03/17/军训后/" itemprop="url">
-              
-                <span itemprop="name">军训后</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2013-03-17T08:35:49+08:00"
-              content="2013-03-17" >
-          03-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2012/12/25/元旦/" itemprop="url">
-              
-                <span itemprop="name">元旦随想</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2012-12-25T13:31:24+08:00"
-              content="2012-12-25" >
-          12-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2012/01/15/期末后/" itemprop="url">
-              
-                <span itemprop="name">期末后</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2012-01-15T10:02:00+08:00"
-              content="2012-01-15" >
-          01-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2011/07/09/期末/" itemprop="url">
-              
-                <span itemprop="name">期末</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2011-07-09T07:21:05+08:00"
-              content="2011-07-09" >
-          07-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2011/06/22/安逸时光/" itemprop="url">
-              
-                <span itemprop="name">安逸时光</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2011-06-22T23:28:00+08:00"
-              content="2011-06-22" >
-          06-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tags/diary/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/tags/diary/">1</a><span class="page-number current">2</span>
-  </nav>
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/22/json数据操作总结/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                json数据操作总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-22T14:58:00+08:00">
+                2017-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify()"></a>JSON.stringify()</h3><blockquote>
+<p>将JSON格式转为string格式</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> jsonObj = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>&#125;;</div><div class="line"><span class="built_in">JSON</span>.stringify(jsonObj); <span class="comment">// '&#123;a:1,b:2&#125;'</span></div></pre></td></tr></table></figure>
+<h3 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse()"></a>JSON.parse()</h3><blockquote>
+<p>将string格式转为JSON格式。注意：字符串中key一定要用上双引号，如下面示例中的 <code>&quot;a&quot;</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> strObj = <span class="string">'&#123;"a":1,"b":2&#125;'</span>;</div><div class="line"><span class="built_in">JSON</span>.parse(strObj); <span class="comment">//  &#123;a: 1, b: 2&#125;</span></div></pre></td></tr></table></figure>
+<h3 id="Object-toJSON"><a href="#Object-toJSON" class="headerlink" title="Object.toJSON()"></a>Object.toJSON()</h3><ul>
+<li>Date类下的toJSON方法，返回一个Date对象转换成的字符串，格式化date对象，根据ISO-8601 标准改为 <code>YYYY-MM-DDTHH:mm:ss.sssZ</code></li>
+</ul>
+<p>```js<br>let d = new Date(); // Mon May 22 2017 15:16:14 GMT+0800 (CST)<br>d.toJSON(); // “2017-05-22T07:16:14.484Z”</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/23/JavaScript数组/" rel="next" title="JavaScript数组">
+                <i class="fa fa-chevron-left"></i> JavaScript数组
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/22/js中Object-toString和Object-toLocaleString的区别/" rel="prev" title="js中Object.toString和Object.toLocaleString的区别">
+                js中Object.toString和Object.toLocaleString的区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -438,6 +412,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -457,8 +435,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/dear.jpeg"
@@ -511,6 +498,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-stringify"><span class="nav-number">1.</span> <span class="nav-text">JSON.stringify()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-parse"><span class="nav-number">2.</span> <span class="nav-text">JSON.parse()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-toJSON"><span class="nav-number">3.</span> <span class="nav-text">Object.toJSON()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -616,6 +619,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
