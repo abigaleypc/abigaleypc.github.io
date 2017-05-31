@@ -259,6 +259,125 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/31/css样式优先级/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/31/css样式优先级/" itemprop="url">
+                  css样式优先级
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-31T15:03:17+08:00">
+                2017-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>id &gt; class &gt; 元素(类型)选择器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// html</div><div class="line">&lt;h1 class=&quot;h1-class&quot; id=&quot;h1-id&quot;&gt;这是标题&lt;/h1&gt;</div><div class="line"></div><div class="line">// CSS</div><div class="line">.h1-class &#123; color: goldenrod; &#125; // 第二优先级</div><div class="line">#h1-id&#123; color: blue; &#125; // 第一优先级</div><div class="line">h1&#123; color: red; &#125; // 第三优先级</div></pre></td></tr></table></figure>
+<p>指定元素 &gt; 非指定元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// html </div><div class="line">&lt;div id=&quot;test&quot;&gt;</div><div class="line">  &lt;span&gt;Text&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">// CSS</div><div class="line">div#test span &#123; color: green &#125; // 第一优先级</div><div class="line">span &#123; color: red &#125; // 第三优先级</div><div class="line">div span &#123; color: blue &#125; // 第二优先级</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/23/JavaScript数组/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1482,137 +1601,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/08/正则表达式题目/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Abigale">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/dear.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abigale's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/08/正则表达式题目/" itemprop="url">
-                  正则表达式题目
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-08T16:41:06+08:00">
-                2017-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子</p>
-</blockquote>
-<h3 id="例子一：-将http下的jpg地址找出来-并去掉http"><a href="#例子一：-将http下的jpg地址找出来-并去掉http" class="headerlink" title="例子一： 将http下的jpg地址找出来 并去掉http"></a>例子一： 将http下的jpg地址找出来 并去掉http</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div></pre></td></tr></table></figure>
-<ul>
-<li><p>答案</p>
-<ul>
-<li>http:(.+.jpg) 替换为 $1</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/05/08/正则表达式题目/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1658,7 +1646,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
