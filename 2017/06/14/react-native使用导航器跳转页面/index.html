@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript," />
+  <meta name="keywords" content="js,react-native," />
 
 
 
@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="react-native中导航库react-navigation实现过程：  安装库  npm install --save react-navigation  index.ios.js中代码示例  12345678910111213141516171819202122232425262728293031323334import React from &apos;react&apos;;import &amp;#123;">
+<meta name="keywords" content="js,react-native">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js中Object.toString和Object.toLocaleString的区别">
-<meta property="og:url" content="https://abigaleypc.github.io/2017/05/22/js中Object-toString和Object-toLocaleString的区别/index.html">
+<meta property="og:title" content="react-native使用导航器跳转页面">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/06/14/react-native使用导航器跳转页面/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
-<meta property="og:updated_time" content="2017-05-22T06:25:34.000Z">
+<meta property="og:description" content="react-native中导航库react-navigation实现过程：  安装库  npm install --save react-navigation  index.ios.js中代码示例  12345678910111213141516171819202122232425262728293031323334import React from &apos;react&apos;;import &amp;#123;">
+<meta property="og:updated_time" content="2017-06-14T06:30:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js中Object.toString和Object.toLocaleString的区别">
-<meta name="twitter:description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
+<meta name="twitter:title" content="react-native使用导航器跳转页面">
+<meta name="twitter:description" content="react-native中导航库react-navigation实现过程：  安装库  npm install --save react-navigation  index.ios.js中代码示例  12345678910111213141516171819202122232425262728293031323334import React from &apos;react&apos;;import &amp;#123;">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://abigaleypc.github.io/2017/05/22/js中Object-toString和Object-toLocaleString的区别/"/>
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/06/14/react-native使用导航器跳转页面/"/>
 
 
 
 
 
-  <title> js中Object.toString和Object.toLocaleString的区别 | Abigale's Blog </title>
+  <title> react-native使用导航器跳转页面 | Abigale's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -259,7 +259,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/22/js中Object-toString和Object-toLocaleString的区别/">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/06/14/react-native使用导航器跳转页面/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Abigale">
@@ -283,7 +283,7 @@
             
             
               
-                js中Object.toString和Object.toLocaleString的区别
+                react-native使用导航器跳转页面
               
             
           </h1>
@@ -296,8 +296,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-22T14:11:00+08:00">
-                2017-05-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-14T14:22:00+08:00">
+                2017-06-14
               </time>
             
 
@@ -332,16 +332,26 @@
       
 
       
-        <p>字符串返回结果相同</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> str = <span class="number">123</span>;</div><div class="line">str.toString(); <span class="comment">// "123"</span></div><div class="line">str.toLocaleString(); <span class="comment">//"123"</span></div></pre></td></tr></table></figure>
-<p>数组返回结果相同</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">arr.toLocaleString(); <span class="comment">// "1,2,3"</span></div><div class="line">arr.toString(); <span class="comment">// "1,2,3"</span></div></pre></td></tr></table></figure>
-<p>如果是toString()，会直接返回标准的格式；<br>如果是toLocaleString()，先判断是否指定语言环境（locale），指定的话则返回当前语言环境下的格式设置（options）的格式化字符串；没有指定语言环境（locale），则返回一个使用默认语言环境和格式设置（options）的格式化字符串。</p>
-<blockquote>
-<p>根据MDN - toLocaleString， 内置对象override了toLocaleString的只有Array，Number和Date。所以，对于这三种对象，toLocaleString 的结果也 可能 会不同。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">date.toLocateString(); <span class="comment">// "2017-5-22 14:13:39"</span></div><div class="line">date.toString(); <span class="comment">// "Mon May 22 2017 14:13:39 GMT+0800 (CST)"</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> num = <span class="number">1234567890123</span>;</div><div class="line">num.toLocaleString(); <span class="comment">// "1,234,567,890,123"</span></div><div class="line">num.toString(); <span class="comment">// "1234567890123"</span></div></pre></td></tr></table></figure>
+        <p>react-native中导航库<code>react-navigation</code>实现过程：</p>
+<ul>
+<li>安装库</li>
+</ul>
+<p><code>npm install --save react-navigation</code></p>
+<ul>
+<li><code>index.ios.js</code>中代码示例</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  AppRegistry,</div><div class="line">  View,</div><div class="line">  Text,</div><div class="line">  Button</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"><span class="keyword">import</span> &#123; StackNavigator &#125; <span class="keyword">from</span> <span class="string">'react-navigation'</span>; <span class="comment">// 引入</span></div><div class="line"><span class="keyword">import</span> ChatScreen <span class="keyword">from</span> <span class="string">'./src/component/ChatScreen'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> navigationOptions = &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">'Welcome'</span>,</div><div class="line">  &#125;;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">const</span> &#123; navigate &#125; = <span class="keyword">this</span>.props.navigation;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Text&gt;Hello, Navigation!&lt;/Text&gt;</div><div class="line">         &lt;Button</div><div class="line">          onPress=&#123;() =&gt; navigate('Chat')&#125;</div><div class="line">          title="Chat with Lucy"</div><div class="line">        /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">     )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const AwesomeProject = StackNavigator(&#123;</div><div class="line">  Home: &#123; screen: HomeScreen &#125;,</div><div class="line">  Chat: &#123; screen: ChatScreen &#125;,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">AppRegistry.registerComponent('AwesomeProject', () =&gt; AwesomeProject);</div></pre></td></tr></table></figure>
+<ul>
+<li>在根目录建文件夹<code>./src/component</code>,并创建文件<code>ChatScreen.js</code></li>
+</ul>
+<p><code>ChatScreen.js</code>代码示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  Text,</div><div class="line">  View</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ChatScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> navigationOptions = &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">'Chat with Lucy'</span>,</div><div class="line">  &#125;;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Text&gt;Chat with Lucy&lt;/Text&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>实现过程所遇问题：<ul>
+<li><code>index.ios.js</code> 最后注册的是将导航栏 <code>AwesomeProject</code>，此处注册的不是 <code>HomeScreen</code></li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -364,7 +374,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
           
         </div>
       
@@ -373,18 +385,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/22/json数据操作总结/" rel="next" title="json数据操作总结">
-                <i class="fa fa-chevron-left"></i> json数据操作总结
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/19/Vue-toast3-插件开发详解/" rel="prev" title="Vue-toast3 插件开发详解">
-                Vue-toast3 插件开发详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/31/待学习列表/" rel="prev" title="待学习列表">
+                待学习列表 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

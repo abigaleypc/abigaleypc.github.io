@@ -259,6 +259,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/06/14/react-native使用导航器跳转页面/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/14/react-native使用导航器跳转页面/" itemprop="url">
+                  react-native使用导航器跳转页面
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-14T14:22:00+08:00">
+                2017-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>react-native中导航库<code>react-navigation</code>实现过程：</p>
+<ul>
+<li>安装库</li>
+</ul>
+<p><code>npm install --save react-navigation</code></p>
+<ul>
+<li><code>index.ios.js</code>中代码示例</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  AppRegistry,</div><div class="line">  View,</div><div class="line">  Text,</div><div class="line">  Button</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"><span class="keyword">import</span> &#123; StackNavigator &#125; <span class="keyword">from</span> <span class="string">'react-navigation'</span>; <span class="comment">// 引入</span></div><div class="line"><span class="keyword">import</span> ChatScreen <span class="keyword">from</span> <span class="string">'./src/component/ChatScreen'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> navigationOptions = &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">'Welcome'</span>,</div><div class="line">  &#125;;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">const</span> &#123; navigate &#125; = <span class="keyword">this</span>.props.navigation;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Text&gt;Hello, Navigation!&lt;/Text&gt;</div><div class="line">         &lt;Button</div><div class="line">          onPress=&#123;() =&gt; navigate('Chat')&#125;</div><div class="line">          title="Chat with Lucy"</div><div class="line">        /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">     )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const AwesomeProject = StackNavigator(&#123;</div><div class="line">  Home: &#123; screen: HomeScreen &#125;,</div><div class="line">  Chat: &#123; screen: ChatScreen &#125;,</div><div class="line">&#125;);</div><div class="line"></div><div class="line">AppRegistry.registerComponent('AwesomeProject', () =&gt; AwesomeProject);</div></pre></td></tr></table></figure>
+<ul>
+<li>在根目录建文件夹<code>./src/component</code>,并创建文件<code>ChatScreen.js</code></li>
+</ul>
+<p><code>ChatScreen.js</code>代码示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  Text,</div><div class="line">  View</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ChatScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> navigationOptions = &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">'Chat with Lucy'</span>,</div><div class="line">  &#125;;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Text&gt;Chat with Lucy&lt;/Text&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>实现过程所遇问题：<ul>
+<li><code>index.ios.js</code> 最后注册的是将导航栏 <code>AwesomeProject</code>，此处注册的不是 <code>HomeScreen</code></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/31/待学习列表/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1478,155 +1613,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/11/构建Node应用，演示反射型XSS攻击/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Abigale">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/dear.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abigale's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/11/构建Node应用，演示反射型XSS攻击/" itemprop="url">
-                  构建Node应用，演示反射型XSS攻击
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T18:00:00+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>XSS 全称(Cross Site Scripting) 跨站脚本攻击， 是Web程序中最常见的漏洞。指攻击者在网页中嵌入客户端脚本(例如JavaScript), 当用户浏览此网页时，脚本就会在用户的浏览器上执行，从而达到攻击者的目的.  比如获取用户的Cookie，导航到恶意网站,携带木马等。</p>
-<p>步骤：</p>
-<ul>
-<li>新建一个文件夹<code>XSS</code></li>
-<li>命令 <code>express -e ./</code> 初始化一个express项目</li>
-<li><code>npm i</code>下载需要的库</li>
-<li>启动服务： 进入<code>XSS</code>，执行命令<code>npm start</code></li>
-<li><p>原理：</p>
-<ul>
-<li><p>在 <code>index.js</code> 文件中加上 xss字段</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; </div><div class="line">    <span class="attr">title</span>: <span class="string">'Express'</span> ,</div><div class="line">    <span class="attr">xss</span>: req.query.xss</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>index.ejs</code> 加上如下代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%- xss %&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>* 打开链接 `http://localhost:3000/?xss=1` 就可以看到传入的xss被显示在页面
-</code></pre><ul>
-<li><p>攻击方式：</p>
-<ul>
-<li>将以上链接改为 <code>http://localhost:3000/?xss=&lt;img src=&quot;null&quot; onerror=&quot;alert(0)&quot;/&gt;</code>  但打开页面的时候发现并没有插入的代码并没有被执行，这是因为浏览器自动做了拦截</li>
-<li><p>取消拦截：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.set(<span class="string">'X-XSS-Protection'</span>,<span class="number">0</span>);</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; </div><div class="line">    <span class="attr">title</span>: <span class="string">'Express'</span> ,</div><div class="line">    <span class="attr">xss</span>: req.query.xss</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>再打开链接时，上述插入的代码也就被执行了。我们可以在xss=图片 页面 等等 </p>
-<p>参考文档</p>
-</li>
-<li><p><a href="http://www.cnblogs.com/TankXiao/archive/2012/03/21/2337194.html" target="_blank" rel="external">Web安全测试之XSS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1672,7 +1658,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1689,7 +1675,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/Tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
