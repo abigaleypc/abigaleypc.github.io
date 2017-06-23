@@ -259,6 +259,267 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/06/23/前端模拟服务器实现跨域/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/23/前端模拟服务器实现跨域/" itemprop="url">
+                  前端模拟服务器实现跨域
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T15:39:57+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h3><p><a href="https://github.com/abigaleypc/cross-domain-server" target="_blank" rel="external">https://github.com/abigaleypc/cross-domain-server</a></p>
+<h3 id="项目安装"><a href="#项目安装" class="headerlink" title="项目安装"></a>项目安装</h3><ul>
+<li><code>git clone https://github.com/abigaleypc/cross-domain-server</code></li>
+<li><code>cd JSONP</code></li>
+<li><code>npm install</code></li>
+</ul>
+<h3 id="不同域的定义"><a href="#不同域的定义" class="headerlink" title="不同域的定义"></a>不同域的定义</h3><p>协议+域名+端口号都相同才是同域</p>
+<h3 id="XMLHttpRequest跨域访问"><a href="#XMLHttpRequest跨域访问" class="headerlink" title="XMLHttpRequest跨域访问"></a>XMLHttpRequest跨域访问</h3><p>通过以上例子我们已经可以通过 <code>XMLHttpRequest</code> 对象实现一个HTTP请求，但以上方法只能向同域下进行请求</p>
+<p>如 <code>XHR/port8080</code> 中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">request.open(<span class="string">'GET'</span>, <span class="string">'http://127.0.0.1:8080/test.txt'</span>);</div></pre></td></tr></table></figure>
+<p>如 <code>XHR/port58023</code> 中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">request.open(<span class="string">'GET'</span>, <span class="string">'http://127.0.0.1:58023/test.txt'</span>);</div></pre></td></tr></table></figure>
+<p>如果我在 <code>port8080</code> 中将 <code>58023</code> 改为 <code>8080</code>,可以看到浏览器报了以下错误</p>
+<p><img src="/images/corss-origin-error.png" alt="跨域错误"></p>
+<p>这就出现了跨域的问题（端口号不同）。</p>
+<h3 id="JSONP解决跨域问题"><a href="#JSONP解决跨域问题" class="headerlink" title="JSONP解决跨域问题"></a>JSONP解决跨域问题</h3><blockquote>
+<p>简单理解下JSONP的原理：AJAX不能实现跨域的请求，但却能将不能请求的文件通过 <code>&lt;script&gt;</code>获取到，如 <code>&lt;script src=&quot;xxx.js&quot;&gt;&lt;/script&gt;</code>，<a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="external">详细文档</a> </p>
+</blockquote>
+<p> tip: <code>port8080</code>主要用来访问不同域的子项目，<code>port58023</code>主要模拟服务器，启动另一个端口给<code>port8080</code>访问</p>
+<p><code>cd JSONP</code></p>
+<p>在文件夹 <code>JSONP/port8080/index.html</code> 中，我们引入的是另一个端口下的文件，文件同样获取到了，这时候打开浏览器控制台可以看到返回结果被打印出来了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  function callback(data) &#123;</div><div class="line">    console.log(data)</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script src="http://127.0.0.1:58023/test.js"&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>在文件夹 <code>JSONP/port58023</code> 中，我们可以看下 <code>test.js</code>文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">callback(</div><div class="line">  &#123;</div><div class="line">    <span class="string">"port"</span>: <span class="string">"我不是8080端口"</span></div><div class="line">  &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>控制台已经打印出文本，只是因为 <code>callback()</code> 函数被调用并被打印出来了。</p>
+<p>以上就是JSONP的实现原理。一般情况下，我们希望这个script标签能够动态的调用，而不是像上面因为固定在html里面所以没等页面显示就执行了，很不灵活。我们可以通过javascript动态的创建script标签，这样我们就可以灵活调用远程服务了。</p>
+<p>我们可以将 <code>JSONP/post8080/index.html</code> 脚本改成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        alert(data.message);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//添加&lt;script&gt;标签的方法</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addScriptTag</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    	<span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">        script.setAttribute(<span class="string">"type"</span>,<span class="string">"text/javascript"</span>);</div><div class="line">        script.src = src;</div><div class="line">        <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        addScriptTag(<span class="string">"http://localhost:20002/test.js"</span>);</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>实现以上过程的前提是后端提供<code>callback</code>字段，如<a href="https://api.douban.com/v2/user/abigaleypc?callback=__callback5" target="_blank" rel="external">https://api.douban.com/v2/user/abigaleypc?callback=__callback5</a>,我们可以在参数加上callback是因为后端的支持，就像以上 <code>JSONP/port58023/test.js</code> 中<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">callback(</div><div class="line">  &#123;</div><div class="line">    <span class="string">"port"</span>: <span class="string">"我不是8080端口"</span></div><div class="line">  &#125;</div><div class="line">)</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/06/23/跨域/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/23/跨域/" itemprop="url">
+                  跨域
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T14:09:29+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/06/23/http请求/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1335,317 +1596,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/13/理解闭包/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Abigale">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/dear.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abigale's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/13/理解闭包/" itemprop="url">
-                  理解闭包
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-13T16:09:00+08:00">
-                2017-05-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h3><p>函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内。   – 摘自《JavaScript权威指南》</p>
-<ul>
-<li>闭包就是能够读取其他函数内部变量的函数。</li>
-<li>闭包可以简单理解成“定义在一个函数内部的函数“。</li>
-<li>在本质上，闭包是将函数内部和函数外部连接起来的桥梁。</li>
-</ul>
-<h3 id="闭包的用途-优点"><a href="#闭包的用途-优点" class="headerlink" title="闭包的用途/优点"></a>闭包的用途/优点</h3><ul>
-<li>可以读取函数内部的变量</li>
-<li>让这些变量的值始终保持在内存中，不会在原函数调用后被自动清除</li>
-</ul>
-<h3 id="使用闭包的注意点-缺点"><a href="#使用闭包的注意点-缺点" class="headerlink" title="使用闭包的注意点/缺点"></a>使用闭包的注意点/缺点</h3><ul>
-<li>由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。</li>
-<li>闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</li>
-</ul>
-<h4 id="了解JavaScript中的作用域"><a href="#了解JavaScript中的作用域" class="headerlink" title="了解JavaScript中的作用域"></a>了解JavaScript中的作用域</h4><h5 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> o == <span class="string">"object"</span>)&#123;</div><div class="line">        <span class="keyword">var</span> j = o;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; <span class="number">10</span>; k++)&#123;</div><div class="line">            <span class="built_in">console</span>.log(k)</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">console</span>.log(k)</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(j)</div><div class="line">&#125;</div><div class="line"></div><div class="line">test(&#123;<span class="attr">a</span>:<span class="number">2</span>&#125;)</div></pre></td></tr></table></figure>
-<p>JavaScript的函数作用域是指在函数内声明的所有变量在函数体内始终是可见的。JavaScript函数里声明的所有变量（但不涉及赋值）都被“提前”至函数体的顶部。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scope = <span class="string">"global"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(scope); <span class="comment">// 输出 “undefined”</span></div><div class="line">	<span class="keyword">var</span> scope = <span class="string">"local"</span>;</div><div class="line">	<span class="built_in">console</span>.log(scope);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>以上代码中第一个输出不是 <code>global</code>，是因为变量提前声明了，它等价于以下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scope = <span class="string">"global"</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> scope;</div><div class="line">	<span class="built_in">console</span>.log(scope); <span class="comment">// 输出 “undefined”</span></div><div class="line">	scope = <span class="string">"local"</span>;</div><div class="line">	<span class="built_in">console</span>.log(scope);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>由于JavaScript没有块级作用域，因此将变量声明放在函数体顶部，而不是将声明靠近放在使用变量之处。这种做法似的他们的源代码非常清晰地反映了真实的变量作用域。</p>
-<h3 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">　<span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　<span class="keyword">var</span> n=<span class="number">999</span>;</div><div class="line">　　　　nAdd=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;n+=<span class="number">1</span>&#125;</div><div class="line">　　　　<span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　alert(n);</div><div class="line">　　　　&#125;</div><div class="line">　　　　<span class="keyword">return</span> f2;</div><div class="line">　　&#125;</div><div class="line">　　<span class="keyword">var</span> result=f1();</div><div class="line">　　result(); <span class="comment">// 999</span></div><div class="line">　　nAdd();</div><div class="line">　　result(); <span class="comment">// 1000</span></div></pre></td></tr></table></figure>
-<p>在这段代码中，result实际上就是闭包f2函数。它一共运行了两次，第一次的值是999，第二次的值是1000。这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。</p>
-<p>为什么会这样呢？原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。</p>
-<p>类比：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> object = &#123;</div><div class="line">	<span class="attr">a</span>:<span class="number">1</span>,</div><div class="line">	<span class="attr">b</span>:<span class="number">2</span>,</div><div class="line">	<span class="attr">c</span>:<span class="number">3</span>,</div><div class="line">	<span class="attr">D</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">this</span>.c = <span class="number">4</span>&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> newObject = object; <span class="comment">// 这时newObject有了一个作用域，内容和object一样，但指向不一样。</span></div><div class="line">newObject.D() <span class="comment">// 此时使用一个函数去改变newObject的值，再将newObject打印出来，里面的值已经是改变之后的</span></div></pre></td></tr></table></figure>
-<p>以上object好比第一个例子中的f1，当赋值给result的时候，已经有了一个新的作用域，因为result是全局变量，因此不会执行函数之后就被销毁。</p>
-<h3 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h3><p>利用闭包实现的私有属性存取器方法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addPrivateProperty</span>(<span class="params">o,name,predicate</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> value ;</div><div class="line">    o[<span class="string">'get'</span>+name]=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">    o[<span class="string">'set'</span>+name]=<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(predicate &amp;&amp; !predicate(v))&#123;</div><div class="line">            <span class="keyword">throw</span> <span class="built_in">Error</span>(<span class="string">'这是一个错误值'</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> value = v;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">predicate</span> (<span class="params">v</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span>(v) === <span class="string">'string'</span>;</div><div class="line">&#125;</div><div class="line">addPrivateProperty(o,<span class="string">'Name'</span>,predicate);</div><div class="line">o.setName(<span class="string">"ABIGALE"</span>);</div><div class="line"><span class="built_in">console</span>.log(o.getName());</div></pre></td></tr></table></figure>
-<h3 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h3><p>关联到闭包的作用域链都是”活动的”,嵌套的函数不会将作用域内的私有成员复制一份，也不会对所绑定的变量生成静态快照。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">constfuncs</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> funcs = [];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</div><div class="line">		funcs[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> i; &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> funcs;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> funcs = constfuncs();</div><div class="line">funcs[<span class="number">5</span>](); <span class="comment">// 10</span></div></pre></td></tr></table></figure>
-<h3 id="实例四"><a href="#实例四" class="headerlink" title="实例四"></a>实例四</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeAdder</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">y</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x + y;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> add5 = makeAdder(<span class="number">5</span>);</div><div class="line"><span class="keyword">var</span> add10 = makeAdder(<span class="number">10</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(add5(<span class="number">2</span>));  <span class="comment">// 7</span></div><div class="line"><span class="built_in">console</span>.log(add10(<span class="number">2</span>)); <span class="comment">// 12</span></div></pre></td></tr></table></figure>
-<h3 id="实例五"><a href="#实例五" class="headerlink" title="实例五"></a>实例五</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAlice</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> sayAlert = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(alice);</div><div class="line">   &#125;</div><div class="line">   alice = <span class="string">'Hello Alice'</span>;</div><div class="line">   <span class="keyword">return</span> sayAlert;</div><div class="line">&#125;</div><div class="line">sayAlice()(); <span class="comment">// Hello Alice</span></div></pre></td></tr></table></figure>
-<p>如果一个变量没有声明，那它就为全局变量。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> alice = <span class="string">'Hi Alice'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAlice</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> sayAlert = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(alice);</div><div class="line">   &#125;</div><div class="line">   alice = <span class="string">'Hello Alice'</span>;</div><div class="line">   <span class="keyword">return</span> sayAlert;</div><div class="line">&#125;</div><div class="line">sayAlice()(); <span class="comment">// Hello Alice</span></div></pre></td></tr></table></figure>
-<p>即使在最外层定义了 <code>alice</code> ,但函数内又给它赋值了。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var alice = 'Hi Alice';</div><div class="line">function sayAlice() &#123;</div><div class="line">   var sayAlert = function() &#123;</div><div class="line">       console.log(alice);</div><div class="line">   &#125;</div><div class="line">   alice = 'Hello Alice';</div><div class="line">   return sayAlert;</div><div class="line">&#125;</div><div class="line">alice = 'Good Moroning</div><div class="line">sayAlice()(); // Hello Alice</div></pre></td></tr></table></figure>
-<p>虽然最后又给 <code>alice</code> 赋值了，但它的执行是在函数 <code>sayAlice</code> 之前，所以我们这里看到它的输出仍然为 <code>Hello Alice</code>。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="https://developer.mozilla.org/cn/docs/Web/JavaScript/Closures" target="_blank" rel="external">MDN闭包</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="external">学习JavaScript闭包–阮一峰</a></li>
-<li><a href="https://segmentfault.com/a/1190000000652891" target="_blank" rel="external">详解js闭包</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/05/11/XSS防御过程/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Abigale">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/dear.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abigale's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/11/XSS防御过程/" itemprop="url">
-                  XSS防御过程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-11T19:43:00+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>XSS防御过程需要执行以下几步：</p>
-<ul>
-<li>编码：通过编码解码保护代码</li>
-<li>过滤：过滤会破坏我们功能的内容，比如过滤掉用户输入的点击事件，或者iframe(嵌入广告页面) style（可能被用到!important） stript 等节点</li>
-<li>校正：被破坏，但没有功能影响 只是DOM错乱之类;</li>
-</ul>
-<p>通过构建Node服务和建立一个评论功能，实现XSS的攻击和预防，因为通过评论功能是极其容易被攻击，步骤如下</p>
-<ul>
-<li><p>构造接口</p>
-<ul>
-<li>一个编码评论的接口 <code>/comment</code></li>
-<li><p>一个获取评论的接口 <code>/getComment</code></p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/comment'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  comments.v = html_encode(req.query.comment);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">router.get(<span class="string">'/getComment'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.json(&#123;</div><div class="line">    <span class="attr">comment</span>: comments.v</div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>交互部分，在页面上添加脚本请求接口</p>
-<ul>
-<li><p>页面上添加文本框和按钮</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">rows</span>=<span class="string">"8"</span> <span class="attr">cols</span>=<span class="string">"80"</span> <span class="attr">id</span>=<span class="string">"text"</span>&gt;</span></div><div class="line">   	<span class="tag">&lt;<span class="name">p</span>&gt;</span>sks<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"null"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">onerror</span>=<span class="string">"alert(1)"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">	</div><div class="line">   <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">name</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>评论<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">name</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"get"</span>&gt;</span>获取评论<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>添加执行脚本</p>
-<ul>
-<li>通过获取页面元素，并对他们添加监听事件</li>
-<li>定义一个XMLHttpRequest对象进行前后端数据传输</li>
-<li>open函数参数需要请求方法，请求URL</li>
-<li>最后发送请求使用send方法</li>
-<li><p>关于编码与解码，我们可以利用第三方库，这部分编码较为复杂</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取元素</span></div><div class="line">      <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line">      <span class="keyword">var</span> get = <span class="built_in">document</span>.getElementById(<span class="string">'get'</span>);</div><div class="line">      <span class="keyword">var</span> txt = <span class="built_in">document</span>.getElementById(<span class="string">'text'</span>);</div><div class="line">      <span class="comment">//监听评论按钮事件</span></div><div class="line">      btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">          <span class="keyword">var</span> url = <span class="string">'/comment?comment='</span> + txt.value;</div><div class="line">          xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</div><div class="line">          xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</div><div class="line">                  <span class="keyword">if</span> (xhr.status == <span class="number">200</span>) &#123;</div><div class="line">                      <span class="built_in">console</span>.log(xhr);</div><div class="line">                  &#125; <span class="keyword">else</span> &#123;</div><div class="line">                      <span class="built_in">console</span>.log(<span class="string">'error'</span>);</div><div class="line">                  &#125;</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          xhr.send();</div><div class="line">      &#125;);</div><div class="line">      <span class="comment">//监听获取评论按钮事件</span></div><div class="line">      get.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">          <span class="keyword">var</span> url = <span class="string">'/getComment'</span>;</div><div class="line">          xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);</div><div class="line">          xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">              <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</div><div class="line">                  <span class="keyword">if</span> (xhr.status == <span class="number">200</span>) &#123;</div><div class="line">                      <span class="keyword">var</span> com = parse(<span class="built_in">JSON</span>.parse(xhr.response).comment);</div><div class="line">                      <span class="keyword">var</span> txt = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</div><div class="line">                      txt.innerHTML = com;</div><div class="line">                      <span class="built_in">document</span>.body.appendChild(txt);</div><div class="line">                  &#125; <span class="keyword">else</span> &#123;</div><div class="line">                      <span class="built_in">console</span>.log(<span class="string">'error'</span>);</div><div class="line">                  &#125;</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          xhr.send();</div><div class="line">      &#125;);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a><a href="https://github.com/abigaleypc/XSS-protection.git" target="_blank" rel="external">Github</a></h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1691,7 +1641,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

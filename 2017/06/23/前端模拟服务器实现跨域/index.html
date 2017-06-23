@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="angular," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,17 +84,19 @@
 
 
 
-<meta name="description" content="$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。  $location服务: 暴露当前地址栏的URL，这样你就能  获取并监听URL。 改变URL。   当出现以下情况时同步URL  改变地址栏 点击了后退按钮（或者点击了历史链接） 点击了一个链接   一系列方法来获取URL">
-<meta name="keywords" content="angular">
+<meta name="description" content="DEMOhttps://github.com/abigaleypc/cross-domain-server 项目安装 git clone https://github.com/abigaleypc/cross-domain-server cd JSONP npm install  不同域的定义协议+域名+端口号都相同才是同域 XMLHttpRequest跨域访问通过以上例子我们已经可以通过 XML">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="angular $location">
-<meta property="og:url" content="https://abigaleypc.github.io/2017/02/15/angular-location/index.html">
+<meta property="og:title" content="前端模拟服务器实现跨域">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/06/23/前端模拟服务器实现跨域/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。  $location服务: 暴露当前地址栏的URL，这样你就能  获取并监听URL。 改变URL。   当出现以下情况时同步URL  改变地址栏 点击了后退按钮（或者点击了历史链接） 点击了一个链接   一系列方法来获取URL">
-<meta property="og:updated_time" content="2017-04-06T09:13:36.000Z">
+<meta property="og:description" content="DEMOhttps://github.com/abigaleypc/cross-domain-server 项目安装 git clone https://github.com/abigaleypc/cross-domain-server cd JSONP npm install  不同域的定义协议+域名+端口号都相同才是同域 XMLHttpRequest跨域访问通过以上例子我们已经可以通过 XML">
+<meta property="og:image" content="https://abigaleypc.github.io/images/corss-origin-error.png">
+<meta property="og:updated_time" content="2017-06-23T07:40:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angular $location">
-<meta name="twitter:description" content="$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。  $location服务: 暴露当前地址栏的URL，这样你就能  获取并监听URL。 改变URL。   当出现以下情况时同步URL  改变地址栏 点击了后退按钮（或者点击了历史链接） 点击了一个链接   一系列方法来获取URL">
+<meta name="twitter:title" content="前端模拟服务器实现跨域">
+<meta name="twitter:description" content="DEMOhttps://github.com/abigaleypc/cross-domain-server 项目安装 git clone https://github.com/abigaleypc/cross-domain-server cd JSONP npm install  不同域的定义协议+域名+端口号都相同才是同域 XMLHttpRequest跨域访问通过以上例子我们已经可以通过 XML">
+<meta name="twitter:image" content="https://abigaleypc.github.io/images/corss-origin-error.png">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://abigaleypc.github.io/2017/02/15/angular-location/"/>
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/06/23/前端模拟服务器实现跨域/"/>
 
 
 
 
 
-  <title> angular $location | Abigale's Blog </title>
+  <title> 前端模拟服务器实现跨域 | Abigale's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -259,7 +261,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/02/15/angular-location/">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/06/23/前端模拟服务器实现跨域/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Abigale">
@@ -283,7 +285,7 @@
             
             
               
-                angular $location
+                前端模拟服务器实现跨域
               
             
           </h1>
@@ -296,8 +298,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T20:12:00+08:00">
-                2017-02-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T15:39:57+08:00">
+                2017-06-23
               </time>
             
 
@@ -332,81 +334,35 @@
       
 
       
-        <blockquote>
-<p>$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。</p>
+        <h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h3><p><a href="https://github.com/abigaleypc/cross-domain-server" target="_blank" rel="external">https://github.com/abigaleypc/cross-domain-server</a></p>
+<h3 id="项目安装"><a href="#项目安装" class="headerlink" title="项目安装"></a>项目安装</h3><ul>
+<li><code>git clone https://github.com/abigaleypc/cross-domain-server</code></li>
+<li><code>cd JSONP</code></li>
+<li><code>npm install</code></li>
+</ul>
+<h3 id="不同域的定义"><a href="#不同域的定义" class="headerlink" title="不同域的定义"></a>不同域的定义</h3><p>协议+域名+端口号都相同才是同域</p>
+<h3 id="XMLHttpRequest跨域访问"><a href="#XMLHttpRequest跨域访问" class="headerlink" title="XMLHttpRequest跨域访问"></a>XMLHttpRequest跨域访问</h3><p>通过以上例子我们已经可以通过 <code>XMLHttpRequest</code> 对象实现一个HTTP请求，但以上方法只能向同域下进行请求</p>
+<p>如 <code>XHR/port8080</code> 中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">request.open(<span class="string">'GET'</span>, <span class="string">'http://127.0.0.1:8080/test.txt'</span>);</div></pre></td></tr></table></figure>
+<p>如 <code>XHR/port58023</code> 中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">request.open(<span class="string">'GET'</span>, <span class="string">'http://127.0.0.1:58023/test.txt'</span>);</div></pre></td></tr></table></figure>
+<p>如果我在 <code>port8080</code> 中将 <code>58023</code> 改为 <code>8080</code>,可以看到浏览器报了以下错误</p>
+<p><img src="/images/corss-origin-error.png" alt="跨域错误"></p>
+<p>这就出现了跨域的问题（端口号不同）。</p>
+<h3 id="JSONP解决跨域问题"><a href="#JSONP解决跨域问题" class="headerlink" title="JSONP解决跨域问题"></a>JSONP解决跨域问题</h3><blockquote>
+<p>简单理解下JSONP的原理：AJAX不能实现跨域的请求，但却能将不能请求的文件通过 <code>&lt;script&gt;</code>获取到，如 <code>&lt;script src=&quot;xxx.js&quot;&gt;&lt;/script&gt;</code>，<a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="external">详细文档</a> </p>
 </blockquote>
-<h2 id="location服务"><a href="#location服务" class="headerlink" title="$location服务:"></a>$location服务:</h2><ul>
-<li><p>暴露当前地址栏的URL，这样你就能</p>
-<ul>
-<li>获取并监听URL。</li>
-<li>改变URL。</li>
-</ul>
-</li>
-<li><p>当出现以下情况时同步URL</p>
-<ul>
-<li>改变地址栏</li>
-<li>点击了后退按钮（或者点击了历史链接）</li>
-<li>点击了一个链接</li>
-</ul>
-</li>
-<li>一系列方法来获取URL对象的具体内容用（protocol, host, port, path, search, hash）.formatDate</li>
-</ul>
-<a id="more"></a>
-<blockquote>
-<p>$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。</p>
-</blockquote>
-<h2 id="location服务-1"><a href="#location服务-1" class="headerlink" title="$location服务:"></a>$location服务:</h2><ul>
-<li><p>暴露当前地址栏的URL，这样你就能</p>
-<ul>
-<li>获取并监听URL。</li>
-<li>改变URL。</li>
-</ul>
-</li>
-<li><p>当出现以下情况时同步URL</p>
-<ul>
-<li>改变地址栏</li>
-<li>点击了后退按钮（或者点击了历史链接）</li>
-<li>点击了一个链接</li>
-</ul>
-</li>
-<li>一系列方法来获取URL对象的具体内容用（protocol, host, port, path, search, hash）.formatDate</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>window.location</th>
-<th>$location.service</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>目的</td>
-<td>允许对当前浏览器位置的读写</td>
-<td>同左</td>
-</tr>
-<tr>
-<td>API</td>
-<td>暴露一个“裸聊”的能被读写的对象</td>
-<td>暴露jquery风格的读写器</td>
-</tr>
-<tr>
-<td>是否在AngularJS应用生命周期中和应用整合</td>
-<td>否</td>
-<td>可获取到应用声明周期内的每一个阶段，并且和$watch整合</td>
-</tr>
-<tr>
-<td>是否和HTML5 API的无缝整合</td>
-<td>否</td>
-<td>是（对低级浏览器优雅降级）</td>
-</tr>
-<tr>
-<td>和应用的上下文是否相关</td>
-<td>否，window.location.path返回”/docroot/actual/path”</td>
-<td>是，$location.path()返回”/actual/path”</td>
-</tr>
-</tbody>
-</table>
+<p> tip: <code>port8080</code>主要用来访问不同域的子项目，<code>port58023</code>主要模拟服务器，启动另一个端口给<code>port8080</code>访问</p>
+<p><code>cd JSONP</code></p>
+<p>在文件夹 <code>JSONP/port8080/index.html</code> 中，我们引入的是另一个端口下的文件，文件同样获取到了，这时候打开浏览器控制台可以看到返回结果被打印出来了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  function callback(data) &#123;</div><div class="line">    console.log(data)</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script src="http://127.0.0.1:58023/test.js"&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>在文件夹 <code>JSONP/port58023</code> 中，我们可以看下 <code>test.js</code>文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">callback(</div><div class="line">  &#123;</div><div class="line">    <span class="string">"port"</span>: <span class="string">"我不是8080端口"</span></div><div class="line">  &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>控制台已经打印出文本，只是因为 <code>callback()</code> 函数被调用并被打印出来了。</p>
+<p>以上就是JSONP的实现原理。一般情况下，我们希望这个script标签能够动态的调用，而不是像上面因为固定在html里面所以没等页面显示就执行了，很不灵活。我们可以通过javascript动态的创建script标签，这样我们就可以灵活调用远程服务了。</p>
+<p>我们可以将 <code>JSONP/post8080/index.html</code> 脚本改成</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        alert(data.message);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//添加&lt;script&gt;标签的方法</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addScriptTag</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    	<span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">        script.setAttribute(<span class="string">"type"</span>,<span class="string">"text/javascript"</span>);</div><div class="line">        script.src = src;</div><div class="line">        <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        addScriptTag(<span class="string">"http://localhost:20002/test.js"</span>);</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>实现以上过程的前提是后端提供<code>callback</code>字段，如<a href="https://api.douban.com/v2/user/abigaleypc?callback=__callback5" target="_blank" rel="external">https://api.douban.com/v2/user/abigaleypc?callback=__callback5</a>,我们可以在参数加上callback是因为后端的支持，就像以上 <code>JSONP/port58023/test.js</code> 中<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">callback(</div><div class="line">  &#123;</div><div class="line">    <span class="string">"port"</span>: <span class="string">"我不是8080端口"</span></div><div class="line">  &#125;</div><div class="line">)</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -428,20 +384,10 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/angular/" rel="tag"># angular</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/26/XMLHttpRequest-学习/" rel="next" title="XMLHttpRequest 学习">
-                <i class="fa fa-chevron-left"></i> XMLHttpRequest 学习
-              </a>
             
           </div>
 
@@ -449,8 +395,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/14/Jquery判断滚动条是否到达窗口顶部和底部/" rel="prev" title="Jquery判断滚动条是否到达窗口顶部和底部">
-                Jquery判断滚动条是否到达窗口顶部和底部 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/23/跨域/" rel="prev" title="跨域">
+                跨域 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,7 +517,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#location服务"><span class="nav-number">1.</span> <span class="nav-text">$location服务:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#location服务-1"><span class="nav-number">2.</span> <span class="nav-text">$location服务:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DEMO"><span class="nav-number">1.</span> <span class="nav-text">DEMO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目安装"><span class="nav-number">2.</span> <span class="nav-text">项目安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同域的定义"><span class="nav-number">3.</span> <span class="nav-text">不同域的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XMLHttpRequest跨域访问"><span class="nav-number">4.</span> <span class="nav-text">XMLHttpRequest跨域访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP解决跨域问题"><span class="nav-number">5.</span> <span class="nav-text">JSONP解决跨域问题</span></a></li></ol></div>
             
 
           </div>
