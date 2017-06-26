@@ -91,7 +91,7 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/06/26/前端本地存储策略-cookie-sessionStorage-和-localStorage/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="前端本地存储策略    cookie sessionStorage localStorage     存储量 4KB 一般为5MB 一般为5MB   存储类型 字符串 键值对 同左   使用方式 获取 cookie 可以直接使用 document.cookie ，但是获取到的 cookie 是一个字符串，它包含了 cookie 中存储的所有数据，形式如 &amp;quot;key1=value1; key">
-<meta property="og:updated_time" content="2017-06-26T03:12:04.000Z">
+<meta property="og:updated_time" content="2017-06-26T03:16:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端本地存储策略 -- cookie, sessionStorage 和 localStorage">
 <meta name="twitter:description" content="前端本地存储策略    cookie sessionStorage localStorage     存储量 4KB 一般为5MB 一般为5MB   存储类型 字符串 键值对 同左   使用方式 获取 cookie 可以直接使用 document.cookie ，但是获取到的 cookie 是一个字符串，它包含了 cookie 中存储的所有数据，形式如 &amp;quot;key1=value1; key">
@@ -381,7 +381,7 @@
 <tr>
 <td>缺点</td>
 <td>如 <code>&quot;key1=value1; key2=value2&quot;</code> 这样的字符串无法通过 JSON.parse() 转换为 json 格式的数据，需要通过正则表达式的方式将所需要的值匹配出来</td>
-<td><em> sessionStorage 中只能够保存字符串类型的数据，所以在保存非字符串类型的数据时，一定要先将其转换成字符串，比如图片可以转换成 base64 字符串后保存，对象可使用 JSON.stringify() 转为字符串后存储，甚至可以存储一段 js 脚本 </em> 其中所存储的数据的生命周期与 session 类似，即只存在于一个会话周期内，当浏览器关闭或标签页关闭时，数据即会被删除（前进和后退并不会影响到数据，因为还在当前的会话中），这就导致了即便是同一个网站，但在不同的标签页和窗口内，也无法共享其中存储的数据</td>
+<td>sessionStorage 中只能够保存字符串类型的数据，所以在保存非字符串类型的数据时，一定要先将其转换成字符串，比如图片可以转换成 base64 字符串后保存，对象可使用 JSON.stringify() 转为字符串后存储，甚至可以存储一段 js 脚本 * 其中所存储的数据的生命周期与 session 类似，即只存在于一个会话周期内，当浏览器关闭或标签页关闭时，数据即会被删除（前进和后退并不会影响到数据，因为还在当前的会话中），这就导致了即便是同一个网站，但在不同的标签页和窗口内，也无法共享其中存储的数据</td>
 <td><em>同左</em></td>
 </tr>
 </tbody>
