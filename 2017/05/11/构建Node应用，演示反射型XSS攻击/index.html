@@ -91,7 +91,7 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/05/11/构建Node应用，演示反射型XSS攻击/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="XSS 全称(Cross Site Scripting) 跨站脚本攻击， 是Web程序中最常见的漏洞。指攻击者在网页中嵌入客户端脚本(例如JavaScript), 当用户浏览此网页时，脚本就会在用户的浏览器上执行，从而达到攻击者的目的.  比如获取用户的Cookie，导航到恶意网站,携带木马等。 步骤：  新建一个文件夹XSS 命令 express -e ./ 初始化一个express项目 npm">
-<meta property="og:updated_time" content="2017-05-12T01:42:15.000Z">
+<meta property="og:updated_time" content="2017-06-29T09:10:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建Node应用，演示反射型XSS攻击">
 <meta name="twitter:description" content="XSS 全称(Cross Site Scripting) 跨站脚本攻击， 是Web程序中最常见的漏洞。指攻击者在网页中嵌入客户端脚本(例如JavaScript), 当用户浏览此网页时，脚本就会在用户的浏览器上执行，从而达到攻击者的目的.  比如获取用户的Cookie，导航到恶意网站,携带木马等。 步骤：  新建一个文件夹XSS 命令 express -e ./ 初始化一个express项目 npm">
@@ -346,12 +346,10 @@
 </li>
 <li><p>在 <code>index.ejs</code> 加上如下代码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%- xss %&gt;</div></pre></td></tr></table></figure>
-</li>
+<a id="more"></a></li>
+<li>打开链接 <code>http://localhost:3000/?xss=1</code> 就可以看到传入的xss被显示在页面</li>
 </ul>
 </li>
-</ul>
-<pre><code>* 打开链接 `http://localhost:3000/?xss=1` 就可以看到传入的xss被显示在页面
-</code></pre><ul>
 <li><p>攻击方式：</p>
 <ul>
 <li>将以上链接改为 <code>http://localhost:3000/?xss=&lt;img src=&quot;null&quot; onerror=&quot;alert(0)&quot;/&gt;</code>  但打开页面的时候发现并没有插入的代码并没有被执行，这是因为浏览器自动做了拦截</li>

@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
+<meta name="description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中Object.toString和Object.toLocaleString的区别">
 <meta property="og:url" content="https://abigaleypc.github.io/2017/05/22/js中Object-toString和Object-toLocaleString的区别/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
-<meta property="og:updated_time" content="2017-05-22T06:25:34.000Z">
+<meta property="og:description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同">
+<meta property="og:updated_time" content="2017-06-29T09:08:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中Object.toString和Object.toLocaleString的区别">
-<meta name="twitter:description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同 123let arr = [1,2,3];arr.toLocaleString(); // &quot;1,2,3&quot;arr.toString(); // &quot;1,2,3&quot; 如果是toString()，会直接返回标准的格式；如果是to">
+<meta name="twitter:description" content="字符串返回结果相同 123let str = 123;str.toString(); // &quot;123&quot;str.toLocaleString(); //&quot;123&quot; 数组返回结果相同">
 
 
 
@@ -334,14 +334,14 @@
       
         <p>字符串返回结果相同</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> str = <span class="number">123</span>;</div><div class="line">str.toString(); <span class="comment">// "123"</span></div><div class="line">str.toLocaleString(); <span class="comment">//"123"</span></div></pre></td></tr></table></figure>
-<p>数组返回结果相同</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">arr.toLocaleString(); <span class="comment">// "1,2,3"</span></div><div class="line">arr.toString(); <span class="comment">// "1,2,3"</span></div></pre></td></tr></table></figure>
+<p>数组返回结果相同<br><a id="more"></a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</div><div class="line">arr.toLocaleString(); <span class="comment">// "1,2,3"</span></div><div class="line">arr.toString(); <span class="comment">// "1,2,3"</span></div></pre></td></tr></table></figure></p>
 <p>如果是toString()，会直接返回标准的格式；<br>如果是toLocaleString()，先判断是否指定语言环境（locale），指定的话则返回当前语言环境下的格式设置（options）的格式化字符串；没有指定语言环境（locale），则返回一个使用默认语言环境和格式设置（options）的格式化字符串。</p>
 <blockquote>
 <p>根据MDN - toLocaleString， 内置对象override了toLocaleString的只有Array，Number和Date。所以，对于这三种对象，toLocaleString 的结果也 可能 会不同。</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">date.toLocateString(); <span class="comment">// "2017-5-22 14:13:39"</span></div><div class="line">date.toString(); <span class="comment">// "Mon May 22 2017 14:13:39 GMT+0800 (CST)"</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> num = <span class="number">1234567890123</span>;</div><div class="line">num.toLocaleString(); <span class="comment">// "1,234,567,890,123"</span></div><div class="line">num.toString(); <span class="comment">// "1234567890123"</span></div></pre></td></tr></table></figure>
+
       
     </div>
 

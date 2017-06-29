@@ -91,7 +91,7 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/06/26/前端本地存储策略-cookie-sessionStorage-和-localStorage/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="前端本地存储策略    cookie sessionStorage localStorage     存储量 4KB 一般为5MB 一般为5MB   存储类型 字符串 键值对 同左   使用方式 获取 cookie 可以直接使用 document.cookie ，但是获取到的 cookie 是一个字符串，它包含了 cookie 中存储的所有数据，形式如 &amp;quot;key1=value1; key">
-<meta property="og:updated_time" content="2017-06-26T03:16:17.000Z">
+<meta property="og:updated_time" content="2017-06-29T09:10:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端本地存储策略 -- cookie, sessionStorage 和 localStorage">
 <meta name="twitter:description" content="前端本地存储策略    cookie sessionStorage localStorage     存储量 4KB 一般为5MB 一般为5MB   存储类型 字符串 键值对 同左   使用方式 获取 cookie 可以直接使用 document.cookie ，但是获取到的 cookie 是一个字符串，它包含了 cookie 中存储的所有数据，形式如 &amp;quot;key1=value1; key">
@@ -386,6 +386,7 @@
 </tr>
 </tbody>
 </table>
+<a id="more"></a>
 <h3 id="seesionStorage例子"><a href="#seesionStorage例子" class="headerlink" title="seesionStorage例子"></a>seesionStorage例子</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 向 sessionStorage 中添加一条数据</div><div class="line"> * @param key &#123;string&#125; 键</div><div class="line"> * @param value &#123;string&#125; 值</div><div class="line"> */</div><div class="line">sessionStorage.setItem( key, value ) </div><div class="line"></div><div class="line">/**</div><div class="line"> * 在 sessionStorage 中读取一条数据</div><div class="line"> * @param key &#123;string&#125; 键</div><div class="line"> * @return &#123;string|null&#125; 存在返回值，不存在返回 null，需要注意的是如  果使用点语法和中括号，不存在时返回 undefined</div><div class="line"> */</div><div class="line">sessionStorage.getItem( key ) </div><div class="line"></div><div class="line"> * 在 sessionStorage 中移除一条数据</div><div class="line"> * @param key &#123;string&#125; 键</div><div class="line"> */</div><div class="line">sessionStorage.removeItem( key ) </div><div class="line"></div><div class="line"> * 在 sessionStorage 中移除所有</div><div class="line"> */</div><div class="line">sessionStorage.clear()</div></pre></td></tr></table></figure>
 
       
