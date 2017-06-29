@@ -91,7 +91,7 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/05/08/正则表达式题目/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子  例子一： 将http下的jpg地址找出来 并去掉http 123456789http:fdsfds/fdsf.jpghttps:fdsfds/fdsf.jpghttp:fdsfds/fdsf.pnghttp:fdsfds/fdsf.pnghttps:fdsfds/fdsf.jpghttp:fdsfd">
-<meta property="og:updated_time" content="2017-05-11T06:03:13.000Z">
+<meta property="og:updated_time" content="2017-06-29T08:38:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式题目">
 <meta name="twitter:description" content="使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子  例子一： 将http下的jpg地址找出来 并去掉http 123456789http:fdsfds/fdsf.jpghttps:fdsfds/fdsf.jpghttp:fdsfds/fdsf.pnghttp:fdsfds/fdsf.pnghttps:fdsfds/fdsf.jpghttp:fdsfd">
@@ -344,18 +344,8 @@
 </li>
 </ul>
 <a id="more"></a>
-<blockquote>
-<p>使用编辑器修改内容，在编辑器一般都有全局搜索功能，如使用正则表达式匹配会快速得多，比如下面例子</p>
-</blockquote>
-<h3 id="例子一：-将http下的jpg地址找出来-并去掉http-1"><a href="#例子一：-将http下的jpg地址找出来-并去掉http-1" class="headerlink" title="例子一： 将http下的jpg地址找出来 并去掉http"></a>例子一： 将http下的jpg地址找出来 并去掉http</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.jpg</div><div class="line">http:fdsfds/fdsf.png</div><div class="line">https:fdsfds/fdsf.png</div><div class="line">http:fdsfds/fdsf.png</div></pre></td></tr></table></figure>
 <ul>
-<li><p>答案</p>
-<ul>
-<li>http:(.+.jpg) 替换为 $1</li>
-</ul>
-</li>
-<li><p>解释</p>
-<ul>
+<li>解释<ul>
 <li>()      标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。</li>
 <li>.    匹配除换行符 \n 之外的任何单字符</li>
 <li><ul>
@@ -621,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子一：-将http下的jpg地址找出来-并去掉http"><span class="nav-number">1.</span> <span class="nav-text">例子一： 将http下的jpg地址找出来 并去掉http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子一：-将http下的jpg地址找出来-并去掉http-1"><span class="nav-number">2.</span> <span class="nav-text">例子一： 将http下的jpg地址找出来 并去掉http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子二-将时间改为-“XXXX年XX月XX日”"><span class="nav-number">3.</span> <span class="nav-text">例子二:将时间改为 “XXXX年XX月XX日”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出-254-289-675"><span class="nav-number">4.</span> <span class="nav-text">例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子四：采用replace方法匹配"><span class="nav-number">5.</span> <span class="nav-text">例子四：采用replace方法匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子五：预定义类"><span class="nav-number">6.</span> <span class="nav-text">例子五：预定义类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子六：匹配范围尽可能多的匹配"><span class="nav-number">7.</span> <span class="nav-text">例子六：匹配范围尽可能多的匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子七：匹配范围尽可能少的匹配"><span class="nav-number">8.</span> <span class="nav-text">例子七：匹配范围尽可能少的匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子八：分组匹配"><span class="nav-number">9.</span> <span class="nav-text">例子八：分组匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子九：反向引用，采用-符号"><span class="nav-number">10.</span> <span class="nav-text">例子九：反向引用，采用 $ 符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子十：前瞻，断言"><span class="nav-number">11.</span> <span class="nav-text">例子十：前瞻，断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子十一：RegExp-prototype-test-str"><span class="nav-number">12.</span> <span class="nav-text">例子十一：RegExp.prototype.test(str)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子一：-将http下的jpg地址找出来-并去掉http"><span class="nav-number">1.</span> <span class="nav-text">例子一： 将http下的jpg地址找出来 并去掉http</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子二-将时间改为-“XXXX年XX月XX日”"><span class="nav-number">2.</span> <span class="nav-text">例子二:将时间改为 “XXXX年XX月XX日”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出-254-289-675"><span class="nav-number">3.</span> <span class="nav-text">例子三：获取一个字符串中的数字字符，并按数组形式输出，如：dgfhfgh254bhku289fgdhdy675gfh，输出[254,289,675]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子四：采用replace方法匹配"><span class="nav-number">4.</span> <span class="nav-text">例子四：采用replace方法匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子五：预定义类"><span class="nav-number">5.</span> <span class="nav-text">例子五：预定义类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子六：匹配范围尽可能多的匹配"><span class="nav-number">6.</span> <span class="nav-text">例子六：匹配范围尽可能多的匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子七：匹配范围尽可能少的匹配"><span class="nav-number">7.</span> <span class="nav-text">例子七：匹配范围尽可能少的匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子八：分组匹配"><span class="nav-number">8.</span> <span class="nav-text">例子八：分组匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子九：反向引用，采用-符号"><span class="nav-number">9.</span> <span class="nav-text">例子九：反向引用，采用 $ 符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子十：前瞻，断言"><span class="nav-number">10.</span> <span class="nav-text">例子十：前瞻，断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子十一：RegExp-prototype-test-str"><span class="nav-number">11.</span> <span class="nav-text">例子十一：RegExp.prototype.test(str)</span></a></li></ol></div>
             
 
           </div>
