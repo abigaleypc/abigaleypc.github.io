@@ -700,36 +700,9 @@
 
       
         
-          <h2 id="前端本地存储策略"><a href="#前端本地存储策略" class="headerlink" title="前端本地存储策略"></a>前端本地存储策略</h2><table>
-<thead>
-<tr>
-<th></th>
-<th>cookie</th>
-<th>sessionStorage</th>
-<th>localStorage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>存储量</td>
-<td>4KB</td>
-<td>一般为5MB</td>
-<td>一般为5MB</td>
-</tr>
-<tr>
-<td>存储类型</td>
-<td>字符串</td>
-<td>键值对</td>
-<td><em>同左</em></td>
-</tr>
-<tr>
-<td>使用方式</td>
-<td>获取 cookie 可以直接使用 <code>document.cookie</code> ，但是获取到的 cookie 是一个字符串，它包含了 cookie 中存储的所有数据，形式如 <code>&quot;key1=value1; key2=value2&quot;</code></td>
-<td>普通对象非常相似，可以直接通过中括号 <code>sessionStorage[‘key’]</code> 的方式添加和获取数据，也可以通过点语法 <code>sessionStorage.key</code> 的方式进行操作，sessionStorage 也有自己的 api 用于操作数据</td>
-<td><em>同左</em></td>
-</tr>
-</tbody>
-</table>
+          <h2 id="前端本地存储策略"><a href="#前端本地存储策略" class="headerlink" title="前端本地存储策略"></a>前端本地存储策略</h2><blockquote>
+<p>通过本地存储（Local Storage），web 应用程序能够在用户浏览器中对数据进行本地的存储。<br>在 HTML5 之前，应用程序数据只能存储在 cookie 中，包括每个服务器请求。本地存储则更安全，并且可在不影响网站性能的前提下将大量数据存储于本地。<br>与 cookie 不同，存储限制要大得多（至少5MB），并且信息不会被传输到服务器。<br>本地存储经由起源地（origin）（经由域和协议）。所有页面，从起源地，能够存储和访问相同的数据。</p>
+</blockquote>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/06/26/前端本地存储策略-cookie-sessionStorage-和-localStorage/#more" rel="contents">
