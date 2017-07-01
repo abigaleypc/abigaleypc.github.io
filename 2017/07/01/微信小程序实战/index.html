@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="angular," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。  $location服务: 暴露当前地址栏的URL，这样你就能  获取并监听URL。 改变URL。   当出现以下情况时同步URL  改变地址栏 点击了后退按钮（或者点击了历史链接） 点击了一个链接   一系列方法来获取URL">
-<meta name="keywords" content="angular">
+<meta name="description" content="GitHubhttps://github.com/abigaleypc/wxapp-demo.git">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="angular $location">
-<meta property="og:url" content="https://abigaleypc.github.io/2017/02/15/angular-location/index.html">
+<meta property="og:title" content="微信小程序demo">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/07/01/微信小程序实战/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。  $location服务: 暴露当前地址栏的URL，这样你就能  获取并监听URL。 改变URL。   当出现以下情况时同步URL  改变地址栏 点击了后退按钮（或者点击了历史链接） 点击了一个链接   一系列方法来获取URL">
-<meta property="og:updated_time" content="2017-06-29T08:35:54.000Z">
+<meta property="og:description" content="GitHubhttps://github.com/abigaleypc/wxapp-demo.git">
+<meta property="og:updated_time" content="2017-07-01T09:42:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angular $location">
-<meta name="twitter:description" content="$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。  $location服务: 暴露当前地址栏的URL，这样你就能  获取并监听URL。 改变URL。   当出现以下情况时同步URL  改变地址栏 点击了后退按钮（或者点击了历史链接） 点击了一个链接   一系列方法来获取URL">
+<meta name="twitter:title" content="微信小程序demo">
+<meta name="twitter:description" content="GitHubhttps://github.com/abigaleypc/wxapp-demo.git">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://abigaleypc.github.io/2017/02/15/angular-location/"/>
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/07/01/微信小程序实战/"/>
 
 
 
 
 
-  <title> angular $location | Abigale's Blog </title>
+  <title> 微信小程序demo | Abigale's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -259,7 +259,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/02/15/angular-location/">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/07/01/微信小程序实战/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Abigale">
@@ -283,7 +283,7 @@
             
             
               
-                angular $location
+                微信小程序demo
               
             
           </h1>
@@ -296,8 +296,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T20:12:00+08:00">
-                2017-02-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-01T17:39:00+08:00">
+                2017-07-01
               </time>
             
 
@@ -332,62 +332,7 @@
       
 
       
-        <blockquote>
-<p>$location服务解析地址栏中的URL（基于window.location），让你在应用代码中能获取到。改变地址栏中的URL会反应$location服务中，反之亦然。</p>
-</blockquote>
-<h2 id="location服务"><a href="#location服务" class="headerlink" title="$location服务:"></a>$location服务:</h2><ul>
-<li><p>暴露当前地址栏的URL，这样你就能</p>
-<ul>
-<li>获取并监听URL。</li>
-<li>改变URL。</li>
-</ul>
-</li>
-<li><p>当出现以下情况时同步URL</p>
-<ul>
-<li>改变地址栏</li>
-<li>点击了后退按钮（或者点击了历史链接）</li>
-<li>点击了一个链接</li>
-</ul>
-</li>
-<li>一系列方法来获取URL对象的具体内容用（protocol, host, port, path, search, hash）.formatDate</li>
-</ul>
-<a id="more"></a>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>window.location</th>
-<th>$location.service</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>目的</td>
-<td>允许对当前浏览器位置的读写</td>
-<td>同左</td>
-</tr>
-<tr>
-<td>API</td>
-<td>暴露一个“裸聊”的能被读写的对象</td>
-<td>暴露jquery风格的读写器</td>
-</tr>
-<tr>
-<td>是否在AngularJS应用生命周期中和应用整合</td>
-<td>否</td>
-<td>可获取到应用声明周期内的每一个阶段，并且和$watch整合</td>
-</tr>
-<tr>
-<td>是否和HTML5 API的无缝整合</td>
-<td>否</td>
-<td>是（对低级浏览器优雅降级）</td>
-</tr>
-<tr>
-<td>和应用的上下文是否相关</td>
-<td>否，window.location.path返回”/docroot/actual/path”</td>
-<td>是，$location.path()返回”/actual/path”</td>
-</tr>
-</tbody>
-</table>
+        <h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p><a href="https://github.com/abigaleypc/wxapp-demo.git" target="_blank" rel="external">https://github.com/abigaleypc/wxapp-demo.git</a></p>
 
       
     </div>
@@ -409,20 +354,10 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/angular/" rel="tag"># angular</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/26/XMLHttpRequest-学习/" rel="next" title="XMLHttpRequest 学习">
-                <i class="fa fa-chevron-left"></i> XMLHttpRequest 学习
-              </a>
             
           </div>
 
@@ -430,8 +365,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/14/Jquery判断滚动条是否到达窗口顶部和底部/" rel="prev" title="Jquery判断滚动条是否到达窗口顶部和底部">
-                Jquery判断滚动条是否到达窗口顶部和底部 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/29/React-Native-分享/" rel="prev" title="React Native 分享">
+                React Native 分享 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -552,7 +487,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#location服务"><span class="nav-number">1.</span> <span class="nav-text">$location服务:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">1.</span> <span class="nav-text">GitHub</span></a></li></ol></div>
             
 
           </div>
