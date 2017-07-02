@@ -91,12 +91,10 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/06/29/React-Native-实战/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="demo介绍这是一个聊天APP GitHubhttps://github.com/abigaleypc/react-native-demo.git 安装项目 git clone https://github.com/abigaleypc/react-native-demo.git cd demo npm install">
-<meta property="og:image" content="https://github.com/abigaleypc/react-native-demo/blob/master/demo/assets/case.gif?raw=tru">
-<meta property="og:updated_time" content="2017-07-01T09:40:50.000Z">
+<meta property="og:updated_time" content="2017-07-02T07:41:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React Native 实战">
 <meta name="twitter:description" content="demo介绍这是一个聊天APP GitHubhttps://github.com/abigaleypc/react-native-demo.git 安装项目 git clone https://github.com/abigaleypc/react-native-demo.git cd demo npm install">
-<meta name="twitter:image" content="https://github.com/abigaleypc/react-native-demo/blob/master/demo/assets/case.gif?raw=tru">
 
 
 
@@ -346,10 +344,8 @@
 </li>
 <li>打开 <code>demo.xcodeproj</code> , 启动</li>
 </ul>
-<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><blockquote>
-<p>(它操作得有点慢，这个过程有界面跳转和消息传送)</p>
-</blockquote>
-<p><img src="https://github.com/abigaleypc/react-native-demo/blob/master/demo/assets/case.gif?raw=tru" width="300"></p>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><video src="https://github.com/abigaleypc/react-native-demo/blob/master/case.mp4?raw=true" controls="controls" autoplay="autoplay" loop="loop" style="width:50%;">
+
 <h3 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h3><h4 id="页面切换"><a href="#页面切换" class="headerlink" title="页面切换"></a>页面切换</h4><p>页面切换通过导航 <code>navigator</code> 切换，该项目由两个页面组成，即 好友列表 和 聊天窗口</p>
 <p>在 <code>index.ios.js</code> 中</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> defaultName = <span class="string">'FriendsSence'</span>; <span class="comment">// 默认进入路由的名称</span></div><div class="line"><span class="keyword">let</span> defaultComponent = FriendsSence; <span class="comment">// 默认进入的窗口</span></div><div class="line"></div><div class="line">&lt;Navigator</div><div class="line">  style=&#123;styles.nav&#125;</div><div class="line">  initialRoute=&#123;&#123; <span class="attr">name</span>: defaultName, <span class="attr">component</span>: defaultComponent &#125;&#125;</div><div class="line">  configureScene=&#123;(route) =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> Navigator.SceneConfigs.VerticalDownSwipeJump;</div><div class="line">  &#125;&#125;</div><div class="line">  renderScene=&#123;(route, navigator) =&gt; &#123;</div><div class="line">    <span class="keyword">let</span> Component = route.component;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Component</span></span></span></div><div class="line">      &#123;<span class="attr">...route.params</span>&#125; <span class="attr">navigator</span>=<span class="string">&#123;navigator&#125;</span> // 将导航传给待渲染的窗口</div><div class="line">    /&gt;</div><div class="line">  &#125;</div><div class="line">  &#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
@@ -386,7 +382,7 @@
 <pre><code>应改为
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;TouchableOpacity style=&#123;styles.sendBtn&#125; onPress=&#123;()=&gt;&#123;<span class="keyword">this</span>.sendMsg()&#125;&#125; &gt;</div></pre></td></tr></table></figure>
-</code></pre>
+</code></pre></video>
       
     </div>
 
