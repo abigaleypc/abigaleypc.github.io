@@ -341,13 +341,13 @@
 <p>对类进行实例化，采用关键字 <code>new</code>，例子如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line">Animal.prototype.say = <span class="string">"Hello"</span>;</div><div class="line"><span class="keyword">let</span> animal = <span class="keyword">new</span> Animal(<span class="string">"animal"</span>);</div></pre></td></tr></table></figure>
 <p>输入：animal</p>
-<p>输出：<img src="/images/prototype01.png" alt="prototype和__proto__"></p>
+<p>输出：<img src="/images/prototype/prototype01.png" alt="prototype和__proto__"></p>
 <ul>
 <li>定义一个函数的时候，js会自动给这个函数添加一个 <code>prototype</code> 的属性，值是空对象。</li>
 <li>每一个JS对象都有一个 <code>__proto__</code> 属性，但 <code>prototype</code>属性只有函数才有。</li>
 </ul>
 <p>我们将上面的代码画成图：</p>
-<p><img src="/images/prototype02.png" alt="prototype和__proto__"></p>
+<p><img src="/images/prototype/prototype02.png" alt="prototype和__proto__"></p>
 <p>可以看出:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">animal.__proto__ === Animal.prototype; <span class="comment">// true</span></div></pre></td></tr></table></figure>
 <p>实例继承构造函数prototype的所有属性和方法。</p>
