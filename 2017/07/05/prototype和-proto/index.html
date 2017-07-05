@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -84,15 +84,20 @@
 
 
 
-<meta name="description" content="回忆里的拇指姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Abigale's Blog">
-<meta property="og:url" content="https://abigaleypc.github.io/archives/2016/index.html">
+<meta name="description" content="类和实例在JS中，类实际就是一个函数。 对类进行实例化，采用关键字 new，例子如下： 12345function Animal(name) &amp;#123;  this.name = name;&amp;#125;Animal.prototype.say = &quot;Hello&quot;;let animal = new Animal(&quot;animal&quot;); 输入：animal 输出：  定义一个函数的时候，js会自动给这">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="prototype和__proto__">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/07/05/prototype和-proto/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="回忆里的拇指姑娘">
+<meta property="og:description" content="类和实例在JS中，类实际就是一个函数。 对类进行实例化，采用关键字 new，例子如下： 12345function Animal(name) &amp;#123;  this.name = name;&amp;#125;Animal.prototype.say = &quot;Hello&quot;;let animal = new Animal(&quot;animal&quot;); 输入：animal 输出：  定义一个函数的时候，js会自动给这">
+<meta property="og:image" content="https://abigaleypc.github.io/images/prototype01.png">
+<meta property="og:image" content="https://abigaleypc.github.io/images/prototype02.png">
+<meta property="og:updated_time" content="2017-07-05T05:07:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Abigale's Blog">
-<meta name="twitter:description" content="回忆里的拇指姑娘">
+<meta name="twitter:title" content="prototype和__proto__">
+<meta name="twitter:description" content="类和实例在JS中，类实际就是一个函数。 对类进行实例化，采用关键字 new，例子如下： 12345function Animal(name) &amp;#123;  this.name = name;&amp;#125;Animal.prototype.say = &quot;Hello&quot;;let animal = new Animal(&quot;animal&quot;); 输入：animal 输出：  定义一个函数的时候，js会自动给这">
+<meta name="twitter:image" content="https://abigaleypc.github.io/images/prototype01.png">
 
 
 
@@ -120,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="https://abigaleypc.github.io/archives/2016/"/>
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/07/05/prototype和-proto/"/>
 
 
 
 
 
-  <title> Archive | Abigale's Blog </title>
+  <title> prototype和__proto__ | Abigale's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -147,7 +152,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,139 +252,161 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 38 posts in total. Keep on posting.
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/12/10/获取当前页面URL/" itemprop="url">
-              
-                <span itemprop="name">document属性和方法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-10T11:00:00+08:00"
-              content="2016-12-10" >
-          12-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/12/07/Angular中dialog参数传递/" itemprop="url">
-              
-                <span itemprop="name">Angular中dialog参数传递</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-12-07T21:52:00+08:00"
-              content="2016-12-07" >
-          12-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/29/一个人的圣朝/" itemprop="url">
-              
-                <span itemprop="name">一个人的朝圣</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-29T16:24:01+08:00"
-              content="2016-07-29" >
-          07-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/07/05/prototype和-proto/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                prototype和__proto__
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-05T12:47:00+08:00">
+                2017-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="类和实例"><a href="#类和实例" class="headerlink" title="类和实例"></a>类和实例</h2><p>在JS中，类实际就是一个函数。</p>
+<p>对类进行实例化，采用关键字 <code>new</code>，例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line">Animal.prototype.say = <span class="string">"Hello"</span>;</div><div class="line"><span class="keyword">let</span> animal = <span class="keyword">new</span> Animal(<span class="string">"animal"</span>);</div></pre></td></tr></table></figure>
+<p>输入：animal</p>
+<p>输出：<img src="/images/prototype01.png" alt="prototype和__proto__"></p>
+<ul>
+<li>定义一个函数的时候，js会自动给这个函数添加一个 <code>prototype</code> 的属性，值是空对象。</li>
+<li>每一个JS对象都有一个 <code>__proto__</code> 属性，但 <code>prototype</code>属性只有函数才有。</li>
+</ul>
+<p>我们将上面的代码画成图：</p>
+<p><img src="/images/prototype02.png" alt="prototype和__proto__"></p>
+<p>可以看出:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">animal.__proto__ === Animal.prototype; <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>实例继承构造函数prototype的所有属性和方法。</p>
+<p>我们可以通过实例去使用构造函数的属性和方法，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(animal.say); <span class="comment">// Hello</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/01/reactnative-demo/" rel="prev" title="React Native DEMO">
+                React Native DEMO <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -387,6 +414,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -406,8 +437,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/dear.jpeg"
@@ -460,6 +500,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类和实例"><span class="nav-number">1.</span> <span class="nav-text">类和实例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -565,11 +621,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
