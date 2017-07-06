@@ -84,20 +84,21 @@
 
 
 
-<meta name="description" content="类和实例在JS中，类实际就是一个函数。 对类进行实例化，采用关键字 new，例子如下： 12345function Animal(name) &amp;#123;  this.name = name;&amp;#125;Animal.prototype.say = &quot;Hello&quot;;let animal = new Animal(&quot;animal&quot;); 输入：animal 输出：  定义一个函数的时候，js会自动给这">
+<meta name="description" content="Object/Function/Array/String 原型链注入一个奇怪的观念：  Function.prototype 独立于/先于 Function 存在； Object.prototype 独立于/先于 Object 存在   12345Object.prototype.__proto__ ; // null 因此 Object.prototype 是原型链的终点Function.__p">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="prototype和__proto__">
 <meta property="og:url" content="https://abigaleypc.github.io/2017/07/05/prototype和-proto/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="类和实例在JS中，类实际就是一个函数。 对类进行实例化，采用关键字 new，例子如下： 12345function Animal(name) &amp;#123;  this.name = name;&amp;#125;Animal.prototype.say = &quot;Hello&quot;;let animal = new Animal(&quot;animal&quot;); 输入：animal 输出：  定义一个函数的时候，js会自动给这">
+<meta property="og:description" content="Object/Function/Array/String 原型链注入一个奇怪的观念：  Function.prototype 独立于/先于 Function 存在； Object.prototype 独立于/先于 Object 存在   12345Object.prototype.__proto__ ; // null 因此 Object.prototype 是原型链的终点Function.__p">
+<meta property="og:image" content="https://abigaleypc.github.io/images/prototype/prototype04.png">
 <meta property="og:image" content="https://abigaleypc.github.io/images/prototype/prototype01.png">
 <meta property="og:image" content="https://abigaleypc.github.io/images/prototype/prototype02.png">
-<meta property="og:updated_time" content="2017-07-05T05:11:55.000Z">
+<meta property="og:updated_time" content="2017-07-06T00:34:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="prototype和__proto__">
-<meta name="twitter:description" content="类和实例在JS中，类实际就是一个函数。 对类进行实例化，采用关键字 new，例子如下： 12345function Animal(name) &amp;#123;  this.name = name;&amp;#125;Animal.prototype.say = &quot;Hello&quot;;let animal = new Animal(&quot;animal&quot;); 输入：animal 输出：  定义一个函数的时候，js会自动给这">
-<meta name="twitter:image" content="https://abigaleypc.github.io/images/prototype/prototype01.png">
+<meta name="twitter:description" content="Object/Function/Array/String 原型链注入一个奇怪的观念：  Function.prototype 独立于/先于 Function 存在； Object.prototype 独立于/先于 Object 存在   12345Object.prototype.__proto__ ; // null 因此 Object.prototype 是原型链的终点Function.__p">
+<meta name="twitter:image" content="https://abigaleypc.github.io/images/prototype/prototype04.png">
 
 
 
@@ -335,9 +336,18 @@
       
 
       
-        <h2 id="类和实例"><a href="#类和实例" class="headerlink" title="类和实例"></a>类和实例</h2><p>在JS中，类实际就是一个函数。</p>
+        <h2 id="Object-Function-Array-String-原型链"><a href="#Object-Function-Array-String-原型链" class="headerlink" title="Object/Function/Array/String 原型链"></a>Object/Function/Array/String 原型链</h2><p>注入一个奇怪的观念：</p>
+<ul>
+<li><code>Function.prototype</code> 独立于/先于 <code>Function</code> 存在；</li>
+<li><code>Object.prototype</code> 独立于/先于 <code>Object</code> 存在</li>
+</ul>
+<p><img src="/images/prototype/prototype04.png" alt="prototype和__proto__"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.__proto__ ; <span class="comment">// null 因此 Object.prototype 是原型链的终点</span></div><div class="line"><span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype; <span class="comment">// true</span></div><div class="line"><span class="built_in">Object</span>.__proto__ === <span class="built_in">Function</span>.prototype; <span class="comment">// true</span></div><div class="line"><span class="built_in">Array</span>.__proto__ === <span class="built_in">Function</span>.prototype; <span class="comment">// true</span></div><div class="line"><span class="built_in">String</span>.__proto__ === <span class="built_in">Function</span>.prototype; <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>由上图我们可以看出原型链是 <code>Object.prototype</code> –&gt; <code>Function.prototype</code> –&gt; <code>Object/Array/String/Function……</code></p>
+<h2 id="类和实例"><a href="#类和实例" class="headerlink" title="类和实例"></a>类和实例</h2><p>在JS中，类实际就是一个函数。</p>
 <p>对类进行实例化，采用关键字 <code>new</code>，例子如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line">Animal.prototype.say = <span class="string">"Hello"</span>;</div><div class="line"><span class="keyword">let</span> animal = <span class="keyword">new</span> Animal(<span class="string">"animal"</span>);</div></pre></td></tr></table></figure>
+<p>以上 <code>Animal</code>是类,<code>animal</code> 是实例</p>
 <p>输入：animal</p>
 <p>输出：<img src="/images/prototype/prototype01.png" alt="prototype和__proto__"></p>
 <ul>
@@ -350,7 +360,25 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">animal.__proto__ === Animal.prototype; <span class="comment">// true</span></div></pre></td></tr></table></figure>
 <p>实例继承构造函数prototype的所有属性和方法。</p>
 <p>我们可以通过实例去使用构造函数的属性和方法，如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(animal.say); <span class="comment">// Hello</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(animal.say); <span class="comment">// Hello</span></div><div class="line"><span class="built_in">console</span>.log(animal.constructor === Animal); <span class="comment">// true,constructor 属性指代这个类</span></div></pre></td></tr></table></figure>
+<ul>
+<li>instanceof : 用于判断一个变量是否某个对象的实例 [instance：实例,例子]</li>
+<li><p><code>this</code> 和 <code>prototype</code> 获取到的属性和方法，有什么区别？</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Animal.prototype.say = <span class="string">"hello"</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> dog = <span class="keyword">new</span> Animal(<span class="string">"dog"</span>)</div><div class="line"><span class="built_in">console</span>.log(dog.name); <span class="comment">// dog</span></div><div class="line"><span class="built_in">console</span>.log(dog.say); <span class="comment">// hello</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>同样是能获取到所继承的类的属性，但有一个弊端是当有多个对象继承该类时，只是用 `this` 的话，资源没办法共享，所以采用 `prototype` 资源的共享，当需要修改 `prototype` 中的某个属性或方法时，只需要 `Animal.prototype.say = &quot;hi&quot;`
+</code></pre><p>参考</p>
+<ul>
+<li><a href="https://github.com/creeperyang/blog/issues/9" target="_blank" rel="external">从<strong>proto</strong>和prototype来深入理解JS对象和原型链</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">Javascript继承机制的设计思想</a></li>
+</ul>
+<h2 id="类和继承"><a href="#类和继承" class="headerlink" title="类和继承"></a>类和继承</h2><p>类的继承可以用 <code>call</code> 和 <code>apply</code> 方法实现，它们的异同如下：</p>
+<ul>
+<li>相同点:两个方法产生的作用是完全一样的</li>
+<li>不同点:方法传递的参数不同</li>
+</ul>
+
       
     </div>
 
@@ -381,6 +409,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/05/Object-prototype-toString-call-vs-typeof/" rel="next" title="Object.prototype.toString.call() vs typeof">
+                <i class="fa fa-chevron-left"></i> Object.prototype.toString.call() vs typeof
+              </a>
             
           </div>
 
@@ -458,7 +490,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -510,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类和实例"><span class="nav-number">1.</span> <span class="nav-text">类和实例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Function-Array-String-原型链"><span class="nav-number">1.</span> <span class="nav-text">Object/Function/Array/String 原型链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和实例"><span class="nav-number">2.</span> <span class="nav-text">类和实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和继承"><span class="nav-number">3.</span> <span class="nav-text">类和继承</span></a></li></ol></div>
             
 
           </div>
