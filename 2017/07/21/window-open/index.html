@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="在项目中遇到一个问题：JavaScript脚本用 window.open 打开一个窗口被浏览器拦截了。      window.open(&apos;https://abigaleypc.github.io/&apos;);   不出意外的话此时浏览器已经拦截了一个页面了，除非浏览器被设置为默认不拦截任何窗口。 弹出窗口的原因是页面被注入了以下代码。 123&amp;lt;script&amp;gt;    window.open(">
+<meta name="description" content="在项目中遇到一个问题：JavaScript脚本用 window.open 打开一个窗口被浏览器拦截了。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="window.open()被浏览器拦截了">
 <meta property="og:url" content="https://abigaleypc.github.io/2017/07/21/window-open/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="在项目中遇到一个问题：JavaScript脚本用 window.open 打开一个窗口被浏览器拦截了。      window.open(&apos;https://abigaleypc.github.io/&apos;);   不出意外的话此时浏览器已经拦截了一个页面了，除非浏览器被设置为默认不拦截任何窗口。 弹出窗口的原因是页面被注入了以下代码。 123&amp;lt;script&amp;gt;    window.open(">
-<meta property="og:updated_time" content="2017-07-21T09:11:49.000Z">
+<meta property="og:description" content="在项目中遇到一个问题：JavaScript脚本用 window.open 打开一个窗口被浏览器拦截了。">
+<meta property="og:updated_time" content="2017-07-21T09:14:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="window.open()被浏览器拦截了">
-<meta name="twitter:description" content="在项目中遇到一个问题：JavaScript脚本用 window.open 打开一个窗口被浏览器拦截了。      window.open(&apos;https://abigaleypc.github.io/&apos;);   不出意外的话此时浏览器已经拦截了一个页面了，除非浏览器被设置为默认不拦截任何窗口。 弹出窗口的原因是页面被注入了以下代码。 123&amp;lt;script&amp;gt;    window.open(">
+<meta name="twitter:description" content="在项目中遇到一个问题：JavaScript脚本用 window.open 打开一个窗口被浏览器拦截了。">
 
 
 
@@ -341,6 +341,7 @@
 
       
         <p>在项目中遇到一个问题：JavaScript脚本用 <code>window.open</code> 打开一个窗口被浏览器拦截了。</p>
+<a id="more"></a>
 <script>
     window.open('https://abigaleypc.github.io/');
 </script>
@@ -348,7 +349,6 @@
 <p>不出意外的话此时浏览器已经拦截了一个页面了，除非浏览器被设置为默认不拦截任何窗口。</p>
 <p>弹出窗口的原因是页面被注入了以下代码。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="built_in">window</span>.open(<span class="string">'https://abigaleypc.github.io/'</span>);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<a id="more"></a>
 <p>被拦截的原因是页面并非用户所触发，所以被浏览器拦截了。</p>
 <h3 id="解决方法：让用户触发窗口弹出"><a href="#解决方法：让用户触发窗口弹出" class="headerlink" title="解决方法：让用户触发窗口弹出"></a>解决方法：让用户触发窗口弹出</h3><p>假如让用户触发窗口打开，代码如下：</p>
 <p><button id="popups">弹出</button></p>
