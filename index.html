@@ -344,29 +344,21 @@
 
       
         
-          
-            <p>在项目中遇到一个问题：JavaScript脚本用 <code>window.open</code> 打开一个窗口被浏览器拦截了。</p>
+          <p>在项目中遇到一个问题：JavaScript脚本用 <code>window.open</code> 打开一个窗口被浏览器拦截了。</p>
 <script>
     window.open('https://abigaleypc.github.io/');
 </script>
 
 <p>不出意外的话此时浏览器已经拦截了一个页面了，触发浏览器被设置为默认不拦截任何窗口。</p>
 <p>弹出窗口的原因是页面被注入了以下代码。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="built_in">window</span>.open(<span class="string">'https://abigaleypc.github.io/'</span>);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>被拦截的原因是页面并非用户所触发，所以被浏览器拦截了。</p>
-<h3 id="解决方法：让用户触发窗口弹出"><a href="#解决方法：让用户触发窗口弹出" class="headerlink" title="解决方法：让用户触发窗口弹出"></a>解决方法：让用户触发窗口弹出</h3><p>假如让用户触发窗口打开，代码如下：</p>
-<p><button id="popups">弹出</button></p>
-<script>
-    var btn = document.getElementById('popups');
-    btn.addEventListener('click',function(){
-        window.open('https://abigaleypc.github.io/');
-    })
-</script>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"popups"</span>&gt;</span>弹出<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'popups'</span>);</div><div class="line">    btn.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">window</span>.open(<span class="string">'https://abigaleypc.github.io/'</span>);</div><div class="line">    &#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<h4 id="解决Ajax请求出现的拦截"><a href="#解决Ajax请求出现的拦截" class="headerlink" title="解决Ajax请求出现的拦截"></a>解决Ajax请求出现的拦截</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">onclick</span>=<span class="string">"dialog();"</span>&gt;</span>点击弹窗<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"> </div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">dialog</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'url'</span>,</div><div class="line">        <span class="attr">type</span>: <span class="string">'POST'</span>,</div><div class="line">        <span class="attr">dataType</span>: <span class="string">'json'</span>,</div><div class="line">        <span class="attr">async</span>: <span class="literal">false</span>,  <span class="comment">// 此处必须定义为同步</span></div><div class="line">        data: &#123;<span class="attr">param1</span>: <span class="string">'value1'</span>&#125;,</div><div class="line">        <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            gotourl(data.url);  <span class="comment">//发起弹窗</span></div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;    </div><div class="line"> </div><div class="line"><span class="comment">/**</span></div><div class="line"> * 弹窗</div><div class="line"> * @param  &#123;string&#125; url 跳转链接</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">gotourl</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a = $(<span class="string">'&lt;a href="'</span>+ url +<span class="string">'" target="_blank"&gt;链接&lt;/a&gt;'</span>);  <span class="comment">//生成一个临时链接对象</span></div><div class="line">    <span class="keyword">var</span> d = a.get(<span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> e = <span class="built_in">document</span>.createEvent(<span class="string">'MouseEvents'</span>);</div><div class="line">    e.initEvent( <span class="string">'click'</span>, <span class="literal">true</span>, <span class="literal">true</span> );  <span class="comment">//模拟点击操作</span></div><div class="line">    d.dispatchEvent(e);</div><div class="line">    a.remove();   <span class="comment">// 点击后移除该对象</span></div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-
-          
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></div><div class="line">    <span class="built_in">window</span>.open(<span class="string">'https://abigaleypc.github.io/'</span>);</div><div class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/07/21/window-open/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
