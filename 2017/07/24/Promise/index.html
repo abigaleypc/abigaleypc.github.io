@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="Promise模式 随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数">
+<meta name="description" content="随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数连环套”的情况（详见">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise模式 -- 异步编程">
 <meta property="og:url" content="https://abigaleypc.github.io/2017/07/24/Promise/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
-<meta property="og:description" content="Promise模式 随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数">
-<meta property="og:updated_time" content="2017-07-24T04:48:10.000Z">
+<meta property="og:description" content="随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数连环套”的情况（详见">
+<meta property="og:updated_time" content="2017-07-24T04:49:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise模式 -- 异步编程">
-<meta name="twitter:description" content="Promise模式 随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数">
+<meta name="twitter:description" content="随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数连环套”的情况（详见">
 
 
 
@@ -340,8 +340,7 @@
       
 
       
-        <p>Promise模式</p>
-<p>随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数连环套”的情况（详见<a href="http://www.infoq.com/cn/news/2011/09/nodejs-async-code" target="_blank" rel="external">《NodeJS的异步编程风格》</a>）。这种情况会造成编程的复杂性。 –摘自<a href="http://www.infoq.com/cn/news/2011/09/js-promise" target="_blank" rel="external">http://www.infoq.com/cn/news/2011/09/js-promise</a></p>
+        <p>随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数连环套”的情况（详见<a href="http://www.infoq.com/cn/news/2011/09/nodejs-async-code" target="_blank" rel="external">《NodeJS的异步编程风格》</a>）。这种情况会造成编程的复杂性。 –摘自<a href="http://www.infoq.com/cn/news/2011/09/js-promise" target="_blank" rel="external">http://www.infoq.com/cn/news/2011/09/js-promise</a></p>
 <a id="more"></a>
 <ul>
 <li>只有三种状态：未完成（unfulfilled）、已完成（resolved）和拒绝（rejected）</li>
@@ -451,7 +450,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

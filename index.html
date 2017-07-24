@@ -344,8 +344,7 @@
 
       
         
-          <p>Promise模式</p>
-<p>随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数连环套”的情况（详见<a href="http://www.infoq.com/cn/news/2011/09/nodejs-async-code">《NodeJS的异步编程风格》</a>）。这种情况会造成编程的复杂性。 –摘自<a href="http://www.infoq.com/cn/news/2011/09/js-promise">http://www.infoq.com/cn/news/2011/09/js-promise</a></p>
+          <p>随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数连环套”的情况（详见<a href="http://www.infoq.com/cn/news/2011/09/nodejs-async-code">《NodeJS的异步编程风格》</a>）。这种情况会造成编程的复杂性。 –摘自<a href="http://www.infoq.com/cn/news/2011/09/js-promise">http://www.infoq.com/cn/news/2011/09/js-promise</a></p>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/07/24/Promise/#more" rel="contents">
@@ -492,142 +491,6 @@
             </a>
           </div>
           <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/07/05/Object-prototype-toString-call-vs-typeof/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Abigale">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/dear.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abigale's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/05/Object-prototype-toString-call-vs-typeof/" itemprop="url">
-                  Object.prototype.toString.call() vs typeof
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-05T15:19:42+08:00">
-                2017-07-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>可以从下面例子找到答案：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> toString = <span class="built_in">Object</span>.prototype.toString;</div><div class="line"><span class="keyword">var</span> strLit = <span class="string">'example'</span>;</div><div class="line"><span class="keyword">var</span> strStr = <span class="built_in">String</span>(<span class="string">'example'</span>)​;</div><div class="line"><span class="keyword">var</span> strObj = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'example'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> strLit); <span class="comment">// string    </span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> strStr); <span class="comment">// string</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> strObj); <span class="comment">// object</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(strLit <span class="keyword">instanceof</span> <span class="built_in">String</span>); <span class="comment">// false</span></div><div class="line"><span class="built_in">console</span>.log(strStr <span class="keyword">instanceof</span> <span class="built_in">String</span>); <span class="comment">// false</span></div><div class="line"><span class="built_in">console</span>.log(strObj <span class="keyword">instanceof</span> <span class="built_in">String</span>); <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(toString.call(strLit)); <span class="comment">// [object String]</span></div><div class="line"><span class="built_in">console</span>.log(toString.call(strStr)); <span class="comment">// [object String]</span></div><div class="line"><span class="built_in">console</span>.log(toString.call(strObj)); <span class="comment">// [object String]</span></div></pre></td></tr></table></figure>
-
-          
         
       
     </div>
@@ -1663,11 +1526,156 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/06/14/react-native使用导航器跳转页面/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/14/react-native使用导航器跳转页面/" itemprop="url">
+                  react-native使用导航器跳转页面
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-14T14:22:00+08:00">
+                2017-06-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>react-native中导航库<code>react-navigation</code>实现过程：</p>
+<ul>
+<li>安装库</li>
+</ul>
+<p><code>npm install --save react-navigation</code></p>
+<ul>
+<li><p><code>index.ios.js</code>中代码示例</p>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/06/14/react-native使用导航器跳转页面/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1708,7 +1716,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
