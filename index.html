@@ -344,7 +344,14 @@
 
       
         
-          <p>随着Web 2.0技术的深入，浏览器端承受了越来越多的计算压力，所以“并发”具有积极的意义。对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性执行的编程要求存在适应的困难。先抛开页面交互不谈，我们能够想到对于异步调用需要处理两种结果——成功操作和失败处理。在成功的调用后，我们可能需要把返回的结果用在另一个Ajax请求中，这就会出现“函数连环套”的情况（详见<a href="http://www.infoq.com/cn/news/2011/09/nodejs-async-code">《NodeJS的异步编程风格》</a>）。这种情况会造成编程的复杂性。 –摘自<a href="http://www.infoq.com/cn/news/2011/09/js-promise">http://www.infoq.com/cn/news/2011/09/js-promise</a></p>
+          <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>Promise是用来处理一些异步操作。顾名思义，它就是一个Promise(承诺)，如果Yes就执行一个方法，如果No就执行另一个方法。</p>
+<ul>
+<li>只有三种状态：未完成（unfulfilled）、已完成（resolved）和拒绝（rejected）</li>
+<li>每个函数都是一个Promise类，可以将执行结果传给下一个函数</li>
+<li>then函数返回的依旧是一个Promise类</li>
+<li>逻辑清晰：即执行成功时调用一个函数，失败时调用另一个函数</li>
+<li>不会阻塞和等待长时间的操作完成，而是返回一个代表了承诺的（promised）结果的对象</li>
+</ul>
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/07/24/Promise/#more" rel="contents">
