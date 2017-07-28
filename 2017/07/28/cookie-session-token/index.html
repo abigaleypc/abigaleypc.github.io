@@ -91,12 +91,10 @@
 <meta property="og:url" content="https://abigaleypc.github.io/2017/07/28/cookie-session-token/index.html">
 <meta property="og:site_name" content="Abigale's Blog">
 <meta property="og:description" content="解决几个疑惑 HTTP 是一个无连接且无状态协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？ 如何对用户进行身份验证？  关键字 token、cookie和session 的理解token 令牌是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位">
-<meta property="og:image" content="https://abigaleypc.github.io/images/cookiesessiontoken/01.jpeg">
-<meta property="og:updated_time" content="2017-07-28T09:06:59.000Z">
+<meta property="og:updated_time" content="2017-07-28T14:49:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何用cookie，session，token去做身份验证">
 <meta name="twitter:description" content="解决几个疑惑 HTTP 是一个无连接且无状态协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？ 如何对用户进行身份验证？  关键字 token、cookie和session 的理解token 令牌是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位">
-<meta name="twitter:image" content="https://abigaleypc.github.io/images/cookiesessiontoken/01.jpeg">
 
 
 
@@ -359,7 +357,7 @@
 <li>写入cookie <code>document.cookie = &#39;name=abigale&#39;</code></li>
 </ul>
 <p>以下是我从某个网站截取下的请求信息，可以看到 <code>cookie</code> 里的信息</p>
-<p><img src="/images/cookiesessiontoken/01.jpeg" alt="cookie"></p>
+<!-- ![cookie](/images/cookiesessiontoken/01.jpeg) -->
 <p>例子: expires设置有效时间</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">date.setDate(date.getDate+<span class="number">30</span>);</div><div class="line"><span class="built_in">document</span>.cookie = <span class="string">'name=abc;path=/;expires='</span>+date;</div></pre></td></tr></table></figure>
 <h3 id="session-会话"><a href="#session-会话" class="headerlink" title="session 会话"></a>session 会话</h3><p>当用户去访问某个服务器时，服务器会产生session然后存下用户的信息。session是通过 <code>session_id</code> 去识别用户的。</p>
