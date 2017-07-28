@@ -1,0 +1,730 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTTP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/dear.jpeg?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="解决几个疑惑 HTTP 是一个无连接且无状态协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？ 如何对用户进行身份验证？  关键字 token、cookie和session 的理解token 令牌是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cookie-session-token">
+<meta property="og:url" content="https://abigaleypc.github.io/2017/07/28/cookie-session-token/index.html">
+<meta property="og:site_name" content="Abigale's Blog">
+<meta property="og:description" content="解决几个疑惑 HTTP 是一个无连接且无状态协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？ 如何对用户进行身份验证？  关键字 token、cookie和session 的理解token 令牌是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位">
+<meta property="og:image" content="https://abigaleypc.github.io/images/tokensessioncookie01.jpeg">
+<meta property="og:updated_time" content="2017-07-28T09:04:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cookie-session-token">
+<meta name="twitter:description" content="解决几个疑惑 HTTP 是一个无连接且无状态协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？ 如何对用户进行身份验证？  关键字 token、cookie和session 的理解token 令牌是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位">
+<meta name="twitter:image" content="https://abigaleypc.github.io/images/tokensessioncookie01.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://abigaleypc.github.io/2017/07/28/cookie-session-token/"/>
+
+
+
+
+
+  <title> cookie-session-token | Abigale's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Abigale's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/07/28/cookie-session-token/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/dear.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                cookie-session-token
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-28T17:02:00+08:00">
+                2017-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="解决几个疑惑"><a href="#解决几个疑惑" class="headerlink" title="解决几个疑惑"></a>解决几个疑惑</h2><ul>
+<li>HTTP 是一个<a href="http://blog.csdn.net/tennysonsky/article/details/44562435" target="_blank" rel="external">无连接且无状态</a>协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？</li>
+<li>如何对用户进行身份验证？</li>
+</ul>
+<h2 id="关键字-token、cookie和session-的理解"><a href="#关键字-token、cookie和session-的理解" class="headerlink" title="关键字 token、cookie和session 的理解"></a>关键字 token、cookie和session 的理解</h2><h3 id="token-令牌"><a href="#token-令牌" class="headerlink" title="token 令牌"></a>token 令牌</h3><p>是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位+盐以哈希算法压缩成一定长的十六进制字符串，可以防止恶意第三方拼接token请求服务器)。</p>
+<a id="more"></a>
+<h4 id="引申问题"><a href="#引申问题" class="headerlink" title="引申问题"></a>引申问题</h4><ul>
+<li>攻击者会不会伪造token?</li>
+</ul>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>浏览器里一种能永久保存的数据。由服务器产生，发送给浏览器。</p>
+<p>cookie的组成有：名称(key)、值(value)、有效域(domain)、路径(域的路径，一般设置为全局:”\”)、失效时间(expires)、安全标志(指定后，cookie只有在使用SSL连接时才发送到服务器(https))。</p>
+<p>expires 和 maxAge：告诉浏览器这个 cookie 什么时候过期，expires 是 UTC 格式时间，maxAge 是 cookie 多久后过期的相对时间。当不设置这两个选项时，会产生 session cookie，session cookie 是 transient 的，当用户关闭浏览器时，就被清除。</p>
+<ul>
+<li>读取cookie <code>document.cookie</code></li>
+<li>写入cookie <code>document.cookie = &#39;name=abigale&#39;</code></li>
+</ul>
+<p>以下是我从某个网站截取下的请求信息，可以看到 <code>cookie</code> 里的信息</p>
+<p><img src="/images/tokensessioncookie01.jpeg" alt="cookie"></p>
+<p>例子: expires设置有效时间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">date.setDate(date.getDate+<span class="number">30</span>);</div><div class="line"><span class="built_in">document</span>.cookie = <span class="string">'name=abc;path=/;expires='</span>+date;</div></pre></td></tr></table></figure>
+<h3 id="session-会话"><a href="#session-会话" class="headerlink" title="session 会话"></a>session 会话</h3><p>当用户去访问某个服务器时，服务器会产生session然后存下用户的信息。session是通过 <code>session_id</code> 去识别用户的。</p>
+<ul>
+<li>session存放位置可以是<ul>
+<li>内存</li>
+<li>cookie本身</li>
+<li>redis 或 memcached 等缓存中</li>
+<li>数据库中。（线上来说，缓存的方案比较常见，存数据库的话，查询效率相比前三者都太低，不推荐）</li>
+</ul>
+</li>
+</ul>
+<h2 id="传统的身份验证：cookie和session之间的合作"><a href="#传统的身份验证：cookie和session之间的合作" class="headerlink" title="传统的身份验证：cookie和session之间的合作"></a>传统的身份验证：cookie和session之间的合作</h2><p>说在cookie和session之前：</p>
+<ul>
+<li><p>为什么会有cookie又有session：</p>
+<ul>
+<li>原因一：因为如果我们把所有信息全都存在cookie，cookie有很容易被用户在浏览器看到或者在js脚本修改，cookie存储数据大小也受限，太大传输效率就低了，所以我们把一些敏感或者量大的数据存在session里。</li>
+<li>原因二：将两者信息进行匹配验证，即浏览器(cookie)和服务器端(session)之间的验证。</li>
+</ul>
+</li>
+<li><p>为什么需要这两者的合作？</p>
+<ul>
+<li>HTTP是一种无状态无连接的协议，即请求是不知道是谁请求，需要在这两者之间做一层身份的识别。就如原本是去商场用现金交易，付款后就不知道用户是谁了，但后来变成线上支付，加了一层身份识别，我们就可以对用户进行追踪了。</li>
+</ul>
+</li>
+</ul>
+<h3 id="合作过程"><a href="#合作过程" class="headerlink" title="合作过程"></a>合作过程</h3><ul>
+<li>客户端访问时，通过了验证。</li>
+<li>服务端将客户端信息进行处理加密(签名，专业术语叫信息摘要算法)。</li>
+<li>把记录这些信息的ID发送给客户端</li>
+<li>客户端收到ID后存储在cookie中</li>
+<li>下次客户端重新访问服务端时，带上cookie信息</li>
+<li>服务端验证cookie里面的信息，如果能找到对应的记录，则用户通过了验证</li>
+</ul>
+<h3 id="引申出的问题："><a href="#引申出的问题：" class="headerlink" title="引申出的问题："></a>引申出的问题：</h3><h4 id="为什么要加密？"><a href="#为什么要加密？" class="headerlink" title="为什么要加密？"></a>为什么要加密？</h4><p>比如我们放在浏览器的信息是可以通过js拿到的或者其他攻击拿到的，很不安全。如果我们通过某种信息加密手段，就可以防止攻击者冒充用户去干坏事。</p>
+<h4 id="可以怎么加密呢？下面举个例子"><a href="#可以怎么加密呢？下面举个例子" class="headerlink" title="可以怎么加密呢？下面举个例子"></a>可以怎么加密呢？下面举个例子</h4><ul>
+<li>秘密字符串：如 <code>&quot;thisIsMySecret&quot;</code></li>
+<li>本来发送给服务端的cookie: <code>&quot;name:abigale&quot;</code>,这时abigale用户可以伪装成另一位同学yuhaha，如cookie: <code>&quot;name:yuhaha&quot;</code></li>
+<li>这是服务器做个sha1加密：<code>sha1(&quot;thisIsMySecret&quot;,&quot;abigale&quot;)</code>,然后把某个加密后的签名（如：4850a42e3bc0ac94323d3923e3d1d）发给用户</li>
+<li><p>后来用户发给服务器端的cookie就变成了</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">name</span>:  <span class="string">'abigale'</span>,</div><div class="line">	<span class="string">'user.sig'</span>: <span class="string">'4850a42e3bc0ac94323d3923e3d1d'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>到这时，如果攻击者将cookie改为</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">name</span>:  <span class="string">'yuhaha'</span>,</div><div class="line">	<span class="string">'user.sig'</span>: <span class="string">'4850a42e3bc0ac94323d3923e3d1d'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>签名就匹配不上了，要伪造对应的签名几率很小很小
+</code></pre><ul>
+<li>这就是完成一个加密过程了。这个过程是用来识别用户，针对了HTTP面向无连接（请求完就断开）的方法。</li>
+</ul>
+<h2 id="新的验证机制-–-token认证"><a href="#新的验证机制-–-token认证" class="headerlink" title="新的验证机制 – token认证"></a>新的验证机制 – token认证</h2><p>以上我们讲到我们采用 <code>session_id</code> 去匹配用户验证用户完成一次API请求，但每次请求都要去做匹配。一种新的请求机制是token认证</p>
+<p>快速理解：我们将一些需要验证的信息在服务端做一次加密，包括一些失效期等，然后返回给客户端，客户端将token存起来，下次访问再讲token传给服务端验证。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.jianshu.com/p/1d286c4cc1d0" target="_blank" rel="external">cookie、session和token那些事</a></li>
+<li><a href="http://www.jianshu.com/p/5ac166c5fe76" target="_blank" rel="external">token/session/cookie的区别</a></li>
+<li><a href="http://www.cnblogs.com/xiekeli/p/5607107.html" target="_blank" rel="external">基于Token的WEB后台认证机制</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/24/Promise/" rel="prev" title="Promise模式 -- 异步编程">
+                Promise模式 -- 异步编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dear.jpeg"
+               alt="Abigale" />
+          <p class="site-author-name" itemprop="name">Abigale</p>
+          <p class="site-description motion-element" itemprop="description">回忆里的拇指姑娘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决几个疑惑"><span class="nav-number">1.</span> <span class="nav-text">解决几个疑惑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键字-token、cookie和session-的理解"><span class="nav-number">2.</span> <span class="nav-text">关键字 token、cookie和session 的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#token-令牌"><span class="nav-number">2.1.</span> <span class="nav-text">token 令牌</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引申问题"><span class="nav-number">2.1.1.</span> <span class="nav-text">引申问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie"><span class="nav-number">2.2.</span> <span class="nav-text">cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session-会话"><span class="nav-number">2.3.</span> <span class="nav-text">session 会话</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统的身份验证：cookie和session之间的合作"><span class="nav-number">3.</span> <span class="nav-text">传统的身份验证：cookie和session之间的合作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#合作过程"><span class="nav-number">3.1.</span> <span class="nav-text">合作过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引申出的问题："><span class="nav-number">3.2.</span> <span class="nav-text">引申出的问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要加密？"><span class="nav-number">3.2.1.</span> <span class="nav-text">为什么要加密？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可以怎么加密呢？下面举个例子"><span class="nav-number">3.2.2.</span> <span class="nav-text">可以怎么加密呢？下面举个例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的验证机制-–-token认证"><span class="nav-number">4.</span> <span class="nav-text">新的验证机制 – token认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Abigale</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
