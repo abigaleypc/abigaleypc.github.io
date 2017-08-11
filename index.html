@@ -249,6 +249,227 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/08/11/miniprograms-signin/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Abigale">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Abigale's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/11/miniprograms-signin/" itemprop="url">
+                  miniprograms-signin
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-11T11:59:00+08:00">
+                2017-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>微信小程序有一套严格且小复杂的登录方案，为了疏通整个登录流程，我花了好几天的时间画图与测试，终于茅塞顿开。</p>
+<p>流程如下：<br><img src="/images/wechat/signin.png" alt="微信小程序登录流程"></p>
+<h3 id="登录态的作用"><a href="#登录态的作用" class="headerlink" title="登录态的作用"></a>登录态的作用</h3><ul>
+<li>检测登录是否过期</li>
+<li>通过调用微信登陆接口获取登录凭证，进而获取敏感信息</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><p>微信小程序(前端，以下统称前端) <code>wx.checkSession()</code> 是每次进入微信小程序时最先调用的接口，因为微信小程序的登录具有时效性，该内置函数式为了检测登录是否过期了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">wx.checkSession(&#123;</div><div class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// 登录态未过期，可进行我们所需要的业务</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">fail</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    wx.login() <span class="comment">// 登录态已过期，需重新登录</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-login.html#wxchecksessionobject" target="_blank" rel="external">具体用法</a></p>
+</li>
+<li><p>如果我们是第一次登录，或者登录态已经过期，则前端调用 <code>wx.login()</code> ，该函数将返回一个用户凭证 <code>code</code>,如 <code>{code:&#39;7rheuw93her0239urhf&#39;}</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wx.login(&#123;</div><div class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(res.code); <span class="comment">// '7rheuw93her0239urhf'</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>我们需要自己启动一个后端，即流程图中的 <code>第三方服务器</code> ，将以上获取到的 <code>code</code> 传至第三方服务器</p>
+<ul>
+<li>前端代码示例：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">wx.login(&#123;</div><div class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</div><div class="line">    wx.request(&#123;</div><div class="line">      <span class="attr">url</span>: <span class="string">'https://XXXX.com:8080/api/authorization'</span>, <span class="comment">// 这个接口写于后端，用于向微信服务器 换取 session_key 和 openId 的接口</span></div><div class="line">      data: &#123;</div><div class="line">        <span class="attr">code</span>: res.code <span class="comment">// 将wx.login()返回 code 传至第三方服务器</span></div><div class="line">      &#125;,</div><div class="line">      <span class="attr">header</span>: &#123;</div><div class="line">        <span class="string">'content-type'</span>: <span class="string">'application/json'</span></div><div class="line">      &#125;,</div><div class="line">      <span class="attr">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</div><div class="line">        <span class="comment">// 发送成功</span></div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>该接口 <code>https://XXXX.com:8080/api/authorization</code> 调用微信服务器接口 ‘jscode2session’获取用户唯一标识openid和会话密钥session_key</li>
+<li><p>该接口调用微信服务器接口：<code>https://api.weixin.qq.com/sns/jscode2session</code> ，所需参数和返回字段如下：</p>
+</li>
+<li><p>请求所需字段</p>
+<ul>
+<li>appid: 小程序的唯一标识</li>
+<li>secret: 小程序的app secret</li>
+<li>js_code: 以上提到很多次的 <code>code</code></li>
+<li>grant_type: 均为 <code>authorization_code</code></li>
+</ul>
+</li>
+<li><p>返回字段</p>
+<ul>
+<li>openid: 用户的唯一标识</li>
+<li>session_key: 登录的会话密钥</li>
+<li>expires_in: 有效时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>&gt; 由于我测试的项目后端语言采用node实现，所以该文章所有后端代码均是node示例。
+
+后端代码示例：
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/authorization'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// 获取session_key expires_in openid </span></div><div class="line"></div><div class="line">  request.get(&#123;</div><div class="line">    <span class="attr">uri</span>: <span class="string">'https://api.weixin.qq.com/sns/jscode2session'</span>,</div><div class="line">    <span class="attr">json</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">qs</span>: &#123;</div><div class="line">      <span class="attr">grant_type</span>: <span class="string">'authorization_code'</span>,</div><div class="line">      <span class="attr">appid</span>: appId,</div><div class="line">      <span class="attr">secret</span>: appSecret,</div><div class="line">      <span class="attr">js_code</span>: req.query.code</div><div class="line">    &#125;</div><div class="line">  &#125;, (err, response, data) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span> (response.statusCode === <span class="number">200</span>) &#123;</div><div class="line">        data.openid <span class="comment">// 用户唯一标识</span></div><div class="line">        data.session_key <span class="comment">// 会话密钥</span></div><div class="line">        data.expires_in <span class="comment">// 有效时间</span></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      res.json(err)</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>生成第三方session，根据微信小程序官方的建议：用于第三方服务器和小程序之间做登录态校验，为了保证安全性，3rd_session应该满足：</p>
+<ul>
+<li>足够长。建议有 2^128 组合</li>
+<li>避免使用 srand(当前时间)，然后 rand() 的方法，而是采用操作系统提供的真正随机数机制</li>
+<li>设置一定的有效时间</li>
+</ul>
+<p>生成3rd_session的方法有很多种，我们暂且跳过这一步骤，就假设 <code>3rd_session=&#39;6c22c620b4fJE2878fc8f10b5ba2ffe&#39;</code> (当然3rd_session是数字开头不能作为变量名，代码中为 <code>secret.SECRET</code>)，根据 <code>code</code> 获取 <code>session_key</code> 和 <code>openId</code> ,再将它们存在内存中。以<code>3rd_session</code>为key，<code>session_key</code> 和 <code>openId</code> 为value存储。</p>
+<ul>
+<li><p>我采用的方式是将 <code>session_key</code> 和 <code>openId</code> 写为json格式，再将该json格式转为string，<br>假设转为string格式后为 <code>&#39;{session_key:001, openId:002}&#39;</code>，然后再将它作为value，<code>3rd_session</code>为key ，存入内存中。</p>
+</li>
+<li><p>将 <code>3rd_session</code> 返回给前端，前端需要将它存在storage，第三方服务器也需要将 <code>{3rd_session:session_key+openid}</code> 存在内存中。</p>
+</li>
+<li><p>如何存在内存？可以 <code>npm install redis --save</code>，然后<br><code>const redis = require(&#39;redis&#39;);
+redisStore = redis.createClient();</code><br>将其引入，Redis 是内存中的数据结构存储系统，我们可以将3rd_session存下来</p>
+</li>
+<li><p>最后封装好我们的第三方session之后，就这个3rd_session返回到前端</p>
+</li>
+</ul>
+<p>后端代码示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/authorization'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// 获取session_key expires_in openid </span></div><div class="line"></div><div class="line">  request.get(&#123;</div><div class="line">    <span class="attr">uri</span>: <span class="string">'https://api.weixin.qq.com/sns/jscode2session'</span>,</div><div class="line">    <span class="attr">json</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">qs</span>: &#123;</div><div class="line">      <span class="attr">grant_type</span>: <span class="string">'authorization_code'</span>,</div><div class="line">      <span class="attr">appid</span>: appId,</div><div class="line">      <span class="attr">secret</span>: appSecret,</div><div class="line">      <span class="attr">js_code</span>: req.query.code</div><div class="line">    &#125;</div><div class="line">  &#125;, (err, response, data) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span> (response.statusCode === <span class="number">200</span>) &#123;</div><div class="line">      <span class="comment">//<span class="doctag">TODO:</span> 生成一个唯一字符串sessionid作为键，将openid和session_key作为值，存入redis，超时时间设置为2小时</span></div><div class="line">      <span class="keyword">let</span> secretValue = &#123;</div><div class="line">        <span class="attr">openid</span>: data.openid,</div><div class="line">        <span class="attr">session_key</span>: data.session_key</div><div class="line">      &#125;</div><div class="line">      </div><div class="line">      <span class="comment">// 将&#123;secret.SECRET:JSON.stringify(secretValue)&#125; 存入内存中，过期时间设置为微信小程序接口返回给我们的有效时间</span></div><div class="line">      redisStore.set(secret.SECRET, <span class="built_in">JSON</span>.stringify(secretValue), <span class="string">'EX'</span>, data.expires_in);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      res.json(err)</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">  </div><div class="line">  <span class="comment">// 返回给前端</span></div><div class="line">  res.send(&#123;</div><div class="line">    <span class="attr">wxtoken</span>: secret.SECRET</div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>这时候我们前端已经收到 <code>3rd_session</code>，需要将它存在Storage中，采用微信小程序内置函数 <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/data.html#wxsetstorageobject" target="_blank" rel="external">wx.setStorage()</a> 存储。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 伪代码</span></div><div class="line">wx.setStorage(&#123;</div><div class="line">  <span class="attr">key</span>:<span class="string">"3rd_session"</span>,</div><div class="line">  <span class="attr">data</span>: <span class="number">3</span>rd_session</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>至此，我们获取密钥生成 `3rd_session` 的过程就结束了。但有何用呢？`3rd_session` 是为了每次做请求时做用户验证，比如用户想做一些只有用户本人才能做的操作，不需要每次都去问微信服务端 `是本人才操作` 吗，在有效时间内我们问自己的服务端就行，这个有效时间微信服务端已返回，即 `expires_in` 。
+
+接下来我们带上 `3rd_session` 去做一些只有本人才能做的操作，比如获取个人敏感信息。
+</code></pre><ol>
+<li><p>获取用户信息，当只需要获取用户个人基本信息时，不需要与第三方服务器做交互，只需要调用如下接口：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">wx.getUserInfo(&#123;</div><div class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">  	<span class="comment">// 返回用户基本信息如下res</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">res:</div><div class="line">&#123;</div><div class="line">	<span class="attr">userInfo</span>: <span class="string">''</span>,</div><div class="line">	<span class="attr">nickName</span>: <span class="string">'Abigale'</span>,</div><div class="line">	<span class="attr">avatarUrl</span>: <span class="string">'https://xxx.com/xx.png'</span>,</div><div class="line">	<span class="attr">userInfo</span>: <span class="string">''</span>,</div><div class="line">	<span class="attr">gender</span>: <span class="number">2</span>,</div><div class="line">	<span class="attr">province</span>: <span class="string">''</span>,</div><div class="line">	<span class="attr">city</span>: <span class="string">''</span>,</div><div class="line">	<span class="attr">country</span>: <span class="string">''</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>但当我们需要获取个人的敏感信息时，需要将请求参数 `withCredentials` 设为 `true`，默认该值为 `false`，该字段意为是否带上登录态信息    。
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">wx.getUserInfo(&#123;</div><div class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">  	withCredentials: <span class="literal">true</span>, <span class="comment">// 设为 true</span></div><div class="line">  	<span class="comment">// 返回带敏感信息的个人信息如下res</span></div><div class="line">  &#125;</div><div class="line"> &#125;)</div><div class="line"> </div><div class="line">res:</div><div class="line"> 	&#123;</div><div class="line"> 		<span class="attr">errMsg</span>: <span class="string">"getUserInfo:ok"</span>, </div><div class="line"> 		<span class="attr">rawData</span>: <span class="string">"&#123;"</span>nickName<span class="string">":"</span>Abigale<span class="string">","</span>gender<span class="string">":2,"</span>language<span class="string">":"</span>zh_CN<span class="string">"&#125;"</span>,</div><div class="line"> 		<span class="attr">userInfo</span>: <span class="built_in">Object</span>, </div><div class="line"> 		<span class="attr">signature</span>: <span class="string">"xxxx"</span>, </div><div class="line"> 		<span class="attr">encryptedData</span>: <span class="string">"xxx"</span>,</div><div class="line"> 		<span class="attr">errMsg</span>: <span class="string">"getUserInfo:ok"</span>,</div><div class="line"> 		<span class="attr">userInfo</span>: <span class="string">""</span>,</div><div class="line"> 		<span class="attr">avatarUrl</span>: <span class="string">"https://xxx.com/xx.png"</span>,</div><div class="line"> 		<span class="attr">iv</span>: <span class="string">"re3dw"</span>,</div><div class="line"> 		<span class="attr">userInfo</span>: &#123;</div><div class="line">		<span class="attr">nickName</span>: <span class="string">'Abigale'</span>,</div><div class="line">		<span class="attr">avatarUrl</span>: <span class="string">'https://xxx.com/xx.png'</span>,</div><div class="line">		<span class="attr">userInfo</span>: <span class="string">''</span>,</div><div class="line">		<span class="attr">gender</span>: <span class="number">2</span>,</div><div class="line">		<span class="attr">province</span>: <span class="string">''</span>,</div><div class="line">		<span class="attr">city</span>: <span class="string">''</span>,</div><div class="line">		<span class="attr">country</span>: <span class="string">''</span>,</div><div class="line">	&#125;</div><div class="line"> 	&#125;</div></pre></td></tr></table></figure>
+
+
+以上敏感信息加密算法可参考：[用户数据的签名验证和加密](https://mp.weixin.qq.com/debug/wxadoc/dev/api/signature.html)
+</code></pre><ol>
+<li><p>前端带着以上个人敏感信息和 <code>3rd_session</code> 向第三方服务器发起请求，目的是解密获取个人敏感信息</p>
+<ul>
+<li>首先第三方服务器根据 <code>3rd_session</code> ，在内存中取出 <code>session_key</code>，因内存中我们是采用 <code>JSON.stringify(secretValue)</code> 将<code>session_key</code>和 <code>openid</code> 存起来的，所以取出的时候我们可以采用 <code>JSON.parse(secretValue)</code>。</li>
+<li>根据 <code>config.appId</code> , <code>session_key</code> , <code>encryptedData</code> , <code>iv</code> 对数据进行解密</li>
+<li>敏感信息解密算法可参考：<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/signature.html" target="_blank" rel="external">用户数据的签名验证和解密</a></li>
+</ul>
+</li>
+<li><p>解密后的信息如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"openId"</span>: <span class="string">"OPENID"</span>,</div><div class="line">    <span class="attr">"nickName"</span>: <span class="string">"NICKNAME"</span>,</div><div class="line">    <span class="attr">"gender"</span>: GENDER,</div><div class="line">    <span class="attr">"city"</span>: <span class="string">"CITY"</span>,</div><div class="line">    <span class="attr">"province"</span>: <span class="string">"PROVINCE"</span>,</div><div class="line">    <span class="attr">"country"</span>: <span class="string">"COUNTRY"</span>,</div><div class="line">    <span class="attr">"avatarUrl"</span>: <span class="string">"AVATARURL"</span>,</div><div class="line">    <span class="attr">"unionId"</span>: <span class="string">"UNIONID"</span>,</div><div class="line">    <span class="attr">"watermark"</span>:</div><div class="line">    &#123;</div><div class="line">        <span class="attr">"appid"</span>:<span class="string">"APPID"</span>,</div><div class="line">        <span class="attr">"timestamp"</span>:TIMESTAMP</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>至此，获取敏感信息步骤也完成啦啦♪(^∇^*)</p>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a><a href="https://github.com/abigaleypc/miniprograms-signin.git" target="_blank" rel="external">代码示例</a></h3><h3 id="我所遇到的疑惑"><a href="#我所遇到的疑惑" class="headerlink" title="我所遇到的疑惑"></a>我所遇到的疑惑</h3><ul>
+<li>为什么微信小程序已经有登录检测，过期时会弹出窗口让用户去点击”允许”去登录，为什么还是需要我们通过 <code>wx.checkSession()</code> 去检测是否登录过期进而去调用 <code>wx.login()</code> 呢？<ul>
+<li>因为调用 <code>wx.login()</code> 是为了获取登录凭证，当这个登录凭证在有效期内，就不需要跑去微信服务器问本人登录是否过期了</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/07/28/cookie-session-token/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1520,151 +1741,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://abigaleypc.github.io/2017/06/23/前端模拟服务器实现跨域/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Abigale">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Abigale's Blog">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Abigale's Blog" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/23/前端模拟服务器实现跨域/" itemprop="url">
-                  前端模拟服务器实现跨域
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T15:39:57+08:00">
-                2017-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h3><p><a href="https://github.com/abigaleypc/cross-domain-server">https://github.com/abigaleypc/cross-domain-server</a></p>
-<h3 id="项目安装"><a href="#项目安装" class="headerlink" title="项目安装"></a>项目安装</h3><ul>
-<li><code>git clone https://github.com/abigaleypc/cross-domain-server</code></li>
-<li><code>cd JSONP</code></li>
-<li><code>npm install</code></li>
-</ul>
-<h3 id="不同域的定义"><a href="#不同域的定义" class="headerlink" title="不同域的定义"></a>不同域的定义</h3><p>协议+域名+端口号都相同才是同域<br>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/06/23/前端模拟服务器实现跨域/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1710,7 +1786,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1727,7 +1803,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
