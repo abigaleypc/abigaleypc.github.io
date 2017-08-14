@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="en">
+<html class="theme-next muse use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="angular,gulp," />
+  <meta name="keywords" content="gulp,angular," />
 
 
 
@@ -87,7 +87,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/dear.jpeg?v=5.1.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="项目简介 该项目是一个 angular + gulp 搭建起来的简易框架。 Angular 是一组用来开发 Web 页面的框架、模板以及数据绑定和丰富 UI 组件。它支持整个开发进程，提供 Web 应用的架构，无需进行手工 DOM 操作。 AngularJS 很小，只有 60K，兼容主流浏览器。 Gulp 是一个自动化构建工具，通过代码优于配置的策略，它可以让简单的任务简单，复杂的任务更可管理；通">
-<meta name="keywords" content="angular,gulp">
+<meta name="keywords" content="gulp,angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建Angular-Gulp项目">
 <meta property="og:url" content="https://abigaleypc.github.io/2017/03/28/搭建Angular-Gulp项目/index.html">
@@ -112,7 +112,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -204,12 +204,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Categories
+            Archives
           </a>
         </li>
       
@@ -220,16 +220,6 @@
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
           </a>
         </li>
       
@@ -330,6 +320,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/28/搭建Angular-Gulp项目/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/28/搭建Angular-Gulp项目/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -433,9 +434,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/angular/" rel="tag"># angular</a>
-          
             <a href="/tags/gulp/" rel="tag"># gulp</a>
+          
+            <a href="/tags/angular/" rel="tag"># angular</a>
           
         </div>
       
@@ -488,12 +489,17 @@
 
 
           
-     <div class="comments" id="comments">
-       
-            <div id="uyan_frame"></div>
-       
-     </div>
-   
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -538,7 +544,7 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/">
+              <a href="/archives/">
                 <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">posts</span>
               </a>
@@ -624,19 +630,23 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Abigale</span>
+
+  
 </div>
 
 
-<div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
-</div>
+  <div class="powered-by">
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  </div>
 
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Gemini
-  </a>
-</div>
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    Theme &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Muse
+    </a>
+  </div>
 
 
         
@@ -720,13 +730,6 @@
   
   
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
-
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
@@ -745,6 +748,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://abigaleypc.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://abigaleypc.github.io/2017/03/28/搭建Angular-Gulp项目/';
+          this.page.identifier = '2017/03/28/搭建Angular-Gulp项目/';
+          this.page.title = '搭建Angular-Gulp项目';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://abigaleypc.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -754,20 +777,9 @@
 
 
 
-    
-      
-    
-
-   
-        <!-- UY BEGIN -->
-        <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2141513"></script>
-        <!-- UY END -->
-    
   
 
 
-
-  
 
 
 
