@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://abigaleypc.github.io/2017/07/01/reactnative-demo/</loc>
+    
+    <lastmod>2017-08-31T06:23:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://abigaleypc.github.io/2017/08/21/EF-module/</loc>
     
     <lastmod>2017-08-21T08:52:52.000Z</lastmod>
@@ -145,13 +152,6 @@
     <loc>http://abigaleypc.github.io/2017/02/26/XMLHttpRequest-%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2017-07-11T10:29:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://abigaleypc.github.io/2017/07/01/reactnative-demo/</loc>
-    
-    <lastmod>2017-07-11T10:29:27.000Z</lastmod>
     
   </url>
   
