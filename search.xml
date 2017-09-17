@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[inherit]]></title>
-    <url>%2F2017%2F09%2F13%2Finherit%2F</url>
-    <content type="text"><![CDATA[javascript中的类在ES6标准出现之前，类只是一个函数。 类的写法： 123456789/*** Person类：定义一个人的类，包括属性：name 和 方法：getName*/function Person(name) &#123; this.name = name; this.getName = function()&#123; return name; &#125;&#125;]]></content>
-      <tags>
-        <tag>javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[前端模块化]]></title>
     <url>%2F2017%2F08%2F21%2FEF-module%2F</url>
     <content type="text"><![CDATA[简单说一下前端模块化标准的基础用法~~ CommonJSCommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。示例： 123456// a.jsvar obj = &#123; name: 'John', age: 18&#125;module.exports = obj; 1234// b.jsvar obj = require('./a');obj.name; // John AMDAMD（异步模块定义）是为浏览器环境设计的，因为 CommonJS 模块系统是同步加载的，当前浏览器环境还没有准备好同步加载模块的条件。 语法： define(id?, dependencies?, factory);，前两个参数可选 示例： 1234567define('objModule', ['jquery'], function($) &#123; // $ 是 jquery 模块的输出 $('body').text('hello world');&#125;);// 使用,相比起CommonJS多了回调函数require(['objModule'], function(myModule) &#123;&#125;); ES6新一代JavaScript标准 示例一： 123456// a.jsvar obj = &#123; name: 'John', age: 18&#125;export default obj; 1234// b.jsimport obj from './a';obj.name; // John 示例二： 123456// a.jsvar obj = &#123; name: 'John', age: 18&#125;exports.obj = obj; 123// b.jsimport &#123; obj &#125; from './a';obj.name; // John 其他 CommonJS为同步，AMD为异步。 CommonJS是一中规范，NodeJS中所采用的规范。 ES6 标准为JavaScript新语法，我们不需要做引入。 CommonJS 和 AMD 为运行时加载，而 ES6 为编译时加载。]]></content>

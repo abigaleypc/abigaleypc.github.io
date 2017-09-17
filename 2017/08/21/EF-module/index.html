@@ -432,7 +432,7 @@
       
         <p>简单说一下前端模块化标准的基础用法~~</p>
 <h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p>CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。<br><a id="more"></a><br>示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">'John'</span>,</div><div class="line">	<span class="attr">age</span>: <span class="number">18</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = obj;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	name: <span class="string">'John'</span>,</div><div class="line">	age: <span class="number">18</span></div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = obj;</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">var</span> obj = <span class="built_in">require</span>(<span class="string">'./a'</span>);</div><div class="line"></div><div class="line">obj.name; <span class="comment">// John</span></div></pre></td></tr></table></figure>
 <h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><p>AMD（异步模块定义）是为浏览器环境设计的，因为 CommonJS 模块系统是同步加载的，当前浏览器环境还没有准备好同步加载模块的条件。</p>
 <p>语法： <code>define(id?, dependencies?, factory);</code>，前两个参数可选</p>
@@ -440,10 +440,10 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">define(<span class="string">'objModule'</span>, [<span class="string">'jquery'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</div><div class="line">    <span class="comment">// $ 是 jquery 模块的输出</span></div><div class="line">    $(<span class="string">'body'</span>).text(<span class="string">'hello world'</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 使用,相比起CommonJS多了回调函数</span></div><div class="line"><span class="built_in">require</span>([<span class="string">'objModule'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">myModule</span>) </span>&#123;&#125;);</div></pre></td></tr></table></figure>
 <h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p>新一代JavaScript标准</p>
 <p>示例一：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">'John'</span>,</div><div class="line">	<span class="attr">age</span>: <span class="number">18</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> obj;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	name: <span class="string">'John'</span>,</div><div class="line">	age: <span class="number">18</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> obj;</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">import</span> obj <span class="keyword">from</span> <span class="string">'./a'</span>;</div><div class="line"></div><div class="line">obj.name; <span class="comment">// John</span></div></pre></td></tr></table></figure>
 <p>示例二：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	<span class="attr">name</span>: <span class="string">'John'</span>,</div><div class="line">	<span class="attr">age</span>: <span class="number">18</span></div><div class="line">&#125;</div><div class="line">exports.obj = obj;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// a.js</span></div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">	name: <span class="string">'John'</span>,</div><div class="line">	age: <span class="number">18</span></div><div class="line">&#125;</div><div class="line">exports.obj = obj;</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// b.js</span></div><div class="line"><span class="keyword">import</span> &#123; obj &#125; <span class="keyword">from</span> <span class="string">'./a'</span>;</div><div class="line">obj.name; <span class="comment">// John</span></div></pre></td></tr></table></figure>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
 <li><code>CommonJS</code>为同步，<code>AMD</code>为异步。</li>
@@ -492,10 +492,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/13/inherit/" rel="prev" title="inherit">
-                inherit <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -579,7 +575,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

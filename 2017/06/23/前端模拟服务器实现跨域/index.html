@@ -452,7 +452,7 @@
 <p> tip: <code>port8080</code>主要用来访问不同域的子项目，<code>port58023</code>主要模拟服务器，启动另一个端口给<code>port8080</code>访问</p>
 <p><code>cd JSONP</code></p>
 <p>在文件夹 <code>JSONP/port8080/index.html</code> 中，我们引入的是另一个端口下的文件，文件同样获取到了，这时候打开浏览器控制台可以看到返回结果被打印出来了。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  function callback(data) &#123;</div><div class="line">    console.log(data)</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script src="http://127.0.0.1:58023/test.js"&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(data)</div><div class="line">  &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&lt;script src="http:/</span><span class="regexp">/127.0.0.1:58023/</span>test.js<span class="string">"&gt;&lt;/script&gt;</span></div></pre></td></tr></table></figure>
 <p>在文件夹 <code>JSONP/port58023</code> 中，我们可以看下 <code>test.js</code>文件</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">callback(</div><div class="line">  &#123;</div><div class="line">    <span class="string">"port"</span>: <span class="string">"我不是8080端口"</span></div><div class="line">  &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
 <p>控制台已经打印出文本，只是因为 <code>callback()</code> 函数被调用并被打印出来了。</p>
@@ -580,7 +580,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

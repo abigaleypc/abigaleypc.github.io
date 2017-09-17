@@ -488,10 +488,10 @@
 <li>本来发送给服务端的cookie: <code>&quot;name:abigale&quot;</code>,这时abigale用户可以伪装成另一位同学yuhaha，如cookie: <code>&quot;name:yuhaha&quot;</code></li>
 <li>这是服务器做个sha1加密：<code>sha1(&quot;thisIsMySecret&quot;,&quot;abigale&quot;)</code>,然后把某个加密后的签名（如：4850a42e3bc0ac94323d3923e3d1d）发给用户</li>
 <li><p>后来用户发给服务器端的cookie就变成了</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">name</span>:  <span class="string">'abigale'</span>,</div><div class="line">	<span class="string">'user.sig'</span>: <span class="string">'4850a42e3bc0ac94323d3923e3d1d'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	name:  <span class="string">'abigale'</span>,</div><div class="line">	<span class="string">'user.sig'</span>: <span class="string">'4850a42e3bc0ac94323d3923e3d1d'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>到这时，如果攻击者将cookie改为</p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">name</span>:  <span class="string">'yuhaha'</span>,</div><div class="line">	<span class="string">'user.sig'</span>: <span class="string">'4850a42e3bc0ac94323d3923e3d1d'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	name:  <span class="string">'yuhaha'</span>,</div><div class="line">	<span class="string">'user.sig'</span>: <span class="string">'4850a42e3bc0ac94323d3923e3d1d'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <pre><code>签名就匹配不上了，要伪造对应的签名几率很小很小
@@ -631,7 +631,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

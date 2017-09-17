@@ -442,7 +442,7 @@
 <ul>
 <li>一个编码评论的接口 <code>/comment</code></li>
 <li><p>一个获取评论的接口 <code>/getComment</code></p>
-  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/comment'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  comments.v = html_encode(req.query.comment);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">router.get(<span class="string">'/getComment'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.json(&#123;</div><div class="line">    <span class="attr">comment</span>: comments.v</div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/comment'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  comments.v = html_encode(req.query.comment);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">router.get(<span class="string">'/getComment'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.json(&#123;</div><div class="line">    comment: comments.v</div><div class="line">  &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -595,7 +595,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
