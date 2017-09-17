@@ -11,5 +11,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: https://abigaleyu.co/sitemap.xml
-Sitemap: https://abigaleyu.co/baidusitemap.xml
+Sitemap: https://abigaleypc.github.io/sitemap.xml
+Sitemap: https://abigaleypc.github.io/baidusitemap.xml

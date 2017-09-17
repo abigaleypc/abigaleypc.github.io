@@ -3,21 +3,19 @@
 
 
     
+    
   <url>
-    <loc>http://abigaleypc.github.io/2017/07/01/reactnative-demo/</loc>
-    <lastmod>2017-08-31T06:23:49.000Z</lastmod>
+    <loc>http://abigaleypc.github.io/2017/09/13/inherit/</loc>
+    <lastmod>2017-09-13T07:40:56.000Z</lastmod>
     <data>
         <display>
-        <title>React Native DEMO</title>
-        <pubTime>2017-07-01T09:59:00.000Z</pubTime>
+        <title>inherit</title>
+        <pubTime>2017-09-13T07:13:00.000Z</pubTime>
         
-        <tag>React Native</tag>
+        <tag>javascript</tag>
          
          
            
-             
-              <breadCrumb title="Front-End" url="http://abigaleypc.github.io/categories/Front-End/"/>
-          
         </display>
     </data>
     </url>
@@ -25,7 +23,7 @@
     
   <url>
     <loc>http://abigaleypc.github.io/2017/08/21/EF-module/</loc>
-    <lastmod>2017-08-21T08:52:52.000Z</lastmod>
+    <lastmod>2017-08-31T07:26:20.000Z</lastmod>
     <data>
         <display>
         <title>前端模块化</title>
@@ -45,6 +43,25 @@
     </url>
 
     
+  <url>
+    <loc>http://abigaleypc.github.io/2017/07/01/reactnative-demo/</loc>
+    <lastmod>2017-08-31T06:23:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>React Native DEMO</title>
+        <pubTime>2017-07-01T09:59:00.000Z</pubTime>
+        
+        <tag>React Native</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="http://abigaleypc.github.io/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
     
     
