@@ -330,6 +330,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2017/03/23/搭建Angular-Webpack项目/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Abigale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dear.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Abigale's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/23/搭建Angular-Webpack项目/" itemprop="url">搭建Angular-Webpack项目</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-23T16:23:00+08:00">
+                2017-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/23/搭建Angular-Webpack项目/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/23/搭建Angular-Webpack项目/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a><a href="https://abigaleypc.github.io/angular-webpack/">Demo</a></h3><h3 id="项目目录"><a href="#项目目录" class="headerlink" title="项目目录"></a>项目目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">├── dist                   // 打包后生成的静态文件</div><div class="line">│   ├── app.js</div><div class="line">│   └── index.html</div><div class="line">├── package.json           // 项目配置文件</div><div class="line">├── src                    // 项目源文件</div><div class="line">│   ├── app.js</div><div class="line">│   └── index.html</div><div class="line">└── webpack.config</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/23/搭建Angular-Webpack项目/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2017/03/16/qi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -748,13 +905,29 @@
 
       
         
-          <h3 id="判断json对象是否含有特定属性"><a href="#判断json对象是否含有特定属性" class="headerlink" title="判断json对象是否含有特定属性"></a>判断json对象是否含有特定属性</h3><ul>
-<li>in 运算符</li>
+          <h3 id="判断对象是否包含某属性"><a href="#判断对象是否包含某属性" class="headerlink" title="判断对象是否包含某属性"></a>判断对象是否包含某属性</h3><h4 id="自身实例-amp-原型链"><a href="#自身实例-amp-原型链" class="headerlink" title="自身实例&amp;原型链"></a>自身实例&amp;原型链</h4><blockquote>
+<p>存在于自身实例和原型链上的，均返回 <code>true</code>, 否则返回 <code>false</code></p>
+</blockquote>
+<ul>
+<li><p><code>instanceof</code></p>
+</li>
+<li><p><code>in</code></p>
+</li>
+<li><p><code>Object.prototype.isPrototypeOf(XXXX)</code></p>
+</li>
+</ul>
+<h4 id="自身实例"><a href="#自身实例" class="headerlink" title="自身实例"></a>自身实例</h4><blockquote>
+<p>只有来自自身对象，返回true，否则返回false</p>
+</blockquote>
+<ul>
+<li><code>hasOwnProperty</code></li>
+</ul>
+<h4 id="获取实例对象所有属性"><a href="#获取实例对象所有属性" class="headerlink" title="获取实例对象所有属性"></a>获取实例对象所有属性</h4><ul>
+<li><code>Object.getOwnPropertyNames(XXXX.prototype)</code></li>
 </ul>
 <blockquote>
-<p>可看到无论是name，还是原形链上的toString，都能检测到返回true。</p>
+<p>可参考《javascript高级程序设计》第六章</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'jack'</span>&#125;;</div><div class="line">alert(<span class="string">'name'</span> <span class="keyword">in</span> obj); <span class="comment">// --&gt; true</span></div><div class="line">alert(<span class="string">'toString'</span> <span class="keyword">in</span> obj); <span class="comment">// --&gt; true</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/09/javaScript学习/#more" rel="contents">
@@ -1768,166 +1941,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2016/12/10/获取当前页面URL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/10/获取当前页面URL/" itemprop="url">document属性和方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-10T11:00:00+08:00">
-                2016-12-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/10/获取当前页面URL/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/10/获取当前页面URL/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="Document-对象"><a href="#Document-对象" class="headerlink" title="Document 对象"></a>Document 对象</h3><p>每个载入浏览器的 HTML 文档都会成为 Document 对象。<br>Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。</p>
-<blockquote>
-<p>提示：Document 对象是 Window 对象的一部分，可通过 window.document 属性对其进行访问。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/10/获取当前页面URL/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1978,7 +1991,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

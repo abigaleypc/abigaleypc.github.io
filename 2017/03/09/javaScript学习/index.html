@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="判断json对象是否含有特定属性 in 运算符   可看到无论是name，还是原形链上的toString，都能检测到返回true。  123var obj = &amp;#123;name:&apos;jack&apos;&amp;#125;;alert(&apos;name&apos; in obj); // --&amp;gt; truealert(&apos;toString&apos; in obj); // --&amp;gt; true">
+<meta name="description" content="判断对象是否包含某属性自身实例&amp;amp;原型链 存在于自身实例和原型链上的，均返回 true, 否则返回 false   instanceof  in  Object.prototype.isPrototypeOf(XXXX)   自身实例 只有来自自身对象，返回true，否则返回false   hasOwnProperty  获取实例对象所有属性 Object.getOwnPropertyNam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javaScript学习">
 <meta property="og:url" content="http://abigaleypc.github.io/2017/03/09/javaScript学习/index.html">
 <meta property="og:site_name" content="Abigale&#39;s Blog">
-<meta property="og:description" content="判断json对象是否含有特定属性 in 运算符   可看到无论是name，还是原形链上的toString，都能检测到返回true。  123var obj = &amp;#123;name:&apos;jack&apos;&amp;#125;;alert(&apos;name&apos; in obj); // --&amp;gt; truealert(&apos;toString&apos; in obj); // --&amp;gt; true">
+<meta property="og:description" content="判断对象是否包含某属性自身实例&amp;amp;原型链 存在于自身实例和原型链上的，均返回 true, 否则返回 false   instanceof  in  Object.prototype.isPrototypeOf(XXXX)   自身实例 只有来自自身对象，返回true，否则返回false   hasOwnProperty  获取实例对象所有属性 Object.getOwnPropertyNam">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-07-11T09:51:10.000Z">
+<meta property="og:updated_time" content="2017-09-19T02:19:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javaScript学习">
-<meta name="twitter:description" content="判断json对象是否含有特定属性 in 运算符   可看到无论是name，还是原形链上的toString，都能检测到返回true。  123var obj = &amp;#123;name:&apos;jack&apos;&amp;#125;;alert(&apos;name&apos; in obj); // --&amp;gt; truealert(&apos;toString&apos; in obj); // --&amp;gt; true">
+<meta name="twitter:description" content="判断对象是否包含某属性自身实例&amp;amp;原型链 存在于自身实例和原型链上的，均返回 true, 否则返回 false   instanceof  in  Object.prototype.isPrototypeOf(XXXX)   自身实例 只有来自自身对象，返回true，否则返回false   hasOwnProperty  获取实例对象所有属性 Object.getOwnPropertyNam">
 
 
 
@@ -429,27 +429,36 @@
       
 
       
-        <h3 id="判断json对象是否含有特定属性"><a href="#判断json对象是否含有特定属性" class="headerlink" title="判断json对象是否含有特定属性"></a>判断json对象是否含有特定属性</h3><ul>
-<li>in 运算符</li>
-</ul>
-<blockquote>
-<p>可看到无论是name，还是原形链上的toString，都能检测到返回true。</p>
+        <h3 id="判断对象是否包含某属性"><a href="#判断对象是否包含某属性" class="headerlink" title="判断对象是否包含某属性"></a>判断对象是否包含某属性</h3><h4 id="自身实例-amp-原型链"><a href="#自身实例-amp-原型链" class="headerlink" title="自身实例&amp;原型链"></a>自身实例&amp;原型链</h4><blockquote>
+<p>存在于自身实例和原型链上的，均返回 <code>true</code>, 否则返回 <code>false</code></p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'jack'</span>&#125;;</div><div class="line">alert(<span class="string">'name'</span> <span class="keyword">in</span> obj); <span class="comment">// --&gt; true</span></div><div class="line">alert(<span class="string">'toString'</span> <span class="keyword">in</span> obj); <span class="comment">// --&gt; true</span></div></pre></td></tr></table></figure>
-<a id="more"></a>
 <ul>
-<li>hasOwnProperty 方法</li>
+<li><p><code>instanceof</code></p>
+</li>
+<li><p><code>in</code></p>
+</li>
+<li><p><code>Object.prototype.isPrototypeOf(XXXX)</code></p>
+</li>
+</ul>
+<h4 id="自身实例"><a href="#自身实例" class="headerlink" title="自身实例"></a>自身实例</h4><blockquote>
+<p>只有来自自身对象，返回true，否则返回false</p>
+</blockquote>
+<ul>
+<li><code>hasOwnProperty</code></li>
+</ul>
+<h4 id="获取实例对象所有属性"><a href="#获取实例对象所有属性" class="headerlink" title="获取实例对象所有属性"></a>获取实例对象所有属性</h4><ul>
+<li><code>Object.getOwnPropertyNames(XXXX.prototype)</code></li>
 </ul>
 <blockquote>
-<p>原型链上继承过来的属性无法通过hasOwnProperty检测到，返回false。</p>
+<p>可参考《javascript高级程序设计》第六章</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">name</span>:<span class="string">'jack'</span>&#125;;</div><div class="line">obj.hasOwnProperty(<span class="string">'name'</span>); <span class="comment">// --&gt; true</span></div><div class="line">obj.hasOwnProperty(<span class="string">'toString'</span>); <span class="comment">// --&gt; false</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="try-catch-throw"><a href="#try-catch-throw" class="headerlink" title="try catch throw"></a>try catch throw</h3><ul>
 <li>try 语句允许我们定义在执行时进行错误测试的代码块</li>
 <li>catch 语句允许我们定义当 try 代码块发生错误时，所执行的代码块。</li>
 <li>throw 创建自定义错误</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">message</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		noFun(<span class="string">"123"</span>);  <span class="comment">//这是一个不存在的函数</span></div><div class="line">	&#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">		alert(<span class="string">'本页面有有个错误：'</span> + err.message); </div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">message</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		noFun(<span class="string">"123"</span>);  <span class="comment">//这是一个不存在的函数</span></div><div class="line">	&#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">		alert(<span class="string">'本页面有有个错误：'</span> + err.message);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>自定义错误抛出例子：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">message</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> y = <span class="built_in">document</span>.getElementById(<span class="string">'in'</span>).value;</div><div class="line">   <span class="keyword">try</span> &#123;</div><div class="line">   	<span class="keyword">if</span> (y == <span class="number">3</span>) <span class="keyword">throw</span> <span class="string">'值不能等于3'</span>;</div><div class="line">   	<span class="keyword">if</span> (<span class="built_in">isNaN</span>(y)) <span class="keyword">throw</span> <span class="string">'应为数字'</span>;</div><div class="line">   	<span class="keyword">if</span> (y &gt; <span class="number">10</span>) <span class="keyword">throw</span> <span class="string">'值不能大于10'</span>;</div><div class="line">   &#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">   	alert(err); <span class="comment">//与上面例子不一样，这里不需要加message</span></div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="js验证"><a href="#js验证" class="headerlink" title="js验证"></a>js验证</h3><blockquote>
@@ -459,6 +468,25 @@
 <blockquote>
 <p>with 语句用于设置代码在特定对象中的作用域。<a href="http://www.w3school.com.cn/js/pro_js_statements_with.asp" target="_blank" rel="external">可参考</a></p>
 </blockquote>
+<h3 id="关于arguments"><a href="#关于arguments" class="headerlink" title="关于arguments"></a>关于arguments</h3><h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><ul>
+<li>非数组，不从 <code>Array.prototype</code> 继承。有属性 <code>length</code>, 但无其他数组有的属性，如 <code>splice</code>, <code>concats</code> 等</li>
+<li>非对象</li>
+<li>类数组对象：要让它使用数组的方法，可以用 <code>call</code> 或者 <code>apply</code> 的方法改变 <code>this</code> 去执行。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>  <span class="title">SecicalArray</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">typeof</span> <span class="built_in">arguments</span>; <span class="comment">// object</span></div><div class="line">  <span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">arguments</span>) <span class="comment">// [object Arguments]</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 造一个类数组对象</span></div><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">    <span class="number">0</span>: <span class="string">'Java'</span>,</div><div class="line">    <span class="number">1</span>: <span class="string">'Python'</span>,</div><div class="line">    <span class="number">2</span>: <span class="string">'Scala'</span>,</div><div class="line">    length: <span class="number">3</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log( <span class="built_in">Array</span>.prototype.slice.call(foo)) <span class="comment">// [ 'Java', 'Python', 'Scala' ]</span></div></pre></td></tr></table></figure>
+<h3 id="JavaScript-创建对象的七种方式。"><a href="#JavaScript-创建对象的七种方式。" class="headerlink" title="JavaScript 创建对象的七种方式。"></a>JavaScript 创建对象的七种方式。</h3><ul>
+<li>工厂模式</li>
+<li>构造函数模式</li>
+<li>原型模式</li>
+<li>构造函数和原型组合模式</li>
+<li>动态原型模式</li>
+<li>寄生构造模式</li>
+<li>稳妥构造模式</li>
+</ul>
+<h3 id="JavaScript-继承"><a href="#JavaScript-继承" class="headerlink" title="JavaScript 继承"></a>JavaScript 继承</h3><ul>
+<li>接口继承：只继承方法签名</li>
+<li>实现继承：继承实际方法</li>
+</ul>
 
       
     </div>
@@ -579,7 +607,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -636,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断json对象是否含有特定属性"><span class="nav-number">1.</span> <span class="nav-text">判断json对象是否含有特定属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch-throw"><span class="nav-number">2.</span> <span class="nav-text">try catch throw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js验证"><span class="nav-number">3.</span> <span class="nav-text">js验证</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断对象是否包含某属性"><span class="nav-number">1.</span> <span class="nav-text">判断对象是否包含某属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自身实例-amp-原型链"><span class="nav-number">1.1.</span> <span class="nav-text">自身实例&原型链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自身实例"><span class="nav-number">1.2.</span> <span class="nav-text">自身实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取实例对象所有属性"><span class="nav-number">1.3.</span> <span class="nav-text">获取实例对象所有属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch-throw"><span class="nav-number">2.</span> <span class="nav-text">try catch throw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js验证"><span class="nav-number">3.</span> <span class="nav-text">js验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于arguments"><span class="nav-number">4.</span> <span class="nav-text">关于arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类型"><span class="nav-number">4.1.</span> <span class="nav-text">类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-创建对象的七种方式。"><span class="nav-number">5.</span> <span class="nav-text">JavaScript 创建对象的七种方式。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-继承"><span class="nav-number">6.</span> <span class="nav-text">JavaScript 继承</span></a></li></ol></div>
             
 
           </div>
