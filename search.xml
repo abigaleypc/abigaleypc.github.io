@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[初涉Charles]]></title>
     <url>%2F2017%2F10%2F16%2FCharles-study%2F</url>
-    <content type="text"><![CDATA[了解Charles Charles是一个HTTP代理服务器,HTTP监视器,反转代理服务器，当浏览器连接Charles的代理访问互联网时，Charles可以监控浏览器发送和接收的所有数据。 Charles是一个简单的基于HTTP协议传输的调试工具，可以帮助开发人员分析数据和加快调试BUG的效率。 本地映射tools –&gt; Map Local(快捷键 alt+command+L) –&gt; 接入手机 打开命令行工具，采用ipconfig(Windows) 或 ifconfig(Mac) 查看本地IP 在 Charles 中，proxy –&gt; proxy Setting –&gt; proxies –&gt; 查看 HTTP Proxy端口，如下图： 打开手机连上与PC端同一WiFi，然后进入该WiFi的高级设置。手机上设置如下： 指南http://timhordern.com/charles-proxy-tips/]]></content>
+    <content type="text"><![CDATA[了解Charles Charles是一个HTTP代理服务器,HTTP监视器,反转代理服务器，当浏览器连接Charles的代理访问互联网时，Charles可以监控浏览器发送和接收的所有数据。 Charles是一个简单的基于HTTP协议传输的调试工具，可以帮助开发人员分析数据和加快调试BUG的效率。 本地映射tools –&gt; Map Local(快捷键 alt+command+L) –&gt; 映射设置如下图： 接入手机 打开命令行工具，采用ipconfig(Windows) 或 ifconfig(Mac) 查看本地IP 在 Charles 中，proxy –&gt; proxy Setting –&gt; proxies –&gt; 查看 HTTP Proxy端口，如下图： 打开手机连上与PC端同一WiFi，然后进入该WiFi的高级设置。手机上设置如下： 指南http://timhordern.com/charles-proxy-tips/]]></content>
       <categories>
         <category>tools</category>
       </categories>
