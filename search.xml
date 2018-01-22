@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[typescript的使用场景]]></title>
+    <url>%2F2018%2F01%2F22%2FtypescriptSence%2F</url>
+    <content type="text"><![CDATA[React 接口定义 使用interface 1234interface IMProps &#123; num: number, str: string&#125; 类的定义 使用泛型 123class MyClass extends React.component&lt;Props:IMProps, State:&#123;&#125;&gt;&#123;&#125; 类的构造函数 需加参数 123constructor(props: IMProps) &#123; &#125; 变量修饰符 以下不参与生命周期的流程 123class MyClass extends React.component&lt;Props:IMProps, State:&#123;&#125;&gt;&#123; private value:number = 1;&#125; 函数的接口 写法 123456789101112131415function getNum (num1:number, num2:number): number &#123;&#125;getNum = (num1:number, num2:number): number =&gt;&#123;&#125;let getNum: (num1:number, num2:number) =&gt; number = function(num1:number, num2:number): number &#123; &#125;// render 中 render函数public render(): JSX.Element &#123;&#125; 类的接口写法12345678interface ClockInterface &#123; currentTime: Date;&#125;class Clock implements ClockInterface &#123; currentTime: Date; constructor(h: number, m: number) &#123; &#125;&#125; Node定义函数 注释1234567/** * 服务 * @param &#123;optionType&#125; [option = &#123;xx:xx, xx:xx&#125;] * /public server(option: optionType) &#123; &#125;]]></content>
+      <categories>
+        <category>Front-End</category>
+      </categories>
+      <tags>
+        <tag>TypeScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[初涉Charles]]></title>
     <url>%2F2017%2F10%2F16%2FCharles-study%2F</url>
     <content type="text"><![CDATA[了解Charles Charles是一个HTTP代理服务器,HTTP监视器,反转代理服务器，当浏览器连接Charles的代理访问互联网时，Charles可以监控浏览器发送和接收的所有数据。 Charles是一个简单的基于HTTP协议传输的调试工具，可以帮助开发人员分析数据和加快调试BUG的效率。 本地映射tools –&gt; Map Local(快捷键 alt+command+L) –&gt; 映射设置如下图： 接入手机 打开命令行工具，采用ipconfig(Windows) 或 ifconfig(Mac) 查看本地IP 在 Charles 中，proxy –&gt; proxy Setting –&gt; proxies –&gt; 查看 HTTP Proxy端口，如下图： 打开手机连上与PC端同一WiFi，然后进入该WiFi的高级设置。手机上设置如下： 指南http://timhordern.com/charles-proxy-tips/]]></content>
