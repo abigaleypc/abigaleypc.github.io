@@ -433,37 +433,16 @@
 
       
         
-          
-            <h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><ul>
+          <h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><ul>
 <li><p>接口定义 使用interface</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> IMProps &#123;</div><div class="line">  num: <span class="built_in">number</span>,</div><div class="line">  str: <span class="built_in">string</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>类的定义 使用泛型</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> MyClass <span class="keyword">extends</span> React.component&lt;Props:IMProps, State:&#123;&#125;&gt;&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>类的构造函数 需加参数</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">constructor</span>(<span class="params">props: IMProps</span>) &#123;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>变量修饰符</p>
-<blockquote>
-<p>以下不参与生命周期的流程</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> MyClass <span class="keyword">extends</span> React.component&lt;Props:IMProps, State:&#123;&#125;&gt;&#123;</div><div class="line">  <span class="keyword">private</span> value:<span class="built_in">number</span> = <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>函数的接口 写法</p>
-  <figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNum</span> (<span class="params">num1:<span class="built_in">number</span>, num2:<span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">getNum = (num1:<span class="built_in">number</span>, num2:<span class="built_in">number</span>): <span class="function"><span class="params">number</span> =&gt;</span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> getNum: <span class="function">(<span class="params">num1:<span class="built_in">number</span>, num2:<span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span> =</div><div class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">num1:<span class="built_in">number</span>, num2:<span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="comment">// render 中 render函数</span></div><div class="line"><span class="keyword">public</span> render(): JSX.Element &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>类的接口写法<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> ClockInterface &#123;</div><div class="line">    currentTime: <span class="built_in">Date</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">class</span> Clock <span class="keyword">implements</span> ClockInterface &#123;</div><div class="line">    currentTime: <span class="built_in">Date</span>;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">h: <span class="built_in">number</span>, m: <span class="built_in">number</span></span>) &#123; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><ul>
-<li>注释<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 服务</span></div><div class="line"><span class="comment"> * @param &#123;optionType&#125; [option = &#123;xx:xx, xx:xx&#125;]</span></div><div class="line"><span class="comment"> * /</span></div><div class="line"><span class="comment">public server(option: optionType) &#123;</span></div><div class="line"><span class="comment">  </span></div><div class="line"><span class="comment">&#125;</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/22/typescriptSence/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
