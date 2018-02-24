@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AngularJS," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -94,18 +94,17 @@
 
 
 
-<meta name="description" content="Angular的官方文档 解决方案一按照官方文档，在html中加入点击事件弹出对话框 1234//html&amp;lt;md-button class=&quot;md-primary md-raised&quot; ng-click=&quot;showAdvanced($event)&quot;   &amp;gt;	Alert Dialog&amp;lt;/md-button&amp;gt;">
-<meta name="keywords" content="AngularJS">
+<meta name="description" content="关于移动端适配方案 方案一：根据设计稿切分单位像素js脚本控制根元素字体。 12let html = document.getElementsByTagName(&apos;html&apos;)[0];html.style.fontSize = (window.innerWidth/750) +&apos;px&apos;; 以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。 原理：将屏幕尺寸宽(window.innerW">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Angular中dialog参数传递">
-<meta property="og:url" content="http://abigaleypc.github.io/2016/12/07/Angular中dialog参数传递/index.html">
+<meta property="og:title" content="mobile-adaptive">
+<meta property="og:url" content="http://abigaleypc.github.io/2018/02/24/mobile-adaptive/index.html">
 <meta property="og:site_name" content="Abigale&#39;s Blog">
-<meta property="og:description" content="Angular的官方文档 解决方案一按照官方文档，在html中加入点击事件弹出对话框 1234//html&amp;lt;md-button class=&quot;md-primary md-raised&quot; ng-click=&quot;showAdvanced($event)&quot;   &amp;gt;	Alert Dialog&amp;lt;/md-button&amp;gt;">
+<meta property="og:description" content="关于移动端适配方案 方案一：根据设计稿切分单位像素js脚本控制根元素字体。 12let html = document.getElementsByTagName(&apos;html&apos;)[0];html.style.fontSize = (window.innerWidth/750) +&apos;px&apos;; 以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。 原理：将屏幕尺寸宽(window.innerW">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-07-11T10:32:31.000Z">
+<meta property="og:updated_time" content="2018-02-24T10:27:24.911Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular中dialog参数传递">
-<meta name="twitter:description" content="Angular的官方文档 解决方案一按照官方文档，在html中加入点击事件弹出对话框 1234//html&amp;lt;md-button class=&quot;md-primary md-raised&quot; ng-click=&quot;showAdvanced($event)&quot;   &amp;gt;	Alert Dialog&amp;lt;/md-button&amp;gt;">
+<meta name="twitter:title" content="mobile-adaptive">
+<meta name="twitter:description" content="关于移动端适配方案 方案一：根据设计稿切分单位像素js脚本控制根元素字体。 12let html = document.getElementsByTagName(&apos;html&apos;)[0];html.style.fontSize = (window.innerWidth/750) +&apos;px&apos;; 以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。 原理：将屏幕尺寸宽(window.innerW">
 
 
 
@@ -134,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://abigaleypc.github.io/2016/12/07/Angular中dialog参数传递/"/>
+  <link rel="canonical" href="http://abigaleypc.github.io/2018/02/24/mobile-adaptive/"/>
 
 
 
 
 
-  <title>Angular中dialog参数传递 | Abigale's Blog</title>
+  <title>mobile-adaptive | Abigale's Blog</title>
   
 
 
@@ -330,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2016/12/07/Angular中dialog参数传递/">
+    <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2018/02/24/mobile-adaptive/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Abigale">
@@ -347,7 +346,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Angular中dialog参数传递</h1>
+          <h1 class="post-title" itemprop="name headline">mobile-adaptive</h1>
         
 
         <div class="post-meta">
@@ -359,8 +358,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-07T21:52:00+08:00">
-                2016-12-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-24T18:26:37+08:00">
+                2018-02-24
               </time>
             
 
@@ -400,9 +399,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/12/07/Angular中dialog参数传递/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/24/mobile-adaptive/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/07/Angular中dialog参数传递/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/24/mobile-adaptive/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -430,16 +429,15 @@
       
 
       
-        <p><a href="https://material.angularjs.org/latest/demo/dialog" target="_blank" rel="external">Angular的官方文档</a></p>
-<h6 id="解决方案一"><a href="#解决方案一" class="headerlink" title="解决方案一"></a>解决方案一</h6><p>按照官方文档，在html中加入点击事件弹出对话框</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//html</div><div class="line"><span class="tag">&lt;<span class="name">md-button</span> <span class="attr">class</span>=<span class="string">"md-primary md-raised"</span> <span class="attr">ng-click</span>=<span class="string">"showAdvanced($event)"</span>   &gt;</span></div><div class="line">	Alert Dialog</div><div class="line"><span class="tag">&lt;/<span class="name">md-button</span>&gt;</span></div></pre></td></tr></table></figure>
-<a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//js</span></div><div class="line">$scope.showAdvanced = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</div><div class="line">    $mdDialog.show(&#123;</div><div class="line">      controller: DialogController, <span class="comment">//又一个controller</span></div><div class="line">      templateUrl: <span class="string">'temp.html'</span>,</div><div class="line">      parent: angular.element(<span class="built_in">document</span>.body),</div><div class="line">      targetEvent: ev,</div><div class="line">      clickOutsideToClose:<span class="literal">true</span>,</div><div class="line">      fullscreen: $scope.customFullscreen <span class="comment">// Only for -xs, -sm breakpoints.</span></div><div class="line">    &#125;)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">answer</span>) </span>&#123;</div><div class="line">      $scope.status = <span class="string">'You said the information was "'</span> + answer + <span class="string">'".'</span>;</div><div class="line">    &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      $scope.status = <span class="string">'You cancelled the dialog.'</span>;</div><div class="line">    &#125;);</div><div class="line">  &#125;;</div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">DialogController</span>(<span class="params">$scope, $mdDialog</span>) </span>&#123;</div><div class="line">    $scope.hide = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      $mdDialog.hide();</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    $scope.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      $mdDialog.cancel();</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    $scope.answer = <span class="function"><span class="keyword">function</span>(<span class="params">answer</span>) </span>&#123;</div><div class="line">    	<span class="comment">//一开始我并没有理解好这里的。$mdDialog.hide(answer);会返回一个值，就是answer，需要在对话框的模板（html）传入进来。</span></div><div class="line">      $mdDialog.hide(answer);</div><div class="line">    &#125;;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p> 将对话框的内容与原本页面的内容进行通话：可以在$mdDialog.show中添加local参数，这个参数将原controller中的数据传至对话框，就如上面的例子</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$scope.showAdvanced = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</div><div class="line">    $mdDialog.show(&#123;</div><div class="line">      controller: DialogController, <span class="comment">//又一个controller</span></div><div class="line">      templateUrl: <span class="string">'temp.html'</span>,</div><div class="line">      parent: angular.element(<span class="built_in">document</span>.body),</div><div class="line">      targetEvent: ev,</div><div class="line">      clickOutsideToClose:<span class="literal">true</span>,</div><div class="line">      fullscreen: $scope.customFullscreen， <span class="comment">// Only for -xs, -sm breakpoints.</span></div><div class="line">      <span class="comment">//添加一下参数用于传递</span></div><div class="line">      locals:&#123;</div><div class="line">      	items : $scope.items</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">answer</span>) </span>&#123;</div><div class="line">      $scope.status = <span class="string">'You said the information was "'</span> + answer + <span class="string">'".'</span>;</div><div class="line">    &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      $scope.status = <span class="string">'You cancelled the dialog.'</span>;</div><div class="line">    &#125;);</div><div class="line">  &#125;;</div></pre></td></tr></table></figure>
-<p>接着就可以在对话框的controller找到items了,将它放在controller里的参数传进来</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">DialogController</span>(<span class="params">$scope, $mdDialog ,items </span>) </span>&#123;</div><div class="line">  $scope.hide = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $mdDialog.hide();</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  $scope.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    $mdDialog.cancel();</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  $scope.answer = <span class="function"><span class="keyword">function</span>(<span class="params">answer</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(items)<span class="comment">//这样就输出成功了 </span></div><div class="line">    items = 改变的值 <span class="comment">//可以这么改变item</span></div><div class="line">    $mdDialog.hide(answer);</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="解决方案二"><a href="#解决方案二" class="headerlink" title="解决方案二"></a>解决方案二</h6><p>这种方式是添加的controller用原先的controller。这样就可以使用外层的controller了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">vm.newBooking = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    vm.bookingliveInfo = &#123;</div><div class="line">        <span class="string">'codingLanguageList'</span>:vm.createCodingLanguageList[<span class="number">0</span>],</div><div class="line">        <span class="string">'projectType'</span>:vm.createProjectTypeList[<span class="number">0</span>],</div><div class="line">        <span class="string">'grade'</span>:vm.createGreade[<span class="number">0</span>],</div><div class="line">        <span class="string">'liveTime'</span>:moment().format(<span class="string">'YYYY-MM-DD HH:mm:ss'</span>)</div><div class="line">    &#125;</div><div class="line">    $mdDialog.show(&#123;</div><div class="line">        controller: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> vm;</div><div class="line">        &#125;,</div><div class="line">        controllerAs: <span class="string">'vm'</span>,</div><div class="line">        clickOutsideToClose: <span class="literal">false</span>,</div><div class="line">        preserveScope: <span class="literal">true</span>,</div><div class="line">        templateUrl: temp.html<span class="string">'</span></div><div class="line"><span class="string">    &#125;);</span></div><div class="line"><span class="string">&#125;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">vm.createSchedule = function()&#123;</span></div><div class="line"><span class="string">    ScheduleService.addBooking(vm.bookingliveInfo).then(function success(result)&#123;</span></div><div class="line"><span class="string">        toastr.success(result.msg);</span></div><div class="line"><span class="string">        $mdDialog.hide();</span></div><div class="line"><span class="string">        vm.getScheduleInfo();</span></div><div class="line"><span class="string">        vm.bookingliveInfo = null;</span></div><div class="line"><span class="string">    &#125;,function error(error)&#123;</span></div><div class="line"><span class="string">        toastr.error(error);</span></div><div class="line"><span class="string">    &#125;)</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure></p>
+        <p>关于移动端适配方案</p>
+<h3 id="方案一：根据设计稿切分单位像素"><a href="#方案一：根据设计稿切分单位像素" class="headerlink" title="方案一：根据设计稿切分单位像素"></a>方案一：根据设计稿切分单位像素</h3><p>js脚本控制根元素字体。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> html = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'html'</span>)[<span class="number">0</span>];</div><div class="line">html.style.fontSize = (<span class="built_in">window</span>.innerWidth/<span class="number">750</span>) +<span class="string">'px'</span>;</div></pre></td></tr></table></figure>
+<p>以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。</p>
+<p>原理：将屏幕尺寸宽(window.innerWidth)分成750份，而CSS中我们可以根据每一份设对应的Rem值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">35rem</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">750rem</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">127rem</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上对应的即是</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">35px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">750px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">127px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>未完待续…</p>
 
       
     </div>
@@ -455,12 +453,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/AngularJS/" rel="tag"># AngularJS</a>
-          
-        </div>
-      
 
       
       
@@ -470,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/29/一个人的圣朝/" rel="next" title="一个人的朝圣">
-                <i class="fa fa-chevron-left"></i> 一个人的朝圣
+              <a href="/2018/01/22/typescriptSence/" rel="next" title="typescript的使用场景">
+                <i class="fa fa-chevron-left"></i> typescript的使用场景
               </a>
             
           </div>
@@ -479,10 +471,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/10/获取当前页面URL/" rel="prev" title="document属性和方法">
-                document属性和方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -623,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#解决方案一"><span class="nav-number">1.</span> <span class="nav-text">解决方案一</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#解决方案二"><span class="nav-number">2.</span> <span class="nav-text">解决方案二</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一：根据设计稿切分单位像素"><span class="nav-number">1.</span> <span class="nav-text">方案一：根据设计稿切分单位像素</span></a></li></ol></div>
             
 
           </div>
@@ -788,9 +776,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://abigaleypc.github.io/2016/12/07/Angular中dialog参数传递/';
-          this.page.identifier = '2016/12/07/Angular中dialog参数传递/';
-          this.page.title = 'Angular中dialog参数传递';
+          this.page.url = 'http://abigaleypc.github.io/2018/02/24/mobile-adaptive/';
+          this.page.identifier = '2018/02/24/mobile-adaptive/';
+          this.page.title = 'mobile-adaptive';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://abigale.disqus.com/embed.js';

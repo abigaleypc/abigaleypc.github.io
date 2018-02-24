@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mobile-adaptive]]></title>
+    <url>%2F2018%2F02%2F24%2Fmobile-adaptive%2F</url>
+    <content type="text"><![CDATA[关于移动端适配方案 方案一：根据设计稿切分单位像素js脚本控制根元素字体。 12let html = document.getElementsByTagName('html')[0];html.style.fontSize = (window.innerWidth/750) +'px'; 以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。 原理：将屏幕尺寸宽(window.innerWidth)分成750份，而CSS中我们可以根据每一份设对应的Rem值。 12345.header &#123; font-size: 35rem; width: 750rem; height: 127rem;&#125; 以上对应的即是 12345.header &#123; font-size: 35px; width: 750px; height: 127px;&#125; 未完待续…]]></content>
+      <categories>
+        <category>Front-End</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[typescript的使用场景]]></title>
     <url>%2F2018%2F01%2F22%2FtypescriptSence%2F</url>
     <content type="text"><![CDATA[React 接口定义 使用interface 1234interface IMProps &#123; num: number, str: string&#125; 类的定义 使用泛型 123class MyClass extends React.component&lt;Props:IMProps, State:&#123;&#125;&gt;&#123;&#125; 类的构造函数 需加参数 123constructor(props: IMProps) &#123; &#125; 变量修饰符 以下不参与生命周期的流程 123class MyClass extends React.component&lt;Props:IMProps, State:&#123;&#125;&gt;&#123; private value:number = 1;&#125; 函数的接口 写法 123456789101112131415function getNum (num1:number, num2:number): number &#123;&#125;getNum = (num1:number, num2:number): number =&gt;&#123;&#125;let getNum: (num1:number, num2:number) =&gt; number = function(num1:number, num2:number): number &#123; &#125;// render 中 render函数public render(): JSX.Element &#123;&#125; 类的接口写法 12345678interface ClockInterface &#123; currentTime: Date;&#125;class Clock implements ClockInterface &#123; currentTime: Date; constructor(h: number, m: number) &#123; &#125;&#125; Node 定义函数 注释 1234567/** * 服务 * @param &#123;optionType&#125; [option = &#123;xx:xx, xx:xx&#125;] * /public server(option: optionType) &#123; &#125;]]></content>
