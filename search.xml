@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[mobile-adaptive]]></title>
+    <title><![CDATA[移动端适配方案]]></title>
     <url>%2F2018%2F02%2F24%2Fmobile-adaptive%2F</url>
     <content type="text"><![CDATA[关于移动端适配方案 方案一：根据设计稿切分单位像素js脚本控制根元素字体。 12let html = document.getElementsByTagName('html')[0];html.style.fontSize = (window.innerWidth/750) +'px'; 以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。 原理：将屏幕尺寸宽(window.innerWidth)分成750份，而CSS中我们可以根据每一份设对应的Rem值。 12345.header &#123; font-size: 35rem; width: 750rem; height: 127rem;&#125; 以上对应的即是 12345.header &#123; font-size: 35px; width: 750px; height: 127px;&#125; 未完待续…]]></content>
       <categories>
