@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="NodeJS,Express," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/dear.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
+<meta name="keywords" content="NodeJS,Express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="扮演服务层角色 -- NodeJs">
+<meta property="og:url" content="http://abigaleypc.github.io/2018/03/14/musicer-backend/index.html">
+<meta property="og:site_name" content="Abigale&#39;s Blog">
+<meta property="og:description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/thrid.jpg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/doubanfm01.png">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/get-dbcl2.jpeg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/location01.jpeg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/next.jpeg">
+<meta property="og:updated_time" content="2018-03-15T03:17:06.011Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="扮演服务层角色 -- NodeJs">
+<meta name="twitter:description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
+<meta name="twitter:image" content="http://abigaleypc.github.io/images/Musicer/thrid.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://abigaleypc.github.io/2018/03/14/musicer-backend/"/>
+
+
+
+
+
+  <title>扮演服务层角色 -- NodeJs | Abigale's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104545772-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Abigale's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2018/03/14/musicer-backend/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Abigale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dear.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Abigale's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">扮演服务层角色 -- NodeJs</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T18:54:56+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/14/musicer-backend/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/14/musicer-backend/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/" target="_blank" rel="external">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
+<p>Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图</p>
+<p><img src="/images/Musicer/thrid.jpg" alt="三端"></p>
+<p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="external">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br><a id="more"></a><br>开放平台开放的类似于第三方登录 给开发者一个新的API Key，有了这个key而允许了我们对指定的功能进行指定的操作。这对于开发者是很受限的，因此我们需要采取各种可能的手段抓包，分析整合，整理出我们真正需要的接口。</p>
+<p>上图中豆瓣FMAPI来源：<a href="https://douban.fm。" target="_blank" rel="external">https://douban.fm。</a><br><img src="/images/Musicer/doubanfm01.png" alt="豆瓣FM"></p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="external">Musicer</a></p>
+<h2 id="三端如何分工"><a href="#三端如何分工" class="headerlink" title="三端如何分工"></a>三端如何分工</h2><ul>
+<li>前端：界面布局，数据渲染</li>
+<li>服务层(接入层)：接口封装，功能拆分</li>
+<li>后端(豆瓣FM接口)：提供原始数据包</li>
+</ul>
+<h2 id="端与端之间如何交互"><a href="#端与端之间如何交互" class="headerlink" title="端与端之间如何交互"></a>端与端之间如何交互</h2><p>交互可分为前端与服务层的交互，以及服务层与后端的交互。</p>
+<h2 id="前端与服务层"><a href="#前端与服务层" class="headerlink" title="前端与服务层"></a>前端与服务层</h2><p>在这两者之间我们需要思考几个问题</p>
+<ul>
+<li>如何设计接口</li>
+<li>接口应遵循哪些规范</li>
+<li>提供哪些类型的接口</li>
+</ul>
+<h3 id="如何设计接口"><a href="#如何设计接口" class="headerlink" title="如何设计接口"></a>如何设计接口</h3><p>我们采用RESTful API，它是目前比较成熟的一套API设计理论，事实上在工作中我接触到的后端接口也均是RESTful设计的API。RESTful API是面向资源的API设计架构，资源即为可供我们操作的数据群。结合我们这个项目，资源即为用户登录而获得用户的token，个人信息，爱心歌曲，歌曲歌词等。到此我们可以确定我们的API一半身形：/aaa 或者 /bbb ,这aaa 和 bbb 指的是资源位置。</p>
+<h3 id="接口遵循的规范："><a href="#接口遵循的规范：" class="headerlink" title="接口遵循的规范："></a>接口遵循的规范：</h3><ul>
+<li><p>路径：根据功能划分，播放器这个项目中我们分为两大部分功能，用户管理和歌曲管理，因此路径可能长这样：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">用户管理:</div><div class="line">/user/login:  登录</div><div class="line">/user/basic: 获取个人基本信息</div><div class="line"></div><div class="line">歌曲管理</div><div class="line">/song/next 下一首</div><div class="line">/song/like 点赞歌曲</div><div class="line">/song/lyric 获取歌词</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法：</p>
+<p>  这个项目中我们只用到三种方法，GET，POST</p>
+<ul>
+<li>GET：用于资源获取，不做增删改查，如切换到粤语歌曲。</li>
+<li>POST：用于对资源修改或获取一些重要信息。如点赞歌曲，记录会存在个人账号里面；登录时获取token信息。</li>
+</ul>
+</li>
+<li><p>返回格式：</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &lt;!--  失败：0  成功：1  --&gt;</div><div class="line">    "code": 1, </div><div class="line">    "msg": "success", // failed</div><div class="line">    "data" : &#123; </div><div class="line">	</div><div class="line">    &#125;  </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>一个登陆API示例：</p>
+  <figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">登录</div><div class="line"></div><div class="line"><span class="bullet">- </span>url:  http://xxxxx/user/login</div><div class="line"><span class="bullet">- </span>param: &#123;</div><div class="line">  username:13798994068,</div><div class="line">  password:123456c</div><div class="line">&#125;</div><div class="line"><span class="bullet">- </span>method: get</div><div class="line"><span class="bullet">- </span>return: &#123;</div><div class="line"><span class="code">    &lt;!--  失败：0  成功：1 --&gt;</span></div><div class="line"><span class="code">    "code": 1, </span></div><div class="line"><span class="code">    "msg": "success", // failed</span></div><div class="line"><span class="code">    "data" : &#123;  </span></div><div class="line"><span class="code">        "access_token": "25a64943770f2dbca55d46995",</span></div><div class="line"><span class="code">        "douban_user_name": "abigaleyu",</span></div><div class="line"><span class="code">        "douban_user_id": "1688842",</span></div><div class="line"><span class="code">        "expires_in": 7775999,</span></div><div class="line"><span class="code">        "refresh_token": "5f2388c502a9a4f0799f2f9"</span></div><div class="line"><span class="code">      </span></div><div class="line"><span class="code">    &#125;  </span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="服务层与豆瓣FM的交互"><a href="#服务层与豆瓣FM的交互" class="headerlink" title="服务层与豆瓣FM的交互"></a>服务层与豆瓣FM的交互</h2><p>这一交互我们同样需要思考几个问题：</p>
+<ul>
+<li>如何从豆瓣FM获取登录信息</li>
+<li>个人账号下操作歌曲</li>
+<li>如何根据接口规范封装接口</li>
+</ul>
+<h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><p>从入口文件index.js中我们可以看到：</p>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">8082</span>;</div><div class="line"><span class="keyword">const</span> server = express();</div><div class="line"></div><div class="line">server.use(<span class="string">'/user'</span>, user);</div><div class="line">server.use(<span class="string">'/song'</span>, song);</div></pre></td></tr></table></figure>
+</code></pre><h3 id="如何从豆瓣FM获取登录信息"><a href="#如何从豆瓣FM获取登录信息" class="headerlink" title="如何从豆瓣FM获取登录信息"></a>如何从豆瓣FM获取登录信息</h3><pre><code>从豆瓣FM获取登录信息占据了这层面工作量的70%，原因在与豆瓣FM的登陆是会重定向到豆瓣官网的登陆，需要多次重定向并且在不同的URL中读取header里的cookie并存下来，召集我们所需要的几个k-v之后才可以为所欲为，比如听自己喜欢的歌呀，点赞喜欢的歌曲呀~
+</code></pre><p>文件 <code>src/routes/user.js</code> 中我们可以看到存在这一逻辑：</p>
+<p><code>/login</code> —&gt;<code>/basic?username=xxx&amp;password=xxx&amp;token=xxx</code> –&gt; <code>getUserAc()</code> –&gt; <code>serveceAcount()</code>  –&gt;  <code>getDouBanFm()</code>  –&gt; <code>getUserBid()</code>  –&gt; <code>getUserAc()</code></p>
+<p>这就是为了从多个重定向的header里面挖取到我们需要的cookie</p>
+<p>/login获取到到access_token，官方请求如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">## 登录</div><div class="line">- url:  https:<span class="comment">//www.douban.com/service/auth2/token</span></div><div class="line">- param: &#123;</div><div class="line">    username: username,</div><div class="line">    password: password</div><div class="line">  &#125;</div><div class="line">- method: post</div><div class="line">- <span class="keyword">return</span>: &#123;</div><div class="line">    access_token: <span class="string">'208e18axxxxxxxxx78ebf00a1'</span>,</div><div class="line">    douban_user_name: <span class="string">'abigaleyu'</span>,</div><div class="line">    douban_user_id: <span class="string">'168889042'</span>,</div><div class="line">    expires_in: <span class="number">7775999</span>,</div><div class="line">    refresh_token: <span class="string">'d9243263xxxxxxxx22a0b7eea'</span> </div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>获取个人基本信息，headers中需要加上以上获取的有效token</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">- url:  https:<span class="comment">//accounts.douban.com/j/popup/login/basic</span></div><div class="line">- headers: &#123;</div><div class="line">	Authorization: <span class="string">'Bearer '</span>+ token</div><div class="line">  &#125;</div><div class="line">- param: &#123;</div><div class="line">    source: fm</div><div class="line">    referer: https:<span class="comment">//douban.fm/</span></div><div class="line">    ck: L-UM</div><div class="line">    name: username</div><div class="line">    password: password</div><div class="line">    captcha_solution: <span class="literal">null</span></div><div class="line">    captcha_id: <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line">- method: post</div><div class="line">- <span class="keyword">return</span>: &#123;</div><div class="line">    &lt;!-- 获取成功 --&gt;</div><div class="line">    &#123;</div><div class="line">      <span class="string">"status"</span>: <span class="string">"success"</span>,</div><div class="line">      <span class="string">"message"</span>: <span class="string">"success"</span>,</div><div class="line">      <span class="string">"description"</span>: <span class="string">"处理成功"</span></div><div class="line">    &#125;</div><div class="line">    &lt;!-- 获取失败  根据图片输入验证码再次请求 --&gt;</div><div class="line">    <span class="string">"status"</span>: <span class="string">"failed"</span>,</div><div class="line">    <span class="string">"message"</span>: <span class="string">"captcha_required"</span>,</div><div class="line">    <span class="string">"description"</span>: <span class="string">"需要图形验证码"</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>我们可以从返回结果中拿到我们要的基本信息</p>
+<p><img src="/images/Musicer/get-dbcl2.jpeg" alt="获取dbcl2"></p>
+<p>我们要找的key-value就藏在截图部分，从cookie里劫持下来，存到本地，再看一个截图，状态码是200而不是3开头，是因为这个basic的请求中，Request Headers有一行：<code>Referer:https://accounts.douban.com/popup/login?source=fm&amp;use_post_message</code> ，有什么特殊的吗~可以看下下面的截图</p>
+<p><img src="/images/Musicer/location01.jpeg" alt="location"></p>
+<p>关注Response Headers 里的Location，我们正需要从它调整的链接中去找下一个值。也正式因为它在Response中而非Request中，所以Status Code 为3开头。</p>
+<p>具体获取过程可以查看<code>src/routes/user.js</code>，总之我们最终需要集齐token,bid,dbcl12,ck这几个值，以下请求是我在登录状态下点击下一首歌曲浏览器显示的请求头，我们获取到的值就派上用场了~</p>
+<p><img src="/images/Musicer/next.jpeg" alt="下一首"></p>
+<h3 id="接口封装"><a href="#接口封装" class="headerlink" title="接口封装"></a>接口封装</h3><p>我们根据约定好的规范：方法，返回结果等进行文档梳理</p>
+<ul>
+<li><p>登录态:我们分为初次登录和采用token登录</p>
+<p>  初次登录：即无token或token已过期</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">## 登录</div><div class="line">- url:  http:<span class="comment">//localhost:8082/user/login</span></div><div class="line">- param: &#123;</div><div class="line">		username: username,</div><div class="line">		password: password</div><div class="line">	&#125;</div><div class="line">- method: post</div><div class="line">- <span class="keyword">return</span>: &#123;</div><div class="line">		code: <span class="number">1</span>,</div><div class="line">		msg: <span class="string">'success'</span>,</div><div class="line">		data: &#123;</div><div class="line">			access_token: <span class="string">'208e18axxxxxxxxx78ebf00a1'</span>,</div><div class="line">			douban_user_name: <span class="string">'abigaleyu'</span>,</div><div class="line">			douban_user_id: <span class="string">'168889042'</span>,</div><div class="line">			expires_in: <span class="number">7775999</span>,</div><div class="line">			refresh_token: <span class="string">'d9243263xxxxxxxx22a0b7eea'</span> </div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>  采用token登录：token未过期的条件下，我们可以重复利用它</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- url:  http://localhost:8082/user/loginByToken</div><div class="line">- param: &#123;</div><div class="line">	username:13798994068,</div><div class="line">	token:xxxxxxx</div><div class="line">&#125;</div><div class="line">- method: get</div><div class="line">- return: &#123;</div><div class="line">		&lt;!--  失败：0  成功：1 --&gt;</div><div class="line">		&quot;code&quot;: 1, </div><div class="line">		&quot;msg&quot;: &quot;success&quot;, // failed</div><div class="line">		&quot;data&quot; : &#123;  </div><div class="line">			&lt;!-- 成功：1  --&gt;</div><div class="line">			&quot;access_token&quot;: &quot;25a64943770f2dbca55d46995&quot;,</div><div class="line">			&quot;douban_user_name&quot;: &quot;abigaleyu&quot;,</div><div class="line">			&quot;douban_user_id&quot;: &quot;1688842&quot;,</div><div class="line">			&quot;expires_in&quot;: 7775999,</div><div class="line">			&quot;refresh_token&quot;: &quot;5f2388c502a9a4f0799f2f9&quot;</div><div class="line">		&#125;  </div><div class="line">		&lt;!-- 失败 0 --&gt;</div><div class="line">		&quot;code&quot;: -1,</div><div class="line">		&quot;msg&quot;: &quot;failed&quot;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>  我在Node接入层与豆瓣FM的交互中重点解释了登录逻辑，关于歌曲的获取，切换等方式可以参考登录API获取的步骤，它们会比登录简单的哟~</p>
+</li>
+</ul>
+<p>总结一下，Node实现的这一层为接入层，负责再次封装接口以及输出，也为我们做一些安全相关信息的保护，假如你需要做一些服务器同构渲染，很建议加入这样一层接入层</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
+          
+            <a href="/tags/Express/" rel="tag"># Express</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/24/mobile-adaptive/" rel="next" title="移动端适配方案">
+                <i class="fa fa-chevron-left"></i> 移动端适配方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dear.png"
+               alt="Abigale" />
+          <p class="site-author-name" itemprop="name">Abigale</p>
+           
+              <p class="site-description motion-element" itemprop="description">穷则思变</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#源码"><span class="nav-number">1.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三端如何分工"><span class="nav-number">2.</span> <span class="nav-text">三端如何分工</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端与端之间如何交互"><span class="nav-number">3.</span> <span class="nav-text">端与端之间如何交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端与服务层"><span class="nav-number">4.</span> <span class="nav-text">前端与服务层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何设计接口"><span class="nav-number">4.1.</span> <span class="nav-text">如何设计接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口遵循的规范："><span class="nav-number">4.2.</span> <span class="nav-text">接口遵循的规范：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务层与豆瓣FM的交互"><span class="nav-number">5.</span> <span class="nav-text">服务层与豆瓣FM的交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路径"><span class="nav-number">5.1.</span> <span class="nav-text">路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何从豆瓣FM获取登录信息"><span class="nav-number">5.2.</span> <span class="nav-text">如何从豆瓣FM获取登录信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口封装"><span class="nav-number">5.3.</span> <span class="nav-text">接口封装</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Abigale</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    Theme &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Pisces
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://abigale.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://abigaleypc.github.io/2018/03/14/musicer-backend/';
+          this.page.identifier = '2018/03/14/musicer-backend/';
+          this.page.title = '扮演服务层角色 -- NodeJs';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://abigale.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://abigaleypc.github.io/2018/03/14/musicer-backend/</loc>
+    
+    <lastmod>2018-03-15T03:17:06.011Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://abigaleypc.github.io/2018/02/24/mobile-adaptive/</loc>
     
-    <lastmod>2018-02-24T10:39:56.899Z</lastmod>
+    <lastmod>2018-03-15T03:17:00.177Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://abigaleypc.github.io/2018/02/22/musicer/</loc>
+    
+    <lastmod>2018-03-15T03:17:00.177Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://abigaleypc.github.io/2017/08/11/miniprograms-signin/</loc>
+    
+    <lastmod>2018-03-14T03:00:39.227Z</lastmod>
     
   </url>
   
@@ -75,13 +96,6 @@
     <loc>http://abigaleypc.github.io/tags/index.html</loc>
     
     <lastmod>2017-08-14T13:44:14.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://abigaleypc.github.io/2017/08/11/miniprograms-signin/</loc>
-    
-    <lastmod>2017-08-11T05:55:19.000Z</lastmod>
     
   </url>
   

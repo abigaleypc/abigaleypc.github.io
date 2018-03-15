@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React,Electron,Express," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/dear.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。 这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。 源码Musicer 最终效果 前端前端架构 React: 基">
+<meta name="keywords" content="React,Electron,Express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建音乐播放器桌面应用--前端篇">
+<meta property="og:url" content="http://abigaleypc.github.io/2018/02/22/musicer/index.html">
+<meta property="og:site_name" content="Abigale&#39;s Blog">
+<meta property="og:description" content="强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。 这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。 源码Musicer 最终效果 前端前端架构 React: 基">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/musicer.jpg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/component.jpeg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/component-1.jpeg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/login-1.jpeg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/login-2.jpeg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/login-3.jpeg">
+<meta property="og:updated_time" content="2018-03-15T03:17:00.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建音乐播放器桌面应用--前端篇">
+<meta name="twitter:description" content="强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。 这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。 源码Musicer 最终效果 前端前端架构 React: 基">
+<meta name="twitter:image" content="http://abigaleypc.github.io/images/Musicer/musicer.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://abigaleypc.github.io/2018/02/22/musicer/"/>
+
+
+
+
+
+  <title>搭建音乐播放器桌面应用--前端篇 | Abigale's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104545772-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Abigale's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2018/02/22/musicer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Abigale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dear.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Abigale's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搭建音乐播放器桌面应用--前端篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-22T00:10:35+08:00">
+                2018-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/22/musicer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/22/musicer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。</p>
+<p>这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="external">Musicer</a></p>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="/images/Musicer/musicer.jpg" alt="效果图"></p>
+<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="前端架构"><a href="#前端架构" class="headerlink" title="前端架构"></a>前端架构</h3><ul>
+<li>React: 基于虚拟DOM实现单向响应式数据流的UI框架。</li>
+<li>Redux: 提供单向，可预测的数据流。</li>
+<li><p>Electron:  使用 JavaScript, HTML 和 CSS 等 Web 技术创建原生程序的框架。</p>
+<a id="more"></a>
+<h3 id="选型"><a href="#选型" class="headerlink" title="选型"></a>选型</h3><h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4></li>
+<li><p>基于v-dom的UI框架: 采用virtual dom render + diff进行必要的DOM渲染。这样的好处是我们可以采用一种比重置innerHtml 更高效的方法更新DOM元素。在过往我们写的DOM元素是需要调出DOM然后再对它操作，因此导致页面reflow或repaint,而react是所有元素置于v-dom，即完完全全在JavaScript中曲操作DOM，这样开销就小了很多。</p>
+</li>
+<li><p>高度组件化：虽然前端应用复杂度越来越大，我们传统的做法是多个HTML和js文件，而新时代赋予了一种新兴的科技即组件。我们可以将通用或不通用的模块分成一个个组件，分别放在components和containers中，结合ES6或CommonJS的模块加载方案实现组件加载。</p>
+</li>
+</ul>
+<h4 id="Electron"><a href="#Electron" class="headerlink" title="Electron"></a>Electron</h4><ul>
+<li>跨平台: 兼容Mac, Windows 和 Linux</li>
+<li>浏览器兼容: PC端的前端攻城狮经常需要考虑浏览器的兼容性，而当我们把呈现在页面上的内容转移到应用上时，我们可以直接根据Chrome浏览器编程。</li>
+<li>快速上手: 这可以直接省去大量学习成本，只要搭建好基础框架，就可以像写页面一样去写应用。</li>
+</ul>
+<h4 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h4><ul>
+<li>优秀之处: Redux是一个管理全局state的容器，它的优秀之处在于将所有状态从所有模块组件中抽身而出的状态集合，可以理解为每个组件中的一个变量或一个对象，如果没有Redux，我们可能需要通过React中state,props去层层传值，但redux提供给我们的是全局的状态，所有状态集合store,通知作用的action和执行官reducer。这样很好地减少数据耦合，我们可以站在一个地方观览所有数据。</li>
+<li>可恨之处: 每次添加新状态都需要在store,action,reducer添加新行为，这让代码看起来非常冗余，似乎写了特别多重复性代码，如果追求代码简洁，redux会让你泪奔~~o(&gt;_&lt;)o ~~</li>
+</ul>
+<h3 id="前端实现方案"><a href="#前端实现方案" class="headerlink" title="前端实现方案"></a>前端实现方案</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><h5 id="系统中的组件"><a href="#系统中的组件" class="headerlink" title="系统中的组件"></a>系统中的组件</h5><p><img src="/images/Musicer/component.jpeg" alt="组件"></p>
+<p>以上是播放器的组件结构，从Root入口开始。</p>
+<ul>
+<li>Main：处理初始化状态，如登录状态</li>
+<li>Home: 界面翻转切换逻辑，歌曲切换逻辑</li>
+<li>Login,Account,Share,Lyric：提供切换界面</li>
+</ul>
+<p>决定采用React就是看中其高度组件化的优势，这些组件从开始至今被更改了好几次，累加简化再累加再简化，抽离成目前的状态。我们本来可以在Home中处理所有逻辑，再将状态一一扔给action去通知再处理，而后来我在Home之前加入一个包围一个Main,这样做的目的是将初始化和进行中分成两个时间维度，我们可以在开始之前先预知这一次用户的状态，再呈现处理。</p>
+<p>后面的四小组件也是功能组件，各司其职，如Login是用户登录界面，我们只在里面处理登录更改事物，再将最后的状态通知到action再做处理；同理Lyric是歌词组件，获取当前歌曲再做展示。<br>可在项目中<code>/public/Components</code>查看各个组件<br><img src="/images/Musicer/component-1.jpeg" alt="组件"></p>
+<h5 id="Main组件中的初始化"><a href="#Main组件中的初始化" class="headerlink" title="Main组件中的初始化"></a>Main组件中的初始化</h5><p><img src="/images/Musicer/login-1.jpeg" alt="初始化"><br>首先Main组件会查看缓存中是否有用户token信息存在，若无则将登录状态设为未登录；若有，则在前端获取信息查看信息是否过期，获取的信息如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">"data": &#123;</div><div class="line">        "access_token": "25a64943770fca55d46995",</div><div class="line">        "douban_user_name": "abigaleyu",</div><div class="line">        "douban_user_id": "1688842",</div><div class="line">        "expires_in": 7775999,</div><div class="line">        "refresh_token": "5f2388c502a0799f2f9"</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>以上expires_in即为从获取信息时间的7775999秒后将会过期，因此我们需要将当下时间和有效期做下对比。<br>若已过期，将缓存信息清除后将登录状态设为未登录，否则则通过登录，然后将本次登录状态设为true，在之后如需获取个人信息，点赞歌词等个人相关操作时，我们将需要用到该token(即个人身份令牌)去操作。</p>
+<h5 id="登录逻辑"><a href="#登录逻辑" class="headerlink" title="登录逻辑"></a>登录逻辑</h5><p><img src="/images/Musicer/login-2.jpeg" alt="登录逻辑"></p>
+<p>这是当用户切入登录界面时，我们已在Main获取到登录状态，它将通知到全局，而我们又可以在全局获取到该状态，当为true时，则直接用token去访问后端要些个人信息（用户账号，用户ID，用户头像等），当登录状态为false时，则进入以上流程，用户凭输入的用户名和密码去请求API（界面出现用户名和密码的输入框），通过时则返回token，不通过时会出现多种情况：登录多次错误需要验证码；账号错误；密码错误；账号不存在等，我们这里简化成两种状态：需要验证码（界面会多出验证码输入框和验证码图片）和 其他不需要验证码的情况。当再次输入正确或验证码也通过时，则获取到token。注意以上流程我们只有一个目的：获取token。这是一个身份令牌，我们只有拥有它就有权限去干个人相关的事情。至于通过就获取到个人信息<br> ，我们和用户操作归到一起，都是只拿token去操作。</p>
+<h5 id="获取个人信息"><a href="#获取个人信息" class="headerlink" title="获取个人信息"></a>获取个人信息</h5><p><img src="/images/Musicer/login-3.jpeg" alt="获取个人信息"><br>这便是拿到token之后的事情，拿到token就意味着已登录完毕，如没获取到token，会返回到登录界面去要求用户登录。<br>当我们手持token时，先会在前端验证token的有效期，这样做的意义是避免网络开销，前后端验证开销，如果不这么做，当我们拿着已经过期的token去向后端要个人信息时，后端返回告诉我们token无效的，前端再告诉用户需要重新登录。因此这一步会显得很有必要。<br>若前端验证为有效期内的token时，这才向后端获取有效的个人信息，当然，这个token后端也会做一次判断，如果前端是乱传过去的呢~</p>
+<h4 id="快速创建示例仓库并安装运行"><a href="#快速创建示例仓库并安装运行" class="headerlink" title="快速创建示例仓库并安装运行"></a>快速创建示例仓库并安装运行</h4><ul>
+<li>克隆库<br><code>git clone https://github.com/electron/electron-quick-start</code></li>
+<li>进入路径<br><code>cd electron-quick-start</code></li>
+<li>安装依赖库并启动<br><code>npm install &amp;&amp; npm start</code></li>
+</ul>
+<h4 id="启动入口文件"><a href="#启动入口文件" class="headerlink" title="启动入口文件"></a>启动入口文件</h4><p>在package.json中可以看到启动的入口文件为<code>./public/main.js</code></p>
+<blockquote>
+<p>代码均为文件节选代码块，详见<a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="external">示例代码</a></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> mainWindow</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * createWindow 创建前端界面窗口。</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createWindow</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  mainWindow = <span class="keyword">new</span> BrowserWindow(&#123; <span class="attr">width</span>: <span class="number">195</span>, <span class="attr">height</span>: <span class="number">230</span>, <span class="attr">frame</span>: <span class="literal">false</span>,<span class="attr">transparent</span>: <span class="literal">true</span>&#125;)</div><div class="line">  mainWindow.loadURL(url.format(&#123;</div><div class="line">    pathname: path.join(__dirname, <span class="string">'index.html'</span>),</div><div class="line">    protocol: <span class="string">'file:'</span>,</div><div class="line">    slashes: <span class="literal">true</span></div><div class="line">  &#125;))</div><div class="line">&#125;</div><div class="line"></div><div class="line">app.on(<span class="string">'ready'</span>, createWindow)</div><div class="line"></div><div class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">8082</span>;</div><div class="line"><span class="keyword">const</span> server = express();</div><div class="line"></div><div class="line">server.listen(PORT, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`The server has been set up at 0.0.0.0:<span class="subst">$&#123;PORT&#125;</span>`</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>入口文件主要实现</p>
+<ul>
+<li>窗口的创建，关闭等事件</li>
+<li>启动后端服务</li>
+</ul>
+<p>前端窗口我们重点关注窗口内业务代码实现，至于窗口如何与PC交互，Electron已经帮我们解决了。</p>
+<p>以上示例中 <code>BrowserWindow</code> 类主要定义窗口的基本元素，width和height定义宽高。frame定义是否需要边框。transparent定义背景是否透明。</p>
+<p>示例中 <code>mainWindow.loadURL</code>方法定义入口UI模板<code>index.html</code></p>
+<h4 id="Electron框架结合React"><a href="#Electron框架结合React" class="headerlink" title="Electron框架结合React"></a>Electron框架结合React</h4><p>Electron提供平台框架，相当于浏览器。<br>添加react库</p>
+<p>安装React <code>npm install react</code></p>
+<p>新建脚本<code>entry.js</code>,实现前端脚本逻辑。这里我们使用webpack打包并嵌入入口UI模板<code>index.html</code></p>
+<h4 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h4><p>前端跟后端不一样，不能有DB的存在。但我们可以造伪DB，可以用cookie，localStorage和sessionStorage，或者将数据存在本地文件夹，本例中采用localStorage</p>
+<h4 id="踩过的小坑"><a href="#踩过的小坑" class="headerlink" title="踩过的小坑"></a>踩过的小坑</h4><ul>
+<li>父子组件通信：父组件向子组件通信时，可以通过子组件属性传递，而子组件向父组件传递时，可调用父级方法。    </li>
+<li>组件中获取video属性：嵌入的音乐播放器video，但比如暂停，获取歌曲长度等，在虚拟DOM都不可直接获取，但可以通过video的各个方法，如onTimeUpdate，根据时间的变化执行函数去获取当前位置。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/Electron/" rel="tag"># Electron</a>
+          
+            <a href="/tags/Express/" rel="tag"># Express</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/22/typescriptSence/" rel="next" title="typescript的使用场景">
+                <i class="fa fa-chevron-left"></i> typescript的使用场景
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/24/mobile-adaptive/" rel="prev" title="移动端适配方案">
+                移动端适配方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dear.png"
+               alt="Abigale" />
+          <p class="site-author-name" itemprop="name">Abigale</p>
+           
+              <p class="site-description motion-element" itemprop="description">穷则思变</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码"><span class="nav-number">1.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终效果"><span class="nav-number">2.</span> <span class="nav-text">最终效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端"><span class="nav-number"></span> <span class="nav-text">前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前端架构"><span class="nav-number">1.</span> <span class="nav-text">前端架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选型"><span class="nav-number">2.</span> <span class="nav-text">选型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#React"><span class="nav-number">2.1.</span> <span class="nav-text">React</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Electron"><span class="nav-number">2.2.</span> <span class="nav-text">Electron</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redux"><span class="nav-number">2.3.</span> <span class="nav-text">Redux</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端实现方案"><span class="nav-number">3.</span> <span class="nav-text">前端实现方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">3.1.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#系统中的组件"><span class="nav-number">3.1.1.</span> <span class="nav-text">系统中的组件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Main组件中的初始化"><span class="nav-number">3.1.2.</span> <span class="nav-text">Main组件中的初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#登录逻辑"><span class="nav-number">3.1.3.</span> <span class="nav-text">登录逻辑</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取个人信息"><span class="nav-number">3.1.4.</span> <span class="nav-text">获取个人信息</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速创建示例仓库并安装运行"><span class="nav-number">3.2.</span> <span class="nav-text">快速创建示例仓库并安装运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动入口文件"><span class="nav-number">3.3.</span> <span class="nav-text">启动入口文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Electron框架结合React"><span class="nav-number">3.4.</span> <span class="nav-text">Electron框架结合React</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据存储"><span class="nav-number">3.5.</span> <span class="nav-text">数据存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#踩过的小坑"><span class="nav-number">3.6.</span> <span class="nav-text">踩过的小坑</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Abigale</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    Theme &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Pisces
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://abigale.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://abigaleypc.github.io/2018/02/22/musicer/';
+          this.page.identifier = '2018/02/22/musicer/';
+          this.page.title = '搭建音乐播放器桌面应用--前端篇';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://abigale.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

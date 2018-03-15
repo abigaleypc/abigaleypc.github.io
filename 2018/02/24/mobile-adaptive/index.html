@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="Abigale&#39;s Blog">
 <meta property="og:description" content="关于移动端适配方案 方案一：根据设计稿切分单位像素js脚本控制根元素字体。 12let html = document.getElementsByTagName(&apos;html&apos;)[0];html.style.fontSize = (window.innerWidth/750) +&apos;px&apos;; 以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。 原理：将屏幕尺寸宽(window.innerW">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-24T10:39:56.899Z">
+<meta property="og:updated_time" content="2018-03-15T03:17:00.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端适配方案">
 <meta name="twitter:description" content="关于移动端适配方案 方案一：根据设计稿切分单位像素js脚本控制根元素字体。 12let html = document.getElementsByTagName(&apos;html&apos;)[0];html.style.fontSize = (window.innerWidth/750) +&apos;px&apos;; 以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。 原理：将屏幕尺寸宽(window.innerW">
@@ -433,8 +433,7 @@
 <h3 id="方案一：根据设计稿切分单位像素"><a href="#方案一：根据设计稿切分单位像素" class="headerlink" title="方案一：根据设计稿切分单位像素"></a>方案一：根据设计稿切分单位像素</h3><p>js脚本控制根元素字体。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> html = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'html'</span>)[<span class="number">0</span>];</div><div class="line">html.style.fontSize = (<span class="built_in">window</span>.innerWidth/<span class="number">750</span>) +<span class="string">'px'</span>;</div></pre></td></tr></table></figure>
 <p>以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。</p>
-<p>原理：将屏幕尺寸宽(window.innerWidth)分成750份，而CSS中我们可以根据每一份设对应的Rem值。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">35rem</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">750rem</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">127rem</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>原理：将屏幕尺寸宽(window.innerWidth)分成750份，而CSS中我们可以根据每一份设对应的Rem值。<br><a id="more"></a><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">35rem</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">750rem</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">127rem</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>以上对应的即是</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.header</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">35px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">750px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">127px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>未完待续…</p>
@@ -462,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/22/typescriptSence/" rel="next" title="typescript的使用场景">
-                <i class="fa fa-chevron-left"></i> typescript的使用场景
+              <a href="/2018/02/22/musicer/" rel="next" title="搭建音乐播放器桌面应用--前端篇">
+                <i class="fa fa-chevron-left"></i> 搭建音乐播放器桌面应用--前端篇
               </a>
             
           </div>
@@ -471,6 +470,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/14/musicer-backend/" rel="prev" title="扮演服务层角色 -- NodeJs">
+                扮演服务层角色 -- NodeJs <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -554,7 +557,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -576,7 +579,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
