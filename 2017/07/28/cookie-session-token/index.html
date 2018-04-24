@@ -431,7 +431,7 @@
 
       
         <h2 id="解决几个疑惑"><a href="#解决几个疑惑" class="headerlink" title="解决几个疑惑"></a>解决几个疑惑</h2><ul>
-<li>HTTP 是一个<a href="http://blog.csdn.net/tennysonsky/article/details/44562435" target="_blank" rel="external">无连接且无状态</a>协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？</li>
+<li>HTTP 是一个<a href="http://blog.csdn.net/tennysonsky/article/details/44562435" target="_blank" rel="noopener">无连接且无状态</a>协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？</li>
 <li>如何对用户进行身份验证？</li>
 </ul>
 <h2 id="关键字-token、cookie和session-的理解"><a href="#关键字-token、cookie和session-的理解" class="headerlink" title="关键字 token、cookie和session 的理解"></a>关键字 token、cookie和session 的理解</h2><h3 id="token-令牌"><a href="#token-令牌" class="headerlink" title="token 令牌"></a>token 令牌</h3><p>是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位+盐以哈希算法压缩成一定长的十六进制字符串，可以防止恶意第三方拼接token请求服务器)。</p>
@@ -501,9 +501,9 @@
 <h2 id="新的验证机制-–-token认证"><a href="#新的验证机制-–-token认证" class="headerlink" title="新的验证机制 – token认证"></a>新的验证机制 – token认证</h2><p>以上我们讲到我们采用 <code>session_id</code> 去匹配用户验证用户完成一次API请求，但每次请求都要去做匹配。一种新的请求机制是token认证</p>
 <p>快速理解：我们将一些需要验证的信息在服务端做一次加密，包括一些失效期等，然后返回给客户端，客户端将token存起来，下次访问再讲token传给服务端验证。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="http://www.jianshu.com/p/1d286c4cc1d0" target="_blank" rel="external">cookie、session和token那些事</a></li>
-<li><a href="http://www.jianshu.com/p/5ac166c5fe76" target="_blank" rel="external">token/session/cookie的区别</a></li>
-<li><a href="http://www.cnblogs.com/xiekeli/p/5607107.html" target="_blank" rel="external">基于Token的WEB后台认证机制</a></li>
+<li><a href="http://www.jianshu.com/p/1d286c4cc1d0" target="_blank" rel="noopener">cookie、session和token那些事</a></li>
+<li><a href="http://www.jianshu.com/p/5ac166c5fe76" target="_blank" rel="noopener">token/session/cookie的区别</a></li>
+<li><a href="http://www.cnblogs.com/xiekeli/p/5607107.html" target="_blank" rel="noopener">基于Token的WEB后台认证机制</a></li>
 </ul>
 
       
@@ -565,6 +565,44 @@
 
 
     <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
       
     </div>
   </div>
@@ -631,7 +669,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

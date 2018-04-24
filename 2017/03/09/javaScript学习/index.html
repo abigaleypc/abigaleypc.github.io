@@ -466,7 +466,7 @@
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">validate_email</span>(<span class="params">field, alerttxt</span>) </span>&#123;</span></div><div class="line"><span class="javascript">            <span class="keyword">with</span>(field) &#123;</span></div><div class="line"><span class="javascript">                apos = value.indexOf(<span class="string">'@'</span>);</span></div><div class="line"><span class="javascript">                dotpos = value.lastIndexOf(<span class="string">'.'</span>)</span></div><div class="line"><span class="javascript">                <span class="keyword">if</span> (apos &lt; <span class="number">1</span> || dotpos - apos &lt; <span class="number">2</span>) &#123;</span></div><div class="line"><span class="undefined">                    alerr(alerttxt);</span></div><div class="line"><span class="javascript">                    <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="javascript">                &#125; <span class="keyword">else</span> &#123;</span></div><div class="line"><span class="javascript">                    <span class="keyword">return</span> <span class="literal">true</span>;</span></div><div class="line"><span class="undefined">                &#125;</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">validate_form</span>(<span class="params">thisform</span>) </span>&#123;</span></div><div class="line"><span class="javascript">            <span class="keyword">with</span>(thisform) &#123;</span></div><div class="line"><span class="javascript">                <span class="keyword">if</span> (thisform) &#123;</span></div><div class="line"><span class="javascript">                    <span class="keyword">if</span> (validate_email(email, <span class="string">"Not a valid e-mail address!"</span>) == <span class="literal">false</span>) &#123;</span></div><div class="line"><span class="undefined">                        email.focus();</span></div><div class="line"><span class="javascript">                        <span class="keyword">return</span> <span class="literal">false</span>;</span></div><div class="line"><span class="undefined">                    &#125;</span></div><div class="line"><span class="undefined">                &#125;</span></div><div class="line"><span class="undefined">            &#125;</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">from</span> <span class="attr">action</span>=<span class="string">"submitpage.html"</span> <span class="attr">onsubmit</span>=<span class="string">"return validate_form(this);"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">        Email:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">size</span>=<span class="string">"30"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Submit"</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">from</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 <blockquote>
-<p>with 语句用于设置代码在特定对象中的作用域。<a href="http://www.w3school.com.cn/js/pro_js_statements_with.asp" target="_blank" rel="external">可参考</a></p>
+<p>with 语句用于设置代码在特定对象中的作用域。<a href="http://www.w3school.com.cn/js/pro_js_statements_with.asp" target="_blank" rel="noopener">可参考</a></p>
 </blockquote>
 <h3 id="关于arguments"><a href="#关于arguments" class="headerlink" title="关于arguments"></a>关于arguments</h3><h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><ul>
 <li>非数组，不从 <code>Array.prototype</code> 继承。有属性 <code>length</code>, 但无其他数组有的属性，如 <code>splice</code>, <code>concats</code> 等</li>
@@ -542,6 +542,44 @@
 
     <div class="post-spread">
       
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
     </div>
   </div>
 
@@ -607,7 +645,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -664,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断对象是否包含某属性"><span class="nav-number">1.</span> <span class="nav-text">判断对象是否包含某属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自身实例-amp-原型链"><span class="nav-number">1.1.</span> <span class="nav-text">自身实例&原型链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自身实例"><span class="nav-number">1.2.</span> <span class="nav-text">自身实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取实例对象所有属性"><span class="nav-number">1.3.</span> <span class="nav-text">获取实例对象所有属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch-throw"><span class="nav-number">2.</span> <span class="nav-text">try catch throw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js验证"><span class="nav-number">3.</span> <span class="nav-text">js验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于arguments"><span class="nav-number">4.</span> <span class="nav-text">关于arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类型"><span class="nav-number">4.1.</span> <span class="nav-text">类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-创建对象的七种方式。"><span class="nav-number">5.</span> <span class="nav-text">JavaScript 创建对象的七种方式。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-继承"><span class="nav-number">6.</span> <span class="nav-text">JavaScript 继承</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断对象是否包含某属性"><span class="nav-number">1.</span> <span class="nav-text">判断对象是否包含某属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自身实例-amp-原型链"><span class="nav-number">1.1.</span> <span class="nav-text">自身实例&amp;原型链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自身实例"><span class="nav-number">1.2.</span> <span class="nav-text">自身实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取实例对象所有属性"><span class="nav-number">1.3.</span> <span class="nav-text">获取实例对象所有属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#try-catch-throw"><span class="nav-number">2.</span> <span class="nav-text">try catch throw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js验证"><span class="nav-number">3.</span> <span class="nav-text">js验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于arguments"><span class="nav-number">4.</span> <span class="nav-text">关于arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类型"><span class="nav-number">4.1.</span> <span class="nav-text">类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-创建对象的七种方式。"><span class="nav-number">5.</span> <span class="nav-text">JavaScript 创建对象的七种方式。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-继承"><span class="nav-number">6.</span> <span class="nav-text">JavaScript 继承</span></a></li></ol></div>
             
 
           </div>

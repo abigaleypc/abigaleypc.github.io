@@ -4,16 +4,95 @@
 
     
   <url>
+    <loc>http://abigaleypc.github.io/2018/04/17/cache/</loc>
+    <lastmod>2018-04-17T02:49:19.064Z</lastmod>
+    <data>
+        <display>
+        <title>谈谈缓存</title>
+        <pubTime>2018-04-17T02:48:26.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://abigaleypc.github.io/2018/03/14/musicer-backend/</loc>
-    <lastmod>2018-03-15T03:17:06.011Z</lastmod>
+    <lastmod>2018-03-26T03:23:38.832Z</lastmod>
     <data>
         <display>
         <title>扮演服务层角色 -- NodeJs</title>
         <pubTime>2018-03-14T10:54:56.000Z</pubTime>
         
+        <tag>Express</tag>
+         
         <tag>NodeJS</tag>
          
+         
+           
+             
+              <breadCrumb title="Front-End" url="http://abigaleypc.github.io/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://abigaleypc.github.io/2011/06/22/%E5%AE%89%E9%80%B8%E6%97%B6%E5%85%89/</loc>
+    <lastmod>2018-03-26T03:19:15.633Z</lastmod>
+    <data>
+        <display>
+        <title>安逸时光</title>
+        <pubTime>2011-06-22T15:28:00.000Z</pubTime>
+        
+        <tag>diary</tag>
+         
+         
+           
+             
+              <breadCrumb title="Diary" url="http://abigaleypc.github.io/categories/Diary/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://abigaleypc.github.io/2018/02/22/musicer/</loc>
+    <lastmod>2018-03-26T03:19:15.632Z</lastmod>
+    <data>
+        <display>
+        <title>搭建音乐播放器桌面应用--前端篇</title>
+        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
+        
         <tag>Express</tag>
+         
+        <tag>React</tag>
+         
+        <tag>Electron</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="http://abigaleypc.github.io/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://abigaleypc.github.io/2017/07/01/wxapp-demo/</loc>
+    <lastmod>2018-03-26T03:19:15.632Z</lastmod>
+    <data>
+        <display>
+        <title>基于微信小程序开发的聊天小Demo</title>
+        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
+        
+        <tag>wxapp</tag>
          
          
            
@@ -44,27 +123,6 @@
 
     
   <url>
-    <loc>http://abigaleypc.github.io/2018/02/22/musicer/</loc>
-    <lastmod>2018-03-15T03:17:00.177Z</lastmod>
-    <data>
-        <display>
-        <title>搭建音乐播放器桌面应用--前端篇</title>
-        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
-        
-        <tag>React</tag>
-         
-        <tag>Electron</tag>
-         
-        <tag>Express</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://abigaleypc.github.io/2017/08/11/miniprograms-signin/</loc>
     <lastmod>2018-03-14T03:00:39.227Z</lastmod>
     <data>
@@ -72,9 +130,9 @@
         <title>微信小程序的登录态、身份验证和敏感信息获取</title>
         <pubTime>2017-08-11T03:59:00.000Z</pubTime>
         
-        <tag>wechat</tag>
-         
         <tag>NodeJS</tag>
+         
+        <tag>wechat</tag>
          
          
            
@@ -748,26 +806,6 @@
 
     
   <url>
-    <loc>http://abigaleypc.github.io/2011/06/22/%E5%AE%89%E9%80%B8%E6%97%B6%E5%85%89/</loc>
-    <lastmod>2017-07-11T09:53:58.000Z</lastmod>
-    <data>
-        <display>
-        <title>安逸时光</title>
-        <pubTime>2011-06-22T15:28:00.000Z</pubTime>
-        
-        <tag>diary</tag>
-         
-         
-           
-             
-              <breadCrumb title="Diary" url="http://abigaleypc.github.io/categories/Diary/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://abigaleypc.github.io/2017/06/23/%E5%89%8D%E7%AB%AF%E6%A8%A1%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F/</loc>
     <lastmod>2017-07-11T09:53:49.000Z</lastmod>
     <data>
@@ -835,26 +873,6 @@
            
              
               <breadCrumb title="Diary" url="http://abigaleypc.github.io/categories/Diary/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://abigaleypc.github.io/2017/07/01/wxapp-demo/</loc>
-    <lastmod>2017-07-11T09:53:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>微信小程序DEMO</title>
-        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
-        
-        <tag>wxapp</tag>
-         
-         
-           
-             
-              <breadCrumb title="Front-End" url="http://abigaleypc.github.io/categories/Front-End/"/>
           
         </display>
     </data>

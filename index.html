@@ -330,6 +330,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2018/04/17/cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Abigale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dear.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Abigale's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/17/cache/" itemprop="url">谈谈缓存</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-17T10:48:26+08:00">
+                2018-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/17/cache/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/17/cache/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="仅用HTTP缓存"><a href="#仅用HTTP缓存" class="headerlink" title="仅用HTTP缓存"></a>仅用HTTP缓存</h3><ul>
+<li><meta http-equiv="Pragma" content="no-cache"> </li>
+<li><p>键值对: 键为<code>http-equiv</code> 值为<code>content</code></p>
+</li>
+<li><p>设置不缓存</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=<span class="string">"Pragma"</span> content=<span class="string">"no-cache"</span>&gt;</div><div class="line">&lt;meta http-equiv=<span class="string">"Expires"</span> content=<span class="string">"-1"</span>&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="强缓存-与-协商缓存"><a href="#强缓存-与-协商缓存" class="headerlink" title="强缓存 与 协商缓存"></a>强缓存 与 协商缓存</h3><h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h4><ul>
+<li>Expires 设置一个时间<br>弊端：当跨时区时 存在误差</li>
+<li>cache-control:max-age<br>上次获时间 + max-age 与 当前时间做比较</li>
+<li>当两个均有时，cache-control 优先级 高于 expires</li>
+</ul>
+<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><ul>
+<li>Last-Modify 标示这个响应资源的最后修改时间。web服务器在响应请求时，告诉浏览器资源的最后修改时间</li>
+<li><p>If-Modify-since 再次向服务器请求时带上，如果资源已修改，返回HTTP 200，未被修改，返回HTTP 304</p>
+</li>
+<li><p>ETag 告诉浏览器当前资源在服务器的唯一标识</p>
+</li>
+<li>If-None-Match 再次向服务器请求时带上，如果资源已修改，返回HTTP 200,未被修改，返回HTTP 304</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://segmentfault.com/a/1190000006741200" target="_blank" rel="noopener">详解web缓存</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2018/03/14/musicer-backend/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -433,10 +587,10 @@
 
       
         
-          <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/" target="_blank" rel="external">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
+          <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/" target="_blank" rel="noopener">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
 <p>Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图</p>
-<p><img src="/images/Musicer/thrid.jpg" alt="三端"></p>
-<p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="external">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br>
+<p><img src="/images/Musicer/thrid.jpeg" alt="三端"></p>
+<p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="noopener">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/03/14/musicer-backend/#more" rel="contents">
@@ -693,6 +847,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -734,9 +910,9 @@
         
           <p>强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。</p>
 <p>这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。</p>
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="external">Musicer</a></p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="noopener">Musicer</a></p>
 <h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="/images/Musicer/musicer.jpg" alt="效果图"></p>
-<h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="前端架构"><a href="#前端架构" class="headerlink" title="前端架构"></a>前端架构</h3><ul>
+<h3 id="前端架构"><a href="#前端架构" class="headerlink" title="前端架构"></a>前端架构</h3><ul>
 <li>React: 基于虚拟DOM实现单向响应式数据流的UI框架。</li>
 <li>Redux: 提供单向，可预测的数据流。</li>
 <li><p>Electron:  使用 JavaScript, HTML 和 CSS 等 Web 技术创建原生程序的框架。</p>
@@ -1697,7 +1873,7 @@
       
         
           <h2 id="解决几个疑惑"><a href="#解决几个疑惑" class="headerlink" title="解决几个疑惑"></a>解决几个疑惑</h2><ul>
-<li>HTTP 是一个<a href="http://blog.csdn.net/tennysonsky/article/details/44562435" target="_blank" rel="external">无连接且无状态</a>协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？</li>
+<li>HTTP 是一个<a href="http://blog.csdn.net/tennysonsky/article/details/44562435" target="_blank" rel="noopener">无连接且无状态</a>协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？</li>
 <li>如何对用户进行身份验证？</li>
 </ul>
 <h2 id="关键字-token、cookie和session-的理解"><a href="#关键字-token、cookie和session-的理解" class="headerlink" title="关键字 token、cookie和session 的理解"></a>关键字 token、cookie和session 的理解</h2><h3 id="token-令牌"><a href="#token-令牌" class="headerlink" title="token 令牌"></a>token 令牌</h3><p>是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位+盐以哈希算法压缩成一定长的十六进制字符串，可以防止恶意第三方拼接token请求服务器)。</p>
@@ -1741,175 +1917,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://abigaleypc.github.io/2017/07/24/Promise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/24/Promise/" itemprop="url">Promise模式 -- 异步编程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-24T11:41:41+08:00">
-                2017-07-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/24/Promise/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/24/Promise/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>Promise是用来处理一些异步操作。顾名思义，它就是一个Promise(承诺)，如果Yes就执行一个方法，如果No就执行另一个方法。</p>
-<ul>
-<li>只有三种状态：未完成（unfulfilled）、已完成（resolved）和拒绝（rejected）</li>
-<li>每个函数都是一个Promise类，可以将执行结果传给下一个函数</li>
-<li>then函数返回的依旧是一个Promise类</li>
-<li>逻辑清晰：即执行成功时调用一个函数，失败时调用另一个函数</li>
-<li>不会阻塞和等待长时间的操作完成，而是返回一个代表了承诺的（promised）结果的对象</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/24/Promise/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1955,7 +1967,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

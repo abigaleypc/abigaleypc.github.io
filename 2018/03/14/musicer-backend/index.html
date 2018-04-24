@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="NodeJS,Express," />
+  <meta name="keywords" content="Express,NodeJS," />
 
 
 
@@ -95,23 +95,23 @@
 
 
 <meta name="description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
-<meta name="keywords" content="NodeJS,Express">
+<meta name="keywords" content="Express,NodeJS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="扮演服务层角色 -- NodeJs">
 <meta property="og:url" content="http://abigaleypc.github.io/2018/03/14/musicer-backend/index.html">
 <meta property="og:site_name" content="Abigale&#39;s Blog">
 <meta property="og:description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/thrid.jpg">
+<meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/thrid.jpeg">
 <meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/doubanfm01.png">
 <meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/get-dbcl2.jpeg">
 <meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/location01.jpeg">
 <meta property="og:image" content="http://abigaleypc.github.io/images/Musicer/next.jpeg">
-<meta property="og:updated_time" content="2018-03-15T03:17:06.011Z">
+<meta property="og:updated_time" content="2018-03-26T03:23:38.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="扮演服务层角色 -- NodeJs">
 <meta name="twitter:description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
-<meta name="twitter:image" content="http://abigaleypc.github.io/images/Musicer/thrid.jpg">
+<meta name="twitter:image" content="http://abigaleypc.github.io/images/Musicer/thrid.jpeg">
 
 
 
@@ -436,12 +436,12 @@
       
 
       
-        <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/" target="_blank" rel="external">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
+        <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/" target="_blank" rel="noopener">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
 <p>Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图</p>
-<p><img src="/images/Musicer/thrid.jpg" alt="三端"></p>
-<p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="external">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br><a id="more"></a><br>开放平台开放的类似于第三方登录 给开发者一个新的API Key，有了这个key而允许了我们对指定的功能进行指定的操作。这对于开发者是很受限的，因此我们需要采取各种可能的手段抓包，分析整合，整理出我们真正需要的接口。</p>
-<p>上图中豆瓣FMAPI来源：<a href="https://douban.fm。" target="_blank" rel="external">https://douban.fm。</a><br><img src="/images/Musicer/doubanfm01.png" alt="豆瓣FM"></p>
-<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="external">Musicer</a></p>
+<p><img src="/images/Musicer/thrid.jpeg" alt="三端"></p>
+<p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="noopener">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br><a id="more"></a><br>开放平台开放的类似于第三方登录 给开发者一个新的API Key，有了这个key而允许了我们对指定的功能进行指定的操作。这对于开发者是很受限的，因此我们需要采取各种可能的手段抓包，分析整合，整理出我们真正需要的接口。</p>
+<p>上图中豆瓣FMAPI来源：<a href="https://douban.fm。" target="_blank" rel="noopener">https://douban.fm。</a><br><img src="/images/Musicer/doubanfm01.png" alt="豆瓣FM"></p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="noopener">Musicer</a></p>
 <h2 id="三端如何分工"><a href="#三端如何分工" class="headerlink" title="三端如何分工"></a>三端如何分工</h2><ul>
 <li>前端：界面布局，数据渲染</li>
 <li>服务层(接入层)：接口封装，功能拆分</li>
@@ -524,9 +524,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
-          
             <a href="/tags/Express/" rel="tag"># Express</a>
+          
+            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
           
         </div>
       
@@ -549,6 +549,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/04/17/cache/" rel="prev" title="谈谈缓存">
+                谈谈缓存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -565,6 +569,44 @@
 
 
     <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
       
     </div>
   </div>
@@ -631,7 +673,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -469,9 +469,9 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> alice = <span class="string">'Hi Alice'</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayAlice</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> sayAlert = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(alice);</div><div class="line">   &#125;</div><div class="line">   alice = <span class="string">'Hello Alice'</span>;</div><div class="line">   <span class="keyword">return</span> sayAlert;</div><div class="line">&#125;</div><div class="line">alice = <span class="string">'Good Moroning</span></div><div class="line"><span class="string">sayAlice()(); // Hello Alice</span></div></pre></td></tr></table></figure>
 <p>虽然最后又给 <code>alice</code> 赋值了，但它的执行是在函数 <code>sayAlice</code> 之前，所以我们这里看到它的输出仍然为 <code>Hello Alice</code>。</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="https://developer.mozilla.org/cn/docs/Web/JavaScript/Closures" target="_blank" rel="external">MDN闭包</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="external">学习JavaScript闭包–阮一峰</a></li>
-<li><a href="https://segmentfault.com/a/1190000000652891" target="_blank" rel="external">详解js闭包</a></li>
+<li><a href="https://developer.mozilla.org/cn/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">MDN闭包</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">学习JavaScript闭包–阮一峰</a></li>
+<li><a href="https://segmentfault.com/a/1190000000652891" target="_blank" rel="noopener">详解js闭包</a></li>
 </ul>
 
       
@@ -533,6 +533,44 @@
 
 
     <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
       
     </div>
   </div>
@@ -599,7 +637,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
