@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Express,NodeJS," />
+  <meta name="keywords" content="NodeJS,Express," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
-<meta name="keywords" content="Express,NodeJS">
+<meta name="keywords" content="NodeJS,Express">
 <meta property="og:type" content="article">
 <meta property="og:title" content="扮演服务层角色 -- NodeJs">
 <meta property="og:url" content="http://abigaleypc.github.io/2018/03/14/musicer-backend/index.html">
@@ -422,7 +422,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -535,9 +535,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Express/" rel="tag"># Express</a>
-          
             <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
+          
+            <a href="/tags/Express/" rel="tag"># Express</a>
           
         </div>
       
@@ -1405,7 +1405,8 @@ function showTime(Counter) {
 		query.find({
 			success: function(results) {
 				if (results.length == 0) {
-					var content = '0 ' + $(document.getElementById(url)).text();
+					var content = '0' + $(document.getElementById(url)).text();
+					console.log(document.getElementById(url)).text())
 					$(document.getElementById(url)).text(content);
 					return;
 				}

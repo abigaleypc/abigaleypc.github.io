@@ -1123,7 +1123,8 @@ function showTime(Counter) {
 		query.find({
 			success: function(results) {
 				if (results.length == 0) {
-					var content = '0 ' + $(document.getElementById(url)).text();
+					var content = '0' + $(document.getElementById(url)).text();
+					console.log(document.getElementById(url)).text())
 					$(document.getElementById(url)).text(content);
 					return;
 				}

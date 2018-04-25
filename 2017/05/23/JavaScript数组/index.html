@@ -415,7 +415,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">Visitors&#58;</span>
+                 <span class="post-meta-item-text">Views&#58;</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -1364,7 +1364,8 @@ function showTime(Counter) {
 		query.find({
 			success: function(results) {
 				if (results.length == 0) {
-					var content = '0 ' + $(document.getElementById(url)).text();
+					var content = '0' + $(document.getElementById(url)).text();
+					console.log(document.getElementById(url)).text())
 					$(document.getElementById(url)).text(content);
 					return;
 				}
