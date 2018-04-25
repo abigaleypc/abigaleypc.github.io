@@ -61,18 +61,14 @@
 
     
   <url>
-    <loc>http://abigaleypc.github.io/2018/02/22/musicer/</loc>
+    <loc>http://abigaleypc.github.io/2017/07/01/wxapp-demo/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
         <display>
-        <title>搭建音乐播放器桌面应用--前端篇</title>
-        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
+        <title>基于微信小程序开发的聊天小Demo</title>
+        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
         
-        <tag>React</tag>
-         
-        <tag>Electron</tag>
-         
-        <tag>Express</tag>
+        <tag>wxapp</tag>
          
          
            
@@ -85,14 +81,18 @@
 
     
   <url>
-    <loc>http://abigaleypc.github.io/2017/07/01/wxapp-demo/</loc>
+    <loc>http://abigaleypc.github.io/2018/02/22/musicer/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
         <display>
-        <title>基于微信小程序开发的聊天小Demo</title>
-        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
+        <title>搭建音乐播放器桌面应用--前端篇</title>
+        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
         
-        <tag>wxapp</tag>
+        <tag>Express</tag>
+         
+        <tag>React</tag>
+         
+        <tag>Electron</tag>
          
          
            
