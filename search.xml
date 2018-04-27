@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[谈谈缓存]]></title>
+    <title><![CDATA[浏览器如何做强缓存]]></title>
     <url>%2F2018%2F04%2F17%2Fcache%2F</url>
-    <content type="text"><![CDATA[仅用 HTTP 缓存 &lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot;&gt; 键值对: 键为http-equiv 值为content 设置不缓存 12&lt;meta http-equiv="Pragma" content="no-cache"&gt;&lt;meta http-equiv="Expires" content="-1"&gt; 强缓存 与 协商缓存强缓存 Expires 设置一个时间弊端：当跨时区时 存在误差 cache-control:max-age上次获时间 + max-age 与 当前时间做比较 当两个均有时，cache-control 优先级 高于 expires 强缓存 - 体验max-age切换到maxage分支，采用max-age做缓存 PS：测试之前请打开控制台，将浏览器控制台中的Disable cache关闭。如下图 app.js中可以看到 123456app.use( "/public", express.static("public", &#123; maxAge: "1d" &#125;)); 将/public下的静态文件最大缓存时间设为一天，现在我/public下的main.js写了一段更新页面文本的代码 1234window.onload = function() &#123; let name = document.getElementById("name"); name.innerText = "abigale";&#125;; Step1: 第一次打开浏览器：缓存查找顺序为 memory - disk - 网络 Step2: 刷新页面：缓存优先从memory查找 Step3: 重新打开页面：memory若无缓存，则从disk查找 Step4: 修改/public/main.js 1234window.onload = function() &#123; let name = document.getElementById("name"); name.innerText = "AbigaleYu";&#125;; 无论是刷新页面访问还是重新打开页面访问，结果与Step2 Step3一样，name并没有更新为AbigaleYu。 该缓存策略弊端： 当设定时间内更新文件了，浏览器并不知道。 引申问题：from memory cache 与 from disk cache 的区别浏览器访问页面时，查找静态文件首先会从缓存中读取，缓存分为两种，内存缓存与硬盘缓存。查找文件的顺序为：memory -&gt; disk -&gt; 服务器。内存缓存是在kill进程时删除，即关闭浏览器时内存缓存消失，而硬盘缓存则是即使关闭浏览器也仍然存在。当我们首次访问页面，需要从服务器获取资源，将可缓存的文件缓存在内存与硬盘，当刷新页面时(这种情况没有关闭浏览器)则从内存缓存中读取，我们可以在上面的截图看到from memory cache的所需要的时间为0，这是最快的读取文件方式，当我们重新开一个页面时，也就是已经kill这个进程，内存缓存已经消失了，这时候就从硬件缓存获取，而当我们手动在浏览器清除缓存时，下次访问就只能再去服务器拉取文件了。但有一点可以从上面图中看到，并不是从硬盘获取缓存的时间一定比从网络获取的时间短，示例中的时间是更长的，这取决于网络状态和文件大小等因素，从缓存获取有利有弊，当网络较差或者文件较大时，从硬盘缓存获取可以给用户较好的体验。 协商缓存 Last-Modify 标示这个响应资源的最后修改时间。web 服务器在响应请求时，告诉浏览器资源的最后修改时间 If-Modify-since 再次向服务器请求时带上，如果资源已修改，返回 HTTP 200，未被修改，返回 HTTP 304 ETag 告诉浏览器当前资源在服务器的唯一标识 If-None-Match 再次向服务器请求时带上，如果资源已修改，返回 HTTP 200,未被修改，返回 HTTP 304 参考 详解 web 缓存 from disk/memory cache 详解]]></content>
+    <content type="text"><![CDATA[仅用 HTTP 缓存 &lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot;&gt; 键值对: 键为http-equiv 值为content 设置不缓存 12&lt;meta http-equiv="Pragma" content="no-cache"&gt;&lt;meta http-equiv="Expires" content="-1"&gt; 强缓存 与 协商缓存强缓存 Expires 设置一个时间弊端：当跨时区时 存在误差 cache-control:max-age上次获时间 + max-age 与 当前时间做比较 当两个均有时，cache-control 优先级 高于 expires 理解cache-control no-cache： 表示每次请求都需要与服务器确认一次，这种情况一般带有ETag，当服务器端验证无修改时，则从缓存中取文件，服务器无需返回文件。no-store: 表示无论如何都不允许客户端做缓存，每次凑需要做一次完整的请求和完整的响应。“no-cache”和“no-store” public：如果响应被标记为“public”，则即使它有关联的 HTTP 身份验证，甚至响应状态代码通常无法缓存，也可以缓存响应。大多数情况下，“public”不是必需的，因为明确的缓存信息（例如“max-age”）已表示响应是可以缓存的。我们有时可以在memory,disk,路由等找到缓存就是因为这是public的设置private：不允许任何中间缓存对其进行缓存，只能最终用户做缓存 “max-age”指令指定从请求的时间开始，允许获取的响应被重用的最长时间（单位：秒）。 举一些例子max-age=86400 浏览器以及任何中间缓存均可将响应（如果是“public”响应）缓存长达 1 天（60 秒 x 60 分钟 x 24 小时）。private, max-age=600 客户端的浏览器只能将响应缓存最长 10 分钟（60 秒 x 10 分钟）。no-store 不允许缓存响应，每次请求都必须完整获取。 强缓存 - 体验max-age切换到maxage分支，采用max-age做缓存 PS：测试之前请打开控制台，将浏览器控制台中的Disable cache关闭。如下图 app.js中可以看到 123456app.use( "/public", express.static("public", &#123; maxAge: "1d" &#125;)); 将/public下的静态文件最大缓存时间设为一天，现在我/public下的main.js写了一段更新页面文本的代码 1234window.onload = function() &#123; let name = document.getElementById("name"); name.innerText = "abigale";&#125;; Step1: 第一次打开浏览器：缓存查找顺序为 memory - disk - 网络 Step2: 刷新页面：缓存优先从memory查找 Step3: 重新打开页面：memory若无缓存，则从disk查找 Step4: 修改/public/main.js 1234window.onload = function() &#123; let name = document.getElementById("name"); name.innerText = "AbigaleYu";&#125;; 无论是刷新页面访问还是重新打开页面访问，结果与Step2 Step3一样，name并没有更新为AbigaleYu。 该缓存策略弊端： 当设定时间内更新文件了，浏览器并不知道。 引申问题：from memory cache 与 from disk cache 的区别浏览器访问页面时，查找静态文件首先会从缓存中读取，缓存分为两种，内存缓存与硬盘缓存。查找文件的顺序为：memory -&gt; disk -&gt; 服务器。内存缓存是在kill进程时删除，即关闭浏览器时内存缓存消失，而硬盘缓存则是即使关闭浏览器也仍然存在。当我们首次访问页面，需要从服务器获取资源，将可缓存的文件缓存在内存与硬盘，当刷新页面时(这种情况没有关闭浏览器)则从内存缓存中读取，我们可以在上面的截图看到from memory cache的所需要的时间为0，这是最快的读取文件方式，当我们重新开一个页面时，也就是已经kill这个进程，内存缓存已经消失了，这时候就从硬件缓存获取，而当我们手动在浏览器清除缓存时，下次访问就只能再去服务器拉取文件了。但有一点可以从上面图中看到，并不是从硬盘获取缓存的时间一定比从网络获取的时间短，示例中的时间是更长的，这取决于网络状态和文件大小等因素，从缓存获取有利有弊，当网络较差或者文件较大时，从硬盘缓存获取可以给用户较好的体验。 协商缓存 Last-Modify 标示这个响应资源的最后修改时间。web 服务器在响应请求时，告诉浏览器资源的最后修改时间 If-Modify-since 再次向服务器请求时带上，如果资源已修改，返回 HTTP 200，未被修改，返回 HTTP 304 ETag 告诉浏览器当前资源在服务器的唯一标识 If-None-Match 再次向服务器请求时带上，如果资源已修改，返回 HTTP 200,未被修改，返回 HTTP 304 参考 详解 web 缓存 from disk/memory cache 详解 WebDevelop Cache]]></content>
   </entry>
   <entry>
     <title><![CDATA[扮演服务层角色 -- NodeJs]]></title>
@@ -33,9 +33,9 @@
         <category>Front-End</category>
       </categories>
       <tags>
+        <tag>Express</tag>
         <tag>React</tag>
         <tag>Electron</tag>
-        <tag>Express</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +368,8 @@
         <category>Front-End</category>
       </categories>
       <tags>
-        <tag>angular</tag>
         <tag>gulp</tag>
+        <tag>angular</tag>
       </tags>
   </entry>
   <entry>

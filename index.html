@@ -349,7 +349,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/17/cache/" itemprop="url">谈谈缓存</a></h1>
+                <a class="post-title-link" href="/2018/04/17/cache/" itemprop="url">浏览器如何做强缓存</a></h1>
         
 
         <div class="post-meta">
@@ -423,6 +423,13 @@
 <li>cache-control:max-age<br>上次获时间 + max-age 与 当前时间做比较</li>
 <li>当两个均有时，cache-control 优先级 高于 expires</li>
 </ul>
+<h5 id="理解cache-control"><a href="#理解cache-control" class="headerlink" title="理解cache-control"></a>理解cache-control</h5><!-- TODO :
+重新描述 -->
+<p>no-cache： 表示每次请求都需要与服务器确认一次，这种情况一般带有ETag，当服务器端验证无修改时，则从缓存中取文件，服务器无需返回文件。<br>no-store: 表示无论如何都不允许客户端做缓存，每次凑需要做一次完整的请求和完整的响应。<br>“no-cache”和“no-store”</p>
+<p>public：如果响应被标记为“public”，则即使它有关联的 HTTP 身份验证，甚至响应状态代码通常无法缓存，也可以缓存响应。大多数情况下，“public”不是必需的，因为明确的缓存信息（例如“max-age”）已表示响应是可以缓存的。我们有时可以在memory,disk,路由等找到缓存就是因为这是public的设置<br>private：不允许任何中间缓存对其进行缓存，只能最终用户做缓存</p>
+<p>“max-age”<br>指令指定从请求的时间开始，允许获取的响应被重用的最长时间（单位：秒）。</p>
+<!-- TODO: 改成table -->
+<p>举一些例子<br>max-age=86400    浏览器以及任何中间缓存均可将响应（如果是“public”响应）缓存长达 1 天（60 秒 x 60 分钟 x 24 小时）。<br>private, max-age=600    客户端的浏览器只能将响应缓存最长 10 分钟（60 秒 x 10 分钟）。<br>no-store    不允许缓存响应，每次请求都必须完整获取。</p>
 <h5 id="强缓存-体验max-age"><a href="#强缓存-体验max-age" class="headerlink" title="强缓存 - 体验max-age"></a>强缓存 - 体验<code>max-age</code></h5><p>切换到<code>maxage</code>分支，采用<code>max-age</code>做缓存</p>
 <p>PS：测试之前请打开控制台，将浏览器控制台中的<code>Disable cache</code>关闭。如下图<br><img src="/images/cache/01.jpeg" alt="disableCache"></p>
 <p><code>app.js</code>中可以看到</p>
@@ -456,6 +463,7 @@
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="https://segmentfault.com/a/1190000006741200" target="_blank" rel="noopener">详解 web 缓存</a></li>
 <li><a href="https://blog.csdn.net/franknotbad/article/details/79400105" target="_blank" rel="noopener">from disk/memory cache 详解</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn" target="_blank" rel="noopener">WebDevelop Cache</a></li>
 </ul>
 
           
