@@ -33,9 +33,9 @@
         <category>Front-End</category>
       </categories>
       <tags>
-        <tag>Express</tag>
         <tag>React</tag>
         <tag>Electron</tag>
+        <tag>Express</tag>
       </tags>
   </entry>
   <entry>
@@ -368,8 +368,8 @@
         <category>Front-End</category>
       </categories>
       <tags>
-        <tag>gulp</tag>
         <tag>angular</tag>
+        <tag>gulp</tag>
       </tags>
   </entry>
   <entry>
