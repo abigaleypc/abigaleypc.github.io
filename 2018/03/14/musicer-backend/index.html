@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="NodeJS,Express," />
+  <meta name="keywords" content="Express,NodeJS," />
 
 
 
@@ -95,23 +95,23 @@
 
 
 <meta name="description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
-<meta name="keywords" content="NodeJS,Express">
+<meta name="keywords" content="Express,NodeJS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="扮演服务层角色 -- NodeJs">
 <meta property="og:url" content="https://abigaleyu.co/2018/03/14/musicer-backend/index.html">
 <meta property="og:site_name" content="Abigale&#39;s Blog">
 <meta property="og:description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/thrid.jpeg">
+<meta property="og:image" content="https://abigaleyu.co/images/Musicer/thrid.jpg">
 <meta property="og:image" content="https://abigaleyu.co/images/Musicer/doubanfm01.png">
 <meta property="og:image" content="https://abigaleyu.co/images/Musicer/get-dbcl2.jpeg">
 <meta property="og:image" content="https://abigaleyu.co/images/Musicer/location01.jpeg">
 <meta property="og:image" content="https://abigaleyu.co/images/Musicer/next.jpeg">
-<meta property="og:updated_time" content="2018-03-26T03:23:38.832Z">
+<meta property="og:updated_time" content="2018-05-16T02:50:17.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="扮演服务层角色 -- NodeJs">
 <meta name="twitter:description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
-<meta name="twitter:image" content="https://abigaleyu.co/images/Musicer/thrid.jpeg">
+<meta name="twitter:image" content="https://abigaleyu.co/images/Musicer/thrid.jpg">
 
 
 
@@ -438,7 +438,7 @@
       
         <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
 <p>Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图</p>
-<p><img src="/images/Musicer/thrid.jpeg" alt="三端"></p>
+<p><img src="/images/Musicer/thrid.jpg" alt="三端"></p>
 <p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="noopener">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br><a id="more"></a><br>开放平台开放的类似于第三方登录 给开发者一个新的API Key，有了这个key而允许了我们对指定的功能进行指定的操作。这对于开发者是很受限的，因此我们需要采取各种可能的手段抓包，分析整合，整理出我们真正需要的接口。</p>
 <p>上图中豆瓣FMAPI来源：<a href="https://douban.fm。" target="_blank" rel="noopener">https://douban.fm。</a><br><img src="/images/Musicer/doubanfm01.png" alt="豆瓣FM"></p>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="noopener">Musicer</a></p>
@@ -524,9 +524,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
-          
             <a href="/tags/Express/" rel="tag"># Express</a>
+          
+            <a href="/tags/NodeJS/" rel="tag"># NodeJS</a>
           
         </div>
       
@@ -549,8 +549,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/17/cache/" rel="prev" title="浏览器如何做强缓存">
-                浏览器如何做强缓存 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/17/cache/" rel="prev" title="对浏览器做一些缓存">
+                对浏览器做一些缓存 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -635,7 +635,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -646,7 +646,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -657,7 +657,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

@@ -4,15 +4,76 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/04/17/cache/</loc>
-    <lastmod>2018-04-27T09:32:49.551Z</lastmod>
+    <loc>https://abigaleyu.co/2017/05/11/%E6%9E%84%E5%BB%BANode%E5%BA%94%E7%94%A8%EF%BC%8C%E6%BC%94%E7%A4%BA%E5%8F%8D%E5%B0%84%E5%9E%8BXSS%E6%94%BB%E5%87%BB/</loc>
+    <lastmod>2018-05-24T09:25:39.493Z</lastmod>
     <data>
         <display>
-        <title>浏览器如何做强缓存</title>
-        <pubTime>2018-04-17T02:48:26.000Z</pubTime>
+        <title>构建Node应用，演示反射型XSS攻击</title>
+        <pubTime>2017-05-11T10:00:00.000Z</pubTime>
+        
+        <tag>XSS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2017/06/23/%E5%89%8D%E7%AB%AF%E6%A8%A1%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F/</loc>
+    <lastmod>2018-05-24T09:24:37.717Z</lastmod>
+    <data>
+        <display>
+        <title>前端模拟服务器实现跨域</title>
+        <pubTime>2017-06-23T07:39:57.000Z</pubTime>
         
          
            
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2017/05/08/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%A2%98%E7%9B%AE/</loc>
+    <lastmod>2018-05-24T07:47:00.484Z</lastmod>
+    <data>
+        <display>
+        <title>正则表达式题目</title>
+        <pubTime>2017-05-08T08:41:06.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2017/06/23/http%E8%AF%B7%E6%B1%82/</loc>
+    <lastmod>2018-05-24T03:40:12.639Z</lastmod>
+    <data>
+        <display>
+        <title>HTTP请求</title>
+        <pubTime>2017-06-23T01:42:00.000Z</pubTime>
+        
+        <tag>HTTP</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
         </display>
     </data>
     </url>
@@ -20,20 +81,47 @@
     
   <url>
     <loc>https://abigaleyu.co/2018/03/14/musicer-backend/</loc>
-    <lastmod>2018-03-26T03:23:38.832Z</lastmod>
+    <lastmod>2018-05-16T02:50:17.968Z</lastmod>
     <data>
         <display>
         <title>扮演服务层角色 -- NodeJs</title>
         <pubTime>2018-03-14T10:54:56.000Z</pubTime>
         
-        <tag>NodeJS</tag>
-         
         <tag>Express</tag>
+         
+        <tag>NodeJS</tag>
          
          
            
              
               <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2018/04/17/cache/</loc>
+    <lastmod>2018-05-16T02:50:17.967Z</lastmod>
+    <data>
+        <display>
+        <title>对浏览器做一些缓存</title>
+        <pubTime>2018-04-17T02:48:26.000Z</pubTime>
+        
+        <tag>Express</tag>
+         
+        <tag>cache</tag>
+         
+        <tag>http</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+             
+              <breadCrumb title="http" url="https://abigaleyu.co/categories/Front-End/http/"/>
           
         </display>
     </data>
@@ -61,18 +149,14 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
+    <loc>https://abigaleyu.co/2017/07/01/wxapp-demo/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
         <display>
-        <title>搭建音乐播放器桌面应用--前端篇</title>
-        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
+        <title>基于微信小程序开发的聊天小Demo</title>
+        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
         
-        <tag>Express</tag>
-         
-        <tag>React</tag>
-         
-        <tag>Electron</tag>
+        <tag>wxapp</tag>
          
          
            
@@ -85,14 +169,18 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2017/07/01/wxapp-demo/</loc>
+    <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
         <display>
-        <title>基于微信小程序开发的聊天小Demo</title>
-        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
+        <title>搭建音乐播放器桌面应用--前端篇</title>
+        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
         
-        <tag>wxapp</tag>
+        <tag>Express</tag>
+         
+        <tag>React</tag>
+         
+        <tag>Electron</tag>
          
          
            
@@ -346,26 +434,6 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2017/07/24/Promise/</loc>
-    <lastmod>2017-07-24T06:07:50.000Z</lastmod>
-    <data>
-        <display>
-        <title>Promise模式 -- 异步编程</title>
-        <pubTime>2017-07-24T03:41:41.000Z</pubTime>
-        
-        <tag>JavaScript</tag>
-         
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://abigaleyu.co/2017/07/21/window-open/</loc>
     <lastmod>2017-07-21T09:14:00.000Z</lastmod>
     <data>
@@ -568,26 +636,6 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2017/06/23/http%E8%AF%B7%E6%B1%82/</loc>
-    <lastmod>2017-07-11T10:30:02.000Z</lastmod>
-    <data>
-        <display>
-        <title>HTTP请求</title>
-        <pubTime>2017-06-23T01:42:00.000Z</pubTime>
-        
-        <tag>HTTP</tag>
-         
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://abigaleyu.co/2017/02/26/XMLHttpRequest-%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2017-07-11T10:29:55.000Z</lastmod>
     <data>
@@ -746,44 +794,6 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2017/05/08/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%A2%98%E7%9B%AE/</loc>
-    <lastmod>2017-07-11T09:54:15.000Z</lastmod>
-    <data>
-        <display>
-        <title>正则表达式题目</title>
-        <pubTime>2017-05-08T08:41:06.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://abigaleyu.co/2017/05/11/%E6%9E%84%E5%BB%BANode%E5%BA%94%E7%94%A8%EF%BC%8C%E6%BC%94%E7%A4%BA%E5%8F%8D%E5%B0%84%E5%9E%8BXSS%E6%94%BB%E5%87%BB/</loc>
-    <lastmod>2017-07-11T09:54:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>构建Node应用，演示反射型XSS攻击</title>
-        <pubTime>2017-05-11T10:00:00.000Z</pubTime>
-        
-        <tag>XSS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://abigaleyu.co/2017/03/28/%E6%90%AD%E5%BB%BAAngular-Gulp%E9%A1%B9%E7%9B%AE/</loc>
     <lastmod>2017-07-11T09:54:02.000Z</lastmod>
     <data>
@@ -795,24 +805,6 @@
          
         <tag>gulp</tag>
          
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://abigaleyu.co/2017/06/23/%E5%89%8D%E7%AB%AF%E6%A8%A1%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F/</loc>
-    <lastmod>2017-07-11T09:53:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>前端模拟服务器实现跨域</title>
-        <pubTime>2017-06-23T07:39:57.000Z</pubTime>
-        
          
            
              

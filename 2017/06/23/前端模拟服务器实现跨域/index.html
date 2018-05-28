@@ -102,7 +102,7 @@
 <meta property="og:description" content="DEMOhttps://github.com/abigaleypc/cross-domain-server 项目安装 git clone https://github.com/abigaleypc/cross-domain-server cd JSONP npm install  不同域的定义协议+域名+端口号都相同才是同域">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://abigaleyu.co/images/corss-origin-error.png">
-<meta property="og:updated_time" content="2017-07-11T09:53:49.000Z">
+<meta property="og:updated_time" content="2018-05-24T09:24:37.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端模拟服务器实现跨域">
 <meta name="twitter:description" content="DEMOhttps://github.com/abigaleypc/cross-domain-server 项目安装 git clone https://github.com/abigaleypc/cross-domain-server cd JSONP npm install  不同域的定义协议+域名+端口号都相同才是同域">
@@ -449,7 +449,7 @@
 <h3 id="JSONP解决跨域问题"><a href="#JSONP解决跨域问题" class="headerlink" title="JSONP解决跨域问题"></a>JSONP解决跨域问题</h3><blockquote>
 <p>简单理解下JSONP的原理：AJAX不能实现跨域的请求，但却能将不能请求的文件通过 <code>&lt;script&gt;</code>获取到，如 <code>&lt;script src=&quot;xxx.js&quot;&gt;&lt;/script&gt;</code>，<a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="noopener">详细文档</a> </p>
 </blockquote>
-<p> tip: <code>port8080</code>主要用来访问不同域的子项目，<code>port58023</code>主要模拟服务器，启动另一个端口给<code>port8080</code>访问</p>
+<p>tip: <code>port8080</code>主要用来访问不同域的子项目，<code>port58023</code>主要模拟服务器，启动另一个端口给<code>port8080</code>访问</p>
 <p><code>cd JSONP</code></p>
 <p>在文件夹 <code>JSONP/port8080/index.html</code> 中，我们引入的是另一个端口下的文件，文件同样获取到了，这时候打开浏览器控制台可以看到返回结果被打印出来了。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(data)</div><div class="line">  &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&lt;script src="http:/</span><span class="regexp">/127.0.0.1:58023/</span>test.js<span class="string">"&gt;&lt;/script&gt;</span></div></pre></td></tr></table></figure>
@@ -458,8 +458,9 @@
 <p>控制台已经打印出文本，只是因为 <code>callback()</code> 函数被调用并被打印出来了。</p>
 <p>以上就是JSONP的实现原理。一般情况下，我们希望这个script标签能够动态的调用，而不是像上面因为固定在html里面所以没等页面显示就执行了，很不灵活。我们可以通过javascript动态的创建script标签，这样我们就可以灵活调用远程服务了。</p>
 <p>我们可以将 <code>JSONP/post8080/index.html</code> 脚本改成</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        alert(data.message);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//添加&lt;script&gt;标签的方法</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addScriptTag</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    	<span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">        script.setAttribute(<span class="string">"type"</span>,<span class="string">"text/javascript"</span>);</div><div class="line">        script.src = src;</div><div class="line">        <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        addScriptTag(<span class="string">"http://localhost:20002/test.js"</span>);</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
-<p>实现以上过程的前提是后端提供<code>callback</code>字段，如<a href="https://api.douban.com/v2/user/abigaleypc?callback=__callback5" target="_blank" rel="noopener">https://api.douban.com/v2/user/abigaleypc?callback=__callback5</a>,我们可以在参数加上callback是因为后端的支持，就像以上 <code>JSONP/port58023/test.js</code> 中<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">callback(</div><div class="line">  &#123;</div><div class="line">    <span class="string">"port"</span>: <span class="string">"我不是8080端口"</span></div><div class="line">  &#125;</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        alert(data.message);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 添加&lt;script&gt;标签的方法</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addScriptTag</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    	<span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">        script.setAttribute(<span class="string">"type"</span>,<span class="string">"text/javascript"</span>);</div><div class="line">        script.src = url;</div><div class="line">        <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      addScriptTag(<span class="string">"http://localhost:20002/test.js"</span>);</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>实现以上过程的前提是后端提供<code>callback</code>字段，如<a href="https://api.douban.com/v2/user/abigaleypc?callback=__callback5" target="_blank" rel="noopener">https://api.douban.com/v2/user/abigaleypc?callback=__callback5</a>,我们可以在参数加上callback是因为后端的支持，就像以上 <code>JSONP/port58023/test.js</code> 中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">callback(</div><div class="line">  &#123;</div><div class="line">    <span class="string">"port"</span>: <span class="string">"我不是8080端口"</span></div><div class="line">  &#125;</div><div class="line">)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -580,7 +581,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -591,7 +592,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -602,7 +603,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

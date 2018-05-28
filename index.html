@@ -349,7 +349,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/17/cache/" itemprop="url">浏览器如何做强缓存</a></h2>
+                <a class="post-title-link" href="/2018/04/17/cache/" itemprop="url">对浏览器做一些缓存</a></h2>
         
 
         <div class="post-meta">
@@ -371,6 +371,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/http/" itemprop="url" rel="index">
+                    <span itemprop="name">http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -411,62 +444,15 @@
 
       
         
-          
-            <h3 id="仅用-HTTP-缓存"><a href="#仅用-HTTP-缓存" class="headerlink" title="仅用 HTTP 缓存"></a>仅用 HTTP 缓存</h3><ul>
-<li><code>&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot;&gt;</code></li>
-<li>键值对: 键为<code>http-equiv</code> 值为<code>content</code></li>
-<li>设置不缓存</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=<span class="string">"Pragma"</span> content=<span class="string">"no-cache"</span>&gt;</div><div class="line">&lt;meta http-equiv=<span class="string">"Expires"</span> content=<span class="string">"-1"</span>&gt;</div></pre></td></tr></table></figure>
-<h3 id="强缓存-与-协商缓存"><a href="#强缓存-与-协商缓存" class="headerlink" title="强缓存 与 协商缓存"></a>强缓存 与 协商缓存</h3><h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h4><ul>
-<li>Expires 设置一个时间弊端：当跨时区时 存在误差</li>
-<li>cache-control:max-age<br>上次获时间 + max-age 与 当前时间做比较</li>
-<li>当两个均有时，cache-control 优先级 高于 expires</li>
-</ul>
-<h5 id="理解cache-control"><a href="#理解cache-control" class="headerlink" title="理解cache-control"></a>理解cache-control</h5><!-- TODO :
-重新描述 -->
-<p>no-cache： 表示每次请求都需要与服务器确认一次，这种情况一般带有ETag，当服务器端验证无修改时，则从缓存中取文件，服务器无需返回文件。<br>no-store: 表示无论如何都不允许客户端做缓存，每次凑需要做一次完整的请求和完整的响应。<br>“no-cache”和“no-store”</p>
-<p>public：如果响应被标记为“public”，则即使它有关联的 HTTP 身份验证，甚至响应状态代码通常无法缓存，也可以缓存响应。大多数情况下，“public”不是必需的，因为明确的缓存信息（例如“max-age”）已表示响应是可以缓存的。我们有时可以在memory,disk,路由等找到缓存就是因为这是public的设置<br>private：不允许任何中间缓存对其进行缓存，只能最终用户做缓存</p>
-<p>“max-age”<br>指令指定从请求的时间开始，允许获取的响应被重用的最长时间（单位：秒）。</p>
-<!-- TODO: 改成table -->
-<p>举一些例子<br>max-age=86400    浏览器以及任何中间缓存均可将响应（如果是“public”响应）缓存长达 1 天（60 秒 x 60 分钟 x 24 小时）。<br>private, max-age=600    客户端的浏览器只能将响应缓存最长 10 分钟（60 秒 x 10 分钟）。<br>no-store    不允许缓存响应，每次请求都必须完整获取。</p>
-<h5 id="强缓存-体验max-age"><a href="#强缓存-体验max-age" class="headerlink" title="强缓存 - 体验max-age"></a>强缓存 - 体验<code>max-age</code></h5><p>切换到<code>maxage</code>分支，采用<code>max-age</code>做缓存</p>
-<p>PS：测试之前请打开控制台，将浏览器控制台中的<code>Disable cache</code>关闭。如下图<br><img src="/images/cache/01.jpeg" alt="disableCache"></p>
-<p><code>app.js</code>中可以看到</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">app.use(</div><div class="line">    <span class="string">"/public"</span>,</div><div class="line">    express.static(<span class="string">"public"</span>, &#123;</div><div class="line">        maxAge: <span class="string">"1d"</span></div><div class="line">    &#125;)</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>将<code>/public</code>下的静态文件最大缓存时间设为一天，现在我<code>/public</code>下的<code>main.js</code>写了一段更新页面文本的代码</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> name = <span class="built_in">document</span>.getElementById(<span class="string">"name"</span>);</div><div class="line">    name.innerText = <span class="string">"abigale"</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>Step1: 第一次打开浏览器：缓存查找顺序为 memory - disk - 网络</p>
-<p><img src="/images/cache/02.jpeg" alt="首次访问"></p>
-</li>
-<li><p>Step2: 刷新页面：缓存优先从memory查找</p>
-<p><img src="/images/cache/03.jpeg" alt="刷新页面访问"></p>
-</li>
-<li><p>Step3: 重新打开页面：memory若无缓存，则从disk查找</p>
-<p><img src="/images/cache/04.jpeg" alt="重新打开页面访问"></p>
-</li>
-<li><p>Step4: 修改<code>/public/main.js</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> name = <span class="built_in">document</span>.getElementById(<span class="string">"name"</span>);</div><div class="line">    name.innerText = <span class="string">"AbigaleYu"</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>无论是刷新页面访问还是重新打开页面访问，结果与<code>Step2</code> <code>Step3</code>一样，name并没有更新为AbigaleYu。</p>
-<h5 id="该缓存策略弊端：-当设定时间内更新文件了，浏览器并不知道。"><a href="#该缓存策略弊端：-当设定时间内更新文件了，浏览器并不知道。" class="headerlink" title="该缓存策略弊端： 当设定时间内更新文件了，浏览器并不知道。"></a>该缓存策略弊端： 当设定时间内更新文件了，浏览器并不知道。</h5></li>
-</ul>
-<h5 id="引申问题：from-memory-cache-与-from-disk-cache-的区别"><a href="#引申问题：from-memory-cache-与-from-disk-cache-的区别" class="headerlink" title="引申问题：from memory cache 与 from disk cache 的区别"></a>引申问题：<code>from memory cache</code> 与 <code>from disk cache</code> 的区别</h5><p>浏览器访问页面时，查找静态文件首先会从缓存中读取，缓存分为两种，内存缓存与硬盘缓存。查找文件的顺序为：memory -&gt; disk -&gt; 服务器。内存缓存是在kill进程时删除，即关闭浏览器时内存缓存消失，而硬盘缓存则是即使关闭浏览器也仍然存在。当我们首次访问页面，需要从服务器获取资源，将可缓存的文件缓存在内存与硬盘，当刷新页面时(这种情况没有关闭浏览器)则从内存缓存中读取，我们可以在上面的截图看到from memory cache的所需要的时间为0，这是最快的读取文件方式，当我们重新开一个页面时，也就是已经kill这个进程，内存缓存已经消失了，这时候就从硬件缓存获取，而当我们手动在浏览器清除缓存时，下次访问就只能再去服务器拉取文件了。但有一点可以从上面图中看到，并不是从硬盘获取缓存的时间一定比从网络获取的时间短，示例中的时间是更长的，这取决于网络状态和文件大小等因素，从缓存获取有利有弊，当网络较差或者文件较大时，从硬盘缓存获取可以给用户较好的体验。</p>
-<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><ul>
-<li>Last-Modify 标示这个响应资源的最后修改时间。web 服务器在响应请求时，告诉浏览器资源的最后修改时间</li>
-<li><p>If-Modify-since 再次向服务器请求时带上，如果资源已修改，返回 HTTP 200，未被修改，返回 HTTP 304</p>
-</li>
-<li><p>ETag 告诉浏览器当前资源在服务器的唯一标识</p>
-</li>
-<li>If-None-Match 再次向服务器请求时带上，如果资源已修改，返回 HTTP 200,未被修改，返回 HTTP 304</li>
-</ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://segmentfault.com/a/1190000006741200" target="_blank" rel="noopener">详解 web 缓存</a></li>
-<li><a href="https://blog.csdn.net/franknotbad/article/details/79400105" target="_blank" rel="noopener">from disk/memory cache 详解</a></li>
-<li><a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn" target="_blank" rel="noopener">WebDevelop Cache</a></li>
-</ul>
-
-          
+          <p>面对浏览器，我们经常需要考虑一些性能的问题，除了让用户提高带宽，我们还需要通过缓存一些文件来提高用户体验。浏览器的缓存即是HTTP缓存，我们打开浏览器时总需要与远程服务器做交互，如果服务器允许的话，浏览器首次访问网站时会把成功的请求结果拦截下来并存储在内存或硬盘上，以便下次访问时快速获取。零零散散看过许多HTTP缓存的文章，所以这次想梳理一下脉络和自己动手模拟一下服务器看看我们可以如何指控浏览器缓存我们的文件。</p>
+<h2 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h2><p>学习过程中做了一个小demo模拟缓存过程，可以在<a href="https://github.com/abigaleypc/express-cache.git" target="_blank" rel="noopener">https://github.com/abigaleypc/express-cache.git</a>中查看源码。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/17/cache/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -618,7 +604,7 @@
         
           <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
 <p>Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图</p>
-<p><img src="/images/Musicer/thrid.jpeg" alt="三端"></p>
+<p><img src="/images/Musicer/thrid.jpg" alt="三端"></p>
 <p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="noopener">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1950,7 +1936,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1996,7 +1982,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2007,7 +1993,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2018,7 +2004,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

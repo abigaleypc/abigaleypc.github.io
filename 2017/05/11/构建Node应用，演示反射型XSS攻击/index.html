@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="Abigale&#39;s Blog">
 <meta property="og:description" content="XSS 全称(Cross Site Scripting) 跨站脚本攻击， 是Web程序中最常见的漏洞。指攻击者在网页中嵌入客户端脚本(例如JavaScript), 当用户浏览此网页时，脚本就会在用户的浏览器上执行，从而达到攻击者的目的.  比如获取用户的Cookie，导航到恶意网站,携带木马等。 步骤：  新建一个文件夹XSS 命令 express -e ./ 初始化一个express项目 npm">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-07-11T09:54:12.000Z">
+<meta property="og:updated_time" content="2018-05-24T09:25:39.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建Node应用，演示反射型XSS攻击">
 <meta name="twitter:description" content="XSS 全称(Cross Site Scripting) 跨站脚本攻击， 是Web程序中最常见的漏洞。指攻击者在网页中嵌入客户端脚本(例如JavaScript), 当用户浏览此网页时，脚本就会在用户的浏览器上执行，从而达到攻击者的目的.  比如获取用户的Cookie，导航到恶意网站,携带木马等。 步骤：  新建一个文件夹XSS 命令 express -e ./ 初始化一个express项目 npm">
@@ -453,15 +453,16 @@
 <li>将以上链接改为 <code>http://localhost:3000/?xss=&lt;img src=&quot;null&quot; onerror=&quot;alert(0)&quot;/&gt;</code>  但打开页面的时候发现并没有插入的代码并没有被执行，这是因为浏览器自动做了拦截</li>
 <li><p>取消拦截：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.set(<span class="string">'X-XSS-Protection'</span>,<span class="number">0</span>);</div><div class="line">  res.render(<span class="string">'index'</span>, &#123; </div><div class="line">    title: <span class="string">'Express'</span> ,</div><div class="line">    xss: req.query.xss</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>再打开链接时，上述插入的代码也就被执行了。我们可以在xss=图片 页面 等等 </p>
-<p>参考文档</p>
-</li>
-<li><p><a href="http://www.cnblogs.com/TankXiao/archive/2012/03/21/2337194.html" target="_blank" rel="noopener">Web安全测试之XSS</a></p>
 </li>
 </ul>
 </li>
 </ul>
+<pre><code>再打开链接时，上述插入的代码也就被执行了。我们可以在xss=图片 页面 等等 
 
+参考文档
+
+* [Web安全测试之XSS](http://www.cnblogs.com/TankXiao/archive/2012/03/21/2337194.html)
+</code></pre>
       
     </div>
     
@@ -578,7 +579,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -589,7 +590,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -600,7 +601,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
