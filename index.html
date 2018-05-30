@@ -330,6 +330,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/05/23/promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Abigale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dear.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Abigale's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/23/promise/" itemprop="url">promise 异步请求方法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T23:49:54+08:00">
+                2018-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/23/promise/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/23/promise/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>关于 promise 异步请求方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">GET</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> xhr;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</div><div class="line">      <span class="comment">//非IE6</span></div><div class="line">      xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>);</div><div class="line">    &#125;</div><div class="line">    xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>)</div><div class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</div><div class="line">          resolve(<span class="keyword">this</span>.responseText, <span class="keyword">this</span>)</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="keyword">var</span> resJson = &#123; <span class="attr">code</span>: <span class="keyword">this</span>.status, <span class="attr">response</span>: <span class="keyword">this</span>.response &#125;</div><div class="line">          reject(resJson, <span class="keyword">this</span>)</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    xhr.send()</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">postJSON</span>(<span class="params">url, data</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> xhr;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</div><div class="line">      <span class="comment">//非IE6</span></div><div class="line">      xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>);</div><div class="line">    &#125;</div><div class="line">    xhr.open(<span class="string">"POST"</span>, url, <span class="literal">true</span>)</div><div class="line">    xhr.setRequestHeader(<span class="string">"Content-type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</div><div class="line"></div><div class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.readyState === <span class="number">4</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</div><div class="line">          resolve(<span class="built_in">JSON</span>.parse(<span class="keyword">this</span>.responseText), <span class="keyword">this</span>)</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="keyword">var</span> resJson = &#123; <span class="attr">code</span>: <span class="keyword">this</span>.status, <span class="attr">response</span>: <span class="keyword">this</span>.response &#125;</div><div class="line">          reject(resJson, <span class="keyword">this</span>)</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    xhr.send(<span class="built_in">JSON</span>.stringify(data))</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> url = <span class="string">'https://api.github.com/'</span></div><div class="line">GET(url).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(res);</div><div class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.error(error);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/04/17/cache/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1771,172 +1925,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2017/07/28/cookie-session-token/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/28/cookie-session-token/" itemprop="url">如何用cookie，session，token去做身份验证</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-28T17:02:00+08:00">
-                2017-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/28/cookie-session-token/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/28/cookie-session-token/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="解决几个疑惑"><a href="#解决几个疑惑" class="headerlink" title="解决几个疑惑"></a>解决几个疑惑</h2><ul>
-<li>HTTP 是一个<a href="http://blog.csdn.net/tennysonsky/article/details/44562435" target="_blank" rel="noopener">无连接且无状态</a>协议，客户端每次发出请求时，下一次请求无法得知上一次请求所包含的状态数据，如何能把一个用户的状态数据关联起来呢？</li>
-<li>如何对用户进行身份验证？</li>
-</ul>
-<h2 id="关键字-token、cookie和session-的理解"><a href="#关键字-token、cookie和session-的理解" class="headerlink" title="关键字 token、cookie和session 的理解"></a>关键字 token、cookie和session 的理解</h2><h3 id="token-令牌"><a href="#token-令牌" class="headerlink" title="token 令牌"></a>token 令牌</h3><p>是验证身份的一种方式。最简单的token组成:uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign(签名，由token的前几位+盐以哈希算法压缩成一定长的十六进制字符串，可以防止恶意第三方拼接token请求服务器)。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/28/cookie-session-token/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1982,7 +1975,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2004,7 +1997,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
