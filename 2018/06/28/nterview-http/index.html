@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="interview,HTTP," />
 
 
 
@@ -94,16 +94,22 @@
 
 
 
-<meta name="description" content="穷则思变">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Abigale&#39;s Blog">
-<meta property="og:url" content="https://abigaleyu.co/index.html">
+<meta name="description" content="跨域手写一个JSONP的实现123456&amp;lt;script&amp;gt;  callback(res)&amp;#123;    console.log(res);  &amp;#125;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;xxx/test.js?callback=callback&quot;&amp;gt;&amp;lt;/script&amp;gt; 12// test.jscallback(data) 跨域的方式? 客">
+<meta name="keywords" content="interview,HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的面试总结 -- HTTP">
+<meta property="og:url" content="https://abigaleyu.co/2018/06/28/nterview-http/index.html">
 <meta property="og:site_name" content="Abigale&#39;s Blog">
-<meta property="og:description" content="穷则思变">
+<meta property="og:description" content="跨域手写一个JSONP的实现123456&amp;lt;script&amp;gt;  callback(res)&amp;#123;    console.log(res);  &amp;#125;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;xxx/test.js?callback=callback&quot;&amp;gt;&amp;lt;/script&amp;gt; 12// test.jscallback(data) 跨域的方式? 客">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/02http/certificate.png">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/02http/request.png">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/02http/response.png">
+<meta property="og:updated_time" content="2018-06-28T09:27:33.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Abigale&#39;s Blog">
-<meta name="twitter:description" content="穷则思变">
+<meta name="twitter:title" content="我的面试总结 -- HTTP">
+<meta name="twitter:description" content="跨域手写一个JSONP的实现123456&amp;lt;script&amp;gt;  callback(res)&amp;#123;    console.log(res);  &amp;#125;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;xxx/test.js?callback=callback&quot;&amp;gt;&amp;lt;/script&amp;gt; 12// test.jscallback(data) 跨域的方式? 客">
+<meta name="twitter:image" content="https://abigaleyu.co/images/interview/02http/certificate.png">
 
 
 
@@ -132,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="https://abigaleyu.co/"/>
+  <link rel="canonical" href="https://abigaleyu.co/2018/06/28/nterview-http/"/>
 
 
 
 
 
-  <title>Abigale's Blog</title>
+  <title>我的面试总结 -- HTTP | Abigale's Blog</title>
   
 
 
@@ -176,9 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -315,9 +319,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -347,9 +351,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/28/nterview-http/" itemprop="url">我的面试总结 -- HTTP</a></h2>
+          <h2 class="post-title" itemprop="name headline">我的面试总结 -- HTTP</h2>
         
 
         <div class="post-meta">
@@ -432,9 +434,7 @@
       
 
       
-        
-          
-            <h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h3 id="手写一个JSONP的实现"><a href="#手写一个JSONP的实现" class="headerlink" title="手写一个JSONP的实现"></a>手写一个JSONP的实现</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">  callback(res)&#123;</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(res);</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"xxx/test.js?callback=callback"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+        <h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h3 id="手写一个JSONP的实现"><a href="#手写一个JSONP的实现" class="headerlink" title="手写一个JSONP的实现"></a>手写一个JSONP的实现</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">  callback(res)&#123;</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(res);</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"xxx/test.js?callback=callback"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// test.js</span></div><div class="line">callback(data)</div></pre></td></tr></table></figure>
 <h3 id="跨域的方式"><a href="#跨域的方式" class="headerlink" title="跨域的方式?"></a>跨域的方式?</h3><ul>
 <li>客户端<ul>
@@ -861,8 +861,6 @@
 <h2 id="请求报文头"><a href="#请求报文头" class="headerlink" title="请求报文头"></a>请求报文头</h2><p><img src="/images/interview/02http/request.png" alt="请求报文头"></p>
 <h2 id="响应报文头"><a href="#响应报文头" class="headerlink" title="响应报文头"></a>响应报文头</h2><p><img src="/images/interview/02http/response.png" alt="响应报文头"></p>
 
-          
-        
       
     </div>
     
@@ -877,502 +875,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/06/28/basic-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/28/basic-js/" itemprop="url">我的面试总结 -- 基础JS</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T15:29:09+08:00">
-                2018-06-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/interview/" rel="tag"># interview</a>
           
-
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/28/basic-js/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/28/basic-js/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h2 id="DOM-和-BOM"><a href="#DOM-和-BOM" class="headerlink" title="DOM 和 BOM"></a>DOM 和 BOM</h2><ul>
-<li>文档对象模型(DOM)：提供访问和操作网页内容的方法和接口</li>
-<li>浏览器对象模型(BOM)：提供与浏览器交互的方法和接口</li>
-</ul>
-<h2 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h2><p>arguments对象不是一个 Array 。它类似于Array，但除了length属性和索引元素之外没有任何Array属性。例如，它没有 pop 方法。</p>
-<h3 id="转换为一个真正的Array："><a href="#转换为一个真正的Array：" class="headerlink" title="转换为一个真正的Array："></a>转换为一个真正的Array：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</div><div class="line"><span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>);</div><div class="line"><span class="keyword">var</span> args = [...arguments]; <span class="comment">// 扩展运算符方法</span></div><div class="line"></div><div class="line"><span class="comment">// ES2015</span></div><div class="line"><span class="keyword">const</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/28/basic-js/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/28/basic-js/" rel="next" title="我的面试总结 -- 基础JS">
+                <i class="fa fa-chevron-left"></i> 我的面试总结 -- 基础JS
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/05/23/Promise/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/23/Promise/" itemprop="url">promise 异步请求方法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T23:49:54+08:00">
-                2018-05-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/05/23/Promise/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/05/23/Promise/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>关于 promise 异步请求方法</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/23/Promise/#more" rel="contents">
-              Read more &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/04/17/cache/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/cache/" itemprop="url">对浏览器做一些缓存</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-17T10:48:26+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/http/" itemprop="url" rel="index">
-                    <span itemprop="name">http</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/04/17/cache/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/04/17/cache/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>面对浏览器，我们经常需要考虑一些性能的问题，除了让用户提高带宽，我们还需要通过缓存一些文件来提高用户体验。浏览器的缓存即是HTTP缓存，我们打开浏览器时总需要与远程服务器做交互，如果服务器允许的话，浏览器首次访问网站时会把成功的请求结果拦截下来并存储在内存或硬盘上，以便下次访问时快速获取。零零散散看过许多HTTP缓存的文章，所以这次想梳理一下脉络和自己动手模拟一下服务器看看我们可以如何指控浏览器缓存我们的文件。</p>
-<h2 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h2><p>学习过程中做了一个小demo模拟缓存过程，可以在<a href="https://github.com/abigaleypc/express-cache.git" target="_blank" rel="noopener">https://github.com/abigaleypc/express-cache.git</a>中查看源码。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/17/cache/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1382,980 +916,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/03/14/musicer-backend/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/14/musicer-backend/" itemprop="url">扮演服务层角色 -- NodeJs</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-14T18:54:56+08:00">
-                2018-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/14/musicer-backend/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/14/musicer-backend/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
-<p>Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图</p>
-<p><img src="/images/Musicer/thrid.jpg" alt="三端"></p>
-<p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="noopener">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/14/musicer-backend/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/02/24/mobile-adaptive/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/24/mobile-adaptive/" itemprop="url">移动端适配方案</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-24T18:26:37+08:00">
-                2018-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/24/mobile-adaptive/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/24/mobile-adaptive/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>关于移动端适配方案</p>
-<h3 id="方案一：根据设计稿切分单位像素"><a href="#方案一：根据设计稿切分单位像素" class="headerlink" title="方案一：根据设计稿切分单位像素"></a>方案一：根据设计稿切分单位像素</h3><p>js脚本控制根元素字体。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> html = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'html'</span>)[<span class="number">0</span>];</div><div class="line">html.style.fontSize = (<span class="built_in">window</span>.innerWidth/<span class="number">750</span>) +<span class="string">'px'</span>;</div></pre></td></tr></table></figure>
-<p>以上750是根据设计稿尺寸设定的，这是为了方便CSS设定尺寸。</p>
-<p>原理：将屏幕尺寸宽(window.innerWidth)分成750份，而CSS中我们可以根据每一份设对应的Rem值。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/24/mobile-adaptive/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/02/22/musicer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/22/musicer/" itemprop="url">搭建音乐播放器桌面应用--前端篇</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-22T00:10:35+08:00">
-                2018-02-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/22/musicer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/22/musicer/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。</p>
-<p>这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。</p>
-<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="noopener">Musicer</a></p>
-<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="/images/Musicer/musicer.jpg" alt="效果图"></p>
-<h3 id="前端架构"><a href="#前端架构" class="headerlink" title="前端架构"></a>前端架构</h3><ul>
-<li>React: 基于虚拟DOM实现单向响应式数据流的UI框架。</li>
-<li>Redux: 提供单向，可预测的数据流。</li>
-<li><p>Electron:  使用 JavaScript, HTML 和 CSS 等 Web 技术创建原生程序的框架。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/22/musicer/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/01/22/typescriptSence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/22/typescriptSence/" itemprop="url">typescript的使用场景</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-22T14:14:58+08:00">
-                2018-01-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/01/22/typescriptSence/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/22/typescriptSence/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><ul>
-<li><p>接口定义 使用interface</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">interface</span> IMProps &#123;</div><div class="line">  num: <span class="built_in">number</span>,</div><div class="line">  str: <span class="built_in">string</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/22/typescriptSence/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2017/10/16/Charles-study/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/16/Charles-study/" itemprop="url">初涉Charles</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T19:04:34+08:00">
-                2017-10-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/16/Charles-study/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/16/Charles-study/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="了解Charles"><a href="#了解Charles" class="headerlink" title="了解Charles"></a>了解Charles</h3><ul>
-<li>Charles是一个HTTP代理服务器,HTTP监视器,反转代理服务器，当浏览器连接Charles的代理访问互联网时，Charles可以监控浏览器发送和接收的所有数据。</li>
-<li>Charles是一个简单的基于HTTP协议传输的调试工具，可以帮助开发人员分析数据和加快调试BUG的效率。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/16/Charles-study/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2017/09/18/prototype-function-sharing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/18/prototype-function-sharing/" itemprop="url">原型上小心被共享</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-18T17:56:00+08:00">
-                2017-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front-End</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/18/prototype-function-sharing/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/18/prototype-function-sharing/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">Person.prototype.friends = [<span class="string">"abigale"</span>]</div><div class="line">Person.prototype.sayFriends = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.friends)</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> Person()</div><div class="line"><span class="keyword">let</span> p2 = <span class="keyword">new</span> Person()</div><div class="line"></div><div class="line">p1.friends.push(<span class="string">'ypc'</span>)</div><div class="line">p2.sayFriends() <span class="comment">// [ 'abigale', 'ypc' ]</span></div></pre></td></tr></table></figure>
-<p>我们在 实例 <code>p1</code> 上添加了一个朋友，但从 实例<code>p2</code> 打印出朋友名单却意外得出加在 <code>p1</code> 上的朋友，这是因为 （画重点）</p>
-<ul>
-<li>包含引用类型值得原型属性会被所有实例共享</li>
-<li>JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本，当我们修改原型时，与之相关的对象也会继承这一改变。</li>
-</ul>
-<p>另一种情况，等同于上述</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.friends = [<span class="string">'abigale'</span>]</div><div class="line"></div><div class="line">&#125;</div><div class="line">Person.prototype.sayFriends = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.friends)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubPerson</span>(<span class="params"></span>) </span>&#123;</div><div class="line">&#125;</div><div class="line">SubPerson.prototype = <span class="keyword">new</span> Person();</div><div class="line"></div><div class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> SubPerson()</div><div class="line"><span class="keyword">let</span> p2 = <span class="keyword">new</span> SubPerson()</div><div class="line"></div><div class="line">p1.friends.push(<span class="string">'ypc'</span>)</div><div class="line">p2.sayFriends()</div></pre></td></tr></table></figure>
-<p>第二种示例，其实就是SubPerson.prototype.friends 它是共享的</p>
-<p>如果将上面数组类型改成基本类型就不会出现这种情况了，如<code>Person.prototype.friends = &#39;abigale&#39;</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
 
           </div>
@@ -2363,6 +928,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -2383,8 +959,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/dear.png"
@@ -2446,6 +1031,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域"><span class="nav-number">1.</span> <span class="nav-text">跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手写一个JSONP的实现"><span class="nav-number">1.1.</span> <span class="nav-text">手写一个JSONP的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域的方式"><span class="nav-number">1.2.</span> <span class="nav-text">跨域的方式?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsonp安全漏洞"><span class="nav-number">1.3.</span> <span class="nav-text">jsonp安全漏洞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">2.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP协议缓存的实现"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP协议缓存的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态文件的缓存-如果服务器端更新脚本，如何保证客户端不受缓存机制影响，实时更新脚本"><span class="nav-number">2.2.</span> <span class="nav-text">静态文件的缓存/如果服务器端更新脚本，如何保证客户端不受缓存机制影响，实时更新脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端存储"><span class="nav-number">3.</span> <span class="nav-text">前端存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对比"><span class="nav-number">3.1.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储量"><span class="nav-number">3.2.</span> <span class="nav-text">存储量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储类型"><span class="nav-number">3.3.</span> <span class="nav-text">存储类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方式"><span class="nav-number">3.4.</span> <span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的生命期"><span class="nav-number">3.5.</span> <span class="nav-text">数据的生命期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与服务器端通信"><span class="nav-number">3.6.</span> <span class="nav-text">与服务器端通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.7.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">3.8.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">4.</span> <span class="nav-text">状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1xx-信息"><span class="nav-number">4.1.</span> <span class="nav-text">1xx: 信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2xx-成功"><span class="nav-number">4.2.</span> <span class="nav-text">2xx: 成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3xx-重定向"><span class="nav-number">4.3.</span> <span class="nav-text">3xx: 重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4xx-客户端错误"><span class="nav-number">4.4.</span> <span class="nav-text">4xx: 客户端错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5xx-服务器错误"><span class="nav-number">4.5.</span> <span class="nav-text">5xx: 服务器错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax"><span class="nav-number">5.</span> <span class="nav-text">Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Ajax，它们的优缺点。"><span class="nav-number">5.1.</span> <span class="nav-text">什么是 Ajax，它们的优缺点。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax-优点"><span class="nav-number">5.1.1.</span> <span class="nav-text">Ajax 优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax-缺点"><span class="nav-number">5.1.2.</span> <span class="nav-text">Ajax 缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-如何实现"><span class="nav-number">5.1.3.</span> <span class="nav-text">ajax 如何实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax-状态"><span class="nav-number">5.2.</span> <span class="nav-text">Ajax 状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax-同步和异步的区别"><span class="nav-number">5.3.</span> <span class="nav-text">Ajax 同步和异步的区别:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手写一个Ajax的Promise封装"><span class="nav-number">5.4.</span> <span class="nav-text">手写一个Ajax的Promise封装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET和POST"><span class="nav-number">6.</span> <span class="nav-text">GET和POST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET和POST的区别"><span class="nav-number">6.1.</span> <span class="nav-text">GET和POST的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL到渲染"><span class="nav-number">7.</span> <span class="nav-text">URL到渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器从URL到页面渲染经历了哪些？"><span class="nav-number">7.1.</span> <span class="nav-text">浏览器从URL到页面渲染经历了哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域名解析IP寻找路径"><span class="nav-number">7.2.</span> <span class="nav-text">域名解析IP寻找路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个完整的HTTP请求过程-通常有下面7个步骤"><span class="nav-number">7.3.</span> <span class="nav-text">一个完整的HTTP请求过程,通常有下面7个步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细解释"><span class="nav-number">7.4.</span> <span class="nav-text">详细解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概要"><span class="nav-number">7.5.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何渲染页面"><span class="nav-number">7.6.</span> <span class="nav-text">如何渲染页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">8.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http协议中有那些请求方式？"><span class="nav-number">8.1.</span> <span class="nav-text">Http协议中有那些请求方式？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS原理"><span class="nav-number">9.</span> <span class="nav-text">HTTPS原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">9.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS-过程"><span class="nav-number">9.2.</span> <span class="nav-text">HTTPS 过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS-SSL握手过程"><span class="nav-number">9.2.1.</span> <span class="nav-text">HTTPS - SSL握手过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP的缺点与HTTPS"><span class="nav-number">9.3.</span> <span class="nav-text">HTTP的缺点与HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书内容包括："><span class="nav-number">9.4.</span> <span class="nav-text">证书内容包括：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器如何验证服务器数字证书？"><span class="nav-number">9.5.</span> <span class="nav-text">浏览器如何验证服务器数字证书？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书包含信息"><span class="nav-number">9.6.</span> <span class="nav-text">证书包含信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口号"><span class="nav-number">10.</span> <span class="nav-text">端口号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口号的作用"><span class="nav-number">10.1.</span> <span class="nav-text">端口号的作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同版本HTTP对比"><span class="nav-number">11.</span> <span class="nav-text">不同版本HTTP对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP1-0-HTTP1-1-HTTP2-0-区别"><span class="nav-number">11.1.</span> <span class="nav-text">HTTP1.0 HTTP1.1 HTTP2.0 区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP1-0-HTTP1-1-区别"><span class="nav-number">11.1.1.</span> <span class="nav-text">HTTP1.0 HTTP1.1 区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP1-1-HTTP2-0-区别"><span class="nav-number">11.1.2.</span> <span class="nav-text">HTTP1.1  HTTP2.0 区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP2-0-header如何压缩"><span class="nav-number">11.2.</span> <span class="nav-text">HTTP2.0 header如何压缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求头"><span class="nav-number">12.</span> <span class="nav-text">请求头</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求头-1"><span class="nav-number">12.1.</span> <span class="nav-text">请求头</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP优化"><span class="nav-number">13.</span> <span class="nav-text">HTTP优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息推送"><span class="nav-number">14.</span> <span class="nav-text">消息推送</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web应用从服务器主动推送Data到客户端有哪些方式？"><span class="nav-number">14.1.</span> <span class="nav-text">Web应用从服务器主动推送Data到客户端有哪些方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他推送方法"><span class="nav-number">14.2.</span> <span class="nav-text">其他推送方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie"><span class="nav-number">15.</span> <span class="nav-text">cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie是存在哪一部分？"><span class="nav-number">15.1.</span> <span class="nav-text">cookie是存在哪一部分？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie和session的区别"><span class="nav-number">15.2.</span> <span class="nav-text">cookie和session的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三次握手和四次挥手"><span class="nav-number">16.</span> <span class="nav-text">三次握手和四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三次握手"><span class="nav-number">16.1.</span> <span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四次挥手"><span class="nav-number">16.2.</span> <span class="nav-text">四次挥手</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP包"><span class="nav-number">17.</span> <span class="nav-text">HTTP包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个响应包"><span class="nav-number">17.1.</span> <span class="nav-text">一个响应包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个请求包"><span class="nav-number">17.2.</span> <span class="nav-text">一个请求包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RESTful"><span class="nav-number">18.</span> <span class="nav-text">RESTful</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表现层状态转化"><span class="nav-number">18.1.</span> <span class="nav-text">表现层状态转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API定制"><span class="nav-number">18.2.</span> <span class="nav-text">API定制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文"><span class="nav-number">19.</span> <span class="nav-text">报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求报文与响应报文格式"><span class="nav-number">19.1.</span> <span class="nav-text">HTTP请求报文与响应报文格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求报文包含四部分："><span class="nav-number">19.2.</span> <span class="nav-text">请求报文包含四部分：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应报文包含四部分："><span class="nav-number">19.3.</span> <span class="nav-text">响应报文包含四部分：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的首部："><span class="nav-number">19.4.</span> <span class="nav-text">常见的首部：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用首部字段（请求报文与响应报文都会使用的首部字段）"><span class="nav-number">19.4.1.</span> <span class="nav-text">通用首部字段（请求报文与响应报文都会使用的首部字段）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求首部字段（请求报文会使用的首部字段）"><span class="nav-number">19.4.2.</span> <span class="nav-text">请求首部字段（请求报文会使用的首部字段）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应首部字段（响应报文会使用的首部字段）"><span class="nav-number">19.4.3.</span> <span class="nav-text">响应首部字段（响应报文会使用的首部字段）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）"><span class="nav-number">19.4.4.</span> <span class="nav-text">实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求报文头"><span class="nav-number">20.</span> <span class="nav-text">请求报文头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应报文头"><span class="nav-number">21.</span> <span class="nav-text">响应报文头</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2582,10 +1183,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -2603,6 +1204,18 @@
       <script id="dsq-count-scr" src="https://abigale.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://abigaleyu.co/2018/06/28/nterview-http/';
+          this.page.identifier = '2018/06/28/nterview-http/';
+          this.page.title = '我的面试总结 -- HTTP';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://abigale.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

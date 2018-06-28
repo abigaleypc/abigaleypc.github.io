@@ -4,16 +4,16 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/05/23/Promise/</loc>
-    <lastmod>2018-06-28T08:53:31.354Z</lastmod>
+    <loc>https://abigaleyu.co/2018/06/28/nterview-http/</loc>
+    <lastmod>2018-06-28T09:27:33.072Z</lastmod>
     <data>
         <display>
-        <title>promise 异步请求方法</title>
-        <pubTime>2018-05-23T15:49:54.000Z</pubTime>
+        <title>我的面试总结 -- HTTP</title>
+        <pubTime>2018-06-28T09:22:46.000Z</pubTime>
         
-        <tag>JavaScript</tag>
+        <tag>interview</tag>
          
-        <tag>ES6</tag>
+        <tag>HTTP</tag>
          
          
            
@@ -27,15 +27,37 @@
     
   <url>
     <loc>https://abigaleyu.co/2018/06/28/basic-js/</loc>
-    <lastmod>2018-06-28T08:40:39.953Z</lastmod>
+    <lastmod>2018-06-28T09:23:56.032Z</lastmod>
     <data>
         <display>
-        <title>我的面试准备 -- 基础JS</title>
+        <title>我的面试总结 -- 基础JS</title>
         <pubTime>2018-06-28T07:29:09.000Z</pubTime>
         
         <tag>JavaScript</tag>
          
         <tag>interview</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2018/05/23/Promise/</loc>
+    <lastmod>2018-06-28T08:53:31.354Z</lastmod>
+    <data>
+        <display>
+        <title>promise 异步请求方法</title>
+        <pubTime>2018-05-23T15:49:54.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
          
            
