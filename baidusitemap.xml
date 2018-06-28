@@ -4,16 +4,16 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/06/28/basic-js/</loc>
-    <lastmod>2018-06-28T08:40:39.953Z</lastmod>
+    <loc>https://abigaleyu.co/2018/05/23/Promise/</loc>
+    <lastmod>2018-06-28T08:53:31.354Z</lastmod>
     <data>
         <display>
-        <title>我的面试准备 -- 基础JS</title>
-        <pubTime>2018-06-28T07:29:09.000Z</pubTime>
+        <title>promise 异步请求方法</title>
+        <pubTime>2018-05-23T15:49:54.000Z</pubTime>
         
         <tag>JavaScript</tag>
          
-        <tag>interview</tag>
+        <tag>ES6</tag>
          
          
            
@@ -26,16 +26,16 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/05/23/Promise/</loc>
-    <lastmod>2018-06-28T06:58:41.289Z</lastmod>
+    <loc>https://abigaleyu.co/2018/06/28/basic-js/</loc>
+    <lastmod>2018-06-28T08:40:39.953Z</lastmod>
     <data>
         <display>
-        <title>promise 异步请求方法</title>
-        <pubTime>2018-05-23T15:49:54.000Z</pubTime>
+        <title>我的面试准备 -- 基础JS</title>
+        <pubTime>2018-06-28T07:29:09.000Z</pubTime>
         
         <tag>JavaScript</tag>
          
-        <tag>ES6</tag>
+        <tag>interview</tag>
          
          
            
@@ -229,18 +229,14 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
+    <loc>https://abigaleyu.co/2017/07/01/wxapp-demo/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
         <display>
-        <title>搭建音乐播放器桌面应用--前端篇</title>
-        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
+        <title>基于微信小程序开发的聊天小Demo</title>
+        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
         
-        <tag>Express</tag>
-         
-        <tag>React</tag>
-         
-        <tag>Electron</tag>
+        <tag>wxapp</tag>
          
          
            
@@ -253,14 +249,18 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2017/07/01/wxapp-demo/</loc>
+    <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
         <display>
-        <title>基于微信小程序开发的聊天小Demo</title>
-        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
+        <title>搭建音乐播放器桌面应用--前端篇</title>
+        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
         
-        <tag>wxapp</tag>
+        <tag>Express</tag>
+         
+        <tag>React</tag>
+         
+        <tag>Electron</tag>
          
          
            
