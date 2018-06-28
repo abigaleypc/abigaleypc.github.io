@@ -4,8 +4,30 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/05/23/promise/</loc>
-    <lastmod>2018-05-30T08:28:23.821Z</lastmod>
+    <loc>https://abigaleyu.co/2018/06/28/basic-js/</loc>
+    <lastmod>2018-06-28T08:40:39.953Z</lastmod>
+    <data>
+        <display>
+        <title>我的面试准备 -- 基础JS</title>
+        <pubTime>2018-06-28T07:29:09.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+        <tag>interview</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2018/05/23/Promise/</loc>
+    <lastmod>2018-06-28T06:58:41.289Z</lastmod>
     <data>
         <display>
         <title>promise 异步请求方法</title>
@@ -15,6 +37,24 @@
          
         <tag>ES6</tag>
          
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2017/05/11/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E3%80%81%E4%BA%8B%E4%BB%B6%E6%8D%95%E6%8D%89%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</loc>
+    <lastmod>2018-06-28T06:58:41.235Z</lastmod>
+    <data>
+        <display>
+        <title>事件冒泡、事件捕捉和事件委托</title>
+        <pubTime>2017-05-11T10:10:39.000Z</pubTime>
+        
          
            
              
@@ -189,26 +229,6 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2017/07/01/wxapp-demo/</loc>
-    <lastmod>2018-03-26T03:19:15.632Z</lastmod>
-    <data>
-        <display>
-        <title>基于微信小程序开发的聊天小Demo</title>
-        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
-        
-        <tag>wxapp</tag>
-         
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
@@ -221,6 +241,26 @@
         <tag>React</tag>
          
         <tag>Electron</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2017/07/01/wxapp-demo/</loc>
+    <lastmod>2018-03-26T03:19:15.632Z</lastmod>
+    <data>
+        <display>
+        <title>基于微信小程序开发的聊天小Demo</title>
+        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
+        
+        <tag>wxapp</tag>
          
          
            
@@ -845,24 +885,6 @@
          
         <tag>gulp</tag>
          
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://abigaleyu.co/2017/05/11/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E3%80%81%E4%BA%8B%E4%BB%B6%E6%8D%95%E6%8D%89%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</loc>
-    <lastmod>2017-07-11T09:53:39.000Z</lastmod>
-    <data>
-        <display>
-        <title>事件冒泡、事件捕捉和事件委托</title>
-        <pubTime>2017-05-11T10:10:39.000Z</pubTime>
-        
          
            
              
