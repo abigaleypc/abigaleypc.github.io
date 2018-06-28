@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="interview,Angular,VUE,ReactJS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/dear.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="AngularAngular是怎么实现双向绑定的？脏检查机制：   Angular 在解析视图模板时, 会找出其中的数据绑定, 以及对应的更新DOM的方式 然后通过 $scope.$watch 将这一绑定注册到当前 $scope 上下文的更新响应操作里。 $digest 每一个循环里会从根作用域开始遍历所有的 $scope 注册的 $watch 响应操作 当发现值有变化时，更新DOM数据。 这其中">
+<meta name="keywords" content="interview,Angular,VUE,ReactJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试总结-前端框架">
+<meta property="og:url" content="https://abigaleyu.co/2018/06/28/interview-FE-frame/index.html">
+<meta property="og:site_name" content="Abigale&#39;s Blog">
+<meta property="og:description" content="AngularAngular是怎么实现双向绑定的？脏检查机制：   Angular 在解析视图模板时, 会找出其中的数据绑定, 以及对应的更新DOM的方式 然后通过 $scope.$watch 将这一绑定注册到当前 $scope 上下文的更新响应操作里。 $digest 每一个循环里会从根作用域开始遍历所有的 $scope 注册的 $watch 响应操作 当发现值有变化时，更新DOM数据。 这其中">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/03frame/vue-01.png">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/03frame/vue-02.png">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/03frame/react-01.png">
+<meta property="og:updated_time" content="2018-06-28T10:07:08.646Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试总结-前端框架">
+<meta name="twitter:description" content="AngularAngular是怎么实现双向绑定的？脏检查机制：   Angular 在解析视图模板时, 会找出其中的数据绑定, 以及对应的更新DOM的方式 然后通过 $scope.$watch 将这一绑定注册到当前 $scope 上下文的更新响应操作里。 $digest 每一个循环里会从根作用域开始遍历所有的 $scope 注册的 $watch 响应操作 当发现值有变化时，更新DOM数据。 这其中">
+<meta name="twitter:image" content="https://abigaleyu.co/images/interview/03frame/vue-01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://abigaleyu.co/2018/06/28/interview-FE-frame/"/>
+
+
+
+
+
+  <title>面试总结-前端框架 | Abigale's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104545772-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Abigale's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/06/28/interview-FE-frame/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Abigale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dear.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Abigale's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">面试总结-前端框架</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T17:37:43+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/28/interview-FE-frame/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/28/interview-FE-frame/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Angular"><a href="#Angular" class="headerlink" title="Angular"></a>Angular</h2><h3 id="Angular是怎么实现双向绑定的？"><a href="#Angular是怎么实现双向绑定的？" class="headerlink" title="Angular是怎么实现双向绑定的？"></a>Angular是怎么实现双向绑定的？</h3><p>脏检查机制： </p>
+<ul>
+<li>Angular 在解析视图模板时, 会找出其中的数据绑定, 以及对应的更新DOM的方式</li>
+<li>然后通过 <code>$scope.$watch</code> 将这一绑定注册到当前 <code>$scope</code> 上下文的更新响应操作里。</li>
+<li><code>$digest</code> 每一个循环里会从根作用域开始遍历所有的 <code>$scope</code> 注册的 <code>$watch</code> 响应操作</li>
+<li>当发现值有变化时，更新DOM数据。</li>
+<li>这其中是通过一个dirty为true或false去更新数据。</li>
+</ul>
+<blockquote>
+<p>参考: <a href="https://github.com/xufei/blog/issues/10" target="_blank" rel="noopener">Angular沉思录（一）数据绑定</a></p>
+</blockquote>
+<h3 id="angular的路由是怎么实现的？"><a href="#angular的路由是怎么实现的？" class="headerlink" title="angular的路由是怎么实现的？"></a>angular的路由是怎么实现的？</h3><p>通过更新hash值</p>
+<a id="more"></a>
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><h3 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h3><h4 id="Vue是怎么实现双向绑定的？"><a href="#Vue是怎么实现双向绑定的？" class="headerlink" title="Vue是怎么实现双向绑定的？"></a>Vue是怎么实现双向绑定的？</h4><ul>
+<li>通过Object.defineProperty()进行数据劫持，设置各个属性的setter，getter，在数据变动时触发相应的监听回调。</li>
+<li>具体实现：<ul>
+<li>数据监听器Observer，能够对数据对象的所有属性进行监听，如有变动可拿到最新值并通知订阅者 </li>
+<li>实现一个指令解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数 </li>
+<li>实现一个Watcher，作为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图 /  它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 setter 被调用时，会通知 watcher 重新计算，从而致使它关联的组件得以更新。</li>
+<li>mvvm入口函数，整合以上三者</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>参考: <a href="https://github.com/DMQ/mvvm/blob/master/readme.md" target="_blank" rel="noopener">剖析Vue实现原理 - 如何实现双向绑定mvvm</a></p>
+</blockquote>
+<h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><ul>
+<li>实现数据的双向绑定，首先要对数据进行<strong>劫持监听</strong>，</li>
+<li>我们需要设置一个监听器Observer，用来监听所有属性。如果属性发上变化了，就需要告诉订阅者Watcher看是否需要更新。</li>
+<li>因为订阅者是有很多个，所以我们需要有一个<strong>消息订阅器Dep</strong>来专门收集这些订阅者，然后在监听器Observer和订阅者Watcher之间进行统一管理的。</li>
+<li>接着，我们还需要有一个指令解析器Compile，对每个节点元素进行<strong>扫描和解析</strong></li>
+<li>将相关指令对应初始化成一个订阅者Watcher，并<strong>替换模板数据或者绑定相应的函数</strong>，此时当订阅者Watcher接收到相应属性的变化，就会执行对应的更新函数，从而更新视图。</li>
+</ul>
+<p>因此接下去我们执行以下3个步骤，实现数据的双向绑定：</p>
+<ul>
+<li>实现一个监听器Observer，用来劫持并监听所有属性，如果有变动的，就通知订阅者。</li>
+<li>实现一个订阅者Watcher，为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图 </li>
+<li>实现一个解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数 </li>
+</ul>
+<blockquote>
+<p>参考：<a href="http://www.cnblogs.com/canfoo/p/6891868.html" target="_blank" rel="noopener">vue的双向绑定原理及实现</a></p>
+</blockquote>
+<h4 id="双向绑定图解"><a href="#双向绑定图解" class="headerlink" title="双向绑定图解"></a>双向绑定图解</h4><p><img src="/images/interview/03frame/vue-01.png" alt="双向绑定图解"></p>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
+<li>beforeCreate</li>
+<li>created</li>
+<li>beforeMount</li>
+<li>mounted</li>
+<li>beforeUpdate</li>
+<li>updated</li>
+<li>beforeDestroy</li>
+<li>destroyed</li>
+</ul>
+<h4 id="生命周期图解"><a href="#生命周期图解" class="headerlink" title="生命周期图解"></a>生命周期图解</h4><p><img src="/images/interview/03frame/vue-02.png" alt="生命周期图解"></p>
+<blockquote>
+<p>参考：<a href="https://segmentfault.com/a/1190000011381906" target="_blank" rel="noopener">详解vue生命周期</a></p>
+</blockquote>
+<h3 id="Vue的路由是怎么实现的？"><a href="#Vue的路由是怎么实现的？" class="headerlink" title="Vue的路由是怎么实现的？"></a>Vue的路由是怎么实现的？</h3><ul>
+<li>通过更新hash值</li>
+<li>采用H5的history api<ul>
+<li>history.pushState()</li>
+<li>history.replaceState()</li>
+<li>history.back();  history.go()</li>
+</ul>
+</li>
+</ul>
+<h3 id="为什么采用VUE"><a href="#为什么采用VUE" class="headerlink" title="为什么采用VUE"></a>为什么采用VUE</h3><ul>
+<li>使用 Virtual DOM</li>
+<li>提供了响应式（Reactive）和组件化（Composable）的视图组件。</li>
+<li>将注意力集中保持在核心库，而将其他功能如路由和全局状态管理交给相关的库。</li>
+<li>在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染</li>
+</ul>
+<h4 id="Vue-template"><a href="#Vue-template" class="headerlink" title="Vue - template"></a>Vue - template</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">  <span class="comment">// 选项</span></div><div class="line">  el: <span class="string">"#app"</span>,</div><div class="line">  data: &#123;</div><div class="line">    name: <span class="string">""</span>,</div><div class="line">    age: <span class="number">10</span></div><div class="line">  &#125;,</div><div class="line">  watch: &#123;</div><div class="line">    a: <span class="function"><span class="keyword">function</span>(<span class="params">val, oldVal</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"new: %s, old: %s"</span>, val, oldVal);</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// 方法名</span></div><div class="line">    b: <span class="string">"someMethod"</span>,</div><div class="line">    <span class="comment">// 深度 watcher</span></div><div class="line">    c: &#123;</div><div class="line">      handler: <span class="function"><span class="keyword">function</span>(<span class="params">val, oldVal</span>) </span>&#123;</div><div class="line">        <span class="comment">/* ... */</span></div><div class="line">      &#125;,</div><div class="line">      deep: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// 该回调将会在侦听开始之后被立即调用</span></div><div class="line">    d: &#123;</div><div class="line">      handler: <span class="function"><span class="keyword">function</span>(<span class="params">val, oldVal</span>) </span>&#123;</div><div class="line">        <span class="comment">/* ... */</span></div><div class="line">      &#125;,</div><div class="line">      immediate: <span class="literal">true</span></div><div class="line">    &#125;,</div><div class="line">    e: [</div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">handle1</span>(<span class="params">val, oldVal</span>) </span>&#123;</div><div class="line">        <span class="comment">/* ... */</span></div><div class="line">      &#125;,</div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">handle2</span>(<span class="params">val, oldVal</span>) </span>&#123;</div><div class="line">        <span class="comment">/* ... */</span></div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">    <span class="comment">// watch vm.e.f's value: &#123;g: 5&#125;</span></div><div class="line">    <span class="string">"e.f"</span>: <span class="function"><span class="keyword">function</span>(<span class="params">val, oldVal</span>) </span>&#123;</div><div class="line">      <span class="comment">/* ... */</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; foo &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 这里的 `foo` 不会更新！ --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"foo = 'baz'"</span>&gt;</span>Change it<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;template&gt;</div><div class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"messgae"</span>&gt;&#123;&#123;msg&#125;&#125;&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>template&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">export</span> <span class="keyword">default</span>&#123;</div><div class="line">        data()&#123;</div><div class="line">            <span class="keyword">return</span> &#123;</div><div class="line">                msg:<span class="string">'Hello from vue-loader'</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&lt;style&gt;</span></div><div class="line"><span class="regexp">.message&#123;</span></div><div class="line"><span class="regexp">    color:red;</span></div><div class="line"><span class="regexp">    font-size:36px;</span></div><div class="line"><span class="regexp">    font-weight:blod;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp">&lt;/</span>style&gt;</div></pre></td></tr></table></figure>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><h3 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h3><p>性能问题：</p>
+<h4 id="关于组件重新渲染的问题："><a href="#关于组件重新渲染的问题：" class="headerlink" title="关于组件重新渲染的问题："></a>关于组件重新渲染的问题：</h4><ul>
+<li>没有导致state的值发生变化的setState是否会导致重渲染？</li>
+<li>组件的state没有变化，并且从父组件接受的props也没有变化，那它就还可能重渲染吗？</li>
+</ul>
+<p>  以上两个问题答案分别为【是】和【可能】。解决以上的问题需要<code>shouldComponentUpdate(nextProps,nextState)</code>配合。<code>shouldComponentUpdate</code>只有返回<code>true</code>,<code>componentWillUpdate</code> <code>render</code> <code>componentDidUpdate</code>都会被调用，则组件会被重新渲染。返回<code>false</code>则不会重新渲染</p>
+<p>  第一个问题：当本组件调用了<code>setState</code>时输入空参数，或者不改变state，shouldComponentUpdate会被调用。所以组件会被重新渲染，这时可以做如下改进</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在render函数调用前判断：如果前后state中Number不变，通过return false阻止render调用</span></div><div class="line">shouldComponentUpdate(nextProps,nextState)&#123;</div><div class="line">    <span class="keyword">if</span>(nextState.Number == <span class="keyword">this</span>.state.Number)&#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  第二个问题：当父组件之下有多个子组件，父组件更改了state,会影响其中一个子组件的props，本来只有该子组件被重新渲染，但发现多个子组件都被重新渲染了，这时同样需要在shouldComponentUpdate做一个调整，当props更新时shouldComponentUpdate返回true,否则返回false</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  shouldComponentUpdate(nextProps,nextState)&#123;</div><div class="line">    <span class="keyword">if</span>(nextProps.number == <span class="keyword">this</span>.props.number)&#123;</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>nextProps.number == this.props.number不能写成nextProps == this.props，它总返回false因为它们是堆中内存不同的两个对象。</p>
+</blockquote>
+<p>  但当组件是对象 数组时，只用等于号判断是不合理的，因为他们存的是引用地址，可以采用深拷贝去更新每一次变化<br>  比如将</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.setState(&#123;</div><div class="line">  number: [number[<span class="number">0</span>],<span class="number">2</span>,number[<span class="number">2</span>])</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>  改为</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> number = number.slice(<span class="number">0</span>) <span class="comment">// 即深拷贝到新的地址</span></div><div class="line"><span class="keyword">this</span>.setState(&#123;</div><div class="line">  number</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="关于setState"><a href="#关于setState" class="headerlink" title="关于setState"></a>关于setState</h3><h4 id="调用-setState-之后发生了什么？"><a href="#调用-setState-之后发生了什么？" class="headerlink" title="调用 setState 之后发生了什么？"></a>调用 setState 之后发生了什么？</h4><ul>
+<li>在代码中调用setState函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程（Reconciliation）。</li>
+<li>经过调和过程，React 会以相对高效的方式根据新的状态构建 React 元素树并且着手重新渲染整个UI界面。</li>
+<li>在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。</li>
+<li>在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</li>
+</ul>
+<blockquote>
+<p>参考： <a href="https://doc.react-china.org/docs/react-component.html#setstate" target="_blank" rel="noopener">React官方setState</a></p>
+</blockquote>
+<h5 id="调和过程："><a href="#调和过程：" class="headerlink" title="调和过程："></a>调和过程：</h5><p>setState通过引发一次组件的更新过程来引发重新绘制；<br>setState调用引起的React的更新生命周期函数4个函数（比修改prop引发的生命周期少一个componentWillReceiveProps函数），这4个函数依次被调用。</p>
+<ul>
+<li>shouldComponentUpdate 返回true时才会做以下操作</li>
+<li>componentWillUpdate</li>
+<li>render 这一步this.state才得到更新</li>
+<li>componentDidUpdate</li>
+</ul>
+<h4 id="setState不会立刻改变React组件中state的值；"><a href="#setState不会立刻改变React组件中state的值；" class="headerlink" title="setState不会立刻改变React组件中state的值；"></a>setState不会立刻改变React组件中state的值；</h4><p>不会。修改this.state.number 会引起状态改变 但不会引起UI的更新。所以setState用来调用做UI更新</p>
+<h4 id="多次setState函数调用产生的效果会合并。"><a href="#多次setState函数调用产生的效果会合并。" class="headerlink" title="多次setState函数调用产生的效果会合并。"></a>多次setState函数调用产生的效果会合并。</h4><p>因为React会将多个this.setState产生的修改放在一个队列里，缓一缓，攒在一起，觉得差不多了再引发一次更新过程。</p>
+<h4 id="关于-setState-这里有三件事情需要知道"><a href="#关于-setState-这里有三件事情需要知道" class="headerlink" title="关于 setState() 这里有三件事情需要知道"></a>关于 setState() 这里有三件事情需要知道</h4><ul>
+<li>不要直接更新状态 如 this.state.number = 1;该方法没调用setState就不会走生命周期</li>
+<li><p>状态更新可能是异步的；所以以下代码错误</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.setState(&#123;</div><div class="line">  counter: <span class="keyword">this</span>.state.counter + <span class="keyword">this</span>.props.increment,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  正确的方式</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.setState(<span class="function">(<span class="params">prevState, props</span>) =&gt;</span> (&#123;</div><div class="line">  counter: prevState.counter + props.increment</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<ul>
+<li>状态更新合并: 调用setState时，虽然参数只有一个值，但它会与其他state先合并</li>
+</ul>
+<h4 id="setState可以接受函数为参数吗？有什么作用？"><a href="#setState可以接受函数为参数吗？有什么作用？" class="headerlink" title="setState可以接受函数为参数吗？有什么作用？"></a>setState可以接受函数为参数吗？有什么作用？</h4>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.setState(<span class="function">(<span class="params">prevState, props</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> &#123;<span class="attr">counter</span>: prevState.counter + props.step&#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>  函数接收到的prevState 和 props保证都是最新的。比如我们多次更改state时有时可能异步的问题，重叠忽略了一些<br>  比如this.setState({number:this.state.number+1})连续调用三次，但三次this.state.number的值一样时，有可能最后并不是加了三次</p>
+<h4 id="传入-setState-函数的第二个参数的作用是什么？"><a href="#传入-setState-函数的第二个参数的作用是什么？" class="headerlink" title="传入 setState 函数的第二个参数的作用是什么？"></a>传入 setState 函数的第二个参数的作用是什么？</h4><p>  该函数会在setState函数调用完成并且组件开始重渲染的时候被调用，我们可以用该函数来监听渲染是否完成</p>
+<h4 id="什么时候不能调用setState"><a href="#什么时候不能调用setState" class="headerlink" title="什么时候不能调用setState"></a>什么时候不能调用setState</h4><ul>
+<li>componentWillUpdate(): 我也不知道这个声明周期函数的意义在哪里，在这个函数内你不能调用setState改变组件状态<br>render()</li>
+</ul>
+<h4 id="什么时候调用setState不会再次调用render"><a href="#什么时候调用setState不会再次调用render" class="headerlink" title="什么时候调用setState不会再次调用render"></a>什么时候调用setState不会再次调用render</h4><ul>
+<li>componentWillReceiveProps(nextProps): 在这里你可以拿到即将改变的状态，可以在这一步中通过setState方法设置state ，这一步setState不会让重新render()</li>
+</ul>
+<h3 id="生命周期-1"><a href="#生命周期-1" class="headerlink" title="生命周期"></a>生命周期</h3><h4 id="描述一下React组件的各个生命周期函数吗-组件的生命周期有哪些"><a href="#描述一下React组件的各个生命周期函数吗-组件的生命周期有哪些" class="headerlink" title="描述一下React组件的各个生命周期函数吗/组件的生命周期有哪些"></a>描述一下React组件的各个生命周期函数吗/组件的生命周期有哪些</h4><h5 id="组件的声明周期有三种阶段"><a href="#组件的声明周期有三种阶段" class="headerlink" title="组件的声明周期有三种阶段"></a>组件的声明周期有三种阶段</h5><ul>
+<li>初始化阶段（Mounting）</li>
+<li>更新阶段（Updating）</li>
+<li>析构阶段（Unmounting）</li>
+</ul>
+<h5 id="组件的初始化阶段"><a href="#组件的初始化阶段" class="headerlink" title="组件的初始化阶段"></a>组件的初始化阶段</h5><ul>
+<li>constructor(): 用于绑定事件以及初始化state（可以通过”fork”props的方式给state赋值）</li>
+<li>componentWillMount(): 只会在服务端渲染时被调用，你可以在这里同步操作state。由于这个方法始终只执行一次，所以如果在这里定义了setState方法之后，页面永远都只会在加载前更新一次。</li>
+<li>render(): 这个函数是用来渲染DOM没有错。但它只能用来渲染DOM，请保证它的纯粹性。如果有操作DOM或者和浏览器打交道的一系列操作，请在下一步骤componentDidMount中进行</li>
+<li>componentDidMount(): 如果你有第三方操作DOM的类库需要初始化（类似于jQuery，Bootstrap的一些组件）操作DOM、或者请求异步数据，都应该放在这个步骤中做</li>
+</ul>
+<h5 id="组件更新阶段"><a href="#组件更新阶段" class="headerlink" title="组件更新阶段"></a>组件更新阶段</h5><ul>
+<li>componentWillReceiveProps(nextProps): 在这里你可以拿到即将改变的状态，可以在这一步中通过setState方法设置state 。这里拿到的this.props还是就的props.</li>
+<li>shouldComponentUpdate(nextProps, nextState): 这一步骤非常重要，它的返回值决定了接下来的生命周期函数是否会被调用，默认返回true，即都会被调用；你也可以重写这个函数使它返回false。</li>
+<li>componentWillUpdate(): 我也不知道这个声明周期函数的意义在哪里，在这个函数内你不能调用setState改变组件状态，否则会立即触发另一轮的渲染并且又再一次调用componentWillUpdate，陷入无限循环中。</li>
+<li>render()</li>
+<li>componentDidUpdate(): 和componentDidMount类似，在这里执行DOM操作以及发起网络请求</li>
+</ul>
+<h5 id="组件析构阶段"><a href="#组件析构阶段" class="headerlink" title="组件析构阶段"></a>组件析构阶段</h5><ul>
+<li>componentWillUnmount(): 主要用于执行一些清理工作，比如取消网络请求，清楚多余的DOM元素等。清除componentDidMount 或 componentDidUpdate中的任务。</li>
+</ul>
+<blockquote>
+<p>参考：<a href="http://react-china.org/t/react/1740" target="_blank" rel="noopener">各个函数的描述</a></p>
+</blockquote>
+<h4 id="生命周期图解-1"><a href="#生命周期图解-1" class="headerlink" title="生命周期图解"></a>生命周期图解</h4><p><img src="/images/interview/03frame/react-01.png" alt="生命周期图解"></p>
+<h3 id="渲染机制"><a href="#渲染机制" class="headerlink" title="渲染机制"></a>渲染机制</h3><ul>
+<li>要点：合并，diff算法 ， 生命周期调用过程</li>
+</ul>
+<h4 id="更新渲染过程"><a href="#更新渲染过程" class="headerlink" title="更新渲染过程"></a>更新渲染过程</h4><ul>
+<li>setState()</li>
+<li>在代码中调用setState函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程</li>
+<li>调和过程中采用Diff算法，不同节点类型的比较 ，分两种情况：<ul>
+<li>节点类型不同： 直接删除旧的节点，再新建新的节点</li>
+<li>节点类型相同，属性不同： 对比属性，只改变变化了的节点属性</li>
+</ul>
+</li>
+<li>构建 React 元素树并且着手重新渲染整个UI界面</li>
+<li>shouldComponentUpdate -&gt; componentWillUpdate -&gt; render -&gt; componentDidUpdate</li>
+<li>在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。</li>
+<li>在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</li>
+</ul>
+<blockquote>
+<p>参考：<a href="http://imweb.io/topic/5985cc4d35d7d0a321c5eb75" target="_blank" rel="noopener">React 渲染机制解析</a>,<a href="http://www.infoq.com/cn/articles/react-dom-diff" target="_blank" rel="noopener">深入浅出React（四）：虚拟DOM Diff算法解析</a></p>
+</blockquote>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="在什么情况下你会优先选择使用-Class-Component-而不是-Functional-Component？"><a href="#在什么情况下你会优先选择使用-Class-Component-而不是-Functional-Component？" class="headerlink" title="在什么情况下你会优先选择使用 Class Component 而不是 Functional Component？"></a>在什么情况下你会优先选择使用 Class Component 而不是 Functional Component？</h4><p>  在组件需要包含内部状态或者使用到生命周期函数的时候使用 Class Component ，否则使用函数式组件。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Clock</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;div&gt;</div><div class="line">      &lt;h1&gt;Hello, world!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">      &lt;h2&gt;It is &#123;props.date.toLocaleTimeString()&#125;.&lt;<span class="regexp">/h2&gt;</span></div><div class="line"><span class="regexp">    &lt;/</span>div&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用类就允许我们使用其它特性，例如局部状态、生命周期钩子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;h1&gt;Hello, world!<span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">        &lt;h2&gt;It is &#123;<span class="keyword">this</span>.props.date.toLocaleTimeString()&#125;.&lt;<span class="regexp">/h2&gt;</span></div><div class="line"><span class="regexp">      &lt;/</span>div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="React-中-Element-与-Component-的区别是？"><a href="#React-中-Element-与-Component-的区别是？" class="headerlink" title="React 中 Element 与 Component 的区别是？"></a>React 中 Element 与 Component 的区别是？</h4><p>  简单而言，React Element 是描述屏幕上所见内容的数据结构，是对于 UI 的对象表述。典型的 React Element 就是利用 JSX 构建的声明式代码片然后被转化为createElement的调用组合。而 React Component 则是可以接收参数输入并且返回某个 React Element 的函数或者类。</p>
+<h4 id="React-中的-refs-作用是什么？"><a href="#React-中的-refs-作用是什么？" class="headerlink" title="React 中的 refs 作用是什么？"></a>React 中的 refs 作用是什么？</h4><p>Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。 允许您直接访问DOM元素或组件实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;Input ref = &#123;input =&gt; <span class="keyword">this</span>.Input=input&#125;&gt;</div></pre></td></tr></table></figure>
+<h4 id="Controlled-Component-与-Uncontrolled-Component-之间的区别是什么？"><a href="#Controlled-Component-与-Uncontrolled-Component-之间的区别是什么？" class="headerlink" title="Controlled Component 与 Uncontrolled Component 之间的区别是什么？"></a>Controlled Component 与 Uncontrolled Component 之间的区别是什么？</h4><p>React 的核心组成之一就是能够维持内部状态的自治组件，不过当我们引入原生的HTML表单元素时（input,select,textarea 等），我们是否应该将所有的数据托管到 React 组件中还是将其仍然保留在 DOM 元素中呢？这个问题的答案就是受控组件与非受控组件的定义分割。受控组件（Controlled Component）代指那些交由 React 控制并且所有的表单数据统一存放的组件。譬如下面这段代码中username变量值并没有存放到DOM元素中，而是存放在组件状态数据中。任何时候我们需要改变username变量值时，我们应当调用setState函数进行修改。</p>
+<p>  竟然非受控组件看上去更好实现，我们可以直接从 DOM 中抓取数据，而不需要添加额外的代码。不过实际开发中我们并不提倡使用非受控组件，因为实际情况下我们需要更多的考虑表单验证、选择性的开启或者关闭按钮点击、强制输入格式等功能支持，而此时我们将数据托管到 React 中有助于我们更好地以声明式的方式完成这些功能。引入 React 或者其他 MVVM 框架最初的原因就是为了将我们从繁重的直接操作 DOM 中解放出来。</p>
+<h4 id="shouldComponentUpdate-的作用是啥以及为何它这么重要？"><a href="#shouldComponentUpdate-的作用是啥以及为何它这么重要？" class="headerlink" title="shouldComponentUpdate 的作用是啥以及为何它这么重要？"></a>shouldComponentUpdate 的作用是啥以及为何它这么重要？</h4><p>  shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新。</p>
+<h4 id="createElement-与-cloneElement-的区别是什么？"><a href="#createElement-与-cloneElement-的区别是什么？" class="headerlink" title="createElement 与 cloneElement 的区别是什么？"></a>createElement 与 cloneElement 的区别是什么？</h4><p>  createElement 函数是 JSX 编译之后使用的创建 React Element 的函数，而 cloneElement 则是用于复制某个元素并传入新的 Props。</p>
+<h4 id="为什么我们需要使用-React-提供的-Children-API-而不是-JavaScript-的-map？"><a href="#为什么我们需要使用-React-提供的-Children-API-而不是-JavaScript-的-map？" class="headerlink" title="为什么我们需要使用 React 提供的 Children API 而不是 JavaScript 的 map？"></a>为什么我们需要使用 React 提供的 Children API 而不是 JavaScript 的 map？</h4><p>  props.children并不一定是数组类型，譬如下面这个元素：</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Parent&gt;</div><div class="line">  &lt;h1&gt;Welcome.&lt;<span class="regexp">/h1&gt;</span></div><div class="line"><span class="regexp">&lt;/</span>Parent&gt;</div></pre></td></tr></table></figure>
+<p>  如果我们使用props.children.map函数来遍历时会受到异常提示，因为在这种情况下props.children是对象（object）而不是数组（array）。React 当且仅当超过一个子元素的情况下会将props.children设置为数组，就像下面这个代码片：</p>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Parent&gt;</div><div class="line">  &lt;h1&gt;Welcome.&lt;<span class="regexp">/h1&gt;</span></div><div class="line"><span class="regexp">  &lt;h2&gt;props.children will now be an array&lt;/</span>h2&gt;</div><div class="line">&lt;<span class="regexp">/Parent&gt;</span></div></pre></td></tr></table></figure>
+<p>  这也就是我们优先选择使用React.Children.map函数的原因，其已经将props.children不同类型的情况考虑在内了。</p>
+<h4 id="如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？"><a href="#如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？" class="headerlink" title="如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？"></a>如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？</h4>  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;Twitter username=<span class="string">"tylermcginnis33"</span>&gt;</div><div class="line">  &#123;user =&gt; (user === <span class="literal">null</span> ? &lt;Loading /&gt; : &lt;Badge info=&#123;user&#125; /&gt;)&#125;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">Twitter</span>&gt;</span>;</span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml"></span></div><div class="line"><span class="xml">import React, &#123; Component, PropTypes &#125; from 'react'</span></div><div class="line"><span class="xml">import fetchUser from 'twitter'</span></div><div class="line"><span class="xml">class Twitter extends Component &#123;</span></div><div class="line"><span class="xml">  state = &#123;</span></div><div class="line"><span class="xml">    user: null,</span></div><div class="line"><span class="xml">  &#125;</span></div><div class="line"><span class="xml">  static propTypes = &#123;</span></div><div class="line"><span class="xml">    username: PropTypes.string.isRequired,</span></div><div class="line"><span class="xml">  &#125;</span></div><div class="line"><span class="xml">  componentDidMount () &#123;</span></div><div class="line"><span class="xml">    fetchUser(this.props.username)</span></div><div class="line"><span class="xml">      .then((user) =&gt; this.setState(&#123;user&#125;))</span></div><div class="line"><span class="xml">  &#125;</span></div><div class="line"><span class="xml">  render () &#123;</span></div><div class="line"><span class="xml">    return this.props.children(this.state.user)</span></div><div class="line"><span class="xml">  &#125;</span></div><div class="line"><span class="xml">&#125;</span></div></pre></td></tr></table></figure>
+<h4 id="在生命周期中的哪一步你应该发起-AJAX-请求？"><a href="#在生命周期中的哪一步你应该发起-AJAX-请求？" class="headerlink" title="在生命周期中的哪一步你应该发起 AJAX 请求？"></a>在生命周期中的哪一步你应该发起 AJAX 请求？</h4><p>我们应当将AJAX 请求放到 componentDidMount 函数中执行，主要原因有下：</p>
+<p>React 下一代调和算法 Fiber 会通过开始或停止渲染的方式优化应用性能，其会影响到 componentWillMount 的触发次数。对于 componentWillMount 这个生命周期函数的调用次数会变得不确定，React 可能会多次频繁调用 componentWillMount。如果我们将 AJAX 请求放到 componentWillMount 函数中，那么显而易见其会被触发多次，自然也就不是好的选择。</p>
+<p>如果我们将 AJAX 请求放置在生命周期的其他函数中，我们并不能保证请求仅在组件挂载完毕后才会要求响应。如果我们的数据请求在组件挂载之前就完成，并且调用了setState函数将数据添加到组件状态中，对于未挂载的组件则会报错。而在 componentDidMount 函数中进行 AJAX 请求则能有效避免这个问题。</p>
+<h4 id="什么是JSX"><a href="#什么是JSX" class="headerlink" title="什么是JSX"></a>什么是JSX</h4><p>  就是为了把 HTML 模板直接嵌入到 JS 代码里面，这样就做到了模板和组件关联，但是 JS 不支持这种包含 HTML 的语法，所以需要通过工具将 JSX 编译输出成 JS 代码才能使用</p>
+<h4 id="props-和-state"><a href="#props-和-state" class="headerlink" title="props 和 state"></a>props 和 state</h4><ul>
+<li>props是组件的属性，只读</li>
+<li>state是当前组件的状态，是私有的。</li>
+</ul>
+<h4 id="为什么我们利用循环产生的组件中要用上key这个特殊的prop？"><a href="#为什么我们利用循环产生的组件中要用上key这个特殊的prop？" class="headerlink" title="为什么我们利用循环产生的组件中要用上key这个特殊的prop？"></a>为什么我们利用循环产生的组件中要用上key这个特殊的prop？</h4><p>  有babel转换后React.createElement中的代码可以看出，其它元素之所以不是必须需要key是因为不管组件的state或者props如何变化，这些元素始终占据着React.createElement固定的位置，这个位置就是天然的key。</p>
+<p>  而由数组创建的组件可能由于动态的操作导致重新渲染时，子组件的位置发生了变化，例如上面用户列表子组件新增一个用户，上面两个用户的位置可能变化为下面这样：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> element = React.createElement(</div><div class="line">  <span class="string">"div"</span>,</div><div class="line">  <span class="literal">null</span>,</div><div class="line">  React.createElement(<span class="string">"h3"</span>,<span class="literal">null</span>,<span class="string">"用户列表"</span>),</div><div class="line">  [</div><div class="line">    React.createElement(<span class="string">"div"</span>,&#123; <span class="attr">key</span>: <span class="number">3</span> &#125;,<span class="string">"1:王五"</span>), </div><div class="line">    React.createElement(<span class="string">"div"</span>,&#123; <span class="attr">key</span>: <span class="number">1</span> &#125;,<span class="string">"2:张三"</span>), </div><div class="line">    React.createElement(<span class="string">"div"</span>,&#123; <span class="attr">key</span>: <span class="number">2</span> &#125;,<span class="string">"3:李四"</span>)</div><div class="line">  ]</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>  可以看出，数组创建子组件的位置并不固定，动态改变的；这样有了key属性后，react就可以根据key值来判断是否为同一组件。</p>
+<h4 id="组件的Render函数在何时被调用"><a href="#组件的Render函数在何时被调用" class="headerlink" title="组件的Render函数在何时被调用"></a>组件的Render函数在何时被调用</h4><p>  如果单纯、侠义的回答这个问题，毫无疑问Render是在组件 state 发生改变时候被调用。无论是通过 setState 函数改变组件自身的state值，还是继承的 props 属性发生改变都会造成render函数被调用，即使改变的前后值都是一样的。</p>
+<p>  如果你想手动决定是否调用也没有问题，如果你还记得React的生命周期的话，一定记得有一个boolean shouldComponentUpdate(object nextProps, object nextState)生命周期函数，这个函数的返回值决定了Render是否被调用，默认都返回true，即允许render被调用。如果你对自己的判断能力有自信，你可以重写这个函数，根据参数判断是否应该调用 Render 函数。这也是React其中的一个优化点。</p>
+<h4 id="render函数被调用了，DOM就一定被更新了？"><a href="#render函数被调用了，DOM就一定被更新了？" class="headerlink" title="render函数被调用了，DOM就一定被更新了？"></a>render函数被调用了，DOM就一定被更新了？</h4><p>  这要看更新的是哪一类DOM了。</p>
+<p>  React组件中存在两类DOM，一类是众所周知的Virtual DOM，相信大家也耳熟能详了；另一类就是浏览器中的真实DOM（Real DOM/Native DOM）。React的Render函数被调用之后，React立即根据props或者state重新创建了一颗Virtual DOM Tree，虽然每一次调用时都重新创建，但因为在内存中创建DOM树其实是非常快且不影响性能的，所以这一步的开销并不大。而Virtual DOM的更新并不意味这Real DOM的更新，接下来的事情也是大家知道的，React采用算法将Virtual DOM和Real DOM进行对比，找出需要更新的最小步骤，此时Real DOM才可能发生修改。每一次的state更改都会使得render函数被调用，但页面的DOM不一定会发生修改</p>
+<h2 id="各个框架比较"><a href="#各个框架比较" class="headerlink" title="各个框架比较"></a>各个框架比较</h2><h4 id="React-和-Vue-有许多相似之处"><a href="#React-和-Vue-有许多相似之处" class="headerlink" title="React 和 Vue 有许多相似之处"></a>React 和 Vue 有许多相似之处</h4><ul>
+<li>它们都是JavaScript的UI框架</li>
+<li>使用 Virtual DOM</li>
+<li>提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。</li>
+<li>将注意力集中保持在核心库，而将其他功能如路由和全局状态管理交给相关的库。</li>
+</ul>
+<h4 id="追踪变化-更新DOM-视图渲染-Vue和React的设计思想有什么区别"><a href="#追踪变化-更新DOM-视图渲染-Vue和React的设计思想有什么区别" class="headerlink" title="追踪变化/更新DOM/视图渲染/Vue和React的设计思想有什么区别"></a>追踪变化/更新DOM/视图渲染/Vue和React的设计思想有什么区别</h4><p>  简述：vue是采用双向绑定去做数据更新，视图渲染。而react是单向的，通过对比状态差异更新。</p>
+<h5 id="vue-可以对着图片想象"><a href="#vue-可以对着图片想象" class="headerlink" title="vue: (可以对着图片想象)"></a>vue: (可以对着图片想象)</h5><ul>
+<li>对数据进行劫持监听,当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter</li>
+<li>实现一个监听器Observer，用来劫持并监听所有属性，如果有变动的，就通知订阅者。</li>
+<li>实现一个订阅者Watcher，为连接Observer和Compile的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图 </li>
+<li>实现一个解析器Compile，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数 </li>
+</ul>
+<h5 id="react"><a href="#react" class="headerlink" title="react:"></a>react:</h5><ul>
+<li>setState()</li>
+<li>在代码中调用setState函数之后，React 会将传入的参数对象与组件当前的状态合并，然后触发所谓的调和过程</li>
+<li>调和过程后有一个新的UI树，这个UI树需要跟旧的UI树做对比。<br>采用Diff算法，不同节点类型的比较 ，分两种情况：<ul>
+<li>节点类型不同： 直接删除旧的节点，再新建新的节点</li>
+<li>节点类型相同，属性不同： 对比属性，只改变变化了的节点属性</li>
+</ul>
+</li>
+<li>构建 React 元素树并且着手重新渲染整个UI界面</li>
+<li>shouldComponentUpdate -&gt; componentWillUpdate -&gt; render -&gt; componentDidUpdate</li>
+<li>在 React 得到元素树之后，React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。</li>
+<li>在差异计算算法中，React 能够相对精确地知道哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。</li>
+</ul>
+<h4 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h4><ul>
+<li>vue 是 双向绑定</li>
+<li>react 是 单向的</li>
+</ul>
+<h4 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h4><ul>
+<li>vue<ul>
+<li>父子组件之间的数据通信是通过Prop和自定义事件实现的</li>
+<li>使用 events 向父组件发送消息：<ul>
+<li>向父组件发送事件，我们可以调用实例中内置的 $emit 方法</li>
+<li>通过 v-on 监听这个事件</li>
+</ul>
+</li>
+<li>非父子组件可以使用订阅/发布模式实现（类似于Angualr中的非父子指令之间的通信）</li>
+</ul>
+</li>
+<li>React<ul>
+<li>父与子之间的数据通信是通过props属性就行传递的</li>
+<li>子与父之间的数据通信可以通过父组件定义事件，子组件触发父组件中的事件时，通过实参的形式来改变父组件中的数据来通信</li>
+<li>非父子组件之间的通信：React中在处理非父子组件之间的通信时，简单的，嵌套不深的非父子组件（如：兄弟组件）可以仍然使用上一节非父子组件之间通信中的事件函数，传形参的方式来实现。深层的话可以用redux管理</li>
+</ul>
+</li>
+</ul>
+<h4 id="编写方式-Template-vs-jsx"><a href="#编写方式-Template-vs-jsx" class="headerlink" title="编写方式 Template vs jsx"></a>编写方式 Template vs jsx</h4><ul>
+<li>vue是用模板，Vue鼓励你去写近似常规HTML的模板</li>
+<li>React推荐你所有的模板通用JavaScript的语法扩展——JSX书写</li>
+</ul>
+<h4 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h4><ul>
+<li>vue<br>数据由data属性在Vue对象中进行管理</li>
+<li>react<br>react 采用state去管理它的状态，state对象在React应用中是不可变的，意味着它不能被直接改变（这也许不一定正确）。在React中你需要使用setState()方法去更新状态</li>
+</ul>
+<h4 id="Vue和React的有什么优劣"><a href="#Vue和React的有什么优劣" class="headerlink" title="Vue和React的有什么优劣"></a>Vue和React的有什么优劣</h4><h4 id="Vue的优势（性能方面）"><a href="#Vue的优势（性能方面）" class="headerlink" title="Vue的优势（性能方面）"></a>Vue的优势（性能方面）</h4><ul>
+<li>vue在更新数据时会定位到某个状态如何就去修改它，因为这个监听从一开始就已经被绑定。而react是当一个节点类型发生变化，该节点包含节点下所有子节点均会被删除。<blockquote>
+<p>在 React 应用中，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树。如要避免不必要的子组件的重渲染，你需要在所有可能的地方使用 PureComponent，或是手动实现 shouldComponentUpdate 方法。同时你可能会需要使用不可变的数据结构来使得你的组件更容易被优化。然而，使用 PureComponent 和 shouldComponentUpdate 时，需要保证该组件的整个子树的渲染输出都是由该组件的 props 所决定的。如果不符合这个情况，那么此类优化就会导致难以察觉的渲染结果不一致。这使得 React 中的组件优化伴随着相当的心智负担。而Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。你可以理解为每一个组件都已经自动获得了 shouldComponentUpdate，并且没有上述的子树问题限制。</p>
+</blockquote>
+</li>
+<li>双向绑定：这样开发过程快速找到某个值，实时反应用户输入的场合会非常方便</li>
+</ul>
+<h4 id="React的优势"><a href="#React的优势" class="headerlink" title="React的优势"></a>React的优势</h4><ul>
+<li>有Facebook背景。像 React Native，React VR这种量级的生态圈是很重要的考量;</li>
+<li>社区活跃，大量react周边产物，如蚂蚁金福的ant design;</li>
+<li>高度组件化，我可以一层一层地拆 很清晰</li>
+<li>React 采用虚拟DOM，js操作比DOM操作快多了在大数据的情况下，React的运行效率是最高的<blockquote>
+<p>基于v-dom的UI框架: 采用virtual dom render + diff进行必要的DOM渲染。这样的好处是我们可以采用一种比重置innerHtml 更高效的方法更新DOM元素。在过往我们写的DOM元素是需要调出DOM然后再对它操作，因此导致页面reflow或repaint,而react是所有元素置于v-dom，即完完全全在JavaScript中曲操作DOM，这样开销就小了很多。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="学习成本"><a href="#学习成本" class="headerlink" title="学习成本"></a>学习成本</h4><p>  vue对新手更友好，react相对来说学习路线更陡；个人觉得，react写起来更优雅。</p>
+<ul>
+<li>AngularJS适用于CRUD操作的web应用，不适用与游戏、图形编辑器这种DOM操作频繁的web应用。目前功能比较齐全。</li>
+<li>react可以拓展到服务端、移动端native部分，支持跨平台，比如React Native,React VR</li>
+<li><p>vue最轻量、还可以用于业务场景非常轻的页面中（不用全家桶也不错）</p>
+</li>
+<li><p>状态：MVVM模型的有angular和vue 实行的是数据双向绑定。react是采用单向数据流。</p>
+</li>
+<li>组织：组件化能提高开发维护效率，目前对三个框架，React组件化最好</li>
+<li>效率<ul>
+<li>开发效率<ul>
+<li>组件化会提高效率，具体到每个组件的实现，MVVM代码量少一些</li>
+</ul>
+</li>
+<li>运行效率<ul>
+<li>Angular的运行效率是最低的，因为它用到了脏检查，在应用运行的过程中，需要不断地操作 DOM，会造成明显的卡顿。</li>
+<li>React 采用虚拟DOM，js操作比DOM操作快多了在大数据的情况下，React的运行效率是最高的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="单向数据绑定和双向数据绑定"><a href="#单向数据绑定和双向数据绑定" class="headerlink" title="单向数据绑定和双向数据绑定"></a>单向数据绑定和双向数据绑定</h4><ul>
+<li>单向数据绑定：复杂应用来说这是实施统一的状态管理</li>
+<li>双向数据绑定：实时反应用户输入的场合会非常方便</li>
+</ul>
+<h4 id="如何选择框架"><a href="#如何选择框架" class="headerlink" title="如何选择框架"></a>如何选择框架</h4><p>开发的业务需求，模块需求（组件化这块），开发效率，运行效率，和框架的使用场景.团队成员对框架的熟悉程度</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/interview/" rel="tag"># interview</a>
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+            <a href="/tags/VUE/" rel="tag"># VUE</a>
+          
+            <a href="/tags/ReactJS/" rel="tag"># ReactJS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/28/interview-http/" rel="next" title="面试总结-HTTP">
+                <i class="fa fa-chevron-left"></i> 面试总结-HTTP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dear.png"
+               alt="Abigale" />
+          <p class="site-author-name" itemprop="name">Abigale</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular"><span class="nav-number">1.</span> <span class="nav-text">Angular</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular是怎么实现双向绑定的？"><span class="nav-number">1.1.</span> <span class="nav-text">Angular是怎么实现双向绑定的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#angular的路由是怎么实现的？"><span class="nav-number">1.2.</span> <span class="nav-text">angular的路由是怎么实现的？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue"><span class="nav-number">2.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双向绑定"><span class="nav-number">2.1.</span> <span class="nav-text">双向绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue是怎么实现双向绑定的？"><span class="nav-number">2.1.1.</span> <span class="nav-text">Vue是怎么实现双向绑定的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体实现"><span class="nav-number">2.1.2.</span> <span class="nav-text">具体实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双向绑定图解"><span class="nav-number">2.1.3.</span> <span class="nav-text">双向绑定图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number">2.2.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期图解"><span class="nav-number">2.2.1.</span> <span class="nav-text">生命周期图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue的路由是怎么实现的？"><span class="nav-number">2.3.</span> <span class="nav-text">Vue的路由是怎么实现的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么采用VUE"><span class="nav-number">2.4.</span> <span class="nav-text">为什么采用VUE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-template"><span class="nav-number">2.4.1.</span> <span class="nav-text">Vue - template</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React"><span class="nav-number">3.</span> <span class="nav-text">React</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能问题"><span class="nav-number">3.1.</span> <span class="nav-text">性能问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于组件重新渲染的问题："><span class="nav-number">3.1.1.</span> <span class="nav-text">关于组件重新渲染的问题：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于setState"><span class="nav-number">3.2.</span> <span class="nav-text">关于setState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调用-setState-之后发生了什么？"><span class="nav-number">3.2.1.</span> <span class="nav-text">调用 setState 之后发生了什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#调和过程："><span class="nav-number">3.2.1.1.</span> <span class="nav-text">调和过程：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setState不会立刻改变React组件中state的值；"><span class="nav-number">3.2.2.</span> <span class="nav-text">setState不会立刻改变React组件中state的值；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多次setState函数调用产生的效果会合并。"><span class="nav-number">3.2.3.</span> <span class="nav-text">多次setState函数调用产生的效果会合并。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于-setState-这里有三件事情需要知道"><span class="nav-number">3.2.4.</span> <span class="nav-text">关于 setState() 这里有三件事情需要知道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setState可以接受函数为参数吗？有什么作用？"><span class="nav-number">3.2.5.</span> <span class="nav-text">setState可以接受函数为参数吗？有什么作用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传入-setState-函数的第二个参数的作用是什么？"><span class="nav-number">3.2.6.</span> <span class="nav-text">传入 setState 函数的第二个参数的作用是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候不能调用setState"><span class="nav-number">3.2.7.</span> <span class="nav-text">什么时候不能调用setState</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候调用setState不会再次调用render"><span class="nav-number">3.2.8.</span> <span class="nav-text">什么时候调用setState不会再次调用render</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期-1"><span class="nav-number">3.3.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#描述一下React组件的各个生命周期函数吗-组件的生命周期有哪些"><span class="nav-number">3.3.1.</span> <span class="nav-text">描述一下React组件的各个生命周期函数吗/组件的生命周期有哪些</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#组件的声明周期有三种阶段"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">组件的声明周期有三种阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件的初始化阶段"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">组件的初始化阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件更新阶段"><span class="nav-number">3.3.1.3.</span> <span class="nav-text">组件更新阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件析构阶段"><span class="nav-number">3.3.1.4.</span> <span class="nav-text">组件析构阶段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期图解-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">生命周期图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染机制"><span class="nav-number">3.4.</span> <span class="nav-text">渲染机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更新渲染过程"><span class="nav-number">3.4.1.</span> <span class="nav-text">更新渲染过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">3.5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在什么情况下你会优先选择使用-Class-Component-而不是-Functional-Component？"><span class="nav-number">3.5.1.</span> <span class="nav-text">在什么情况下你会优先选择使用 Class Component 而不是 Functional Component？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-中-Element-与-Component-的区别是？"><span class="nav-number">3.5.2.</span> <span class="nav-text">React 中 Element 与 Component 的区别是？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-中的-refs-作用是什么？"><span class="nav-number">3.5.3.</span> <span class="nav-text">React 中的 refs 作用是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Controlled-Component-与-Uncontrolled-Component-之间的区别是什么？"><span class="nav-number">3.5.4.</span> <span class="nav-text">Controlled Component 与 Uncontrolled Component 之间的区别是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shouldComponentUpdate-的作用是啥以及为何它这么重要？"><span class="nav-number">3.5.5.</span> <span class="nav-text">shouldComponentUpdate 的作用是啥以及为何它这么重要？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createElement-与-cloneElement-的区别是什么？"><span class="nav-number">3.5.6.</span> <span class="nav-text">createElement 与 cloneElement 的区别是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么我们需要使用-React-提供的-Children-API-而不是-JavaScript-的-map？"><span class="nav-number">3.5.7.</span> <span class="nav-text">为什么我们需要使用 React 提供的 Children API 而不是 JavaScript 的 map？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？"><span class="nav-number">3.5.8.</span> <span class="nav-text">如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在生命周期中的哪一步你应该发起-AJAX-请求？"><span class="nav-number">3.5.9.</span> <span class="nav-text">在生命周期中的哪一步你应该发起 AJAX 请求？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是JSX"><span class="nav-number">3.5.10.</span> <span class="nav-text">什么是JSX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#props-和-state"><span class="nav-number">3.5.11.</span> <span class="nav-text">props 和 state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么我们利用循环产生的组件中要用上key这个特殊的prop？"><span class="nav-number">3.5.12.</span> <span class="nav-text">为什么我们利用循环产生的组件中要用上key这个特殊的prop？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件的Render函数在何时被调用"><span class="nav-number">3.5.13.</span> <span class="nav-text">组件的Render函数在何时被调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#render函数被调用了，DOM就一定被更新了？"><span class="nav-number">3.5.14.</span> <span class="nav-text">render函数被调用了，DOM就一定被更新了？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各个框架比较"><span class="nav-number">4.</span> <span class="nav-text">各个框架比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#React-和-Vue-有许多相似之处"><span class="nav-number">4.0.1.</span> <span class="nav-text">React 和 Vue 有许多相似之处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#追踪变化-更新DOM-视图渲染-Vue和React的设计思想有什么区别"><span class="nav-number">4.0.2.</span> <span class="nav-text">追踪变化/更新DOM/视图渲染/Vue和React的设计思想有什么区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-可以对着图片想象"><span class="nav-number">4.0.2.1.</span> <span class="nav-text">vue: (可以对着图片想象)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#react"><span class="nav-number">4.0.2.2.</span> <span class="nav-text">react:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据绑定"><span class="nav-number">4.0.3.</span> <span class="nav-text">数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流"><span class="nav-number">4.0.4.</span> <span class="nav-text">数据流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写方式-Template-vs-jsx"><span class="nav-number">4.0.5.</span> <span class="nav-text">编写方式 Template vs jsx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态管理"><span class="nav-number">4.0.6.</span> <span class="nav-text">状态管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue和React的有什么优劣"><span class="nav-number">4.0.7.</span> <span class="nav-text">Vue和React的有什么优劣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue的优势（性能方面）"><span class="nav-number">4.0.8.</span> <span class="nav-text">Vue的优势（性能方面）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React的优势"><span class="nav-number">4.0.9.</span> <span class="nav-text">React的优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习成本"><span class="nav-number">4.0.10.</span> <span class="nav-text">学习成本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单向数据绑定和双向数据绑定"><span class="nav-number">4.0.11.</span> <span class="nav-text">单向数据绑定和双向数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择框架"><span class="nav-number">4.0.12.</span> <span class="nav-text">如何选择框架</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="https://github.com/abigaleypc" target="_blant"><span class="author" itemprop="copyrightHolder">Abigale</span></a>
+
+  
+</div>
+
+<!--
+
+ <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+  <span class="post-meta-divider"></span>
+
+
+-->
+
+<span id="busuanzi_container_site_pv">
+    欢迎你呀 小伙伴 ^_^
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://abigale.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://abigaleyu.co/2018/06/28/interview-FE-frame/';
+          this.page.identifier = '2018/06/28/interview-FE-frame/';
+          this.page.title = '面试总结-前端框架';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://abigale.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>

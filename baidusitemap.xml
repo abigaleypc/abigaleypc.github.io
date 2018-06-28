@@ -4,16 +4,20 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/06/28/nterview-http/</loc>
-    <lastmod>2018-06-28T09:27:33.072Z</lastmod>
+    <loc>https://abigaleyu.co/2018/06/28/interview-FE-frame/</loc>
+    <lastmod>2018-06-28T10:07:08.646Z</lastmod>
     <data>
         <display>
-        <title>我的面试总结 -- HTTP</title>
-        <pubTime>2018-06-28T09:22:46.000Z</pubTime>
+        <title>面试总结-前端框架</title>
+        <pubTime>2018-06-28T09:37:43.000Z</pubTime>
         
         <tag>interview</tag>
          
-        <tag>HTTP</tag>
+        <tag>Angular</tag>
+         
+        <tag>VUE</tag>
+         
+        <tag>ReactJS</tag>
          
          
            
@@ -26,14 +30,36 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/06/28/basic-js/</loc>
-    <lastmod>2018-06-28T09:23:56.032Z</lastmod>
+    <loc>https://abigaleyu.co/2018/06/28/interview-basic-js/</loc>
+    <lastmod>2018-06-28T10:04:51.311Z</lastmod>
     <data>
         <display>
-        <title>我的面试总结 -- 基础JS</title>
+        <title>面试总结-原生JS基础</title>
         <pubTime>2018-06-28T07:29:09.000Z</pubTime>
         
         <tag>JavaScript</tag>
+         
+        <tag>interview</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2018/06/28/interview-http/</loc>
+    <lastmod>2018-06-28T10:04:15.432Z</lastmod>
+    <data>
+        <display>
+        <title>面试总结-HTTP</title>
+        <pubTime>2018-06-28T09:22:46.000Z</pubTime>
+        
+        <tag>HTTP</tag>
          
         <tag>interview</tag>
          
@@ -251,18 +277,14 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
+    <loc>https://abigaleyu.co/2017/07/01/wxapp-demo/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
         <display>
-        <title>搭建音乐播放器桌面应用--前端篇</title>
-        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
+        <title>基于微信小程序开发的聊天小Demo</title>
+        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
         
-        <tag>Express</tag>
-         
-        <tag>React</tag>
-         
-        <tag>Electron</tag>
+        <tag>wxapp</tag>
          
          
            
@@ -275,14 +297,18 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2017/07/01/wxapp-demo/</loc>
+    <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
     <lastmod>2018-03-26T03:19:15.632Z</lastmod>
     <data>
         <display>
-        <title>基于微信小程序开发的聊天小Demo</title>
-        <pubTime>2017-07-01T09:58:00.000Z</pubTime>
+        <title>搭建音乐播放器桌面应用--前端篇</title>
+        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
         
-        <tag>wxapp</tag>
+        <tag>Express</tag>
+         
+        <tag>React</tag>
+         
+        <tag>Electron</tag>
          
          
            

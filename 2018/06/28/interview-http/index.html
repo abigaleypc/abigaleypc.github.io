@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HTTP,interview," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/dear.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="跨域手写一个JSONP的实现123456&amp;lt;script&amp;gt;  callback(res)&amp;#123;    console.log(res);  &amp;#125;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;xxx/test.js?callback=callback&quot;&amp;gt;&amp;lt;/script&amp;gt; 12// test.jscallback(data)">
+<meta name="keywords" content="HTTP,interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试总结-HTTP">
+<meta property="og:url" content="https://abigaleyu.co/2018/06/28/interview-http/index.html">
+<meta property="og:site_name" content="Abigale&#39;s Blog">
+<meta property="og:description" content="跨域手写一个JSONP的实现123456&amp;lt;script&amp;gt;  callback(res)&amp;#123;    console.log(res);  &amp;#125;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;xxx/test.js?callback=callback&quot;&amp;gt;&amp;lt;/script&amp;gt; 12// test.jscallback(data)">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/02http/certificate.png">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/02http/request.png">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/02http/response.png">
+<meta property="og:updated_time" content="2018-06-28T10:04:15.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试总结-HTTP">
+<meta name="twitter:description" content="跨域手写一个JSONP的实现123456&amp;lt;script&amp;gt;  callback(res)&amp;#123;    console.log(res);  &amp;#125;&amp;lt;/script&amp;gt;&amp;lt;script src=&quot;xxx/test.js?callback=callback&quot;&amp;gt;&amp;lt;/script&amp;gt; 12// test.jscallback(data)">
+<meta name="twitter:image" content="https://abigaleyu.co/images/interview/02http/certificate.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://abigaleyu.co/2018/06/28/interview-http/"/>
+
+
+
+
+
+  <title>面试总结-HTTP | Abigale's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-104545772-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Abigale's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/06/28/interview-http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Abigale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dear.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Abigale's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">面试总结-HTTP</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T17:22:46+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/28/interview-http/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/28/interview-http/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h3 id="手写一个JSONP的实现"><a href="#手写一个JSONP的实现" class="headerlink" title="手写一个JSONP的实现"></a>手写一个JSONP的实现</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">  callback(res)&#123;</span></div><div class="line"><span class="undefined">    console.log(res);</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"xxx/test.js?callback=callback"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// test.js</span></div><div class="line">callback(data)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="跨域的方式"><a href="#跨域的方式" class="headerlink" title="跨域的方式?"></a>跨域的方式?</h3><ul>
+<li>客户端<ul>
+<li>jsonp：原理：通过<code>&lt;script&gt;</code>标签请求,再用callback函数返回需要的字段。因为Web页面上调用js文件时则不受是否跨域的影响</li>
+<li>document.domain：通过修改该字段来跨子域，但只适用于不同子域的框架间的交互。</li>
+<li>window.name:这种方法与document.domain 方法相比，放宽了域名后缀要相同的限制，可以从任意页面获取 string 类型的数据</li>
+<li>postMessage</li>
+</ul>
+</li>
+<li>服务端<ul>
+<li>CORS： 服务器 在响应头中设置相应的选项（Access-Control-Allow-Origin 和 Access-Control-Allow-Credentials）</li>
+</ul>
+</li>
+<li>代理<ul>
+<li>Nginx</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>参考：<br><a href="http://abigaleyu.co/2017/06/23/%E5%89%8D%E7%AB%AF%E6%A8%A1%E6%8B%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F/">前端模拟服务器实现跨域 | Abigale</a><br><a href="https://www.cnblogs.com/dolphinX/p/3464056.html" target="_blank" rel="noopener">html5 postMessage解决跨域、跨窗口消息传递</a></p>
+</blockquote>
+<h3 id="jsonp安全漏洞"><a href="#jsonp安全漏洞" class="headerlink" title="jsonp安全漏洞"></a>jsonp安全漏洞</h3><ul>
+<li><p>xss:callback里传入  <code>callback=&lt;script&gt;xx&lt;script&gt;</code></p>
+<p>解决办法：<code>Content-Type: application / json</code>  只能传入json</p>
+</li>
+<li><p>csrf:json劫持</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wooyun</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">  alert(v.username);</div><div class="line">&#125;</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div><div class="line"><span class="regexp">&lt;script src="http:/</span><span class="regexp">/js.login.360.cn/</span>?o=sso&amp;m=info&amp;func=wooyun<span class="string">"&gt;&lt;/script&gt;</span></div></pre></td></tr></table></figure>
+<p>  这个是在乌云网上报告的一个攻击例子（ WooYun-2012-11284 ）<code>http://www.wooyun.org/bug.php?action=view&amp;id=11284</code> 当被攻击者在登陆 360 网站的情况下访问了该网页时，那么用户的隐私数据（如用户名，邮箱等）可能被攻击者劫持。</p>
+</li>
+</ul>
+<blockquote>
+<p>参考：<a href="http://blog.knownsec.com/2015/03/jsonp_security_technic/" target="_blank" rel="noopener">JSONP 安全攻防技术</a></p>
+</blockquote>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><h3 id="HTTP协议缓存的实现"><a href="#HTTP协议缓存的实现" class="headerlink" title="HTTP协议缓存的实现"></a>HTTP协议缓存的实现</h3><p>以下是后端控制的缓存</p>
+<ul>
+<li>强缓存的方法：expire 和 cache-control</li>
+<li>协商缓存的方法：last-modified/Last-modified-since 和 ETag 和 If-None-Match</li>
+</ul>
+<h3 id="静态文件的缓存-如果服务器端更新脚本，如何保证客户端不受缓存机制影响，实时更新脚本"><a href="#静态文件的缓存-如果服务器端更新脚本，如何保证客户端不受缓存机制影响，实时更新脚本" class="headerlink" title="静态文件的缓存/如果服务器端更新脚本，如何保证客户端不受缓存机制影响，实时更新脚本"></a>静态文件的缓存/如果服务器端更新脚本，如何保证客户端不受缓存机制影响，实时更新脚本</h3><ul>
+<li>在文件后加版本号 如xxx.js?v=1.1.1</li>
+<li>拼接文件名 如 xxx111111.js</li>
+</ul>
+<blockquote>
+<p>参考：<a href="http://abigaleyu.co/2018/04/17/cache/">对浏览器做一些缓存 | Abigale</a></p>
+</blockquote>
+<h2 id="前端存储"><a href="#前端存储" class="headerlink" title="前端存储"></a>前端存储</h2><h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><ul>
+<li>存储量</li>
+<li>存储类型</li>
+<li>使用方式</li>
+<li>数据的生命期</li>
+<li>与服务器端通信</li>
+<li>优点</li>
+<li>缺点</li>
+</ul>
+<h3 id="存储量"><a href="#存储量" class="headerlink" title="存储量"></a>存储量</h3><ul>
+<li>cookie: 4KB</li>
+<li>sessionStorage: 一般为5MB</li>
+<li>localStorage: 一般为5MB</li>
+</ul>
+<h3 id="存储类型"><a href="#存储类型" class="headerlink" title="存储类型"></a>存储类型</h3><ul>
+<li>cookie: 字符串</li>
+<li>sessionStorage: 键值对</li>
+<li>localStorage: 键值对</li>
+</ul>
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><ul>
+<li>cookie: 获取 cookie 可以直接使用 <code>document.cookie</code> ，但是获取到的 cookie 是一个字符串，它包含了 cookie 中存储的所有数据，形式如 <code>&quot;key1=value1; key2=value2&quot;</code></li>
+<li>sessionStorage: 普通对象非常相似，可以直接通过中括号 <code>sessionStorage[‘key’]</code> 的方式添加和获取数据，也可以通过点语法 <code>sessionStorage.key</code> 的方式进行操作，sessionStorage 也有自己的 api 用于操作数据。或者<code>sessionStorage.setItem(&#39;key&#39;, &#39;value&#39;)；var data = sessionStorage.getItem(&#39;key&#39;)</code></li>
+<li>localStorage: 同上</li>
+</ul>
+<h3 id="数据的生命期"><a href="#数据的生命期" class="headerlink" title="数据的生命期"></a>数据的生命期</h3><ul>
+<li>cookie:  一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效</li>
+<li>sessionStorage: 仅在当前会话下有效，关闭页面或浏览器后被清除</li>
+<li>localStorage: 除非被清除，否则永久保存</li>
+</ul>
+<h3 id="与服务器端通信"><a href="#与服务器端通信" class="headerlink" title="与服务器端通信"></a>与服务器端通信</h3><ul>
+<li>cookie: 每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</li>
+<li>sessionStorage: 仅在客户端（即浏览器）中保存，不参与和服务器的通信</li>
+<li>localStorage: 同上</li>
+</ul>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>cookie: 有大量的库可供我们更方便快捷得操作 cookie ，如 jQuery.cookie.js</li>
+<li>sessionStorage: <ul>
+<li>存储的数据不会被自动随着请求被发送到服务端</li>
+<li>可存储的数据大小相比 cookie 来说大了很多，但是每个浏览器都不同，所以没有一个统一的值。</li>
+</ul>
+</li>
+<li>localStorage: <ul>
+<li>数据存储量大；</li>
+<li>不会被发送到服务端；</li>
+<li>持久化本地存储，除非手动删除，否则一直存在；</li>
+<li>在同一个域下，所有窗口共享其中存储的数据 (sessionStorage则不可)</li>
+</ul>
+</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>cookie: 如 <code>&quot;key1=value1; key2=value2&quot;</code> 这样的字符串无法通过 JSON.parse() 转换为 json 格式的数据，需要通过正则表达式的方式将所需要的值匹配出来</li>
+<li>sessionStorage: <ul>
+<li>sessionStorage 中只能够保存字符串类型的数据，所以在保存非字符串类型的数据时，一定要先将其转换成字符串，比如图片可以转换成 base64 字符串后保存，对象可使用 JSON.stringify() 转为字符串后存储，甚至可以存储一段 js 脚本 </li>
+<li>其中所存储的数据的生命周期与 session 类似，即只存在于一个会话周期内，当浏览器关闭或标签页关闭时，数据即会被删除（前进和后退并不会影响到数据，因为还在当前的会话中），这就导致了即便是同一个网站，但在不同的标签页和窗口内，也无法共享其中存储的数据</li>
+</ul>
+</li>
+<li>localStorage: <ul>
+<li>只能够保存字符串类型的数据，所以在保存非字符串类型的数据时，一定要先将其转换成字符串，比如图片可以转换成 base64 字符串后保存，对象可使用 JSON.stringify() 转为字符串后存储，甚至可以存储一段 js 脚本 </li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>参考 <a href="http://abigaleyu.co/2017/06/26/%E5%89%8D%E7%AB%AF%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E7%AD%96%E7%95%A5-cookie-sessionStorage-%E5%92%8C-localStorage/">前端本地存储策略 | Abigale</a></p>
+</blockquote>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><h3 id="1xx-信息"><a href="#1xx-信息" class="headerlink" title="1xx: 信息"></a>1xx: 信息</h3><ul>
+<li>100 Continue    服务器仅接收到部分请求，但是一旦服务器并没有拒绝该请求，客户端应该继续发送其余的请求。</li>
+<li>101 Switching Protocols    服务器转换协议：服务器将遵从客户的请求转换到另外一种协议。</li>
+</ul>
+<h3 id="2xx-成功"><a href="#2xx-成功" class="headerlink" title="2xx: 成功"></a>2xx: 成功</h3><ul>
+<li>200 OK    请求成功（其后是对GET和POST请求的应答文档。）</li>
+<li>201 Created    请求被创建完成，同时新的资源被创建。</li>
+<li>202 Accepted    供处理的请求已被接受，但是处理未完成。</li>
+<li>203 Non-authoritative Information    文档已经正常地返回，但一些应答头可能不正确，因为使用的是文档的拷贝。</li>
+<li>204 No Content    没有新文档。浏览器应该继续显示原来的文档。如果用户定期地刷新页面，而Servlet可以确定用户文档足够新，这个状态代码是很有用的。</li>
+<li>205 Reset Content    没有新文档。但浏览器应该重置它所显示的内容。用来强制浏览器清除表单输入内容。</li>
+<li>206 Partial Content    客户发送了一个带有Range头的GET请求，服务器完成了它。</li>
+</ul>
+<h3 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx: 重定向"></a>3xx: 重定向</h3><ul>
+<li>300 Multiple Choices    多重选择。链接列表。用户可以选择某链接到达目的地。最多允许五个地址。</li>
+<li>301 Moved Permanently    所请求的页面已经转移至新的url。</li>
+<li>302 Found    所请求的页面已经临时转移至新的url。</li>
+<li>303 See Other    所请求的页面可在别的url下被找到。</li>
+<li>304 Not Modified    未按预期修改文档。客户端有缓冲的文档并发出了一个条件性的请求（一般是提供If-Modified-Since头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。</li>
+<li>305 Use Proxy    客户请求的文档应该通过Location头所指明的代理服务器提取。</li>
+<li>306 Unused    此代码被用于前一版本。目前已不再使用，但是代码依然被保留。</li>
+<li>307 Temporary Redirect    被请求的页面已经临时移至新的url。</li>
+</ul>
+<h3 id="4xx-客户端错误"><a href="#4xx-客户端错误" class="headerlink" title="4xx: 客户端错误"></a>4xx: 客户端错误</h3><ul>
+<li>400 Bad Request    服务器未能理解请求。</li>
+<li>401 Unauthorized    被请求的页面需要用户名和密码。</li>
+<li>402 Payment Required    此代码尚无法使用。</li>
+<li>403 Forbidden    对被请求页面的访问被禁止。</li>
+<li>404 Not Found    服务器无法找到被请求的页面。</li>
+<li>405 Method Not Allowed    请求中指定的方法不被允许。</li>
+</ul>
+<h3 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx: 服务器错误"></a>5xx: 服务器错误</h3><ul>
+<li>500 Internal Server Error    请求未完成。服务器遇到不可预知的情况。</li>
+<li>501 Not Implemented    请求未完成。服务器不支持所请求的功能。</li>
+<li>502 Bad Gateway    请求未完成。服务器从上游服务器收到一个无效的响应。</li>
+<li>503 Service Unavailable    请求未完成。服务器临时过载或当机。</li>
+<li>504 Gateway Timeout    网关超时。</li>
+<li>505 HTTP Version Not Supported    服务器不支持请求中指明的HTTP协议版本。</li>
+</ul>
+<h2 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h2><h3 id="什么是-Ajax，它们的优缺点。"><a href="#什么是-Ajax，它们的优缺点。" class="headerlink" title="什么是 Ajax，它们的优缺点。"></a>什么是 Ajax，它们的优缺点。</h3><p>Ajax 是异步 JavaScript 和 XML，用于在 Web 页面中实现异步数据交互。</p>
+<h4 id="Ajax-优点"><a href="#Ajax-优点" class="headerlink" title="Ajax 优点"></a>Ajax 优点</h4><ul>
+<li>可以使得页面不重载全部内容的情况下加载局部内容，降低数据传输量</li>
+<li>避免用户不断刷新或者跳转页面，提高用户体验</li>
+</ul>
+<h4 id="Ajax-缺点"><a href="#Ajax-缺点" class="headerlink" title="Ajax 缺点"></a>Ajax 缺点</h4><ul>
+<li>对搜索引擎不友好 （解释：因为 ajax 内容是动态爬取的，而爬虫只能爬页面一开始的 HTML）</li>
+<li>要实现 ajax 下的前后退功能成本较大（AJAX 干掉了 Back 和 History 功能，即对浏览器机制的破坏）</li>
+<li>可能造成请求数的增加（增大网络数据的流量是因为要发很多次请求才能把页面渲染出来）</li>
+<li>跨域问题限制</li>
+</ul>
+<h4 id="ajax-如何实现"><a href="#ajax-如何实现" class="headerlink" title="ajax 如何实现"></a>ajax 如何实现</h4><p>首先实现 ajax 之前必须要创建一个 XMLHttpRequest 对象的 –&gt; open –&gt; send</p>
+<ul>
+<li>GET</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">let</span> requestData = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"responseText"</span>)[<span class="number">0</span>];</div><div class="line">    <span class="keyword">let</span> requestHeader = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"requestHeader"</span>)[<span class="number">0</span>];</div><div class="line">    <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    request.open(<span class="string">'GET'</span>, <span class="string">'http://127.0.0.1:8080/test.txt'</span>);</div><div class="line">    request.send();</div><div class="line">    request.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(request)</div><div class="line">      <span class="keyword">if</span> (request.readyState == <span class="number">4</span>) &#123;</div><div class="line">        requestData.innerHTML = <span class="string">`&lt;pre&gt;<span class="subst">$&#123;request.responseText&#125;</span>&lt;/pre&gt;`</span></div><div class="line">        requestHeader.innerHTML = <span class="string">`&lt;pre&gt;<span class="subst">$&#123;request.getAllResponseHeaders()&#125;</span>&lt;/pre&gt;`</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>POST</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">let</span> requestData = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"responseText"</span>)[<span class="number">0</span>];</div><div class="line">    <span class="keyword">let</span> requestHeader = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"requestHeader"</span>)[<span class="number">0</span>];</div><div class="line">    <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    request.open(<span class="string">'GET'</span>, <span class="string">'http://127.0.0.1:8080/test.txt'</span>);</div><div class="line">    <span class="keyword">let</span> params = &#123;</div><div class="line">      name: <span class="string">'abigale'</span>,</div><div class="line">      age: <span class="number">18</span></div><div class="line">    &#125;</div><div class="line">    request.send(params);</div><div class="line">    request.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(request)</div><div class="line">      <span class="keyword">if</span> (request.readyState == <span class="number">4</span>) &#123;</div><div class="line">        requestData.innerHTML = <span class="string">`&lt;pre&gt;<span class="subst">$&#123;request.responseText&#125;</span>&lt;/pre&gt;`</span></div><div class="line">        requestHeader.innerHTML = <span class="string">`&lt;pre&gt;<span class="subst">$&#123;request.getAllResponseHeaders()&#125;</span>&lt;/pre&gt;`</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Ajax-状态"><a href="#Ajax-状态" class="headerlink" title="Ajax 状态"></a>Ajax 状态</h3><p>readyState 属性 状态 有 5 个可取值： 0 = 未初始化，1 = 启动， 2 = 发送，3 = 接收，4 = 完成</p>
+<h3 id="Ajax-同步和异步的区别"><a href="#Ajax-同步和异步的区别" class="headerlink" title="Ajax 同步和异步的区别:"></a>Ajax 同步和异步的区别:</h3><ol>
+<li>同步：提交请求 -&gt; 等待服务器处理 -&gt; 处理完毕返回，这个期间客户端浏览器不能干任何事</li>
+<li>异步：请求通过事件触发 -&gt; 服务器处理（这是浏览器仍然可以作其他事情）-&gt; 处理完毕<br>ajax.open 方法中，第 3 个参数是设同步或者异步。</li>
+</ol>
+<h3 id="手写一个Ajax的Promise封装"><a href="#手写一个Ajax的Promise封装" class="headerlink" title="手写一个Ajax的Promise封装"></a>手写一个Ajax的Promise封装</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">GET</span>(<span class="params">url</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> xhr;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</div><div class="line">      <span class="comment">//非IE6</span></div><div class="line">      xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>);</div><div class="line">    &#125;</div><div class="line">    xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>)</div><div class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</div><div class="line">          resolve(<span class="keyword">this</span>.responseText, <span class="keyword">this</span>)</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="keyword">var</span> resJson = &#123; <span class="attr">code</span>: <span class="keyword">this</span>.status, <span class="attr">response</span>: <span class="keyword">this</span>.response &#125;</div><div class="line">          reject(resJson, <span class="keyword">this</span>)</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    xhr.send()</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">postJSON</span>(<span class="params">url, data</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> xhr;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</div><div class="line">      <span class="comment">//非IE6</span></div><div class="line">      xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>);</div><div class="line">    &#125;</div><div class="line">    xhr.open(<span class="string">"POST"</span>, url, <span class="literal">true</span>)</div><div class="line">    xhr.setRequestHeader(<span class="string">"Content-type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</div><div class="line"></div><div class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.readyState === <span class="number">4</span>) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.status === <span class="number">200</span>) &#123;</div><div class="line">          resolve(<span class="built_in">JSON</span>.parse(<span class="keyword">this</span>.responseText), <span class="keyword">this</span>)</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="keyword">var</span> resJson = &#123; <span class="attr">code</span>: <span class="keyword">this</span>.status, <span class="attr">response</span>: <span class="keyword">this</span>.response &#125;</div><div class="line">          reject(resJson, <span class="keyword">this</span>)</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    xhr.send(<span class="built_in">JSON</span>.stringify(data))</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> url = <span class="string">'https://api.github.com/'</span></div><div class="line">GET(url).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(res);</div><div class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.error(error);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="GET和POST"><a href="#GET和POST" class="headerlink" title="GET和POST"></a>GET和POST</h2><h3 id="GET和POST的区别"><a href="#GET和POST的区别" class="headerlink" title="GET和POST的区别"></a>GET和POST的区别</h3><ul>
+<li>GET用于信息获取，而且应该是安全的和幂等的。（幂等就是每次请求结果都一样）；POST表示可能修改变服务器上的资源的请求。Get是向服务器发索取数据的一种请求，而Post是向服务器提交数据的一种请求</li>
+<li>GET请求的数据会附在URL之后（就是把数据放置在HTTP协议头中），以?分割URL和传输数据，参数之间以&amp;相连；POST把提交的数据则放置在是HTTP包的包体中。</li>
+<li>GET方式提交的数据最多只能是1024字节；POST是没有大小限制的，HTTP协议规范也没有进行大小限制</li>
+<li>GET能被缓存，POST不能缓存。</li>
+</ul>
+<h2 id="URL到渲染"><a href="#URL到渲染" class="headerlink" title="URL到渲染"></a>URL到渲染</h2><h3 id="浏览器从URL到页面渲染经历了哪些？"><a href="#浏览器从URL到页面渲染经历了哪些？" class="headerlink" title="浏览器从URL到页面渲染经历了哪些？"></a>浏览器从URL到页面渲染经历了哪些？</h3><ul>
+<li>域名解析成IP</li>
+<li>找到IP对应服务器</li>
+<li>发送HTTP请求</li>
+<li>响应HTTP请求</li>
+<li>渲染页面    </li>
+</ul>
+<h3 id="域名解析IP寻找路径"><a href="#域名解析IP寻找路径" class="headerlink" title="域名解析IP寻找路径"></a>域名解析IP寻找路径</h3><ul>
+<li>浏览器缓存</li>
+<li>本机缓存</li>
+<li>hosts文件</li>
+<li>路由器缓存</li>
+<li>ISP DNS缓存</li>
+<li>DNS递归查询（可能存在负载均衡导致每次IP不一样）</li>
+</ul>
+<h3 id="一个完整的HTTP请求过程-通常有下面7个步骤"><a href="#一个完整的HTTP请求过程-通常有下面7个步骤" class="headerlink" title="一个完整的HTTP请求过程,通常有下面7个步骤"></a>一个完整的HTTP请求过程,通常有下面7个步骤</h3><ul>
+<li>建立TCP连接</li>
+<li>Web浏览器向Web服务器发送请求命令</li>
+<li>Web浏览器发送请求头信息</li>
+<li>Web服务器- 应答</li>
+<li>Web服务器- 发送响应头信息</li>
+<li>Web服务器- 向浏览器发送数据</li>
+<li>Web服务器- 关闭TCP连接</li>
+</ul>
+<pre><code>&gt; 可以根据自己擅长的领域自由发挥，从URL规范、HTTP协议、DNS、CDN、数据查询、浏览器流式解析、CSS规则构建、layout、paint、onload/domready、JS执行、JS API绑定等等；
+</code></pre><h3 id="详细解释"><a href="#详细解释" class="headerlink" title="详细解释"></a>详细解释</h3><ul>
+<li>浏览器会开启一个线程来处理这个请求，对 URL 分析判断，如果是 http 协议就按照 web 方式来处理；</li>
+<li>调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法； </li>
+<li>通过 DNS 解析获取网址的 IP 地址，设置 UA 等信息发出第二个 GET 请求；</li>
+<li>进行 HTTP 协议会话，客户端发送报头（请求报头）；</li>
+<li>进入到 web 服务器上的 Web Server，如 Apache、Tomcat、Node.js 等服务器；</li>
+<li>进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理；</li>
+<li>处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改事件对比，一致则返回304；</li>
+<li>浏览器开始下载 html 文档（响应报头，状态码200），同时使用缓存；</li>
+<li>文档树建立，根据标记请求所需指定 MIME 类型的文件（比如css、js），同时设置 cookie；</li>
+<li>页面开始渲染 DOM ，JS 根据 DOM API 操作 DOM ，执行事件绑定等，页面显示完成；</li>
+</ul>
+<h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><ul>
+<li>浏览器根据请求的 URL 交给 DNS 域名解析，找到真实 IP ，向服务器发起请求；</li>
+<li>服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、CSS、JS、image等）；</li>
+<li>浏览器对加载到的资源（HTML、CSS、JS等）进行语法解析，建立相应的内部数据结构（如 HTML 的 DOM ）；<br>载入解析到的资源文件，渲染页面，完成。</li>
+</ul>
+<h3 id="如何渲染页面"><a href="#如何渲染页面" class="headerlink" title="如何渲染页面"></a>如何渲染页面</h3><ul>
+<li>请求HTML文件解析成DOM树</li>
+<li>关联到CSS解析成CSSOM</li>
+<li>DOM和CSSOM构造Render Tree</li>
+<li>边计算边绘制</li>
+</ul>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><h3 id="Http协议中有那些请求方式？"><a href="#Http协议中有那些请求方式？" class="headerlink" title="Http协议中有那些请求方式？"></a>Http协议中有那些请求方式？</h3><ul>
+<li>GET： 用于请求访问已经被URI（统一资源标识符）识别的资源，可以通过URL传参给服务器</li>
+<li>POST：用于传输信息给服务器，主要功能与GET方法类似，但一般推荐使用POST方式。</li>
+<li>PUT： PUT请求是向服务器端发送数据的，从而改变信息，该请求就像数据库的update操作一样</li>
+<li>HEAD： 获得报文首部，与GET方法类似，只是不返回报文主体，一般用于验证URI是否有效。</li>
+<li>DELETE：删除文件，与PUT方法相反，删除对应URI位置的文件。</li>
+<li>OPTIONS：查询相应URI支持的HTTP方法。</li>
+</ul>
+<h2 id="HTTPS原理"><a href="#HTTPS原理" class="headerlink" title="HTTPS原理"></a>HTTPS原理</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+<li>HTTPS其实是有两部分组成：HTTP + SSL / TLS</li>
+<li>服务端的配置<br>采用HTTPS协议的服务器必须要有一套数字证书<ul>
+<li>可以自己制作</li>
+<li>也可以向组织申请<br>区别就是自己颁发的证书需要客户端验证通过，才可以继续访问，而使用受信任的公司申请的证书则不会弹出提示页面(startssl就是个不错的选择，有1年的免费服务)</li>
+</ul>
+</li>
+<li>证书：公钥 和 私钥</li>
+<li>私钥存于服务端 和 客户端</li>
+<li>公钥用于两端之间传送信息。比如有参数，则参数+公钥传送</li>
+</ul>
+<h3 id="HTTPS-过程"><a href="#HTTPS-过程" class="headerlink" title="HTTPS 过程"></a>HTTPS 过程</h3><p>包括域名解析IP 三次握手 后 建立TCP连接 然后SSL握手过程 TCP连接关闭</p>
+<h4 id="HTTPS-SSL握手过程"><a href="#HTTPS-SSL握手过程" class="headerlink" title="HTTPS - SSL握手过程"></a>HTTPS - SSL握手过程</h4><ul>
+<li>客户端首先会将自己支持的加密算法，打个包告诉服务器端</li>
+<li>服务器端从客户端发来的加密算法中，选出一组加密算法和HASH算法。并将自己的身份信息以证书的形式发回给客户端。而证书中包含了网站的地址，加密用的公钥，以及证书的颁发机构等；</li>
+<li>客户端收到了服务器发来的数据包后<ul>
+<li>验证一下证书是否合法</li>
+<li>合法的话，客户端就会随机产生一串序列号，+ 公钥 </li>
+<li>一串序列号 + 加密算法 生成 消息校验值 发给服务端</li>
+</ul>
+</li>
+<li>服务端接收后<ul>
+<li>使用私钥解密 刚才上一步的2 （产生一串序列号，+ 公钥 ） 得到序列号</li>
+<li>使用序列号 加密后看是否与上一步的3 一致</li>
+<li>序列号 + 选择的加密算法，加密一段握手消息，发还给客户端。同时HASH值也带上。</li>
+</ul>
+</li>
+<li>客户端收到服务器端的消息后，接着做这么几件事情：<ul>
+<li>计算HASH值是否与发回的消息一致</li>
+<li>检查消息是否为握手消息</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP的缺点与HTTPS"><a href="#HTTP的缺点与HTTPS" class="headerlink" title="HTTP的缺点与HTTPS"></a>HTTP的缺点与HTTPS</h3><ul>
+<li>通信使用明文不加密，内容可能被窃听</li>
+<li>不验证通信方身份，可能遭到伪装</li>
+<li><p>无法验证报文完整性，可能被篡改</p>
+<p>HTTPS就是HTTP加上加密处理（一般是SSL安全通信线路）+认证+完整性保护</p>
+</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/clh604/article/details/22179907" target="_blank" rel="noopener">https原理：证书传递、验证和数据加密、解密过程解析</a><br><a href="https://www.jianshu.com/p/650ad90bf563" target="_blank" rel="noopener">简单粗暴系列之HTTPS原理</a></p>
+</blockquote>
+<h3 id="证书内容包括："><a href="#证书内容包括：" class="headerlink" title="证书内容包括："></a>证书内容包括：</h3><ul>
+<li>证书序列号</li>
+<li>证书过期时间</li>
+<li>证书颁发者的名称</li>
+<li>证书颁发者的签名</li>
+<li>站点的组织名</li>
+<li>站点的DNS主机名</li>
+<li>站点的公开密钥</li>
+</ul>
+<h3 id="浏览器如何验证服务器数字证书？"><a href="#浏览器如何验证服务器数字证书？" class="headerlink" title="浏览器如何验证服务器数字证书？"></a>浏览器如何验证服务器数字证书？</h3><ul>
+<li>验证是否在有效期内：已过去 或者 未激活</li>
+<li>签名颁发者的可信度：每个证书都是由某些证书颁发机构(CA)签发的。浏览器会附带一个 签名颁发机构的授信列表</li>
+<li>签名检测：获取到公开密钥</li>
+<li>站点身份检测：因有些服务器会盗用其他证书，所以要验证证书中主机名是否与发送过来的服务器匹配</li>
+</ul>
+<h3 id="证书包含信息"><a href="#证书包含信息" class="headerlink" title="证书包含信息"></a>证书包含信息</h3><p><img src="/images/interview/02http/certificate.png" alt="证书包含信息"></p>
+<h2 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h2><p>端口，是指TCP/IP协议中的端口，端口号的范围从0到65535，比如用于浏览网页服务的80端口，用于FTP服务的21端口等等</p>
+<h3 id="端口号的作用"><a href="#端口号的作用" class="headerlink" title="端口号的作用"></a>端口号的作用</h3><p>端口号就是为了区分同一计算机上的不同进程<br>区分服务，在一个服务器上启动多个服务</p>
+<h2 id="不同版本HTTP对比"><a href="#不同版本HTTP对比" class="headerlink" title="不同版本HTTP对比"></a>不同版本HTTP对比</h2><h3 id="HTTP1-0-HTTP1-1-HTTP2-0-区别"><a href="#HTTP1-0-HTTP1-1-HTTP2-0-区别" class="headerlink" title="HTTP1.0 HTTP1.1 HTTP2.0 区别"></a>HTTP1.0 HTTP1.1 HTTP2.0 区别</h3><h4 id="HTTP1-0-HTTP1-1-区别"><a href="#HTTP1-0-HTTP1-1-区别" class="headerlink" title="HTTP1.0 HTTP1.1 区别"></a>HTTP1.0 HTTP1.1 区别</h4><pre><code>* 缓存处理：在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略
+* 节约带宽：HTTP1.1支持断点续传。HTTP 1.1支持只发送header信息(不带任何body信息)，如果服务器认为客户端有权限请求服务器，则返回100，否则返回401。客户端如果接受到100，才开始把请求body发送到服务器。HTTP1.1则在请求头引入了range头域
+* HOST域：HTTP1.0是没有host域的，HTTP1.1才支持这个参数。
+* 长连接：在HTTP1.1中默认开启Connection： keep-alive，支持一次建立TCP发送多个http请求。
+* 增加状态码：比如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。
+</code></pre><h4 id="HTTP1-1-HTTP2-0-区别"><a href="#HTTP1-1-HTTP2-0-区别" class="headerlink" title="HTTP1.1  HTTP2.0 区别"></a>HTTP1.1  HTTP2.0 区别</h4><pre><code>* 多路复用：HTTP2.0使用了多路复用的技术，做到同一个连接并发处理多个请求，而且并发请求的数量比HTTP1.1大了好几个数量级。HTTP1.1也可以建立多次TCP请求，但毕竟需要开销。
+* 数据压缩：HTTP1.1不支持header数据的压缩，HTTP2.0使用HPACK算法对header的数据进行压缩，这样数据体积小了，在网络上传输就会更快。
+* 服务器推送：意思是说，当我们对支持HTTP2.0的web server请求数据的时候，服务器会顺便把一些客户端需要的资源一起推送到客户端，免得客户端再次创建连接发送请求到服务器端获取。这种方式非常合适加载静态资源。服务器端推送的这些资源其实存在客户端的某处地方，客户端直接从本地加载这些资源就可以了，不用走网络，速度自然是快很多的。
+</code></pre><blockquote>
+<p>参考：<a href="https://segmentfault.com/a/1190000011172823" target="_blank" rel="noopener">浅析HTTP/2的多路复用</a><br><a href="http://www.ruanyifeng.com/blog/2018/03/http2_server_push.html" target="_blank" rel="noopener">HTTP/2 服务器推送（Server Push）教程</a></p>
+</blockquote>
+<h3 id="HTTP2-0-header如何压缩"><a href="#HTTP2-0-header如何压缩" class="headerlink" title="HTTP2.0 header如何压缩"></a>HTTP2.0 header如何压缩</h3><p>头部压缩需要的支持HTTP/2的浏览器和服务端之间：</p>
+<ul>
+<li>维护一份相同的静态字典，包含常见的头部名称，以及特别常见的头部名称与值的结合</li>
+<li>维护一份相同的动态字典，可以动态添加内容</li>
+<li>支持基于静态哈夫曼码表的哈夫曼编码</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://imququ.com/post/header-compression-in-http2.html" target="_blank" rel="noopener">HTTP/2 头部压缩技术介绍</a></p>
+</blockquote>
+<h2 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h2><h3 id="请求头-1"><a href="#请求头-1" class="headerlink" title="请求头"></a>请求头</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">a、通用首部字段（请求报文与响应报文都会使用的首部字段）</div><div class="line"><span class="built_in">Date</span>：创建报文时间</div><div class="line">Connection：连接的管理 如：Connection:Keep-Alive: timeout=<span class="number">5</span>, max=<span class="number">100</span>  (保持<span class="number">5</span>秒，max=<span class="number">100</span>)</div><div class="line">Cache-Control：缓存的控制</div><div class="line">Transfer-Encoding：报文主体的传输编码方式</div><div class="line"></div><div class="line">b、请求首部字段（请求报文会使用的首部字段）</div><div class="line">Host：请求资源所在服务器</div><div class="line">Accept：可处理的媒体类型</div><div class="line">Accept-Charset：可接收的字符集</div><div class="line">Accept-Encoding：可接受的内容编码</div><div class="line">Accept-Language：可接受的自然语言</div><div class="line"></div><div class="line">c、响应首部字段（响应报文会使用的首部字段）</div><div class="line">Accept-Ranges：可接受的字节范围</div><div class="line">Location：令客户端重新定向到的URI</div><div class="line">Server：HTTP服务器的安装信息</div><div class="line"></div><div class="line">d、实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）</div><div class="line">Allow：资源可支持的HTTP方法</div><div class="line">Content-Type：实体主类的类型</div><div class="line">Content-Encoding：实体主体适用的编码方式</div><div class="line">Content-Language：实体主体的自然语言</div><div class="line">Content-Length：实体主体的的字节数</div><div class="line">Content-Range：实体主体的位置范围，一般用于发出部分请求时使用</div></pre></td></tr></table></figure>
+<h2 id="HTTP优化"><a href="#HTTP优化" class="headerlink" title="HTTP优化"></a>HTTP优化</h2><ul>
+<li>利用负载均衡优化和加速HTTP应用</li>
+<li>利用HTTP Cache来优化网</li>
+</ul>
+<h2 id="消息推送"><a href="#消息推送" class="headerlink" title="消息推送"></a>消息推送</h2><h3 id="Web应用从服务器主动推送Data到客户端有哪些方式？"><a href="#Web应用从服务器主动推送Data到客户端有哪些方式？" class="headerlink" title="Web应用从服务器主动推送Data到客户端有哪些方式？"></a>Web应用从服务器主动推送Data到客户端有哪些方式？</h3><ul>
+<li>HTML5提供的WebSocket<br>服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于服务器推送技术的一种。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> socket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://localhost:8080/'</span>);</div><div class="line"></div><div class="line">socket.onopen = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;    <span class="comment">// 当ws连接建立时触发</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Connected!'</span>);</div><div class="line">&#125;;</div><div class="line">socket.onmessage = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123; <span class="comment">// 当有信息到来时触发</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Received data: '</span> + event.data);</div><div class="line">    socket.close();</div><div class="line">&#125;;</div><div class="line">socket.onclose = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// 当连接断开时触发</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Lost connection!'</span>);</div><div class="line">&#125;;</div><div class="line">socket.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// 当连接发生错误时触发</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Error!'</span>);</div><div class="line">&#125;;</div><div class="line">socket.send(<span class="string">'hello, world!'</span>);</div></pre></td></tr></table></figure>
+<p>readyState属性返回实例对象的当前状态，共有四种。</p>
+<ul>
+<li>CONNECTING：值为0，表示正在连接。</li>
+<li>OPEN：值为1，表示连接成功，可以通信了。</li>
+<li>CLOSING：值为2，表示连接正在关闭。</li>
+<li>CLOSED：值为3，表示连接已经关闭，或者打开连接失败。<br>下面是一个示例。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span> (ws.readyState) &#123;</div><div class="line">  <span class="keyword">case</span> WebSocket.CONNECTING:</div><div class="line">    <span class="comment">// do something</span></div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> WebSocket.OPEN:</div><div class="line">    <span class="comment">// do something</span></div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> WebSocket.CLOSING:</div><div class="line">    <span class="comment">// do something</span></div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> WebSocket.CLOSED:</div><div class="line">    <span class="comment">// do something</span></div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">default</span>:</div><div class="line">    <span class="comment">// this never happens</span></div><div class="line">    <span class="keyword">break</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>参考: <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="noopener">WebSocket | MDN</a></p>
+</blockquote>
+<h3 id="其他推送方法"><a href="#其他推送方法" class="headerlink" title="其他推送方法"></a>其他推送方法</h3><ul>
+<li>不可见的iframe</li>
+<li>WebSocket通过Flash</li>
+<li>XHR长时间连接</li>
+<li>XHR Multipart Streaming</li>
+<li><code>&lt;script&gt;</code>标签的长时间连接（可跨域）</li>
+</ul>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><h3 id="cookie是存在哪一部分？"><a href="#cookie是存在哪一部分？" class="headerlink" title="cookie是存在哪一部分？"></a>cookie是存在哪一部分？</h3><p>请求头。</p>
+<blockquote>
+<p>个人理解：我们请求页面的时候，后端返回的响应头里如果有 <code>Set-Cookie</code>的话，浏览器会自动在缓存里设置这个cookie，当我们下次访问的这个域的时候，就会自动带上这个cookie。比如自动登录，后端返回在请求头token，浏览器就会写在缓存。但当我们访问一个从来没访问过的页面时，就不会带上cookie去访问这个页面，也没有默认cookie可言。</p>
+</blockquote>
+<h3 id="cookie和session的区别"><a href="#cookie和session的区别" class="headerlink" title="cookie和session的区别"></a>cookie和session的区别</h3><ul>
+<li>cookie机制采用的是在客户端保持状态的方案</li>
+<li>session机制采用的是在服务器端保持状态的方案。</li>
+</ul>
+<p>(abigale: session是后端识别用户的一个方案，比如当A用户访问我某网站，网站服务器会在set-cookie返回一个session.XXX,当下次用户再访问时，浏览器会将它的cookie带过来，服务器就能识别哪个用户访问了。)</p>
+<blockquote>
+<p>参考：<a href="http://www.cnblogs.com/shiyangxt/archive/2008/10/07/1305506.html" target="_blank" rel="noopener">cookie 和session 的区别详解</a></p>
+</blockquote>
+<h2 id="三次握手和四次挥手"><a href="#三次握手和四次挥手" class="headerlink" title="三次握手和四次挥手"></a>三次握手和四次挥手</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><ul>
+<li>第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</li>
+<li>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</li>
+<li>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。</li>
+</ul>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p>四次挥手的过程如下：</p>
+<ul>
+<li>客户端A上的某个进程，主动关闭连接，发送FIN（seq = u）报文给B，然后进入FIN_WAIT_1状态；</li>
+<li>B收到FIN报文，回应一个ACK （ACK = u + 1）报文，进入CLOSED_WAIT状态；A收到FIN报文，进入FIN_WAIT_2状态；</li>
+<li>B向A发送FIN（seq = v）报文，进入LAST_ACK状态；</li>
+<li>A收到FIN报文后，向B发送ACK(ACK = v + 1)报文，进入TIME_WAIT状态<br>四次挥手后，A和B成功地断开了连接</li>
+</ul>
+<h2 id="HTTP包"><a href="#HTTP包" class="headerlink" title="HTTP包"></a>HTTP包</h2><h3 id="一个响应包"><a href="#一个响应包" class="headerlink" title="一个响应包"></a>一个响应包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 304 Not Modified</div><div class="line">Date: Thu, 07 Jun 2018 15:31:47 GMT</div><div class="line">Server: Tengine</div><div class="line">X-Frame-Options: DENY</div><div class="line">X-XSS-Protection: 1; mode=block</div><div class="line">X-Content-Type-Options: nosniff</div><div class="line">ETag: W/&quot;183130644061a9eb718916f4cad59080&quot;</div><div class="line">Cache-Control: max-age=0, private, must-revalidate</div><div class="line">Set-Cookie: locale=zh-CN; path=/</div><div class="line">Set-Cookie: _m7e_session=af038fcc6b2acd80ae604e1fe2b3e21b; path=/; expires=Thu, 07 Jun 2018 21:31:47 -0000; secure; HttpOnly</div><div class="line">X-Request-Id: ea9c26da-5742-491d-91a8-fb0b557a1193</div><div class="line">X-Runtime: 0.044304</div><div class="line">Strict-Transport-Security: max-age=31536000; includeSubDomains; preload</div><div class="line">X-Via: 1.1 PSfjfzdx2ec90:2 (Cdn Cache Server V2.0), 1.1 uzhoudianxin12:9 (Cdn Cache Server V2.0)</div><div class="line">Connection: keep-alive</div><div class="line">X-Dscp-Value: 0</div><div class="line"></div><div class="line">&#123;&quot;reward_description&quot;:&quot;超值&quot;,&quot;reward_default_amount&quot;:200,&quot;rewards_count&quot;:0,&quot;rewards&quot;:[]&#125;</div></pre></td></tr></table></figure>
+<h3 id="一个请求包"><a href="#一个请求包" class="headerlink" title="一个请求包"></a>一个请求包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">GET /u010429424/article/GetRelatedArticles?pageindex=2&amp;articleId=77340422 HTTP/1.1</div><div class="line">Host: blog.csdn.net</div><div class="line">Connection: keep-alive</div><div class="line">Accept: */*</div><div class="line">X-Requested-With: XMLHttpRequest</div><div class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36</div><div class="line">X-Tingyun-Id: wl4EtIR_7Is;r=421683836</div><div class="line">Referer: https://blog.csdn.net/u010429424/article/details/77340422</div><div class="line">Accept-Encoding: gzip, deflate, br</div><div class="line">Accept-Language: zh-CN,zh;q=0.9,en;q=0.8</div><div class="line">Cookie: uuid_tt_dd=10_30743115060-1512117356324-203925; __yadk_uid=vyatSvYGWKohHCDsMbXTxoTJBorYYR5F; Hm_ct_6bcd52f51e9b3dce32bec4a3997715ac=1788*1*PC_VC; gr_user_id=bcadf7e4-940e-4dc2-b1a0-184a382e9432; pt_7cd998c4=uid=nf08JqHE-UNPGkKoiNhnJQ&amp;nid=0&amp;vid=Q/QhGM5QhPc7SI-8uAMaUQ&amp;vn=2&amp;pvn=1&amp;sact=1525597877046&amp;to_flag=1&amp;pl=brq8D7w/cJPhtNbSYn5y8w*pt*1525597857769; _dg_id.40e39cb6d36d5282.c482=27f20a36e99cc671%7C%7C%7C1525597025%7C%7C%7C1%7C%7C%7C1525603365%7C%7C%7C1525597861%7C%7C%7C%7C%7C%7C5b15a9e2e20d0230%7C%7C%7Chttps%3A%2F%2Fcn.bing.com%2F%7C%7C%7Chttps%3A%2F%2Fcn.bing.com%2F%7C%7C%7C0%7C%7C%7Cundefined; UM_distinctid=163a0a1912f4e-05b92e330d9e3-336c7706-13c680-163a0a19130af; CNZZDATA1261355189=647640448-1527407792-null%7C1527407792; dc_session_id=10_1528362022830.963824; dc_tos=p9zd1z; Hm_lvt_6bcd52f51e9b3dce32bec4a3997715ac=1528383298,1528385760,1528420827,1528421684; Hm_lpvt_6bcd52f51e9b3dce32bec4a3997715ac=1528421684</div></pre></td></tr></table></figure>
+<h2 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h2><h3 id="表现层状态转化"><a href="#表现层状态转化" class="headerlink" title="表现层状态转化"></a>表现层状态转化</h3><ul>
+<li>表现层: 资源</li>
+<li>状态转化：一个过程，</li>
+</ul>
+<h3 id="API定制"><a href="#API定制" class="headerlink" title="API定制"></a>API定制</h3><ul>
+<li>统一资源接口：GET，DELETE，PUT和POST</li>
+<li>资源的表述：html、xml、json   在Content-Type中设定</li>
+<li>以什么方式传参，以什么方式接收参数</li>
+<li>URL中路径的设定：比如按类型划分 <ul>
+<li>登录相关的 security</li>
+<li>查看某某学院 school</li>
+<li>查看某某学院的某个专业 school/computer</li>
+</ul>
+</li>
+</ul>
+<h2 id="报文"><a href="#报文" class="headerlink" title="报文"></a>报文</h2><h3 id="HTTP请求报文与响应报文格式"><a href="#HTTP请求报文与响应报文格式" class="headerlink" title="HTTP请求报文与响应报文格式"></a>HTTP请求报文与响应报文格式</h3><h3 id="请求报文包含四部分："><a href="#请求报文包含四部分：" class="headerlink" title="请求报文包含四部分："></a>请求报文包含四部分：</h3><ul>
+<li>请求行：包含请求方法、URI、HTTP版本信息</li>
+<li>请求首部字段</li>
+<li>请求内容实体</li>
+<li>空行</li>
+</ul>
+<h3 id="响应报文包含四部分："><a href="#响应报文包含四部分：" class="headerlink" title="响应报文包含四部分："></a>响应报文包含四部分：</h3><ul>
+<li>状态行：包含HTTP版本、状态码、状态码的原因短语</li>
+<li>响应首部字段</li>
+<li>响应内容实体</li>
+<li>空行</li>
+</ul>
+<h3 id="常见的首部："><a href="#常见的首部：" class="headerlink" title="常见的首部："></a>常见的首部：</h3><h4 id="通用首部字段（请求报文与响应报文都会使用的首部字段）"><a href="#通用首部字段（请求报文与响应报文都会使用的首部字段）" class="headerlink" title="通用首部字段（请求报文与响应报文都会使用的首部字段）"></a>通用首部字段（请求报文与响应报文都会使用的首部字段）</h4><ul>
+<li>Date：创建报文时间</li>
+<li>Connection：连接的管理</li>
+<li>Cache-Control：缓存的控制</li>
+<li>Transfer-Encoding：报文主体的传输编码方式</li>
+</ul>
+<h4 id="请求首部字段（请求报文会使用的首部字段）"><a href="#请求首部字段（请求报文会使用的首部字段）" class="headerlink" title="请求首部字段（请求报文会使用的首部字段）"></a>请求首部字段（请求报文会使用的首部字段）</h4><ul>
+<li>Host：请求资源所在服务器</li>
+<li>Accept：可处理的媒体类型</li>
+<li>Accept-Charset：可接收的字符集</li>
+<li>Accept-Encoding：可接受的内容编码</li>
+<li>Accept-Language：可接受的自然语言</li>
+</ul>
+<h4 id="响应首部字段（响应报文会使用的首部字段）"><a href="#响应首部字段（响应报文会使用的首部字段）" class="headerlink" title="响应首部字段（响应报文会使用的首部字段）"></a>响应首部字段（响应报文会使用的首部字段）</h4><ul>
+<li>Accept-Ranges：可接受的字节范围</li>
+<li>Location：令客户端重新定向到的URI</li>
+<li>Server：HTTP服务器的安装信息</li>
+</ul>
+<h4 id="实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）"><a href="#实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）" class="headerlink" title="实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）"></a>实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）</h4><ul>
+<li>Allow：资源可支持的HTTP方法</li>
+<li>Content-Type：实体主类的类型</li>
+<li>Content-Encoding：实体主体适用的编码方式</li>
+<li>Content-Language：实体主体的自然语言</li>
+<li>Content-Length：实体主体的的字节数</li>
+<li>Content-Range：实体主体的位置范围，一般用于发出部分请求时使用</li>
+</ul>
+<h2 id="请求报文头"><a href="#请求报文头" class="headerlink" title="请求报文头"></a>请求报文头</h2><p><img src="/images/interview/02http/request.png" alt="请求报文头"></p>
+<h2 id="响应报文头"><a href="#响应报文头" class="headerlink" title="响应报文头"></a>响应报文头</h2><p><img src="/images/interview/02http/response.png" alt="响应报文头"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+            <a href="/tags/interview/" rel="tag"># interview</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/28/interview-basic-js/" rel="next" title="面试总结-原生JS基础">
+                <i class="fa fa-chevron-left"></i> 面试总结-原生JS基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/28/interview-FE-frame/" rel="prev" title="面试总结-前端框架">
+                面试总结-前端框架 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/dear.png"
+               alt="Abigale" />
+          <p class="site-author-name" itemprop="name">Abigale</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#跨域"><span class="nav-number">1.</span> <span class="nav-text">跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手写一个JSONP的实现"><span class="nav-number">1.1.</span> <span class="nav-text">手写一个JSONP的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨域的方式"><span class="nav-number">1.2.</span> <span class="nav-text">跨域的方式?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsonp安全漏洞"><span class="nav-number">1.3.</span> <span class="nav-text">jsonp安全漏洞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">2.</span> <span class="nav-text">缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP协议缓存的实现"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP协议缓存的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态文件的缓存-如果服务器端更新脚本，如何保证客户端不受缓存机制影响，实时更新脚本"><span class="nav-number">2.2.</span> <span class="nav-text">静态文件的缓存/如果服务器端更新脚本，如何保证客户端不受缓存机制影响，实时更新脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端存储"><span class="nav-number">3.</span> <span class="nav-text">前端存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对比"><span class="nav-number">3.1.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储量"><span class="nav-number">3.2.</span> <span class="nav-text">存储量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储类型"><span class="nav-number">3.3.</span> <span class="nav-text">存储类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方式"><span class="nav-number">3.4.</span> <span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据的生命期"><span class="nav-number">3.5.</span> <span class="nav-text">数据的生命期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与服务器端通信"><span class="nav-number">3.6.</span> <span class="nav-text">与服务器端通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.7.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">3.8.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态码"><span class="nav-number">4.</span> <span class="nav-text">状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1xx-信息"><span class="nav-number">4.1.</span> <span class="nav-text">1xx: 信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2xx-成功"><span class="nav-number">4.2.</span> <span class="nav-text">2xx: 成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3xx-重定向"><span class="nav-number">4.3.</span> <span class="nav-text">3xx: 重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4xx-客户端错误"><span class="nav-number">4.4.</span> <span class="nav-text">4xx: 客户端错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5xx-服务器错误"><span class="nav-number">4.5.</span> <span class="nav-text">5xx: 服务器错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ajax"><span class="nav-number">5.</span> <span class="nav-text">Ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Ajax，它们的优缺点。"><span class="nav-number">5.1.</span> <span class="nav-text">什么是 Ajax，它们的优缺点。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax-优点"><span class="nav-number">5.1.1.</span> <span class="nav-text">Ajax 优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax-缺点"><span class="nav-number">5.1.2.</span> <span class="nav-text">Ajax 缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-如何实现"><span class="nav-number">5.1.3.</span> <span class="nav-text">ajax 如何实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax-状态"><span class="nav-number">5.2.</span> <span class="nav-text">Ajax 状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ajax-同步和异步的区别"><span class="nav-number">5.3.</span> <span class="nav-text">Ajax 同步和异步的区别:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手写一个Ajax的Promise封装"><span class="nav-number">5.4.</span> <span class="nav-text">手写一个Ajax的Promise封装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET和POST"><span class="nav-number">6.</span> <span class="nav-text">GET和POST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GET和POST的区别"><span class="nav-number">6.1.</span> <span class="nav-text">GET和POST的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URL到渲染"><span class="nav-number">7.</span> <span class="nav-text">URL到渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器从URL到页面渲染经历了哪些？"><span class="nav-number">7.1.</span> <span class="nav-text">浏览器从URL到页面渲染经历了哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域名解析IP寻找路径"><span class="nav-number">7.2.</span> <span class="nav-text">域名解析IP寻找路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个完整的HTTP请求过程-通常有下面7个步骤"><span class="nav-number">7.3.</span> <span class="nav-text">一个完整的HTTP请求过程,通常有下面7个步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细解释"><span class="nav-number">7.4.</span> <span class="nav-text">详细解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概要"><span class="nav-number">7.5.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何渲染页面"><span class="nav-number">7.6.</span> <span class="nav-text">如何渲染页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">8.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http协议中有那些请求方式？"><span class="nav-number">8.1.</span> <span class="nav-text">Http协议中有那些请求方式？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS原理"><span class="nav-number">9.</span> <span class="nav-text">HTTPS原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">9.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPS-过程"><span class="nav-number">9.2.</span> <span class="nav-text">HTTPS 过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS-SSL握手过程"><span class="nav-number">9.2.1.</span> <span class="nav-text">HTTPS - SSL握手过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP的缺点与HTTPS"><span class="nav-number">9.3.</span> <span class="nav-text">HTTP的缺点与HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书内容包括："><span class="nav-number">9.4.</span> <span class="nav-text">证书内容包括：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器如何验证服务器数字证书？"><span class="nav-number">9.5.</span> <span class="nav-text">浏览器如何验证服务器数字证书？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证书包含信息"><span class="nav-number">9.6.</span> <span class="nav-text">证书包含信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口号"><span class="nav-number">10.</span> <span class="nav-text">端口号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口号的作用"><span class="nav-number">10.1.</span> <span class="nav-text">端口号的作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不同版本HTTP对比"><span class="nav-number">11.</span> <span class="nav-text">不同版本HTTP对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP1-0-HTTP1-1-HTTP2-0-区别"><span class="nav-number">11.1.</span> <span class="nav-text">HTTP1.0 HTTP1.1 HTTP2.0 区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP1-0-HTTP1-1-区别"><span class="nav-number">11.1.1.</span> <span class="nav-text">HTTP1.0 HTTP1.1 区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP1-1-HTTP2-0-区别"><span class="nav-number">11.1.2.</span> <span class="nav-text">HTTP1.1  HTTP2.0 区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP2-0-header如何压缩"><span class="nav-number">11.2.</span> <span class="nav-text">HTTP2.0 header如何压缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求头"><span class="nav-number">12.</span> <span class="nav-text">请求头</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求头-1"><span class="nav-number">12.1.</span> <span class="nav-text">请求头</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP优化"><span class="nav-number">13.</span> <span class="nav-text">HTTP优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息推送"><span class="nav-number">14.</span> <span class="nav-text">消息推送</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web应用从服务器主动推送Data到客户端有哪些方式？"><span class="nav-number">14.1.</span> <span class="nav-text">Web应用从服务器主动推送Data到客户端有哪些方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他推送方法"><span class="nav-number">14.2.</span> <span class="nav-text">其他推送方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie"><span class="nav-number">15.</span> <span class="nav-text">cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie是存在哪一部分？"><span class="nav-number">15.1.</span> <span class="nav-text">cookie是存在哪一部分？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie和session的区别"><span class="nav-number">15.2.</span> <span class="nav-text">cookie和session的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三次握手和四次挥手"><span class="nav-number">16.</span> <span class="nav-text">三次握手和四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三次握手"><span class="nav-number">16.1.</span> <span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四次挥手"><span class="nav-number">16.2.</span> <span class="nav-text">四次挥手</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP包"><span class="nav-number">17.</span> <span class="nav-text">HTTP包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个响应包"><span class="nav-number">17.1.</span> <span class="nav-text">一个响应包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个请求包"><span class="nav-number">17.2.</span> <span class="nav-text">一个请求包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RESTful"><span class="nav-number">18.</span> <span class="nav-text">RESTful</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表现层状态转化"><span class="nav-number">18.1.</span> <span class="nav-text">表现层状态转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API定制"><span class="nav-number">18.2.</span> <span class="nav-text">API定制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文"><span class="nav-number">19.</span> <span class="nav-text">报文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求报文与响应报文格式"><span class="nav-number">19.1.</span> <span class="nav-text">HTTP请求报文与响应报文格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求报文包含四部分："><span class="nav-number">19.2.</span> <span class="nav-text">请求报文包含四部分：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应报文包含四部分："><span class="nav-number">19.3.</span> <span class="nav-text">响应报文包含四部分：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的首部："><span class="nav-number">19.4.</span> <span class="nav-text">常见的首部：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用首部字段（请求报文与响应报文都会使用的首部字段）"><span class="nav-number">19.4.1.</span> <span class="nav-text">通用首部字段（请求报文与响应报文都会使用的首部字段）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求首部字段（请求报文会使用的首部字段）"><span class="nav-number">19.4.2.</span> <span class="nav-text">请求首部字段（请求报文会使用的首部字段）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应首部字段（响应报文会使用的首部字段）"><span class="nav-number">19.4.3.</span> <span class="nav-text">响应首部字段（响应报文会使用的首部字段）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）"><span class="nav-number">19.4.4.</span> <span class="nav-text">实体首部字段（请求报文与响应报文的的实体部分使用的首部字段）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求报文头"><span class="nav-number">20.</span> <span class="nav-text">请求报文头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应报文头"><span class="nav-number">21.</span> <span class="nav-text">响应报文头</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <a href="https://github.com/abigaleypc" target="_blant"><span class="author" itemprop="copyrightHolder">Abigale</span></a>
+
+  
+</div>
+
+<!--
+
+ <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+  <span class="post-meta-divider"></span>
+
+
+-->
+
+<span id="busuanzi_container_site_pv">
+    欢迎你呀 小伙伴 ^_^
+</span>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://abigale.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://abigaleyu.co/2018/06/28/interview-http/';
+          this.page.identifier = '2018/06/28/interview-http/';
+          this.page.title = '面试总结-HTTP';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://abigale.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+</body>
+</html>
