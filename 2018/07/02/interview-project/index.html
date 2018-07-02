@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="interview,Redux," />
+  <meta name="keywords" content="Redux,interview," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="介绍项目 豆瓣FM桌面版：https://github.com/abigaleypc/musicer 该项目主要是一款电豆瓣FM的桌面应用，我将豆瓣FMweb端 (http://douban.fm/) 的功能移植到桌面应用中。该应用使用跨平台框架可兼容Mac和Windows。 架构思路：前后端的架构和选型分析；前后端分离与接入层接口封装，前端与接入层规范对接；数据状态管理；登录态保持与抓包过程。">
-<meta name="keywords" content="interview,Redux">
+<meta name="keywords" content="Redux,interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人开源项目 | 面试总结">
 <meta property="og:url" content="https://abigaleyu.co/2018/07/02/interview-project/index.html">
@@ -104,7 +104,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://abigaleyu.co/images/interview/04project/doubanfm.jpeg">
 <meta property="og:image" content="https://abigaleyu.co/images/interview/04project/redux.jpg">
-<meta property="og:updated_time" content="2018-07-02T06:52:49.847Z">
+<meta property="og:updated_time" content="2018-07-02T06:54:22.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人开源项目 | 面试总结">
 <meta name="twitter:description" content="介绍项目 豆瓣FM桌面版：https://github.com/abigaleypc/musicer 该项目主要是一款电豆瓣FM的桌面应用，我将豆瓣FMweb端 (http://douban.fm/) 的功能移植到桌面应用中。该应用使用跨平台框架可兼容Mac和Windows。 架构思路：前后端的架构和选型分析；前后端分离与接入层接口封装，前端与接入层规范对接；数据状态管理；登录态保持与抓包过程。">
@@ -514,6 +514,11 @@
 <blockquote>
 <p>参考：<a href="http://abigaleyu.co/2018/02/22/musicer/">搭建音乐播放器桌面应用–前端篇</a> , <a href="http://abigaleyu.co/2018/03/14/musicer-backend/">扮演服务层角色 – NodeJs</a></p>
 </blockquote>
+<h3 id="采用Electron"><a href="#采用Electron" class="headerlink" title="采用Electron"></a>采用Electron</h3><ul>
+<li>跨平台: 兼容Mac, Windows 和 Linux</li>
+<li>浏览器兼容: PC端的前端攻城狮经常需要考虑浏览器的兼容性，而当我们把呈现在页面上的内容转移到应用上时，我们可以直接根据Chrome浏览器编程。</li>
+<li>快速上手: 这可以直接省去大量学习成本，只要搭建好基础框架，就可以像写页面一样去写应用。</li>
+</ul>
 
       
     </div>
@@ -531,9 +536,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/interview/" rel="tag"># interview</a>
-          
             <a href="/tags/Redux/" rel="tag"># Redux</a>
+          
+            <a href="/tags/interview/" rel="tag"># interview</a>
           
         </div>
       
@@ -695,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍项目"><span class="nav-number">1.</span> <span class="nav-text">介绍项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态管理"><span class="nav-number">2.</span> <span class="nav-text">状态管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三个原则"><span class="nav-number">2.1.</span> <span class="nav-text">三个原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流"><span class="nav-number">2.2.</span> <span class="nav-text">数据流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redux分析"><span class="nav-number">2.3.</span> <span class="nav-text">Redux分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#需要Redux"><span class="nav-number">2.3.1.</span> <span class="nav-text">需要Redux</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#抛弃Redux"><span class="nav-number">2.3.2.</span> <span class="nav-text">抛弃Redux</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目中如何使用redux"><span class="nav-number">3.</span> <span class="nav-text">项目中如何使用redux?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录态-与-接入层"><span class="nav-number">4.</span> <span class="nav-text">登录态 与 接入层</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍项目"><span class="nav-number">1.</span> <span class="nav-text">介绍项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态管理"><span class="nav-number">2.</span> <span class="nav-text">状态管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三个原则"><span class="nav-number">2.1.</span> <span class="nav-text">三个原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流"><span class="nav-number">2.2.</span> <span class="nav-text">数据流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redux分析"><span class="nav-number">2.3.</span> <span class="nav-text">Redux分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#需要Redux"><span class="nav-number">2.3.1.</span> <span class="nav-text">需要Redux</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#抛弃Redux"><span class="nav-number">2.3.2.</span> <span class="nav-text">抛弃Redux</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目中如何使用redux"><span class="nav-number">3.</span> <span class="nav-text">项目中如何使用redux?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录态-与-接入层"><span class="nav-number">4.</span> <span class="nav-text">登录态 与 接入层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采用Electron"><span class="nav-number">5.</span> <span class="nav-text">采用Electron</span></a></li></ol></div>
             
 
           </div>
