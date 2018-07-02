@@ -102,16 +102,16 @@
 <meta property="og:site_name" content="Abigale&#39;s Blog">
 <meta property="og:description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/thrid.jpg">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/doubanfm01.png">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/get-dbcl2.jpeg">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/location01.jpeg">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/next.jpeg">
-<meta property="og:updated_time" content="2018-05-16T02:50:17.968Z">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/thrid.jpg">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/doubanfm01.png">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/get-dbcl2.jpeg">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/location01.jpeg">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/next.jpeg">
+<meta property="og:updated_time" content="2018-07-02T06:59:39.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="扮演服务层角色 -- NodeJs">
 <meta name="twitter:description" content="续上一篇搭建音乐播放器桌面应用–前端篇后，这次讲述给界面提供数据包的后端扮演者–Node接入层。 Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图  中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了开放平台, 但与我们登录官方网站进行授权与操作走的并不是同一通道。">
-<meta name="twitter:image" content="https://abigaleyu.co/images/Musicer/thrid.jpg">
+<meta name="twitter:image" content="https://abigaleyu.co/images/musicer/thrid.jpg">
 
 
 
@@ -438,9 +438,9 @@
       
         <p>续上一篇<a href="http://abigaleyu.co/2018/02/22/musicer/">搭建音乐播放器桌面应用–前端篇</a>后，这次讲述给界面提供数据包的后端扮演者–Node接入层。</p>
 <p>Node在项目中扮演的是后端，但准确地说Node这并不是后端的角色，真正后端角色是豆瓣FM暴露的API。如下图</p>
-<p><img src="/images/Musicer/thrid.jpg" alt="三端"></p>
+<p><img src="/images/musicer/thrid.jpg" alt="三端"></p>
 <p>中间这一服务层即是本文的重点：对接口的挖取与封装。豆瓣FM官方并没对外提供API手册，尽管豆瓣提供了<a href="https://developers.douban.com/wiki/?title=api_v2" target="_blank" rel="noopener">开放平台</a>, 但与我们登录官方网站进行授权与操作走的并不是同一通道。<br><a id="more"></a><br>开放平台开放的类似于第三方登录 给开发者一个新的API Key，有了这个key而允许了我们对指定的功能进行指定的操作。这对于开发者是很受限的，因此我们需要采取各种可能的手段抓包，分析整合，整理出我们真正需要的接口。</p>
-<p>上图中豆瓣FMAPI来源：<a href="https://douban.fm。" target="_blank" rel="noopener">https://douban.fm。</a><br><img src="/images/Musicer/doubanfm01.png" alt="豆瓣FM"></p>
+<p>上图中豆瓣FMAPI来源：<a href="https://douban.fm。" target="_blank" rel="noopener">https://douban.fm。</a><br><img src="/images/musicer/doubanfm01.png" alt="豆瓣FM"></p>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="noopener">Musicer</a></p>
 <h2 id="三端如何分工"><a href="#三端如何分工" class="headerlink" title="三端如何分工"></a>三端如何分工</h2><ul>
 <li>前端：界面布局，数据渲染</li>
@@ -490,12 +490,12 @@
 <p>获取个人基本信息，headers中需要加上以上获取的有效token</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">- url:  https:<span class="comment">//accounts.douban.com/j/popup/login/basic</span></div><div class="line">- headers: &#123;</div><div class="line">	Authorization: <span class="string">'Bearer '</span>+ token</div><div class="line">  &#125;</div><div class="line">- param: &#123;</div><div class="line">    source: fm</div><div class="line">    referer: https:<span class="comment">//douban.fm/</span></div><div class="line">    ck: L-UM</div><div class="line">    name: username</div><div class="line">    password: password</div><div class="line">    captcha_solution: <span class="literal">null</span></div><div class="line">    captcha_id: <span class="literal">null</span></div><div class="line">  &#125;</div><div class="line">- method: post</div><div class="line">- <span class="keyword">return</span>: &#123;</div><div class="line">    &lt;!-- 获取成功 --&gt;</div><div class="line">    &#123;</div><div class="line">      <span class="string">"status"</span>: <span class="string">"success"</span>,</div><div class="line">      <span class="string">"message"</span>: <span class="string">"success"</span>,</div><div class="line">      <span class="string">"description"</span>: <span class="string">"处理成功"</span></div><div class="line">    &#125;</div><div class="line">    &lt;!-- 获取失败  根据图片输入验证码再次请求 --&gt;</div><div class="line">    <span class="string">"status"</span>: <span class="string">"failed"</span>,</div><div class="line">    <span class="string">"message"</span>: <span class="string">"captcha_required"</span>,</div><div class="line">    <span class="string">"description"</span>: <span class="string">"需要图形验证码"</span></div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <p>我们可以从返回结果中拿到我们要的基本信息</p>
-<p><img src="/images/Musicer/get-dbcl2.jpeg" alt="获取dbcl2"></p>
+<p><img src="/images/musicer/get-dbcl2.jpeg" alt="获取dbcl2"></p>
 <p>我们要找的key-value就藏在截图部分，从cookie里劫持下来，存到本地，再看一个截图，状态码是200而不是3开头，是因为这个basic的请求中，Request Headers有一行：<code>Referer:https://accounts.douban.com/popup/login?source=fm&amp;use_post_message</code> ，有什么特殊的吗~可以看下下面的截图</p>
-<p><img src="/images/Musicer/location01.jpeg" alt="location"></p>
+<p><img src="/images/musicer/location01.jpeg" alt="location"></p>
 <p>关注Response Headers 里的Location，我们正需要从它调整的链接中去找下一个值。也正式因为它在Response中而非Request中，所以Status Code 为3开头。</p>
 <p>具体获取过程可以查看<code>src/routes/user.js</code>，总之我们最终需要集齐token,bid,dbcl12,ck这几个值，以下请求是我在登录状态下点击下一首歌曲浏览器显示的请求头，我们获取到的值就派上用场了~</p>
-<p><img src="/images/Musicer/next.jpeg" alt="下一首"></p>
+<p><img src="/images/musicer/next.jpeg" alt="下一首"></p>
 <h3 id="接口封装"><a href="#接口封装" class="headerlink" title="接口封装"></a>接口封装</h3><p>我们根据约定好的规范：方法，返回结果等进行文档梳理</p>
 <ul>
 <li><p>登录态:我们分为初次登录和采用token登录</p>

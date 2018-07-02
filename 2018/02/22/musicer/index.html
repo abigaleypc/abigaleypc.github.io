@@ -102,17 +102,17 @@
 <meta property="og:site_name" content="Abigale&#39;s Blog">
 <meta property="og:description" content="强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。 这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。 源码Musicer 最终效果 前端架构 React: 基于虚">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/musicer.jpg">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/component.jpeg">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/component-1.jpeg">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/login-1.jpeg">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/login-2.jpeg">
-<meta property="og:image" content="https://abigaleyu.co/images/Musicer/login-3.jpeg">
-<meta property="og:updated_time" content="2018-03-26T03:19:15.632Z">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/musicer.jpg">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/component.jpeg">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/component-1.jpeg">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/login-1.jpeg">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/login-2.jpeg">
+<meta property="og:image" content="https://abigaleyu.co/images/musicer/login-3.jpeg">
+<meta property="og:updated_time" content="2018-07-02T06:59:39.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建音乐播放器桌面应用--前端篇">
 <meta name="twitter:description" content="强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。 这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。 源码Musicer 最终效果 前端架构 React: 基于虚">
-<meta name="twitter:image" content="https://abigaleyu.co/images/Musicer/musicer.jpg">
+<meta name="twitter:image" content="https://abigaleyu.co/images/musicer/musicer.jpg">
 
 
 
@@ -440,7 +440,7 @@
         <p>强大的JavaScript似乎无所不能了，除了PC端的单页面实现，可以用RN或weex完成兼容Android端和iOS端的APP，也可以用Electron搭建兼容Mac或Windows的桌面应用了。</p>
 <p>这篇文章主要讲一个播放器的从零开始的实现过程，包括前后端的架构和选型分析；采用前后端分离，前后端如何分工合作；数据的获取与存储；如何抓包。</p>
 <h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://github.com/abigaleypc/Musicer" target="_blank" rel="noopener">Musicer</a></p>
-<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="/images/Musicer/musicer.jpg" alt="效果图"></p>
+<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="/images/musicer/musicer.jpg" alt="效果图"></p>
 <h3 id="前端架构"><a href="#前端架构" class="headerlink" title="前端架构"></a>前端架构</h3><ul>
 <li>React: 基于虚拟DOM实现单向响应式数据流的UI框架。</li>
 <li>Redux: 提供单向，可预测的数据流。</li>
@@ -461,7 +461,7 @@
 <li>优秀之处: Redux是一个管理全局state的容器，它的优秀之处在于将所有状态从所有模块组件中抽身而出的状态集合，可以理解为每个组件中的一个变量或一个对象，如果没有Redux，我们可能需要通过React中state,props去层层传值，但redux提供给我们的是全局的状态，所有状态集合store,通知作用的action和执行官reducer。这样很好地减少数据耦合，我们可以站在一个地方观览所有数据。</li>
 <li>可恨之处: 每次添加新状态都需要在store,action,reducer添加新行为，这让代码看起来非常冗余，似乎写了特别多重复性代码，如果追求代码简洁，redux会让你泪奔~~o(&gt;_&lt;)o ~~</li>
 </ul>
-<h3 id="前端实现方案"><a href="#前端实现方案" class="headerlink" title="前端实现方案"></a>前端实现方案</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><h5 id="系统中的组件"><a href="#系统中的组件" class="headerlink" title="系统中的组件"></a>系统中的组件</h5><p><img src="/images/Musicer/component.jpeg" alt="组件"></p>
+<h3 id="前端实现方案"><a href="#前端实现方案" class="headerlink" title="前端实现方案"></a>前端实现方案</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><h5 id="系统中的组件"><a href="#系统中的组件" class="headerlink" title="系统中的组件"></a>系统中的组件</h5><p><img src="/images/musicer/component.jpeg" alt="组件"></p>
 <p>以上是播放器的组件结构，从Root入口开始。</p>
 <ul>
 <li>Main：处理初始化状态，如登录状态</li>
@@ -469,13 +469,13 @@
 <li>Login,Account,Share,Lyric：提供切换界面</li>
 </ul>
 <p>决定采用React就是看中其高度组件化的优势，这些组件从开始至今被更改了好几次，累加简化再累加再简化，抽离成目前的状态。我们本来可以在Home中处理所有逻辑，再将状态一一扔给action去通知再处理，而后来我在Home之前加入一个包围一个Main,这样做的目的是将初始化和进行中分成两个时间维度，我们可以在开始之前先预知这一次用户的状态，再呈现处理。</p>
-<p>后面的四小组件也是功能组件，各司其职，如Login是用户登录界面，我们只在里面处理登录更改事物，再将最后的状态通知到action再做处理；同理Lyric是歌词组件，获取当前歌曲再做展示。<br>可在项目中<code>/public/Components</code>查看各个组件<br><img src="/images/Musicer/component-1.jpeg" alt="组件"></p>
-<h5 id="Main组件中的初始化"><a href="#Main组件中的初始化" class="headerlink" title="Main组件中的初始化"></a>Main组件中的初始化</h5><p><img src="/images/Musicer/login-1.jpeg" alt="初始化"><br>首先Main组件会查看缓存中是否有用户token信息存在，若无则将登录状态设为未登录；若有，则在前端获取信息查看信息是否过期，获取的信息如下：</p>
+<p>后面的四小组件也是功能组件，各司其职，如Login是用户登录界面，我们只在里面处理登录更改事物，再将最后的状态通知到action再做处理；同理Lyric是歌词组件，获取当前歌曲再做展示。<br>可在项目中<code>/public/Components</code>查看各个组件<br><img src="/images/musicer/component-1.jpeg" alt="组件"></p>
+<h5 id="Main组件中的初始化"><a href="#Main组件中的初始化" class="headerlink" title="Main组件中的初始化"></a>Main组件中的初始化</h5><p><img src="/images/musicer/login-1.jpeg" alt="初始化"><br>首先Main组件会查看缓存中是否有用户token信息存在，若无则将登录状态设为未登录；若有，则在前端获取信息查看信息是否过期，获取的信息如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">"data": &#123;</div><div class="line">        "access_token": "25a64943770fca55d46995",</div><div class="line">        "douban_user_name": "abigaleyu",</div><div class="line">        "douban_user_id": "1688842",</div><div class="line">        "expires_in": 7775999,</div><div class="line">        "refresh_token": "5f2388c502a0799f2f9"</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>以上expires_in即为从获取信息时间的7775999秒后将会过期，因此我们需要将当下时间和有效期做下对比。<br>若已过期，将缓存信息清除后将登录状态设为未登录，否则则通过登录，然后将本次登录状态设为true，在之后如需获取个人信息，点赞歌词等个人相关操作时，我们将需要用到该token(即个人身份令牌)去操作。</p>
-<h5 id="登录逻辑"><a href="#登录逻辑" class="headerlink" title="登录逻辑"></a>登录逻辑</h5><p><img src="/images/Musicer/login-2.jpeg" alt="登录逻辑"></p>
+<h5 id="登录逻辑"><a href="#登录逻辑" class="headerlink" title="登录逻辑"></a>登录逻辑</h5><p><img src="/images/musicer/login-2.jpeg" alt="登录逻辑"></p>
 <p>这是当用户切入登录界面时，我们已在Main获取到登录状态，它将通知到全局，而我们又可以在全局获取到该状态，当为true时，则直接用token去访问后端要些个人信息（用户账号，用户ID，用户头像等），当登录状态为false时，则进入以上流程，用户凭输入的用户名和密码去请求API（界面出现用户名和密码的输入框），通过时则返回token，不通过时会出现多种情况：登录多次错误需要验证码；账号错误；密码错误；账号不存在等，我们这里简化成两种状态：需要验证码（界面会多出验证码输入框和验证码图片）和 其他不需要验证码的情况。当再次输入正确或验证码也通过时，则获取到token。注意以上流程我们只有一个目的：获取token。这是一个身份令牌，我们只有拥有它就有权限去干个人相关的事情。至于通过就获取到个人信息<br> ，我们和用户操作归到一起，都是只拿token去操作。</p>
-<h5 id="获取个人信息"><a href="#获取个人信息" class="headerlink" title="获取个人信息"></a>获取个人信息</h5><p><img src="/images/Musicer/login-3.jpeg" alt="获取个人信息"><br>这便是拿到token之后的事情，拿到token就意味着已登录完毕，如没获取到token，会返回到登录界面去要求用户登录。<br>当我们手持token时，先会在前端验证token的有效期，这样做的意义是避免网络开销，前后端验证开销，如果不这么做，当我们拿着已经过期的token去向后端要个人信息时，后端返回告诉我们token无效的，前端再告诉用户需要重新登录。因此这一步会显得很有必要。<br>若前端验证为有效期内的token时，这才向后端获取有效的个人信息，当然，这个token后端也会做一次判断，如果前端是乱传过去的呢~</p>
+<h5 id="获取个人信息"><a href="#获取个人信息" class="headerlink" title="获取个人信息"></a>获取个人信息</h5><p><img src="/images/musicer/login-3.jpeg" alt="获取个人信息"><br>这便是拿到token之后的事情，拿到token就意味着已登录完毕，如没获取到token，会返回到登录界面去要求用户登录。<br>当我们手持token时，先会在前端验证token的有效期，这样做的意义是避免网络开销，前后端验证开销，如果不这么做，当我们拿着已经过期的token去向后端要个人信息时，后端返回告诉我们token无效的，前端再告诉用户需要重新登录。因此这一步会显得很有必要。<br>若前端验证为有效期内的token时，这才向后端获取有效的个人信息，当然，这个token后端也会做一次判断，如果前端是乱传过去的呢~</p>
 <h4 id="快速创建示例仓库并安装运行"><a href="#快速创建示例仓库并安装运行" class="headerlink" title="快速创建示例仓库并安装运行"></a>快速创建示例仓库并安装运行</h4><ul>
 <li>克隆库<br><code>git clone https://github.com/electron/electron-quick-start</code></li>
 <li>进入路径<br><code>cd electron-quick-start</code></li>

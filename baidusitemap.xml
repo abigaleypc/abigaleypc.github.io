@@ -4,6 +4,52 @@
 
     
   <url>
+    <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
+    <lastmod>2018-07-02T06:59:39.919Z</lastmod>
+    <data>
+        <display>
+        <title>搭建音乐播放器桌面应用--前端篇</title>
+        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
+        
+        <tag>Express</tag>
+         
+        <tag>React</tag>
+         
+        <tag>Electron</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://abigaleyu.co/2018/03/14/musicer-backend/</loc>
+    <lastmod>2018-07-02T06:59:39.919Z</lastmod>
+    <data>
+        <display>
+        <title>扮演服务层角色 -- NodeJs</title>
+        <pubTime>2018-03-14T10:54:56.000Z</pubTime>
+        
+        <tag>Express</tag>
+         
+        <tag>NodeJS</tag>
+         
+         
+           
+             
+              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://abigaleyu.co/2018/07/02/interview-project/</loc>
     <lastmod>2018-07-02T06:54:22.638Z</lastmod>
     <data>
@@ -11,9 +57,9 @@
         <title>个人开源项目 | 面试总结</title>
         <pubTime>2018-07-02T03:53:50.000Z</pubTime>
         
-        <tag>Redux</tag>
-         
         <tag>interview</tag>
+         
+        <tag>Redux</tag>
          
          
            
@@ -55,13 +101,13 @@
         <title>前端框架 | 面试总结</title>
         <pubTime>2018-06-28T09:37:43.000Z</pubTime>
         
-        <tag>interview</tag>
-         
         <tag>Angular</tag>
          
         <tag>VUE</tag>
          
         <tag>ReactJS</tag>
+         
+        <tag>interview</tag>
          
          
            
@@ -230,28 +276,6 @@
 
     
   <url>
-    <loc>https://abigaleyu.co/2018/03/14/musicer-backend/</loc>
-    <lastmod>2018-05-16T02:50:17.968Z</lastmod>
-    <data>
-        <display>
-        <title>扮演服务层角色 -- NodeJs</title>
-        <pubTime>2018-03-14T10:54:56.000Z</pubTime>
-        
-        <tag>Express</tag>
-         
-        <tag>NodeJS</tag>
-         
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://abigaleyu.co/2018/04/17/cache/</loc>
     <lastmod>2018-05-16T02:50:17.967Z</lastmod>
     <data>
@@ -292,30 +316,6 @@
            
              
               <breadCrumb title="Diary" url="https://abigaleyu.co/categories/Diary/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://abigaleyu.co/2018/02/22/musicer/</loc>
-    <lastmod>2018-03-26T03:19:15.632Z</lastmod>
-    <data>
-        <display>
-        <title>搭建音乐播放器桌面应用--前端篇</title>
-        <pubTime>2018-02-21T16:10:35.000Z</pubTime>
-        
-        <tag>Express</tag>
-         
-        <tag>React</tag>
-         
-        <tag>Electron</tag>
-         
-         
-           
-             
-              <breadCrumb title="Front-End" url="https://abigaleyu.co/categories/Front-End/"/>
           
         </display>
     </data>
