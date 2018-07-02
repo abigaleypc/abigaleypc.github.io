@@ -97,7 +97,7 @@
 <meta name="description" content="AngularAngular是怎么实现双向绑定的？脏检查机制：   Angular 在解析视图模板时, 会找出其中的数据绑定, 以及对应的更新DOM的方式 然后通过 $scope.$watch 将这一绑定注册到当前 $scope 上下文的更新响应操作里。 $digest 每一个循环里会从根作用域开始遍历所有的 $scope 注册的 $watch 响应操作 当发现值有变化时，更新DOM数据。 这其中">
 <meta name="keywords" content="interview,Angular,VUE,ReactJS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试总结-前端框架">
+<meta property="og:title" content="前端框架 | 面试总结">
 <meta property="og:url" content="https://abigaleyu.co/2018/06/28/interview-FE-frame/index.html">
 <meta property="og:site_name" content="Abigale&#39;s Blog">
 <meta property="og:description" content="AngularAngular是怎么实现双向绑定的？脏检查机制：   Angular 在解析视图模板时, 会找出其中的数据绑定, 以及对应的更新DOM的方式 然后通过 $scope.$watch 将这一绑定注册到当前 $scope 上下文的更新响应操作里。 $digest 每一个循环里会从根作用域开始遍历所有的 $scope 注册的 $watch 响应操作 当发现值有变化时，更新DOM数据。 这其中">
@@ -105,9 +105,10 @@
 <meta property="og:image" content="https://abigaleyu.co/images/interview/03frame/vue-01.png">
 <meta property="og:image" content="https://abigaleyu.co/images/interview/03frame/vue-02.png">
 <meta property="og:image" content="https://abigaleyu.co/images/interview/03frame/react-01.png">
-<meta property="og:updated_time" content="2018-06-28T10:07:08.646Z">
+<meta property="og:image" content="https://abigaleyu.co/images/interview/03frame/RN-01.png">
+<meta property="og:updated_time" content="2018-06-29T05:28:51.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="面试总结-前端框架">
+<meta name="twitter:title" content="前端框架 | 面试总结">
 <meta name="twitter:description" content="AngularAngular是怎么实现双向绑定的？脏检查机制：   Angular 在解析视图模板时, 会找出其中的数据绑定, 以及对应的更新DOM的方式 然后通过 $scope.$watch 将这一绑定注册到当前 $scope 上下文的更新响应操作里。 $digest 每一个循环里会从根作用域开始遍历所有的 $scope 注册的 $watch 响应操作 当发现值有变化时，更新DOM数据。 这其中">
 <meta name="twitter:image" content="https://abigaleyu.co/images/interview/03frame/vue-01.png">
 
@@ -144,7 +145,7 @@
 
 
 
-  <title>面试总结-前端框架 | Abigale's Blog</title>
+  <title>前端框架 | 面试总结 | Abigale's Blog</title>
   
 
 
@@ -351,7 +352,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">面试总结-前端框架</h2>
+          <h2 class="post-title" itemprop="name headline">前端框架 | 面试总结</h2>
         
 
         <div class="post-meta">
@@ -642,6 +643,139 @@
 <p>  如果你想手动决定是否调用也没有问题，如果你还记得React的生命周期的话，一定记得有一个boolean shouldComponentUpdate(object nextProps, object nextState)生命周期函数，这个函数的返回值决定了Render是否被调用，默认都返回true，即允许render被调用。如果你对自己的判断能力有自信，你可以重写这个函数，根据参数判断是否应该调用 Render 函数。这也是React其中的一个优化点。</p>
 <h4 id="render函数被调用了，DOM就一定被更新了？"><a href="#render函数被调用了，DOM就一定被更新了？" class="headerlink" title="render函数被调用了，DOM就一定被更新了？"></a>render函数被调用了，DOM就一定被更新了？</h4><p>  这要看更新的是哪一类DOM了。</p>
 <p>  React组件中存在两类DOM，一类是众所周知的Virtual DOM，相信大家也耳熟能详了；另一类就是浏览器中的真实DOM（Real DOM/Native DOM）。React的Render函数被调用之后，React立即根据props或者state重新创建了一颗Virtual DOM Tree，虽然每一次调用时都重新创建，但因为在内存中创建DOM树其实是非常快且不影响性能的，所以这一步的开销并不大。而Virtual DOM的更新并不意味这Real DOM的更新，接下来的事情也是大家知道的，React采用算法将Virtual DOM和Real DOM进行对比，找出需要更新的最小步骤，此时Real DOM才可能发生修改。每一次的state更改都会使得render函数被调用，但页面的DOM不一定会发生修改</p>
+<h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h2><h3 id="RN如何与原生iOS交互"><a href="#RN如何与原生iOS交互" class="headerlink" title="RN如何与原生iOS交互"></a>RN如何与原生iOS交互</h3><p>RN与IOS的通信</p>
+<ul>
+<li>React Native用iOS自带的JavaScriptCore作为JS的解析引擎</li>
+<li>有两份模块配置表：OC端和JS端分别各有一个bridge，两个bridge都保存了同样一份模块配置表<ul>
+<li>JS调用OC模块方法时，通过bridge里的配置表把模块方法转为模块ID和方法ID传给OC</li>
+<li>OC通过bridge的模块配置表找到对应的方法执行之</li>
+</ul>
+</li>
+</ul>
+<p>RN在iOS中的操作是：<br>在IOS中：</p>
+<ul>
+<li><p>取所有模块类<br>每个模块类都实现了RCTBridgeModule接口<br>通过runtime接口objc_getClassList或objc_copyClassList取出项目里所有类<br>然后逐个判断是否实现了RCTBridgeModule接口，就可以找到所有模块类，实现在RCTBridgeModuleClassesByModuleID()方法里。</p>
+</li>
+<li><p>取模块里暴露给JS的方法<br>可以定义一些能被js访问或者不能被js访问的方法，比如Allow_JS_为前缀的就可以访问<br>用runtime方法class_getInstanceMethod取出所有方法名字，提取以RCTExport_为前缀的方法</p>
+</li>
+</ul>
+<p>JS —- Objective-C</p>
+<ul>
+<li>调用Objective-C提供出来的某个方法ABC，将JS代码填充进入</li>
+</ul>
+<p>进入JS Bridge</p>
+<ul>
+<li>把上一步的调用，分解为模块名(ModuleName)，方法名(MethodName)，对callback进行一些处理，放到一个信息队列里面(MessageQueue)。 </li>
+<li><p>进入MessageQueue，用上一步的callback生成对应的CallbackID。拿到上一步中MessageQueue的模块配置表的ModuleName和MethodName转为ModuleID和MethodID。<br>离开JS Bridge</p>
+</li>
+<li><p>把上述步骤得到的ModuleID,MethodId,CallbackID和其他参数argus传给OC</p>
+</li>
+</ul>
+<p>进入OC Bridge</p>
+<ul>
+<li><p>OC接收到消息，通过模块配置表拿到对应的模块和方法。<br>在这一步，OC Bridge已经初始化了。<br>在OC Bridge初始化的时候，每一个模块生成了对应的实例，模块上的每一个方法也都生成了对应的RCTModuleMethod对象。我们就可以同上前面拿到的ModuleID,MethodId,CallbackID和其他参数 进行操作</p>
+</li>
+<li><p>RCTModuleMethod对JS传过来的每一个参数进行处理。<br>在这一步中 OC会把JS的参数类型转为自己OC对应的参数类型，还会生成一个block,等执行完js的时候再来执行<br>我没写过ios,但我的理解是这个block类似于js中的单层回调<br>block:类似js的单层回调<br>离开OC Bridge</p>
+</li>
+<li><p>OC模块方法调用完，执行block回调。</p>
+</li>
+</ul>
+<p>返回过来的时候，我们刚已经记录了block callbackID  和 callbackID对应的callback方法，这样 我们就可以按原路返回到js端</p>
+<blockquote>
+<p>runtime接口可以理解为一个运行时的事件，运行后就可以得到所有类 如 objc_getClassList或objc_copyClassList</p>
+</blockquote>
+<h4 id="与iOS交互图解"><a href="#与iOS交互图解" class="headerlink" title="与iOS交互图解"></a>与iOS交互图解</h4><p><img src="/images/interview/03frame/RN-01.png" alt="与iOS交互图解"></p>
+<blockquote>
+<p>参考: <a href="http://blog.cnbang.net/tech/2698/" target="_blank" rel="noopener">React Native通信机制详解</a></p>
+</blockquote>
+<h3 id="RN如何与原生Android交互"><a href="#RN如何与原生Android交互" class="headerlink" title="RN如何与原生Android交互"></a>RN如何与原生Android交互</h3><ul>
+<li>在Android系统上已经有了实现。就是WebView。然而React-Native与WebView并没有一点关系。React-Native实现一套新的webview</li>
+<li>JavascriptModuleRegistry：Js层模块注册表，负责将所有JavaScriptModule注册到CatalystInstance，通过Java动态代理调用到Js。</li>
+<li>java通过注册表调用到CatalystInstance实例，透过ReactBridge的jni，调用到Onload.cpp中的callFunction，最后通过javascriptCore，调用BatchedBridge.js，根据参数｛moduleID,methodID｝require相应Js模块执行</li>
+<li>js -&gt; Java：JS不主动传递数据调用Java。在需要调用调Java模块方法时，会把参数｛moduleID,methodID｝等数据存在MessageQueue中，等待Java的事件触发，再把MessageQueue中的｛moduleID,methodID｝返回给Java，再根据模块注册表找到相应模块处理。</li>
+</ul>
+<h3 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h3><p>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。</p>
+<h4 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h4><ul>
+<li><p>flex-direction<br>属性决定主轴的方向（即项目的排列方向）。</p>
+<ul>
+<li>row（默认值）：主轴为水平方向，起点在左端。</li>
+<li>row-reverse：主轴为水平方向，起点在右端。</li>
+<li>column：主轴为垂直方向，起点在上沿。</li>
+<li>column-reverse：主轴为垂直方向，起点在下沿。</li>
+</ul>
+</li>
+<li><p>flex-wrap<br>属性定义，如果一条轴线排不下，如何换行。</p>
+<ul>
+<li>nowrap（默认）：不换行。</li>
+<li>wrap：换行，第一行在上方。</li>
+<li>wrap-reverse：换行，第一行在下方。</li>
+</ul>
+</li>
+</ul>
+<!-- * flex-flow -->
+<ul>
+<li><p>justify-content<br>属性定义了项目在主轴上的对齐方式。</p>
+<ul>
+<li>flex-start（默认值）：左对齐</li>
+<li>flex-end：右对齐</li>
+<li>center： 居中</li>
+<li>space-between：两端对齐，项目之间的间隔都相等。</li>
+<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
+</ul>
+</li>
+<li><p>align-items<br>属性定义项目在交叉轴上如何对齐。</p>
+<ul>
+<li>flex-start：交叉轴的起点对齐。</li>
+<li>flex-end：交叉轴的终点对齐。</li>
+<li>center：交叉轴的中点对齐。</li>
+<li>baseline: 项目的第一行文字的基线对齐。</li>
+<li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+</ul>
+</li>
+<li><p>align-content<br>属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+<ul>
+<li>flex-start：与交叉轴的起点对齐。</li>
+<li>flex-end：与交叉轴的终点对齐。</li>
+<li>center：与交叉轴的中点对齐。</li>
+<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+<li>stretch（默认值）：轴线占满整个交叉轴。</li>
+</ul>
+</li>
+</ul>
+<h3 id="如何更新jsbundle"><a href="#如何更新jsbundle" class="headerlink" title="如何更新jsbundle"></a>如何更新jsbundle</h3><ul>
+<li>我们打好包jsbundle文件放到远程服务器</li>
+<li>启动React Native, 检查sdcard是否有jsbundle文件, 如果没有调用setBundleAssetName(该方法存在React Native 启动入口)加载asset目录的jsbundle, 同时启动线程下载远程jsbundle文件到sdcard目录.</li>
+<li>待下次启动时, sdcard是有jsbundle文件的, 加载的就是最新的jsbundle文件.</li>
+</ul>
+<h3 id="Hot-Replacement-请简述-code-push-的原理？"><a href="#Hot-Replacement-请简述-code-push-的原理？" class="headerlink" title="Hot Replacement/请简述 code push 的原理？"></a>Hot Replacement/请简述 code push 的原理？</h3><p>code push 调用 react native 的打包命令，将当前环境的非 native 代码全量打包成一个 bundle 文件，然后上传到微软云服务器（Windows Azure）。在 app 中启动页（或 splash 页）编写请求更新的代码（请求包含了本地版本，hashCode、appToken 等信息），微软服务端对比本地 js bundle 版本和微软服务器的版本，如果本地版本低，就下载新的 js bundle 下来后实现更新(code push 框架实现)。</p>
+<h3 id="CodePush-可以进行实时的推送代码更新："><a href="#CodePush-可以进行实时的推送代码更新：" class="headerlink" title="CodePush 可以进行实时的推送代码更新："></a>CodePush 可以进行实时的推送代码更新：</h3><ul>
+<li>直接对用户部署代码更新</li>
+<li>管理 Alpha，Beta 和生产环境应用</li>
+<li>支持 React Native 和 Cordova</li>
+<li>支持JavaScript 文件与图片资源的更新</li>
+</ul>
+<h3 id="首屏优化"><a href="#首屏优化" class="headerlink" title="首屏优化"></a>首屏优化</h3><ul>
+<li>首屏耗时=react native上下文初始化耗时+首屏视图渲染耗时</li>
+<li>根据生命周期，有初始阶段，更新阶段和卸载组件阶段</li>
+<li>在初始阶段首先渲染loading视图，获取数据后，通过改变状态（state），触发视图的再次渲染，在屏幕绘制出视图。</li>
+<li>可以通过控制台打印的方式或者日志输出的方式去监听时间</li>
+<li>加上缓存，RN有一个AsyncStorage类似localStorage,第一次进入的时候加上缓存，再下次进入的时候不进入loading,而是直接获取上一次缓存数据，在做网络请求</li>
+<li>shouldComponentUpdate中判断缓存数据与网络响应数据的差别</li>
+</ul>
+<blockquote>
+<p>参考:<a href="http://www.alloyteam.com/2016/03/best-practice-in-react-native/" target="_blank" rel="noopener">探索react native首屏渲染最佳实践</a></p>
+</blockquote>
+<h3 id="RN的优缺点"><a href="#RN的优缺点" class="headerlink" title="RN的优缺点"></a>RN的优缺点</h3><h3 id="React-Native相对于原生的ios和Android有哪些优势？"><a href="#React-Native相对于原生的ios和Android有哪些优势？" class="headerlink" title="React Native相对于原生的ios和Android有哪些优势？"></a>React Native相对于原生的ios和Android有哪些优势？</h3><ul>
+<li>跳过App Store审核，远程更新代码，提高迭代频率和效率，既有Native的体验，又保留React的开发效率。</li>
+<li>性能媲美原生APP</li>
+<li>使用JavaScript编码，只要学习这一种语言</li>
+<li>绝大部分代码安卓和IOS都能共用</li>
+<li>组件式开发，代码重用性很高</li>
+<li>跟编写网页一般，修改代码后即可自动刷新，不需要慢慢编译，节省很多编译等待时间</li>
+<li>支持APP热更新，更新无需重新安装APP</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>内存占用相对较高<br>对于不熟悉前端开发的人员上手比较慢，不能真正意义上做到跨平台，使用后，对app体积增加。</p>
 <h2 id="各个框架比较"><a href="#各个框架比较" class="headerlink" title="各个框架比较"></a>各个框架比较</h2><h4 id="React-和-Vue-有许多相似之处"><a href="#React-和-Vue-有许多相似之处" class="headerlink" title="React 和 Vue 有许多相似之处"></a>React 和 Vue 有许多相似之处</h4><ul>
 <li>它们都是JavaScript的UI框架</li>
 <li>使用 Virtual DOM</li>
@@ -777,8 +911,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/28/interview-http/" rel="next" title="面试总结-HTTP">
-                <i class="fa fa-chevron-left"></i> 面试总结-HTTP
+              <a href="/2018/06/28/interview-http/" rel="next" title="HTTP | 面试总结">
+                <i class="fa fa-chevron-left"></i> HTTP | 面试总结
               </a>
             
           </div>
@@ -786,6 +920,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/02/interview-project/" rel="prev" title="个人开源项目 | 面试总结">
+                个人开源项目 | 面试总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -869,7 +1007,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -891,7 +1029,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -926,7 +1064,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular"><span class="nav-number">1.</span> <span class="nav-text">Angular</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular是怎么实现双向绑定的？"><span class="nav-number">1.1.</span> <span class="nav-text">Angular是怎么实现双向绑定的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#angular的路由是怎么实现的？"><span class="nav-number">1.2.</span> <span class="nav-text">angular的路由是怎么实现的？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue"><span class="nav-number">2.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双向绑定"><span class="nav-number">2.1.</span> <span class="nav-text">双向绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue是怎么实现双向绑定的？"><span class="nav-number">2.1.1.</span> <span class="nav-text">Vue是怎么实现双向绑定的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体实现"><span class="nav-number">2.1.2.</span> <span class="nav-text">具体实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双向绑定图解"><span class="nav-number">2.1.3.</span> <span class="nav-text">双向绑定图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number">2.2.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期图解"><span class="nav-number">2.2.1.</span> <span class="nav-text">生命周期图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue的路由是怎么实现的？"><span class="nav-number">2.3.</span> <span class="nav-text">Vue的路由是怎么实现的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么采用VUE"><span class="nav-number">2.4.</span> <span class="nav-text">为什么采用VUE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-template"><span class="nav-number">2.4.1.</span> <span class="nav-text">Vue - template</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React"><span class="nav-number">3.</span> <span class="nav-text">React</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能问题"><span class="nav-number">3.1.</span> <span class="nav-text">性能问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于组件重新渲染的问题："><span class="nav-number">3.1.1.</span> <span class="nav-text">关于组件重新渲染的问题：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于setState"><span class="nav-number">3.2.</span> <span class="nav-text">关于setState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调用-setState-之后发生了什么？"><span class="nav-number">3.2.1.</span> <span class="nav-text">调用 setState 之后发生了什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#调和过程："><span class="nav-number">3.2.1.1.</span> <span class="nav-text">调和过程：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setState不会立刻改变React组件中state的值；"><span class="nav-number">3.2.2.</span> <span class="nav-text">setState不会立刻改变React组件中state的值；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多次setState函数调用产生的效果会合并。"><span class="nav-number">3.2.3.</span> <span class="nav-text">多次setState函数调用产生的效果会合并。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于-setState-这里有三件事情需要知道"><span class="nav-number">3.2.4.</span> <span class="nav-text">关于 setState() 这里有三件事情需要知道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setState可以接受函数为参数吗？有什么作用？"><span class="nav-number">3.2.5.</span> <span class="nav-text">setState可以接受函数为参数吗？有什么作用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传入-setState-函数的第二个参数的作用是什么？"><span class="nav-number">3.2.6.</span> <span class="nav-text">传入 setState 函数的第二个参数的作用是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候不能调用setState"><span class="nav-number">3.2.7.</span> <span class="nav-text">什么时候不能调用setState</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候调用setState不会再次调用render"><span class="nav-number">3.2.8.</span> <span class="nav-text">什么时候调用setState不会再次调用render</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期-1"><span class="nav-number">3.3.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#描述一下React组件的各个生命周期函数吗-组件的生命周期有哪些"><span class="nav-number">3.3.1.</span> <span class="nav-text">描述一下React组件的各个生命周期函数吗/组件的生命周期有哪些</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#组件的声明周期有三种阶段"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">组件的声明周期有三种阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件的初始化阶段"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">组件的初始化阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件更新阶段"><span class="nav-number">3.3.1.3.</span> <span class="nav-text">组件更新阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件析构阶段"><span class="nav-number">3.3.1.4.</span> <span class="nav-text">组件析构阶段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期图解-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">生命周期图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染机制"><span class="nav-number">3.4.</span> <span class="nav-text">渲染机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更新渲染过程"><span class="nav-number">3.4.1.</span> <span class="nav-text">更新渲染过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">3.5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在什么情况下你会优先选择使用-Class-Component-而不是-Functional-Component？"><span class="nav-number">3.5.1.</span> <span class="nav-text">在什么情况下你会优先选择使用 Class Component 而不是 Functional Component？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-中-Element-与-Component-的区别是？"><span class="nav-number">3.5.2.</span> <span class="nav-text">React 中 Element 与 Component 的区别是？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-中的-refs-作用是什么？"><span class="nav-number">3.5.3.</span> <span class="nav-text">React 中的 refs 作用是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Controlled-Component-与-Uncontrolled-Component-之间的区别是什么？"><span class="nav-number">3.5.4.</span> <span class="nav-text">Controlled Component 与 Uncontrolled Component 之间的区别是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shouldComponentUpdate-的作用是啥以及为何它这么重要？"><span class="nav-number">3.5.5.</span> <span class="nav-text">shouldComponentUpdate 的作用是啥以及为何它这么重要？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createElement-与-cloneElement-的区别是什么？"><span class="nav-number">3.5.6.</span> <span class="nav-text">createElement 与 cloneElement 的区别是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么我们需要使用-React-提供的-Children-API-而不是-JavaScript-的-map？"><span class="nav-number">3.5.7.</span> <span class="nav-text">为什么我们需要使用 React 提供的 Children API 而不是 JavaScript 的 map？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？"><span class="nav-number">3.5.8.</span> <span class="nav-text">如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在生命周期中的哪一步你应该发起-AJAX-请求？"><span class="nav-number">3.5.9.</span> <span class="nav-text">在生命周期中的哪一步你应该发起 AJAX 请求？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是JSX"><span class="nav-number">3.5.10.</span> <span class="nav-text">什么是JSX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#props-和-state"><span class="nav-number">3.5.11.</span> <span class="nav-text">props 和 state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么我们利用循环产生的组件中要用上key这个特殊的prop？"><span class="nav-number">3.5.12.</span> <span class="nav-text">为什么我们利用循环产生的组件中要用上key这个特殊的prop？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件的Render函数在何时被调用"><span class="nav-number">3.5.13.</span> <span class="nav-text">组件的Render函数在何时被调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#render函数被调用了，DOM就一定被更新了？"><span class="nav-number">3.5.14.</span> <span class="nav-text">render函数被调用了，DOM就一定被更新了？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各个框架比较"><span class="nav-number">4.</span> <span class="nav-text">各个框架比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#React-和-Vue-有许多相似之处"><span class="nav-number">4.0.1.</span> <span class="nav-text">React 和 Vue 有许多相似之处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#追踪变化-更新DOM-视图渲染-Vue和React的设计思想有什么区别"><span class="nav-number">4.0.2.</span> <span class="nav-text">追踪变化/更新DOM/视图渲染/Vue和React的设计思想有什么区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-可以对着图片想象"><span class="nav-number">4.0.2.1.</span> <span class="nav-text">vue: (可以对着图片想象)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#react"><span class="nav-number">4.0.2.2.</span> <span class="nav-text">react:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据绑定"><span class="nav-number">4.0.3.</span> <span class="nav-text">数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流"><span class="nav-number">4.0.4.</span> <span class="nav-text">数据流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写方式-Template-vs-jsx"><span class="nav-number">4.0.5.</span> <span class="nav-text">编写方式 Template vs jsx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态管理"><span class="nav-number">4.0.6.</span> <span class="nav-text">状态管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue和React的有什么优劣"><span class="nav-number">4.0.7.</span> <span class="nav-text">Vue和React的有什么优劣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue的优势（性能方面）"><span class="nav-number">4.0.8.</span> <span class="nav-text">Vue的优势（性能方面）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React的优势"><span class="nav-number">4.0.9.</span> <span class="nav-text">React的优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习成本"><span class="nav-number">4.0.10.</span> <span class="nav-text">学习成本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单向数据绑定和双向数据绑定"><span class="nav-number">4.0.11.</span> <span class="nav-text">单向数据绑定和双向数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择框架"><span class="nav-number">4.0.12.</span> <span class="nav-text">如何选择框架</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular"><span class="nav-number">1.</span> <span class="nav-text">Angular</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular是怎么实现双向绑定的？"><span class="nav-number">1.1.</span> <span class="nav-text">Angular是怎么实现双向绑定的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#angular的路由是怎么实现的？"><span class="nav-number">1.2.</span> <span class="nav-text">angular的路由是怎么实现的？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue"><span class="nav-number">2.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双向绑定"><span class="nav-number">2.1.</span> <span class="nav-text">双向绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue是怎么实现双向绑定的？"><span class="nav-number">2.1.1.</span> <span class="nav-text">Vue是怎么实现双向绑定的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体实现"><span class="nav-number">2.1.2.</span> <span class="nav-text">具体实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双向绑定图解"><span class="nav-number">2.1.3.</span> <span class="nav-text">双向绑定图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number">2.2.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期图解"><span class="nav-number">2.2.1.</span> <span class="nav-text">生命周期图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue的路由是怎么实现的？"><span class="nav-number">2.3.</span> <span class="nav-text">Vue的路由是怎么实现的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么采用VUE"><span class="nav-number">2.4.</span> <span class="nav-text">为什么采用VUE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-template"><span class="nav-number">2.4.1.</span> <span class="nav-text">Vue - template</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React"><span class="nav-number">3.</span> <span class="nav-text">React</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能问题"><span class="nav-number">3.1.</span> <span class="nav-text">性能问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于组件重新渲染的问题："><span class="nav-number">3.1.1.</span> <span class="nav-text">关于组件重新渲染的问题：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于setState"><span class="nav-number">3.2.</span> <span class="nav-text">关于setState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调用-setState-之后发生了什么？"><span class="nav-number">3.2.1.</span> <span class="nav-text">调用 setState 之后发生了什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#调和过程："><span class="nav-number">3.2.1.1.</span> <span class="nav-text">调和过程：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setState不会立刻改变React组件中state的值；"><span class="nav-number">3.2.2.</span> <span class="nav-text">setState不会立刻改变React组件中state的值；</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多次setState函数调用产生的效果会合并。"><span class="nav-number">3.2.3.</span> <span class="nav-text">多次setState函数调用产生的效果会合并。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于-setState-这里有三件事情需要知道"><span class="nav-number">3.2.4.</span> <span class="nav-text">关于 setState() 这里有三件事情需要知道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setState可以接受函数为参数吗？有什么作用？"><span class="nav-number">3.2.5.</span> <span class="nav-text">setState可以接受函数为参数吗？有什么作用？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传入-setState-函数的第二个参数的作用是什么？"><span class="nav-number">3.2.6.</span> <span class="nav-text">传入 setState 函数的第二个参数的作用是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候不能调用setState"><span class="nav-number">3.2.7.</span> <span class="nav-text">什么时候不能调用setState</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么时候调用setState不会再次调用render"><span class="nav-number">3.2.8.</span> <span class="nav-text">什么时候调用setState不会再次调用render</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期-1"><span class="nav-number">3.3.</span> <span class="nav-text">生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#描述一下React组件的各个生命周期函数吗-组件的生命周期有哪些"><span class="nav-number">3.3.1.</span> <span class="nav-text">描述一下React组件的各个生命周期函数吗/组件的生命周期有哪些</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#组件的声明周期有三种阶段"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">组件的声明周期有三种阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件的初始化阶段"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">组件的初始化阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件更新阶段"><span class="nav-number">3.3.1.3.</span> <span class="nav-text">组件更新阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组件析构阶段"><span class="nav-number">3.3.1.4.</span> <span class="nav-text">组件析构阶段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生命周期图解-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">生命周期图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#渲染机制"><span class="nav-number">3.4.</span> <span class="nav-text">渲染机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更新渲染过程"><span class="nav-number">3.4.1.</span> <span class="nav-text">更新渲染过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">3.5.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在什么情况下你会优先选择使用-Class-Component-而不是-Functional-Component？"><span class="nav-number">3.5.1.</span> <span class="nav-text">在什么情况下你会优先选择使用 Class Component 而不是 Functional Component？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-中-Element-与-Component-的区别是？"><span class="nav-number">3.5.2.</span> <span class="nav-text">React 中 Element 与 Component 的区别是？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React-中的-refs-作用是什么？"><span class="nav-number">3.5.3.</span> <span class="nav-text">React 中的 refs 作用是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Controlled-Component-与-Uncontrolled-Component-之间的区别是什么？"><span class="nav-number">3.5.4.</span> <span class="nav-text">Controlled Component 与 Uncontrolled Component 之间的区别是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shouldComponentUpdate-的作用是啥以及为何它这么重要？"><span class="nav-number">3.5.5.</span> <span class="nav-text">shouldComponentUpdate 的作用是啥以及为何它这么重要？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#createElement-与-cloneElement-的区别是什么？"><span class="nav-number">3.5.6.</span> <span class="nav-text">createElement 与 cloneElement 的区别是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么我们需要使用-React-提供的-Children-API-而不是-JavaScript-的-map？"><span class="nav-number">3.5.7.</span> <span class="nav-text">为什么我们需要使用 React 提供的 Children API 而不是 JavaScript 的 map？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？"><span class="nav-number">3.5.8.</span> <span class="nav-text">如果你创建了类似于下面的Twitter元素，那么它相关的类定义是啥样子的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在生命周期中的哪一步你应该发起-AJAX-请求？"><span class="nav-number">3.5.9.</span> <span class="nav-text">在生命周期中的哪一步你应该发起 AJAX 请求？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是JSX"><span class="nav-number">3.5.10.</span> <span class="nav-text">什么是JSX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#props-和-state"><span class="nav-number">3.5.11.</span> <span class="nav-text">props 和 state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么我们利用循环产生的组件中要用上key这个特殊的prop？"><span class="nav-number">3.5.12.</span> <span class="nav-text">为什么我们利用循环产生的组件中要用上key这个特殊的prop？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件的Render函数在何时被调用"><span class="nav-number">3.5.13.</span> <span class="nav-text">组件的Render函数在何时被调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#render函数被调用了，DOM就一定被更新了？"><span class="nav-number">3.5.14.</span> <span class="nav-text">render函数被调用了，DOM就一定被更新了？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native"><span class="nav-number">4.</span> <span class="nav-text">React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RN如何与原生iOS交互"><span class="nav-number">4.1.</span> <span class="nav-text">RN如何与原生iOS交互</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与iOS交互图解"><span class="nav-number">4.1.1.</span> <span class="nav-text">与iOS交互图解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RN如何与原生Android交互"><span class="nav-number">4.2.</span> <span class="nav-text">RN如何与原生Android交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flex布局"><span class="nav-number">4.3.</span> <span class="nav-text">Flex布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#容器的属性"><span class="nav-number">4.3.1.</span> <span class="nav-text">容器的属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何更新jsbundle"><span class="nav-number">4.4.</span> <span class="nav-text">如何更新jsbundle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hot-Replacement-请简述-code-push-的原理？"><span class="nav-number">4.5.</span> <span class="nav-text">Hot Replacement/请简述 code push 的原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CodePush-可以进行实时的推送代码更新："><span class="nav-number">4.6.</span> <span class="nav-text">CodePush 可以进行实时的推送代码更新：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首屏优化"><span class="nav-number">4.7.</span> <span class="nav-text">首屏优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RN的优缺点"><span class="nav-number">4.8.</span> <span class="nav-text">RN的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-Native相对于原生的ios和Android有哪些优势？"><span class="nav-number">4.9.</span> <span class="nav-text">React Native相对于原生的ios和Android有哪些优势？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">4.9.1.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各个框架比较"><span class="nav-number">5.</span> <span class="nav-text">各个框架比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#React-和-Vue-有许多相似之处"><span class="nav-number">5.0.1.</span> <span class="nav-text">React 和 Vue 有许多相似之处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#追踪变化-更新DOM-视图渲染-Vue和React的设计思想有什么区别"><span class="nav-number">5.0.2.</span> <span class="nav-text">追踪变化/更新DOM/视图渲染/Vue和React的设计思想有什么区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#vue-可以对着图片想象"><span class="nav-number">5.0.2.1.</span> <span class="nav-text">vue: (可以对着图片想象)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#react"><span class="nav-number">5.0.2.2.</span> <span class="nav-text">react:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据绑定"><span class="nav-number">5.0.3.</span> <span class="nav-text">数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流"><span class="nav-number">5.0.4.</span> <span class="nav-text">数据流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写方式-Template-vs-jsx"><span class="nav-number">5.0.5.</span> <span class="nav-text">编写方式 Template vs jsx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态管理"><span class="nav-number">5.0.6.</span> <span class="nav-text">状态管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue和React的有什么优劣"><span class="nav-number">5.0.7.</span> <span class="nav-text">Vue和React的有什么优劣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue的优势（性能方面）"><span class="nav-number">5.0.8.</span> <span class="nav-text">Vue的优势（性能方面）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#React的优势"><span class="nav-number">5.0.9.</span> <span class="nav-text">React的优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习成本"><span class="nav-number">5.0.10.</span> <span class="nav-text">学习成本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单向数据绑定和双向数据绑定"><span class="nav-number">5.0.11.</span> <span class="nav-text">单向数据绑定和双向数据绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择框架"><span class="nav-number">5.0.12.</span> <span class="nav-text">如何选择框架</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1094,7 +1232,7 @@
         var disqus_config = function () {
           this.page.url = 'https://abigaleyu.co/2018/06/28/interview-FE-frame/';
           this.page.identifier = '2018/06/28/interview-FE-frame/';
-          this.page.title = '面试总结-前端框架';
+          this.page.title = '前端框架 | 面试总结';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://abigale.disqus.com/embed.js';

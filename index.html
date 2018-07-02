@@ -330,6 +330,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/07/02/interview-project/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Abigale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dear.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Abigale's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/02/interview-project/" itemprop="url">个人开源项目 | 面试总结</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-02T11:53:50+08:00">
+                2018-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Front-End</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/02/interview-project/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/02/interview-project/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="介绍项目"><a href="#介绍项目" class="headerlink" title="介绍项目"></a>介绍项目</h3><ul>
+<li>豆瓣FM桌面版：<a href="https://github.com/abigaleypc/musicer" target="_blank" rel="noopener">https://github.com/abigaleypc/musicer</a></li>
+<li>该项目主要是一款电豆瓣FM的桌面应用，我将豆瓣FMweb端 (<a href="http://douban.fm/" target="_blank" rel="noopener">http://douban.fm/</a>) 的功能移植到桌面应用中。该应用使用跨平台框架可兼容Mac和Windows。</li>
+<li>架构思路：前后端的架构和选型分析；前后端分离与接入层接口封装，前端与接入层规范对接；数据状态管理；登录态保持与抓包过程。</li>
+<li><p>功能模块：主要模块有当前频道，歌词滚动，微信分享，切换频道，点赞，删除歌词，用户登录等功能。前端主要用了react去组件化各个模块，包括组件之间的数据流通。</p>
+<ul>
+<li><p>当前歌曲，歌词滚动，微信分享这几个模块都需要知道当前歌曲的ID，我会将当前歌曲的一些必要信息存在一个state里面比如songID。切换歌曲模块主要触发songID更改的一个action,当歌曲被更改时，刚上面提到的内容接收到新的状态也会被更新。其中歌词滚动这一模块需要不断监听当前时间并做滚动处理，我的做法类似节流的方式，每隔0.3s就做一个更新，主要是从歌词一开始设定当前时间为0，豆瓣FM获取到的歌曲它是有带每句歌词对应的时间，我是将我们设定的时间不停累加，插在处于对应歌词之间的地方，如果0.3s之后还在当前两句歌词范围内就不滚动。</p>
+<blockquote>
+<p>面试过程中提到歌词滚动的优化，可在每获取一句歌词时再读取一次下一句歌词的时间，再将settimeout的时间戳设为两句歌词的间隔时间。</p>
+</blockquote>
+</li>
+<li><p>点赞和删除歌曲会检测当前登录态，如果当前未登录，就会直接跳转到登录界面。如有已经登录，就会带上登录态去做一些请求</p>
+</li>
+<li>登录态，在调用豆瓣FM的所有接口我都没在前端直接调用，而是做了一个NODE的接入层，获取或者修改信息都是通过node接入层再到了豆瓣FM官网。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/02/interview-project/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2018/06/28/interview-FE-frame/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -349,7 +522,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/28/interview-FE-frame/" itemprop="url">面试总结-前端框架</a></h2>
+                <a class="post-title-link" href="/2018/06/28/interview-FE-frame/" itemprop="url">前端框架 | 面试总结</a></h2>
         
 
         <div class="post-meta">
@@ -517,7 +690,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/28/interview-http/" itemprop="url">面试总结-HTTP</a></h2>
+                <a class="post-title-link" href="/2018/06/28/interview-http/" itemprop="url">HTTP | 面试总结</a></h2>
         
 
         <div class="post-meta">
@@ -601,7 +774,7 @@
 
       
         
-          <h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h3 id="手写一个JSONP的实现"><a href="#手写一个JSONP的实现" class="headerlink" title="手写一个JSONP的实现"></a>手写一个JSONP的实现</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">  callback(res)&#123;</span></div><div class="line"><span class="undefined">    console.log(res);</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"xxx/test.js?callback=callback"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+          <h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><h3 id="手写一个JSONP的实现"><a href="#手写一个JSONP的实现" class="headerlink" title="手写一个JSONP的实现"></a>手写一个JSONP的实现</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">  callback(res)&#123;</span></div><div class="line"><span class="javascript">    <span class="built_in">console</span>.log(res);</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"xxx/test.js?callback=callback"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// test.js</span></div><div class="line">callback(data)</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
@@ -675,7 +848,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/28/interview-basic-js/" itemprop="url">面试总结-原生JS基础</a></h2>
+                <a class="post-title-link" href="/2018/06/28/interview-basic-js/" itemprop="url">原生JS基础 | 面试总结</a></h2>
         
 
         <div class="post-meta">
@@ -1775,166 +1948,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://abigaleyu.co/2017/10/16/Charles-study/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Abigale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dear.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abigale's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/16/Charles-study/" itemprop="url">初涉Charles</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-16T19:04:34+08:00">
-                2017-10-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/10/16/Charles-study/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/10/16/Charles-study/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="了解Charles"><a href="#了解Charles" class="headerlink" title="了解Charles"></a>了解Charles</h3><ul>
-<li>Charles是一个HTTP代理服务器,HTTP监视器,反转代理服务器，当浏览器连接Charles的代理访问互联网时，Charles可以监控浏览器发送和接收的所有数据。</li>
-<li>Charles是一个简单的基于HTTP协议传输的调试工具，可以帮助开发人员分析数据和加快调试BUG的效率。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/16/Charles-study/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1985,7 +1998,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">54</span>
+                <span class="site-state-item-count">55</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2007,7 +2020,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
